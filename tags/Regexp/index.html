@@ -7,22 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>reflect | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="reflect - zhaolion&#39;s dropbox">
+    <title>Regexp | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="Regexp - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
         
     <meta name="Keywords" content="瑟瑟发抖.jpg">
-    <meta name="description" content="reflect">
+    <meta name="description" content="Regexp">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.github.io/tags/reflect/">
+    <meta property="og:url" content="https://zhaolion.github.io/tags/Regexp/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.github.io/tags/reflect/index.xml" title="zhaolion's dropbox" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.github.io/tags/Regexp/index.xml" title="zhaolion's dropbox" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -67,7 +67,7 @@
                     
                     <h3 class="archive-title">
                         包含标签
-                        <span class="keyword">reflect</span>
+                        <span class="keyword">Regexp</span>
                         的文章
                     </h3>
                     
@@ -76,28 +76,36 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="https://zhaolion.github.io/post/golang/package/reflect/">初步了解 golang reflect pkg</a>
+                                    <a href="https://zhaolion.github.io/post/regexp/basic/">正则表达式基本使用介绍</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年1月12日
+                                2019年1月13日
                             </date>
                             
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="https://zhaolion.github.io/categories/Golang">Golang</a>
+                                    <a href="https://zhaolion.github.io/categories/Regexp">Regexp</a>
                                 
                             </div>
                             
                             <div class="post-content">
-                                初步了解 golang reflect pkg [TOC]
-阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
-Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。
-什么时候应该用 reflect
- 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp; Kind &amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value: - Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &hellip; - Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &hellip; - Value: 也就是 Go value, 承载变量 / 常量的值
- type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈……
-                                <p class="readmore"><a href="https://zhaolion.github.io/post/golang/package/reflect/">阅读全文</a></p>
+                                正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
+字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符 &gt;.at，可以匹配&rdquo;cat&rdquo;,&ldquo;sat&rdquo;,&ldquo;mat&rdquo;等，一般这种通配符用于匹配操作系统中的文件名
+ 限定范围 &gt; 1. 如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 &gt;2. 可以列出一个集合，[aeiou]，来匹配所有元音字母 &gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 &gt;4. 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符
+  重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和+，这两个符号放在表示式后面 - *表示这个模式可以重复0次或多次 - +表示这个模式可以重复1次或更多次
+ c+at，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，但是无法匹配&rdquo;at&rdquo; c*at，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，也可以匹配&rdquo;at&rdquo;
+ 子表达式 通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。
+ (very )*large，可以匹配：&rdquo;large&rdquo;,&ldquo;very large&rdquo;,&ldquo;very very large&rdquo;
+ 子表达式计数 可以在花括号{}中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围
+ (very){1, 2}，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo; (very){3}，可以匹配&rdquo;veryveryvery&rdquo; (very)(1,)，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;,&ldquo;veryveryvery&rdquo;&hellip;
+ 定位到字符串的开始或末尾 脱字符号^用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处 字符$，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾
+ ^bob，用于在字符串开始处匹配bob com$,用于在字符串末尾处匹配com ^[a-z]$，这个将只能匹配a-z之间的字符组成的字符串
+ 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配&rdquo;com&rdquo;,&ldquo;net&rdquo;,&ldquo;edu&rdquo;中任意一个
+匹配特殊字符 如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠\\
+特殊字符主要有： - \: 转义字符 - ^: 在字符串开始匹配 - $: 在字符串末尾匹配 - .……
+                                <p class="readmore"><a href="https://zhaolion.github.io/post/regexp/basic/">阅读全文</a></p>
                             </div>
                         </article>
                     

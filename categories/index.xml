@@ -19,5 +19,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>MySQL</title>
+      <link>https://zhaolion.github.io/categories/MySQL/</link>
+      <pubDate>Sun, 13 Jan 2019 18:45:26 +0800</pubDate>
+      
+      <guid>https://zhaolion.github.io/categories/MySQL/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regexp</title>
+      <link>https://zhaolion.github.io/categories/Regexp/</link>
+      <pubDate>Sun, 13 Jan 2019 18:48:34 +0800</pubDate>
+      
+      <guid>https://zhaolion.github.io/categories/Regexp/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

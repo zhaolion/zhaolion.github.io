@@ -7,22 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>reflect | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="reflect - zhaolion&#39;s dropbox">
+    <title>MySQL | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="MySQL - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
         
     <meta name="Keywords" content="瑟瑟发抖.jpg">
-    <meta name="description" content="reflect">
+    <meta name="description" content="MySQL">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.github.io/tags/reflect/">
+    <meta property="og:url" content="https://zhaolion.github.io/categories/MySQL/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.github.io/tags/reflect/index.xml" title="zhaolion's dropbox" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.github.io/categories/MySQL/index.xml" title="zhaolion's dropbox" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -66,9 +66,9 @@
                 <div class="res-cons">
                     
                     <h3 class="archive-title">
-                        包含标签
-                        <span class="keyword">reflect</span>
-                        的文章
+                        分类
+                        <span class="keyword">MySQL</span>
+                        中的文章
                     </h3>
                     
 
@@ -76,28 +76,26 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="https://zhaolion.github.io/post/golang/package/reflect/">初步了解 golang reflect pkg</a>
+                                    <a href="https://zhaolion.github.io/post/mysql/basic/">MySQL的基础使用相关知识</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2019年1月12日
+                                2019年1月13日
                             </date>
                             
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="https://zhaolion.github.io/categories/Golang">Golang</a>
+                                    <a href="https://zhaolion.github.io/categories/MySQL">MySQL</a>
                                 
                             </div>
                             
                             <div class="post-content">
-                                初步了解 golang reflect pkg [TOC]
-阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
-Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。
-什么时候应该用 reflect
- 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp; Kind &amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value: - Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &hellip; - Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &hellip; - Value: 也就是 Go value, 承载变量 / 常量的值
- type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈……
-                                <p class="readmore"><a href="https://zhaolion.github.io/post/golang/package/reflect/">阅读全文</a></p>
+                                登录到MySQL mysql -h hostname -P hostport -u username -p
+ -h 指定希望连接的主机，可以用来连接远程主机上的MySQL，如果忽略默认登录本机数据库 -P 指定所连接主机开放的MySQL端口，如果忽略此项默认使用3306端口登录 -u 指定连接数据库时使用的用户名称，如果忽略此项默认使用你的本机用户名 -p 告诉服务器会使用密码来连接数据库，如果忽略此项使用无密码登录  使用密码登入时，会出现以下响应
+Enter password:  输入密码后成功登录会得到以下响应
+Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 4 Server version: 5.7.12 MySQL Community Server (GPL) Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved. Oracle is a registered trademark of Oracle Corporation and/or its affiliates.……
+                                <p class="readmore"><a href="https://zhaolion.github.io/post/mysql/basic/">阅读全文</a></p>
                             </div>
                         </article>
                     
