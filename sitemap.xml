@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>https://zhaolion.com/post/golang/package/sync.pool/</loc>
+    <lastmod>2018-11-13T22:52:14+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/golang/package/bufio/</loc>
     <lastmod>2018-10-13T21:54:10+08:00</lastmod>
   </url>
@@ -194,6 +199,12 @@
   <url>
     <loc>https://zhaolion.com/tags/reflect/</loc>
     <lastmod>2019-01-12T11:43:35+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/tags/sync/</loc>
+    <lastmod>2018-11-13T22:52:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>正则表达式基本使用介绍 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="正则表达式基本使用介绍 - zhaolion&#39;s dropbox">
+    <title>sync.Pool 的实现原理和适用场景 | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="sync.Pool 的实现原理和适用场景 - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2017-01-13T18:48:34&#43;08:00">
+    <meta property="article:published_time" content="2018-11-13T22:52:14&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2017-01-13T18:48:34&#43;08:00">
+    <meta property="article:modified_time" content="2018-11-13T22:52:14&#43;08:00">
         
     <meta name="Keywords" content="萌新">
-    <meta name="description" content="正则表达式基本使用介绍">
+    <meta name="description" content="sync.Pool 的实现原理和适用场景">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/regexp/basic/">
+    <meta property="og:url" content="https://zhaolion.com/post/golang/package/sync.pool/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -70,16 +70,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">正则表达式基本使用介绍</h1>
+                            <h1 class="post-title">sync.Pool 的实现原理和适用场景</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2017年1月13日
+                            2018年11月13日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Regexp">Regexp</a></span>
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
                             
                         </div>
                         
@@ -91,88 +91,114 @@
                         <div class="post-content">
                             
 
-<p>正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格</p>
+<h1 id="sync-pool-的实现原理和适用场景">sync.Pool 的实现原理和适用场景</h1>
 
-<h1 id="字符集和类">字符集和类</h1>
+<p>Golang GC 大大减少了程序编程负担，但 GC 是一把双刃剑，带来了编程的方便但同时也增加了运行时开销，使用不当甚至会严重影响程序的性能。因此性能要求高的场景不能任意产生太多的垃圾，如何解决呢？</p>
 
-<ol>
-<li><p>通配符，可以匹配除换行符（<code>\\n</code>）之外的任意一个字符
-&gt;<code>.at</code>，可以匹配&rdquo;cat&rdquo;,&ldquo;sat&rdquo;,&ldquo;mat&rdquo;等，一般这种通配符用于匹配操作系统中的文件名</p></li>
+<p>那就是 ** 重用对象 **</p>
 
-<li><p>限定范围
-&gt; 1. 如果要限定匹配的范围，可以使用<code>[a-z]at</code>形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合
-&gt;2. 可以列出一个集合，<code>[aeiou]</code>，来匹配所有元音字母
-&gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:<code>[a-zA-Z]</code>，这个集合代表任何的大小字母
-&gt;4. 也可以指明不属于某个集合，<code>[^a-z]</code>，用来匹配不在小写字母中的字符</p></li>
-</ol>
+<p>我们可以简单的使用一个 chan 把这些可重用的对象缓存起来，但如果很多 goroutine 竞争一个 chan 性能肯定是问题，为了避免大家重造车轮，因此官方统一出了一个包 <a href="https://golang.org/src/sync/pool.go"><code>sync.Pool</code></a></p>
 
-<h1 id="重复">重复</h1>
+<p>首先来看下官方给的注释，已经解释的非常到位:</p>
 
-<p>如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:<code>*</code>和<code>+</code>，这两个符号放在表示式后面
-- <code>*</code>表示这个模式可以重复0次或多次
-- <code>+</code>表示这个模式可以重复1次或更多次</p>
+<pre><code>
+// A Pool is a set of temporary objects that may be individually saved and
+// retrieved.
+//
+// Any item stored in the Pool may be removed automatically at any time without
+// notification. If the Pool holds the only reference when this happens, the
+// item might be deallocated.
+//
+// A Pool is safe for use by multiple goroutines simultaneously.
+//
+// Pool's purpose is to cache allocated but unused items for later reuse,
+// relieving pressure on the garbage collector. That is, it makes it easy to
+// build efficient, thread-safe free lists. However, it is not suitable for all
+// free lists.
+//
+// An appropriate use of a Pool is to manage a group of temporary items
+// silently shared among and potentially reused by concurrent independent
+// clients of a package. Pool provides a way to amortize allocation overhead
+// across many clients.
+//
+// An example of good use of a Pool is in the fmt package, which maintains a
+// dynamically-sized store of temporary output buffers. The store scales under
+// load (when many goroutines are actively printing) and shrinks when
+// quiescent.
+//
+// On the other hand, a free list maintained as part of a short-lived object is
+// not a suitable use for a Pool, since the overhead does not amortize well in
+// that scenario. It is more efficient to have such objects implement their own
+// free list.
+//
+// A Pool must not be copied after first use.
+</code></pre>
 
-<blockquote>
-<p><code>c+at</code>，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，但是无法匹配&rdquo;at&rdquo;
-<code>c*at</code>，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，也可以匹配&rdquo;at&rdquo;</p>
-</blockquote>
+<p>sync.Pool 最常用的两个函数 Get/Put，再来给个 demo:</p>
 
-<h1 id="子表达式">子表达式</h1>
+<pre><code>package main
 
-<p>通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。</p>
+import(
+    &quot;fmt&quot;
+    &quot;sync&quot;
+)
 
-<blockquote>
-<p><code>(very )*large</code>，可以匹配：&rdquo;large&rdquo;,&ldquo;very large&rdquo;,&ldquo;very very large&rdquo;</p>
-</blockquote>
+func main() {
+    p := &amp;sync.Pool{
+        New: func() interface{} {
+            return 0
+        },
+    }
 
-<h1 id="子表达式计数">子表达式计数</h1>
+    a := p.Get().(int)
+    p.Put(1)
+    b := p.Get().(int)
 
-<p>可以在花括号<code>{}</code>中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围</p>
+    fmt.Println(a, b)
+}
+</code></pre>
 
-<blockquote>
-<p><code>(very){1, 2}</code>，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;
-<code>(very){3}</code>，可以匹配&rdquo;veryveryvery&rdquo;
-<code>(very)(1,)</code>，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;,&ldquo;veryveryvery&rdquo;&hellip;</p>
-</blockquote>
+<p>对象池在 Get 的时候没有里面没有对象会返回 nil，所以我们需要 New function 来确保当获取对象对象池为空时，重新生成一个对象返回，pool.Get 的功能是从池中获取一个 interface{} 类型的值，pool.Put 的作用则是把一个 interface{} 类型的值放置于池中</p>
 
-<h1 id="定位到字符串的开始或末尾">定位到字符串的开始或末尾</h1>
+<p>如果一个临时对象池的 Put 方法未被调用过，且它的 New 字段也未曾被赋予一个非 nil 的函数值，那么它的 Get 方法返回的结果值就一定会是 nil。Get 方法返回的不一定就是存在于池中的值。不过，如果这个结果值是池中的，那么在该方法返回它之前就一定会把它从池中删除掉</p>
 
-<p>脱字符号<code>^</code>用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处
-字符<code>$</code>，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾</p>
+<p>对象池使用是较简单的，但原生的 sync.Pool 不是万精油，存在一些问题：</p>
 
-<blockquote>
-<p><code>^bob</code>，用于在字符串开始处匹配bob
-<code>com$</code>,用于在字符串末尾处匹配com
-<code>^[a-z]$</code>，这个将只能匹配a-z之间的字符组成的字符串</p>
-</blockquote>
+<ul>
+<li>我们不能自由控制 Pool 中元素的数量</li>
+<li>放进 Pool 中的对象每次 GC 发生时都会被清理掉</li>
+</ul>
 
-<h1 id="分支">分支</h1>
+<p>这些小问题使得 sync.Pool 做简单的对象池还可以，但做连接池就有点心有余而力不足了，比如：在高并发的情景下一旦 Pool 中的连接被 GC 清理掉，那每次连接 DB 都需要重新三次握手建立连接，这个代价就较大了。</p>
 
-<p>可以使用正则表达式中一条竖线，来表示一个选择
-<code>com|edu|net</code>，来匹配&rdquo;com&rdquo;,&ldquo;net&rdquo;,&ldquo;edu&rdquo;中任意一个</p>
+<h2 id="缓存对象的开销和过程">缓存对象的开销和过程</h2>
 
-<h1 id="匹配特殊字符">匹配特殊字符</h1>
+<p>如何在多个 goroutine 之间使用同一个 pool 做到高效呢？官方的做法就是尽量减少竞争。</p>
 
-<p>如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠<code>\\</code></p>
+<p>因为 sync.pool 为每个 P（对应 cpu，不了解的童鞋可以去看看 golang 的调度模型介绍）都分配了一个子池。</p>
 
-<p>特殊字符主要有：
-- \: 转义字符
-- <code>^</code>: 在字符串开始匹配
-- <code>$</code>: 在字符串末尾匹配
-- <code>.</code>: 匹配除换行符之外的字符（字符串末尾仅代表<code>.</code>）
-- <code>|</code>: 选择分支的开始
-- <code>(</code>: 子模式开始
-- <code>)</code>: 子模式结束
-- <code>*</code>: 重复0次或多次
-- <code>+</code>: 重复1次或多次
-- <code>{</code>: 最小／最大量记号开始
-- <code>}</code>: 最小／最大量记号结束
-- <code>?</code>: 标记一个子模式为可选</p>
+<p>当执行一个 pool.get 或者 put 操作的时候都会先把当前的 goroutine 固定到某个 P 的子池上面，然后再对该子池进行操作。每个子池里面有一个私有对象和共享列表对象，私有对象是只有对应的 P 能够访问，因为一个 P 同一时间只能执行一个 goroutine，因此对私有对象存取操作是不需要加锁的。共享列表是和其他 P 分享的，因此操作共享列表是需要加锁的。</p>
 
-<blockquote>
-<p>\\，表示匹配反斜杠<br />
-<code>\\$</code>，表示匹配<code>$</code></p>
-</blockquote>
+<p>获取对象过程是：
+1. 固定到某个 P，尝试从私有对象获取，如果私有对象非空则返回该对象，并把私有对象置空；
+2. 如果私有对象是空的时候，就去当前子池的共享列表获取（需要加锁）
+3. 如果当前子池的共享列表也是空的，那么就尝试去其他 P 的子池的共享列表偷取一个（需要加锁）
+4. 如果其他子池都是空的，最后就用用户指定的 New 函数产生一个新的对象返回</p>
+
+<p>可以看到一次 get 操作最少 0 次加锁，最大 N（N 等于 MAXPROCS）次加锁。</p>
+
+<p>归还对象的过程：
+1. 固定到某个 P，如果私有对象为空则放到私有对象
+2. 否则加入到该 P 子池的共享列表中（需要加锁）
+3. 可以看到一次 put 操作最少 0 次加锁，最多 1 次加锁</p>
+
+<p>由于 goroutine 具体会分配到那个 P 执行是 golang 的协程调度系统决定的，因此在 MAXPROCS&gt;1 的情况下，多 goroutine 用同一个 sync.Pool 的话，各个 P 的子池之间缓存的对象是否平衡以及开销如何是没办法准确衡量的。但如果 goroutine 数目和缓存的对象数目远远大于 MAXPROCS 的话，概率上说应该是相对平衡的。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>sync.Pool 的定位不是做类似连接池的东西，它的用途仅仅是增加对象重用的几率，减少 gc 的负担，而开销方面也不是很便宜的。</p>
+
+<p>推荐阅读 <a href="https://golang.org/pkg/fmt/">fmt</a>，这是 sync.Pool 的最佳实践</p>
 
                         </div>
 
@@ -182,15 +208,15 @@
     <h2>See Also</h2>
     <ul class="listing">
         
+        <li><a href="/post/golang/package/bufio/">初步了解 golang bufio pkg</a></li>
+        
+        <li><a href="/post/golang/basic/interface/">Go Interface 从理解到深入</a></li>
+        
+        <li><a href="/post/golang/tips/coding.in.go/">如何写好 golang 代码的一些 tips</a></li>
+        
+        <li><a href="/post/regexp/basic/">正则表达式基本使用介绍</a></li>
+        
         <li><a href="/post/mysql/basic/">MySQL的基础使用相关知识</a></li>
-        
-        <li><a href="/post/js/intro-5/">js intro 对象</a></li>
-        
-        <li><a href="/post/js/intro-4/">js intro 语句</a></li>
-        
-        <li><a href="/post/js/intro-3/">js intro 表达式和运算符</a></li>
-        
-        <li><a href="/post/js/intro-2/">js intro 类型/值/变量</a></li>
         
     </ul>
 </div>
@@ -200,9 +226,9 @@
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="https://zhaolion.com/tags/Regexp">Regexp</a></li>
+                                <li><a href="https://zhaolion.com/tags/golang">golang</a></li>
                                 
-                                <li><a href="https://zhaolion.com/tags/basic">basic</a></li>
+                                <li><a href="https://zhaolion.com/tags/sync">sync</a></li>
                                 
                             </ul>
                             

@@ -94,6 +94,33 @@ Golang 语言实现了反射，反射机制就是在运行时动态的调用对�
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/golang/package/sync.pool/" title="sync.Pool 的实现原理和适用场景" >sync.Pool 的实现原理和适用场景</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2018年11月13日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                sync.Pool 的实现原理和适用场景 Golang GC 大大减少了程序编程负担，但 GC 是一把双刃剑，带来了编程的方便但同时也增加了运行时开销，使用不当甚至会严重影响程序的性能。因此性能要求高的场景不能任意产生太多的垃圾，如何解决呢？
+那就是 ** 重用对象 **
+我们可以简单的使用一个 chan 把这些可重用的对象缓存起来，但如果很多 goroutine 竞争一个 chan 性能肯定是问题，为了避免大家重造车轮，因此官方统一出了一个包 sync.Pool
+首先来看下官方给的注释，已经解释的非常到位:
+ // A Pool is a set of temporary objects that may be individually saved and // retrieved. // // Any item stored in the Pool may be removed automatically at any time without // notification. If the Pool holds the only reference when this happens, the // item might be deallocated.……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/golang/package/sync.pool/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/package/bufio/" title="初步了解 golang bufio pkg" >初步了解 golang bufio pkg</a>
                                 </h1>
                             </header>
@@ -342,36 +369,6 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
                             <p class="readmore"><a href="https://zhaolion.com/post/js/intro-3/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/js/intro-2/" title="js intro 类型/值/变量" >js intro 类型/值/变量</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年10月15日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Javascript">Javascript</a></span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                词法结构  字符集：unicode 区分大小写，关键字、变量、函数名、标示符必须采取大小写一致 注释
-``` // 单行注释 /* ~一段注释~ / // 另一段注释 /  多行注释 多行注释 */ ```  直接量  12 // 数字 1.2 // 小数 &quot;hello world&quot; // 一个字符串 'hi' // 另一种字符串 true // 布尔值 /^javascript$/gi //正则表达式直接量 null // 空 { x:1 ,y:2} // 对象 [ 1,2,3,4,5 ] //数组  标示符、保留字 TBD
- 可选的分号
- 在任何需要分割的地方使用 ; 进行分隔 在任何可以省略分号的地方都将其省略
-   如果不使用分号，由于语句的分隔规则，会导致一些意想不到的情况，建议无论什么时候都使用分号进行分割
-类型、值和变量 js中的数据类型： - 数字 - 字符串 - 布尔值 - null - undefine - 对象……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/js/intro-2/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -420,6 +417,10 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
     </li>
     
     <li>
+        <a href="https://zhaolion.com/post/golang/package/sync.pool/" title="sync.Pool 的实现原理和适用场景">sync.Pool 的实现原理和适用场景</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/golang/package/bufio/" title="初步了解 golang bufio pkg">初步了解 golang bufio pkg</a>
     </li>
     
@@ -451,10 +452,6 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
         <a href="https://zhaolion.com/post/js/intro-3/" title="js intro 表达式和运算符">js intro 表达式和运算符</a>
     </li>
     
-    <li>
-        <a href="https://zhaolion.com/post/js/intro-2/" title="js intro 类型/值/变量">js intro 类型/值/变量</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -469,7 +466,7 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(4)</a>
+        <a href="https://zhaolion.com/categories/Golang/">Golang(5)</a>
     </li>
     
     <li>
@@ -518,6 +515,8 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
     <a href="https://zhaolion.com/tags/interface/">interface</a>
     
     <a href="https://zhaolion.com/tags/reflect/">reflect</a>
+    
+    <a href="https://zhaolion.com/tags/sync/">sync</a>
     
     <a href="https://zhaolion.com/tags/tips/">tips</a>
     
