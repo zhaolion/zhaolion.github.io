@@ -33,6 +33,11 @@
   </url>
   
   <url>
+    <loc>https://zhaolion.com/post/html/intro/</loc>
+    <lastmod>2016-09-10T22:20:36+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/categories/</loc>
     <priority>0</priority>
   </url>
@@ -44,13 +49,25 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/MySQL/</loc>
-    <lastmod>2017-01-13T18:45:26+08:00</lastmod>
+    <loc>https://zhaolion.com/tags/HTML/</loc>
+    <lastmod>2016-09-10T22:20:36+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/categories/HTML/</loc>
+    <lastmod>2016-09-10T22:20:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.com/tags/MySQL/</loc>
+    <lastmod>2017-01-13T18:45:26+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/categories/MySQL/</loc>
     <lastmod>2017-01-13T18:45:26+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -62,20 +79,20 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/Regexp/</loc>
-    <lastmod>2017-01-13T18:48:34+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://zhaolion.com/tags/Regexp/</loc>
     <lastmod>2017-01-13T18:48:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://zhaolion.com/categories/Regexp/</loc>
+    <lastmod>2017-01-13T18:48:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/tags/</loc>
-    <lastmod>2017-01-13T18:45:26+08:00</lastmod>
+    <lastmod>2016-09-10T22:20:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
