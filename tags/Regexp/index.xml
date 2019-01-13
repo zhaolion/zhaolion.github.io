@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Regexp on zhaolion&#39;s dropbox</title>
-    <link>https//zhaolion.github.io/tags/Regexp/</link>
+    <link>http://zhaolion.github.io/tags/Regexp/</link>
     <description>Recent content in Regexp on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 13 Jan 2017 18:48:34 +0800</lastBuildDate>
     
-	<atom:link href="https//zhaolion.github.io/tags/Regexp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://zhaolion.github.io/tags/Regexp/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>正则表达式基本使用介绍</title>
-      <link>https//zhaolion.github.io/post/regexp/basic/</link>
+      <link>http://zhaolion.github.io/post/regexp/basic/</link>
       <pubDate>Fri, 13 Jan 2017 18:48:34 +0800</pubDate>
       
-      <guid>https//zhaolion.github.io/post/regexp/basic/</guid>
+      <guid>http://zhaolion.github.io/post/regexp/basic/</guid>
       <description>正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
 字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符 &amp;gt;.at，可以匹配&amp;rdquo;cat&amp;rdquo;,&amp;ldquo;sat&amp;rdquo;,&amp;ldquo;mat&amp;rdquo;等，一般这种通配符用于匹配操作系统中的文件名
  限定范围 &amp;gt; 1. 如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 &amp;gt;2. 可以列出一个集合，[aeiou]，来匹配所有元音字母 &amp;gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 &amp;gt;4. 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符

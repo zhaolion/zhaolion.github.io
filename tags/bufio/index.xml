@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bufio on zhaolion&#39;s dropbox</title>
-    <link>https//zhaolion.github.io/tags/bufio/</link>
+    <link>http://zhaolion.github.io/tags/bufio/</link>
     <description>Recent content in bufio on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 13 Oct 2018 21:54:10 +0800</lastBuildDate>
     
-	<atom:link href="https//zhaolion.github.io/tags/bufio/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://zhaolion.github.io/tags/bufio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>初步了解 golang bufio pkg</title>
-      <link>https//zhaolion.github.io/post/golang/package/bufio/</link>
+      <link>http://zhaolion.github.io/post/golang/package/bufio/</link>
       <pubDate>Sat, 13 Oct 2018 21:54:10 +0800</pubDate>
       
-      <guid>https//zhaolion.github.io/post/golang/package/bufio/</guid>
+      <guid>http://zhaolion.github.io/post/golang/package/bufio/</guid>
       <description>bufio package in Golang golang 通过 package bufio 来支持 buffered I/O。
 熟悉一下: Reader, Writer and Scanner…
 bufio.Writer 对 I/O 的频繁操作会极大的影响性能，每次 写 I/O 都是一次 syscall，因此频繁操作会给 CPU 带来极大的负担。对于磁盘来说，批量写操作有着更好的性能。golang 通过 bufio.Writer 来合并写操作，避免频繁的写操作。因此在写密集场景下，应该使用 bufio.Writer，而不是 io.Writer

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>MySQL on zhaolion&#39;s dropbox</title>
-    <link>https//zhaolion.github.io/tags/MySQL/</link>
+    <link>http://zhaolion.github.io/tags/MySQL/</link>
     <description>Recent content in MySQL on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 13 Jan 2017 18:45:26 +0800</lastBuildDate>
     
-	<atom:link href="https//zhaolion.github.io/tags/MySQL/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://zhaolion.github.io/tags/MySQL/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MySQL的基础使用相关知识</title>
-      <link>https//zhaolion.github.io/post/mysql/basic/</link>
+      <link>http://zhaolion.github.io/post/mysql/basic/</link>
       <pubDate>Fri, 13 Jan 2017 18:45:26 +0800</pubDate>
       
-      <guid>https//zhaolion.github.io/post/mysql/basic/</guid>
+      <guid>http://zhaolion.github.io/post/mysql/basic/</guid>
       <description>登录到MySQL mysql -h hostname -P hostport -u username -p
  -h 指定希望连接的主机，可以用来连接远程主机上的MySQL，如果忽略默认登录本机数据库 -P 指定所连接主机开放的MySQL端口，如果忽略此项默认使用3306端口登录 -u 指定连接数据库时使用的用户名称，如果忽略此项默认使用你的本机用户名 -p 告诉服务器会使用密码来连接数据库，如果忽略此项使用无密码登录  使用密码登入时，会出现以下响应
 Enter password:  输入密码后成功登录会得到以下响应

@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on zhaolion&#39;s dropbox</title>
-    <link>https//zhaolion.github.io/categories/</link>
+    <link>http://zhaolion.github.io/categories/</link>
     <description>Recent content in Categories on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     
-	<atom:link href="https//zhaolion.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://zhaolion.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Golang</title>
-      <link>https//zhaolion.github.io/categories/Golang/</link>
+      <link>http://zhaolion.github.io/categories/Golang/</link>
       <pubDate>Sat, 12 Jan 2019 11:43:35 +0800</pubDate>
       
-      <guid>https//zhaolion.github.io/categories/Golang/</guid>
+      <guid>http://zhaolion.github.io/categories/Golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MySQL</title>
-      <link>https//zhaolion.github.io/categories/MySQL/</link>
+      <link>http://zhaolion.github.io/categories/MySQL/</link>
       <pubDate>Fri, 13 Jan 2017 18:45:26 +0800</pubDate>
       
-      <guid>https//zhaolion.github.io/categories/MySQL/</guid>
+      <guid>http://zhaolion.github.io/categories/MySQL/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Regexp</title>
-      <link>https//zhaolion.github.io/categories/Regexp/</link>
+      <link>http://zhaolion.github.io/categories/Regexp/</link>
       <pubDate>Fri, 13 Jan 2017 18:48:34 +0800</pubDate>
       
-      <guid>https//zhaolion.github.io/categories/Regexp/</guid>
+      <guid>http://zhaolion.github.io/categories/Regexp/</guid>
       <description></description>
     </item>
     
