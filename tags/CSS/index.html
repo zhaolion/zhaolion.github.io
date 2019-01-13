@@ -76,6 +76,47 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/css/intro-box/">CSS入门笔记 － 认识盒子模型</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2016年9月14日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://zhaolion.com/categories/CSS">CSS</a>
+                                
+                                    <a href="https://zhaolion.com/categories/Web">Web</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                引言 这次给大家带来了CSS－盒子模型部分的笔记，大家一同交流😊
+认识盒子模型之前，先来了解一下CSS元素的分类吧，后面再细细道来～
+CSS元素分类 在CSS中，html中的标签元素大体被分为三种不同的类型： * 块状元素 * 内联元素(又叫行内元素) * 内联块状元素
+常用的块状元素有： &lt;div&gt;、&lt;p&gt;、&lt;h1&gt;...&lt;h6&gt;、&lt;ol&gt;、&lt;ul&gt;、&lt;dl&gt;、&lt;table&gt;、&lt;address&gt;、&lt;blockquote&gt; 、&lt;form&gt;
+常用的内联元素有： &lt;a&gt;、&lt;span&gt;、&lt;br&gt;、&lt;i&gt;、&lt;em&gt;、&lt;strong&gt;、&lt;label&gt;、&lt;q&gt;、&lt;var&gt;、&lt;cite&gt;、&lt;code&gt;
+常用的内联块状元素有:
+&lt;img&gt;、&lt;input&gt;
+元素分类&ndash;块级元素 什么是块级元素？在html中&lt;div&gt;、 &lt;p&gt;、&lt;h1&gt;、&lt;form&gt;、&lt;ul&gt; 、 &lt;li&gt;就是块级元素。设置display:block就是将元素显示为块级元素。 如下代码就是将内联元素a转换为块状元素，从而使a元素具有块状元素特点。
+a{display:block;}
+块级元素特点： * 每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行） * 元素的高度、宽度、行高以及顶和底边距都可设置。 * 元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。
+元素分类&ndash;内联元素 在html中，&lt;span&gt;、&lt;a&gt;、&lt;label&gt;、 &lt;strong&gt; 、&lt;em&gt;就是典型的内联元素（行内元素）（inline）元素。
+当然块状元素也可以通过代码display:inline将元素设置为内联元素。如下代码就是将块状元素div转换为内联元素，从而使 div 元素具有内联元素特点。
+div{ display:inline; } ...... &lt;div&gt;我要变成内联元素&lt;/div&gt;  内联元素特点： * 和其他元素都在一行 * 元素的高度、宽度及顶部和底部边距不可设置 * 元素的宽度就是它包含的文字或图片的宽度，不可改变。
+友情提示：行内元素之间会产生间隙bug问题的场景：
+当行内元素之间有“回车”、“tab”、“空格”时就会出现间隙。 如下代码：
+&lt;div&gt; &lt;a&gt;1&lt;/a&gt; &lt;a&gt;2&lt;/a&gt; &lt;span&gt;33333&lt;/span&gt; &lt;span&gt;44444&lt;/span&gt; &lt;em&gt;555555&lt;/em&gt; &lt;/div&gt;  解决方法： 1. 写在一行，之间不要有空格之类的符号。 2. 使用font-size:0
+div{font-size:0;} a,span,em{font-size:16px;}  元素分类&ndash;内联块状元素 内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码display:inline-block就是将元素设置为内联块状元素。(css2.……
+                                <p class="readmore"><a href="https://zhaolion.com/post/css/intro-box/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/css/intro-1/">CSS入门笔记 － 初识CSS</a>
                                 </h1>
                             </header>
@@ -162,11 +203,19 @@ p { color:red; text-align:center; }  CSS 注释
     </li>
     
     <li>
-        <a href="https://zhaolion.com/post/css/intro-1/" title="CSS入门笔记 － 初识CSS">CSS入门笔记 － 初识CSS</a>
+        <a href="https://zhaolion.com/post/js/intro-5/" title="js intro 对象">js intro 对象</a>
     </li>
     
     <li>
-        <a href="https://zhaolion.com/post/html/intro/" title="HTML 入门笔记 － 初识HTML">HTML 入门笔记 － 初识HTML</a>
+        <a href="https://zhaolion.com/post/js/intro-4/" title="js intro 语句">js intro 语句</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/js/intro-3/" title="js intro 表达式和运算符">js intro 表达式和运算符</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/js/intro-2/" title="js intro 类型/值/变量">js intro 类型/值/变量</a>
     </li>
     
 </ul>
@@ -179,7 +228,7 @@ p { color:red; text-align:center; }  CSS 注释
 <ul class="widget-list">
     
     <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(1)</a>
+        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
     </li>
     
     <li>
@@ -191,6 +240,10 @@ p { color:red; text-align:center; }  CSS 注释
     </li>
     
     <li>
+        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
     </li>
     
@@ -199,7 +252,7 @@ p { color:red; text-align:center; }  CSS 注释
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(2)</a>
+        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
     </li>
     
 </ul>
@@ -212,6 +265,8 @@ p { color:red; text-align:center; }  CSS 注释
     <a href="https://zhaolion.com/tags/CSS/">CSS</a>
     
     <a href="https://zhaolion.com/tags/HTML/">HTML</a>
+    
+    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
     
     <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
     

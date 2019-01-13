@@ -1,0 +1,1305 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.53" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>js intro 表达式和运算符 | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="js intro 表达式和运算符 - zhaolion&#39;s dropbox">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2016-10-16T22:33:39&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2016-10-16T22:33:39&#43;08:00">
+        
+    <meta name="Keywords" content="萌新">
+    <meta name="description" content="js intro 表达式和运算符">
+        
+    <meta name="author" content="zhaolion">
+    <meta property="og:url" content="https://zhaolion.com/post/js/intro-3/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://zhaolion.com">
+                        zhaolion&#39;s dropbox
+                    </a>
+                
+                <p class="description">写代码 5 分钟，摸鱼 2 小时</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://zhaolion.com">首页</a>
+                    
+                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">js intro 表达式和运算符</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2016年10月16日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Javascript">Javascript</a></span>
+                            
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="表达式和运算符">表达式和运算符</h1>
+
+<ul>
+<li>程序中最简单的表达式就是，程序中的常量</li>
+<li>变量名也是一种简单的表达式</li>
+<li>复杂的表达式是由简单的表达式组成的</li>
+<li>函数调用表达式是由函数对象的表达式和0个或多个参数表达式构成</li>
+<li>可以使用运算符来将简单的表达式来组合成复杂的表达式</li>
+</ul>
+
+<h2 id="原始表达式">原始表达式</h2>
+
+<p>“原始表达式”，说简单点就是最简单的表达式，并且不再包含其他表达式<br />
+&gt;js中原始表达式有以下：
+- 常量
+- 直接量
+- 关键字
+- 变量</p>
+
+<blockquote>
+<p>栗子：</p>
+
+<pre><code>//直接量          
+1.23 // 数字直接量
+&quot;hello&quot; // 字符串直接量
+/pattern/ // 正则表达式直接
+//保留字   
+true
+false
+null // 返回空
+this // 返回“当前对象”
+//变量         
+i // 返回i的值
+sum // 返回sum的值
+undefined // undefined是全局变量，和null不同，不是一个关键字
+</code></pre>
+</blockquote>
+
+<h2 id="对象和数组的初始化表达式">对象和数组的初始化表达式</h2>
+
+<p>对象和数组的初始化表达式实际上是一个新创建的对象和数组，并不是原始表达式</p>
+
+<h3 id="数组初始化表达式">数组初始化表达式</h3>
+
+<blockquote>
+<p>栗子:
+- <code>[] //空数组</code>
+- <code>[1+2,3+4] // 2个元素数组 [3,7]</code>
+- <code>var matrix = [[1,2],[3,4]]  // 数组可嵌套</code></p>
+</blockquote>
+
+<p>js对数组初始化表达式进行求值时候，数组表达式中的所有元素表达式也会各自计算一次</p>
+
+<p>数组直接量的元素表达式在逗号之间元素可以省略，空位默认填充undefined。<br />
+<code>var array = [1,,3] // 数组包含3个元素。[1,undefined,3]</code></p>
+
+<p>但是列表结尾处可以留下单个逗号，这时不会创建新的undefined元素</p>
+
+<h3 id="对象初始化表达式">对象初始化表达式</h3>
+
+<p>对象初始化表达式与数组初始化表达式非常接近，将[]替换成{},每个子表达式都包含一个属性名和冒号为前缀
+&gt; 栗子</p>
+
+<pre><code>var p = { x:2, y:3 }; // 带2个属性的对象p
+var q = {}; // 空对象
+q.x = 2; q.y =3; // q的属性成员与p一致
+</code></pre>
+
+<p>对象直接量也是允许嵌套的
+&gt;```
+var rect = {
+  upLeft: { x:2, y:3},
+  bottomRight: { x:4, y:1}
+};</p>
+
+<pre><code>
+js求对象初始化表达式时候，对象元素表达式也会各自都计算一次，并且元素表达式不必包含常数值，可以是
+任意的js表达式。
+
+对象直接量中属性的名字可以是字符串而不是标示符
+&gt;```
+var side = 1;
+var square = {
+  &quot;upLeft&quot;: { x: p.x, y: p.y},
+  &quot;bottomRight&quot;: {x: p.x+side, y: p.y+side}
+};
+</code></pre>
+
+<h2 id="函数表达式">函数表达式</h2>
+
+<p>函数定义表达式定义一个js函数，表达式的值是这个新定义的函数。如下</p>
+
+<pre><code>var square = function (x){
+  return x * x;
+};
+</code></pre>
+
+<h2 id="属性访问表达式">属性访问表达式</h2>
+
+<p>属性访问表达式得到一个对象属性或一个数组元素的值。主要有<code>.</code>和<code>[]</code>两种形式
+&gt; 栗子：</p>
+
+<pre><code>var o = { x:1, y:{ z:3 } };
+var a = [o, 4, [5,6]];
+o.x // =&gt;1 表达式o的x属性
+o.y.z // =&gt;3 表达式o.y的z属性
+o[&quot;x&quot;] // =&gt;1 表达式o的x属性
+a[1] // =&gt;4 表达式a的索引为1的元素
+a[2][&quot;1&quot;] // =&gt;6 表达式a[2] 的索引为1的元素
+a[0].x // =&gt;1 表达式a[0]的x属性
+</code></pre>
+
+<p>在<code>.</code> 和 <code>[]</code>之前的表达式总会首先计算。如果计算出结果为null 或者 undefined，表达式会抛出类型错误异常。
+如果运算结果不是对象或者数组，js会将其转换为对象。</p>
+
+<p>如果对象表达式后面跟随句点和标示符，则会查找由这个标示符所指定的属性的值，然后作为整个表达式的值返回。</p>
+
+<p>如果表达式后面跟随一对括号，则会计算方括号里面表达式值并转换为字符串，然后查找对应属性的值</p>
+
+<p>如果以上两种情况，命名属性并不存在，则整个属性访问表达式的值就是undefined</p>
+
+<ul>
+<li><code>.</code>写法适合要访问的属性名是合法标示符，并且需要知道要访问属性名字</li>
+<li><code>[]</code> 写法适合要访问的属性名不是合法字符，或者访问的属性名是需要运算得出的。对于数组则必须使用这种写法</li>
+</ul>
+
+<h2 id="调用表达式">调用表达式</h2>
+
+<p>js调用表达式，是一种调用（执行）函数或方法的语法。如下</p>
+
+<pre><code>func(0) // f是一个函数表达式，0是一个参数表达式
+Math.max(x,y,z) // Math.max是一个函数，x,y,z是参数
+a.sort() // a.sort是一个函数。没有参数
+</code></pre>
+
+<p>对调用表达式进行求值时候，首先计算函数表达式，然后计算参数表达式，得到一组参数值。</p>
+
+<p>如果函数表达式不是一个可以调用的对象，会抛出类型错误异常</p>
+
+<p>如果函数表达式使用return语句返回一个值，那么这个值就是整个调用表达式的值，否则表达式的值就是undefined</p>
+
+<h2 id="对象创建表达式">对象创建表达式</h2>
+
+<p>对象创建表达式，顾名思义，就是创建一个对象，并且调用一个函数，初始化新对象的属性。</p>
+
+<pre><code>new Object()
+new Point(2,6)
+</code></pre>
+
+<p>如果一个对象创建表达式不需要传入任何参数给构造函数，那么空括号可以省略</p>
+
+<pre><code>new Object
+new Date
+</code></pre>
+
+<h2 id="运算符概述">运算符概述</h2>
+
+<p>大多数运算符都是由标点符号表示的，如&rdquo;+&ldquo;,&rdquo;=&ldquo;。而另外一些运算符则是由关键字表示的，比如delete和instanceof。</p>
+
+<p>优先级从高到低，虚线分割开的运算符不同优先级。</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">运算符</th>
+<th align="left">操作</th>
+<th align="left">结合性</th>
+<th align="left">操作数个数</th>
+<th align="left">类型</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">++</td>
+<td align="left">前/后增量</td>
+<td align="left">R</td>
+<td align="left">1</td>
+<td align="left">lval =&gt; num</td>
+</tr>
+
+<tr>
+<td align="left">&ndash;</td>
+<td align="left">前/后减量</td>
+<td align="left">R</td>
+<td align="left">1</td>
+<td align="left">lval =&gt; num</td>
+</tr>
+
+<tr>
+<td align="left">-</td>
+<td align="left">求反</td>
+<td align="left">R</td>
+<td align="left">1</td>
+<td align="left">num =&gt; num</td>
+</tr>
+
+<tr>
+<td align="left">+</td>
+<td align="left">转换为数字</td>
+<td align="left">R</td>
+<td align="left">1</td>
+<td align="left">num =&gt; num</td>
+</tr>
+
+<tr>
+<td align="left">~</td>
+<td align="left">按位求反</td>
+<td align="left">R</td>
+<td align="left">1</td>
+<td align="left">int =&gt; int</td>
+</tr>
+
+<tr>
+<td align="left">!</td>
+<td align="left">逻辑非</td>
+<td align="left">R</td>
+<td align="left">1</td>
+<td align="left">bool =&gt; bool</td>
+</tr>
+
+<tr>
+<td align="left">delete</td>
+<td align="left">删除属性</td>
+<td align="left">R</td>
+<td align="left">1</td>
+<td align="left">lval =&gt; bool</td>
+</tr>
+
+<tr>
+<td align="left">typeof</td>
+<td align="left">检测操作数类型</td>
+<td align="left">R</td>
+<td align="left">1</td>
+<td align="left">any =&gt; str</td>
+</tr>
+
+<tr>
+<td align="left">void</td>
+<td align="left">返回undefined</td>
+<td align="left">R</td>
+<td align="left">1</td>
+<td align="left">any =&gt; undef</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">*,/,%</td>
+<td align="left">乘、除、取余</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">num,num =&gt; num</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">+、-</td>
+<td align="left">加、减</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">num,num =&gt; num</td>
+</tr>
+
+<tr>
+<td align="left">+</td>
+<td align="left">字符串连接</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">str,str =&gt; str</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">&lt;&lt;</td>
+<td align="left">左移位</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">int,int =&gt; int</td>
+</tr>
+
+<tr>
+<td align="left">&gt;&gt;</td>
+<td align="left">无符号右移位</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">int,int =&gt; int</td>
+</tr>
+
+<tr>
+<td align="left">&gt;&gt;&gt;</td>
+<td align="left">有符号右移位</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">int,int =&gt; int</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">&lt;,&lt;=,&gt;,&gt;=</td>
+<td align="left">比较数字顺序</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">num,num =&gt; bool</td>
+</tr>
+
+<tr>
+<td align="left">&lt;,&lt;=,&gt;,&gt;=</td>
+<td align="left">比较在字母表顺序</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">str,str =&gt; bool</td>
+</tr>
+
+<tr>
+<td align="left">instanceof</td>
+<td align="left">测试对象类</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">obj,func =&gt; bool</td>
+</tr>
+
+<tr>
+<td align="left">in</td>
+<td align="left">测试属性是否存在</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">str,obj =&gt; bool</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">==</td>
+<td align="left">判断相等</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">any,any   =&gt;bool</td>
+</tr>
+
+<tr>
+<td align="left">!=</td>
+<td align="left">判断不等</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">any,any =&gt; bool</td>
+</tr>
+
+<tr>
+<td align="left">===</td>
+<td align="left">判断恒等</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">any,any =&gt; bool</td>
+</tr>
+
+<tr>
+<td align="left">!==</td>
+<td align="left">判断非恒等</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">any,any =&gt; bool</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">&amp;</td>
+<td align="left">按位与</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">int,int =&gt; int</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">^</td>
+<td align="left">按位异或</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">int,int =&gt; int</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">｜</td>
+<td align="left">按位或</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">int,int =&gt; int</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">&amp;&amp;</td>
+<td align="left">逻辑与</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">any,any =&gt; any</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">｜｜</td>
+<td align="left">逻辑或</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">any,any =&gt; any</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">?:</td>
+<td align="left">条件运算符</td>
+<td align="left">L</td>
+<td align="left">3</td>
+<td align="left">bool,any,any =&gt; any</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">=</td>
+<td align="left">赋值运算符</td>
+<td align="left">R</td>
+<td align="left">2</td>
+<td align="left">lval,any =&gt; any</td>
+</tr>
+
+<tr>
+<td align="left">*=,/=,%=,+=,-=,&amp;=</td>
+<td align="left">运算且赋值</td>
+<td align="left">R</td>
+<td align="left">2</td>
+<td align="left">lval,any =&gt; any</td>
+</tr>
+
+<tr>
+<td align="left">^=,｜｜=,&lt;&lt;=,&gt;&gt;=,&gt;&gt;&gt;=</td>
+<td align="left">运算且赋值</td>
+<td align="left">R</td>
+<td align="left">2</td>
+<td align="left">lval,any =&gt; any</td>
+</tr>
+
+<tr>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;&mdash;&mdash;&mdash;&mdash;</td>
+<td align="left">&mdash;</td>
+<td align="left">&ndash;</td>
+<td align="left">&mdash;&mdash;&mdash;</td>
+</tr>
+
+<tr>
+<td align="left">,</td>
+<td align="left">忽略第一个操作数，返回第二个操作数</td>
+<td align="left">L</td>
+<td align="left">2</td>
+<td align="left">any,any =&gt; any</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="左值">左值</h3>
+
+<p>上表中出现的lval指的是左值，意思是表达式只能出现在赋值运算符的左侧</p>
+
+<p>在js中，变量、对象属性、和数组元素都是左值。</p>
+
+<p>ECMAScript允许内置函数返回左值，但自定义函数不能返回左值</p>
+
+<h3 id="操作数类型和结果类型">操作数类型和结果类型</h3>
+
+<p>js运算符通常会根据需要对操作数进行类型转换</p>
+
+<p><code>*</code>希望操作数为数字，但是表达式<code>&quot;3&quot;*&quot;5&quot;</code>却是合法的，因为js会把操作数转换为数字</p>
+
+<p>有些操作符对操作数类型有一定程度依赖，比如<code>＋</code>运算符。可以对数字进行加法运算，也可以对字符串进行连接。</p>
+
+<h3 id="运算符优先级">运算符优先级</h3>
+
+<p>上表中运算符按照优先级从高到低排序，每个虚线内的一组运算符具有相同优先级。</p>
+
+<p>优先级高的运算符执行总是先于优先级低的运算符
+举个栗子：<code>m = x + y*z;</code><br />
+<code>*</code>运算符比<code>＋</code>运算符优先级高，优先计算<code>y*z</code>，获得结果再与x相加。<code>=</code>赋值运算符优先级最低，右侧表达式
+计算出结果后赋值给m</p>
+
+<p>很多时候为了代码逻辑清晰，加上一些括号来重写优先级，来避免一些优先级引起的bug或者执行顺序与设计不符
+<code>m = (x + y) * z</code></p>
+
+<h3 id="运算符的结合性">运算符的结合性</h3>
+
+<p>上表中说明了运算符的结合性。
+- L 指从左到右结合,执行时按照从左到右的顺序进行
+- R 指从右到左结合,执行时按照从右到左的顺序进行</p>
+
+<p>举个栗子：<code>-</code>运算符从左到右结合，因此<code>w = x - y - z</code> 等价于 <code>w = ((x - y) - z)</code></p>
+
+<h3 id="运算顺序">运算顺序</h3>
+
+<p>运算符的优先级和结合性规定了在复杂表达式中的运算顺序，但是没有规定子表达式的计算过程中的运算顺序</p>
+
+<p>js中，总是严格按照从左到右计算子表达式。例如<code>w=x+y*z</code>，首先计算w,然后计算x,y,z的值，然后y的值和z的值相承
+之后，再加上x的值，最后将其结果赋值给w。给表达式加括号会改变乘法加法和赋值运算的顺序，但是子表达式的计算
+顺序仍然是从左至右的顺序</p>
+
+<p>只有一种情况例外，当任何一个表达式具有副作用而影响其他表达式时候，求值顺序才会有所不同。
+例如，表达式中x的一个变量自增1，这个变量在z中使用，那么实际上是先计算了x的值再计算z的值，这一点一定要注意</p>
+
+<p>下面这个栗子：</p>
+
+<pre><code>a = 1;
+b = (a++) + a;
+</code></pre>
+
+<p>如果按照前面那种不考虑副作用时的顺序是 1) 计算b, 2)计算a++为c, 3）计算a，4）计算c＋a, 5）将c+a结果赋值给b</p>
+
+<p>按照<code>++</code>的影响，1) 计算b, 2)a++结果仍然为1,c=1,随即a立即自增1, 3）计算a，a已经是2，4）计算c＋a＝3,5）将c+a结果赋值给b，所以b＝3</p>
+
+<p><strong>切记，a增1的操作是在表达式计算中就已经执行了，不是在整个表达式计算完成之后执行的</strong></p>
+
+<h2 id="算术表达式">算术表达式</h2>
+
+<p>基本算数运算符包括<code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code></p>
+
+<h3 id="运算符">&rdquo;+&ldquo;运算符</h3>
+
+<ul>
+<li>对2个数字进行加法操作</li>
+<li>字符串连接操作</li>
+</ul>
+
+<p><strong>针对不同操作数，＋运算符行为表现有些不同</strong>
+- 一个操作数是对象，对象会遵循对象到原始值的转换规则转换为原始值
+ - 日期对象：toString()执行转换
+ - 其他对象通过valueOf()转换，如果valueOf()不可用，会通过toString()方法转换
+- 在进行对象到原始值的转换后，如果其中一个操作数是字符串，另一个操作数也会转换成字符串，然后连接
+- 否则，两个操作数都转换成数字或者NaN，然后进行加法操作</p>
+
+<p>下面是一些栗子：</p>
+
+<pre><code>1 + 2 // =&gt;3
+&quot;1&quot; + 2 // =&gt; &quot;12&quot;
+&quot;12&quot; + &quot;3&quot; // =&gt; &quot;123&quot;
+1 + {} // &quot;1[object object]&quot;，对象转换为字符串
+true + true // 2 ，bool转换为数字做加法
+
+2 + null // =&gt;2,null转换为0
+2 + undefined // =&gt; NaN, undefined转换为NaN后做加法
+</code></pre>
+
+<p><strong>最后，还需要考虑，加法的结合性对运算顺序的影响</strong></p>
+
+<pre><code>1 + 2 + &quot;hello&quot; // &quot;3hello&quot;
+1 + (2 + &quot;hello&quot;) // &quot;12hello&quot;
+</code></pre>
+
+<h3 id="一元算术运算符">一元算术运算符</h3>
+
+<p>一元运算符作用于一个单独操作数，产生一个新值</p>
+
+<p>js中一元运算符优先级很高，并且都是右结合</p>
+
+<p><code>+</code>/<code>-</code>，既是一元运算符，也是二元运算符</p>
+
+<ul>
+<li><p>一元加法(<code>+</code>)
+&gt; 操作数转换为数字（或者NaN），并且返回这个转换后的数字。如果已经是数字，直接返回</p></li>
+
+<li><p>一元减法(<code>-</code>)
+&gt; 操作数转换为数字（或者NaN），并且返回这个转换后的数字，然后改变运算结果符号</p></li>
+
+<li><p>递增(<code>++</code>)
+&gt; 前增量 <code>++a</code>，先进行增量运算并且返回运算结果
+&gt; 后增量 <code>a++</code>，先进行增量计算，返回未做增量运算的值
+&gt; <code>
+var i=1, j=i++; // i=2,j=1
+var i=1, j=++i; // i=2,j=2
+</code></p></li>
+
+<li><p>递减(<code>--</code>)
+&gt; 前减量 <code>--a</code>，先进行减量运算并且返回运算结果
+&gt; 后减量 <code>a--</code>，先进行减量计算，返回未做减量运算的值
+&gt; <code>
+var i=1, j=i--; // i=0,j=1
+var i=1, j=--i; // i=0,j=0
+</code></p></li>
+</ul>
+
+<h3 id="位运算符">位运算符</h3>
+
+<ul>
+<li><p><code>&amp;</code> 按位与
+&gt; <code>0x1234 &amp; 0x00ff = 0x0034</code></p></li>
+
+<li><p><code>|</code> 按位或
+&gt; <code>0x1234 | 0x00ff = 0x12ff</code></p></li>
+
+<li><p><code>^</code> 按位异或
+&gt; <code>0xff00 ^ 0xf0f0 = 0x0ff0</code></p></li>
+
+<li><p><code>~</code> 按位非
+&gt; <code>~0x0f = 0xfffffff0</code></p></li>
+
+<li><p><code>&lt;&lt;</code> 左移
+&gt; <code>7 &lt;&lt; 2 = 28</code>,左移一位相当于第一个操作数乘以2
+&gt; 移动位数 0～31</p></li>
+
+<li><p><code>&gt;&gt;</code> 带符号右移
+&gt; 带符号右移时候填补在左边的位由原来的数的符号决定，以便保持和原操作数一致
+&gt; 移动位数 0～31<br />
+&gt; <code>7 &gt;&gt; 1 = 3</code>
+&gt; <code>-7 &gt;&gt; 1 = -4</code></p></li>
+
+<li><p><code>&gt;&gt;&gt;</code> 无符号右移
+&gt; 无符号右移时候填补在左边的位直接填补0，与原操作数无关
+&gt; 移动位数 0～31<br />
+&gt; <code>-1 &gt;&gt; 4 = 1</code>
+&gt; <code>-1 &gt;&gt;&gt; 4 = 0x0fffffff</code></p></li>
+</ul>
+
+<h2 id="关系表达式">关系表达式</h2>
+
+<p>主要包括相等和不相等运算符、比较运算符、in、instanceof</p>
+
+<h3 id="相等和不相等运算符">相等和不相等运算符</h3>
+
+<p>js定义了4个符号<code>==</code>,<code>===</code>,<code>!=</code>,<code>!==</code>
+- <code>==</code>：相等
+- <code>===</code>: 恒等
+- <code>!=</code>: 不相等
+- <code>!==</code>: 不恒等</p>
+
+<p>严格相等运算符<code>===</code>首先计算其操作数的值，然后比较这两个值，没有类型转换
+- 如果两个值类型不相同，则它们不相等
+- 如果两个值都是null或者都是undefined，则它们不相等
+- 如果两个值都是布尔值true或者false，，则它们相等
+- 如果其中一个值是NaN，或者2个值都是NaN，则它们不相等。NaN和其他任何值都是不相等的，包括自身。通过X!==X来判断x是否为NaN，只有x为NaN时候，表达式才为true
+- 如果两个值为数字且数值相等，则他们相等。如果一个值为0，另一个为－0，同样相等
+- 如果两个值为字符串，且所含对应位上16位数完全相等，则他们相当。如果它们长度或内容不同，则它们不相等。
+- 两个字符串可能含义完全一样且显示字符一样，但具有不同编码的16位值。js不会对Unicode进行标准化转换，像这样字符串通过&rdquo;===&ldquo;和&rdquo;==&ldquo;运算符比较结果也是不相等
+- 如果两个引用值指向同一个对象、数组或者函数，则相等。如果指向不同对象，则它们不相等，尽管两个对象完全一样的属性。</p>
+
+<p>相等运算符<code>==</code>和恒等运算符相似，但相等运算符并不严格。如果两个操作数不是同一类型，那么相等的运算符会进行一些类型转换，然后进行比较
+- 如果两个操作数的类型相同，则和上文所属的严格相等的比较规则一样。如果严格相等，则比较结果相等，如果不严格相等，则它们不相等
+- 如果两个操作数类型不同，<code>==</code>相等操作符也可能认为他们相等。检测相等会遵守以下规则和类型转换
+&gt;- 如果一个值是null，另一个是undefined,则他们相等
+&gt;- 如果一个值是数字，另一个是字符串，先将字符串转换成数字，然后使用转换后的值，进行比较
+&gt;- 如果其中一个值是true，则将其转换为1再进行比较。如果其中一个值是false，则将其转化为0，在进行比较
+&gt;- 如果一个值是对象，另一个值是数字或字符串，则会使用之前提到的对象到数字或字符串的转换规则将对象转换为原始值，然后进行比较。
+&gt;- 其他的类型之间的比较均不相等</p>
+
+<p>举个栗子：<code>&quot;1&quot; == true</code><br />
+这个表达式结果是true，表明不同类型之间的值比较结果相等。布尔值首先转换为数字1，然后字符串1也转换成数字1，因为两个数字相等，所以结果为true</p>
+
+<h3 id="比较运算符">比较运算符</h3>
+
+<p>比较运算符有4个
+- <code>&lt;</code> 小于
+- <code>&gt;</code> 大于
+- <code>&lt;=</code> 小于等于
+- <code>&gt;=</code> 大于等于</p>
+
+<p>比较运算符的操作数可以是任何类型，然后只有字符串和数字才能真正的执行比较操作，不是这两种类型的都将进行类型转换。<br />
+类型转换规则：
+- 如果操作数为对象，这个对象将按照对象到原始值的转换（具体可以看上篇）
+- 在对象转换到原始值后，如果两个操作数都是字符串，那么将按照字母表顺序进行比较（字母表指的unicode 16位字符的索引顺序）
+- 对象转换为原始值后，如果一个操作数不是字符串，那么两个操作数转换为数字之后进行比较。
+ - 0和－0是相等的
+ - Infinity比其他任何数字都大（除了自身）
+ - －Infinity比其他数字都小(除了自身)
+ - 如果一个操作数转换成数字之后是NaN，那么比较操作符总是返回false</p>
+
+<p>在上面规则中，字符串比较需要注意：<br />
+- 字符串比较是区分大小写的，所有的大写ascii字符都是小于小写的ascii字符
+- 对于数字和字符串比较，只有两个操作数都是字符串时，才会进行字符串比较</p>
+
+<h3 id="in-运算符"><code>in</code>运算符</h3>
+
+<p><code>in</code>运算符的左边总是希望是一个字符串，右边操作数总是希望是一个对象，如果右边对象拥有左操作值的属性名，会返回true</p>
+
+<p>对象，会倾向查找属性名</p>
+
+<pre><code>var point = { x:1, y:1};
+&quot;x&quot; in point // ＝&gt; true, 对象拥有名为“x”的属性
+&quot;z&quot; in point // =&gt; false, 对象不存在名为&quot;z&quot;的属性
+&quot;toString&quot; in point // =&gt; true，对象继承了默认的toString()方法
+</code></pre>
+
+<p>数组，会倾向查找索引</p>
+
+<pre><code>var data = [1,2,3]
+&quot;0&quot; in data // true，数组包含索引0的元素
+1 in data // true，数组包含索引1的元素
+3 in data // false 数组不包含索引3的元素
+</code></pre>
+
+<h3 id="instanceof-运算符"><code>instanceof</code> 运算符</h3>
+
+<p><code>instanceof</code>运算符希望左操作数是一个对象，右操作数标识对象的类，如果左侧的对象是右侧类的实例，则返回true，否则返回false</p>
+
+<pre><code>var d = new Date();
+d instanceof Date;  // true，d是由Date()创建的
+d instanceof Object; //  true,所有对象都是Object实例
+d instanceof Number; // false, d不是Number的实例
+</code></pre>
+
+<h2 id="逻辑表达式">逻辑表达式</h2>
+
+<p>逻辑运算符是进行布尔运算使用的，主要有
+- <code>&amp;&amp;</code> 逻辑与
+- <code>||</code> 逻辑或
+- <code>!</code> 逻辑非</p>
+
+<h3 id="逻辑与">逻辑与(&amp;&amp;)</h3>
+
+<p>当操作数都是布尔值时，<code>&amp;&amp;</code>对两个值进行布尔与操作，第一个与第二个操作数都是true时，才返回true，其中一个是false，就会返回false</p>
+
+<p>当操作数不都是布尔值时，<code>&amp;&amp;</code>不一定会返回布尔值。
+- 逻辑与运算符，首先计算左侧的值，如果计算结果是假植，则整个表达式都是假植，因此会简单的返回左侧操作数的值
+- 如果左侧值是真值，那么整个表达式结果依赖于右侧的值，因此，<code>&amp;&amp;</code>运算符符会计算右侧操作数的值，并且将其返回作为整个表达式的计算结果</p>
+
+<pre><code>var o ={ x:1 };
+var p = null;
+o &amp;&amp; o.x; // =&gt;1 ，o对象是真值，返回o.x
+p &amp;&amp; p.x; // =&gt; null ，p是假值，将其返回，不会计算p.x
+</code></pre>
+
+<p>上面那种行为，被称为 <strong>短路</strong>,这一特性非常有用，可以选择性执行代码。 例如：<br />
+<code>if ( a == b ) stop();</code> 等价于 <code>( a == b ) &amp;&amp; stop();</code></p>
+
+<h3 id="逻辑或">逻辑或(||)</h3>
+
+<p>当操作数都是布尔值时，<code>||</code>对两个操作数作布尔或运算，两个操作数有一个为真，返回true，两个操作数都是假，才会返回false</p>
+
+<p>当操作数不都是布尔值，<code>||</code>不一定返回布尔值
+- 逻辑或运算符，首先计算左侧的值，如果计算结果是真值，则整个表达式都是真值，因此会返回这个真值
+- 否则再计算第二个操作数的值，再返回这个表达式的计算结果</p>
+
+<p><code>||</code>同样是非常有用，比如从一组备选表达式中选出第一个真值表达式。这种做法经常在函数体内，给参数提供默认值</p>
+
+<pre><code>var max = max_width || preference.max_width || 500;
+</code></pre>
+
+<h3 id="逻辑非">逻辑非(!)</h3>
+
+<p><code>!</code> 运算符是一元运算符，放在一个单独的操作数前，对操作数布尔值进行求反</p>
+
+<p><code>!</code>运算符首先将操作数转换为布尔值，再进行求反，最终只会返回true或者false</p>
+
+<p>作为一元运算符，优先级非常高，并且和操作数密切绑定。<br />
+德摩根公式:</p>
+
+<pre><code>!(p &amp;&amp; q) === !p || !q
+!(p || q) === !p &amp;&amp; !q
+</code></pre>
+
+<h2 id="赋值表达式">赋值表达式</h2>
+
+<p>js 使用<code>=</code>运算符给变量或者属性进行赋值</p>
+
+<pre><code>i = 0;
+0.x = 1;
+</code></pre>
+
+<p>除了常规的赋值运算符，还有一些带赋值操作的运算符<code>+=</code>,<code>-=</code>,<code>*=</code>,<code>&amp;=</code>等等
+只有<code>+=</code>可以用于数字或字符串连接，其他都偏向于数值操作</p>
+
+<pre><code>a = 10;
+b = '1';
+a += 10; // =&gt; 10 + 10 =20
+b += 10; // =&gt; '1'+10 = &quot;110&quot;
+a -= 10; // =&gt; 20 - 10 = 10
+b -= 10; // =&gt; 110 - 10 = 10
+</code></pre>
+
+<h2 id="表达式计算">表达式计算</h2>
+
+<p>js可以通过<code>eval()</code>来动态判断源代码中的字符串，并且执行</p>
+
+<p><code>eval()</code>只有一个参数，如果传入的参数不是字符串，直接返回这个参数。如果参数是字符串，则会把字符串当成代码进行编译。
+如果编译失败，则返回一个语法错误异常。如果编译成功，则会执行这段代码，并且返回字符串最后一个表达式或者语句的值。
+如果最后一个表达式或语句没有值，则最终返回undefined</p>
+
+<p><code>eval()</code>使用来调用它的变量作用域环境，也就是说查找变量会和局部作用域代码完全一样。</p>
+
+<p>如果将<code>eval()</code>重命名为其他方式来调用，则使用全局对象作为上下文作用域，并且无法读、写、定义局部变量</p>
+
+<pre><code>var geval = eval; // geval 是调用全局eval
+var x = &quot;global&quot;;
+var y = &quot;global&quot;;
+function f(){
+  var x = &quot;local&quot;;  // 定义局部变量 x，局部作用域x ＝ “local”
+  eval(&quot;x+='changed';&quot;); //  直接eval更改局部变量x的值
+  return x; // 返回更改后的x值
+}
+function g(){
+  var y = &quot;local&quot;;  // 定义局部变量 y，局部作用域y ＝ “local”
+  geval(&quot;y+='changed';&quot;); // 间接调用改变全局变量的值
+  return y; // 返回为更改的局部变量
+}
+console.log(f(),x); // 更改来局部变量，输出&quot;localchanged global&quot;
+console.log(g(),y); // 更改全局变量，输出“local globalchanged”
+</code></pre>
+
+<h2 id="其他运算符">其他运算符</h2>
+
+<h3 id="条件运算符">条件运算符（?:）</h3>
+
+<p>条件运算符是唯一一个三元运算符
+<code>(---1---) ? (---2---) : (---3---)</code></p>
+
+<p>第一个操作数当成布尔值，如果是真值，那么计算第二个操作数，并返回结果。否则如果第一个操作数是假植，那么计算第三个数，返回计算结果</p>
+
+<pre><code>x &gt; 0 ? x : -x // 求x的绝对值
+</code></pre>
+
+<h3 id="typeof运算符">typeof运算符</h3>
+
+<p>这是一个一元运算符，返回表示操作数类型的一个字符串
+| x             | typeof x                                     |
+|:&mdash;&mdash;&mdash;&mdash;&ndash;|:&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
+| undefined     | &ldquo;undefined&rdquo;                                  |
+| null          | &ldquo;object&rdquo;                                     |
+| true or false | &ldquo;boolean&rdquo;                                    |
+| 任意数字或NaN | &ldquo;number&rdquo;                                     |
+| 任意字符串    | &ldquo;string&rdquo;                                     |
+| 任意函数      | &ldquo;function&rdquo;                                   |
+| 任意内置对象  | &ldquo;object&rdquo;                                     |
+| 任意宿主对象  | 由编译器实现的字符串，但不是以上出现的字符串 |</p>
+
+<h3 id="delete运算符">delete运算符</h3>
+
+<p>delete运算符，用来删除对象属性或者数组元素</p>
+
+<pre><code>var o = { x:1, y:2};
+delete o.x; // 删除一个属性
+&quot;x&quot; in o; // false，o对象中不存在属性x
+
+var a = [1,23,4];
+delete a[2]; //删除第三个元素
+2 in a ; // false, 索引2的元素在数组中已经不存在
+</code></pre>
+
+<p>delete删除成功会返回true。然后不是所有属性都可删除的
+- 一些内置核心和客户端属性是不能删除的
+- 使用var语句生声明的变量不能删除
+- 通过function定义的函数和函数参数不能删除。</p>
+
+<pre><code>var 0 = { x:1, y:2};
+delete o.x; // true, 删除对象属性成功
+typeof o.x; // undefined ， 属性不存在
+delete o.x; // true, 删除不存在的属性，返回true
+delete o; // false ，不能删除var声明变量
+
+delete 1; // true, 参数不是一个左值，返回true
+this.x = 1; // 定义全局对象的一个属性
+delete x; // 试图删除全局变量的属性，非严格模式下，返回true
+x; // 运行时错误，没有定义x
+</code></pre>
+
+<h3 id="void-运算符">void 运算符</h3>
+
+<p>void 是一元运算符，操作数照常计算，但是忽略计算结果并且返回undefined</p>
+
+<p>这个操作符经常用作客户端URL－<code>javascript:URL</code>,通过使用void则让浏览器不必显示这个表达式计算结果</p>
+
+<pre><code>&lt;a href=&quot;javascript:void window.open();&quot;&gt;打开一个新窗口&lt;/a&gt;
+</code></pre>
+
+<h3 id="逗号运算符">逗号运算符</h3>
+
+<p>逗号运算符，首先计算左操作数，然后计算右操作数，最后返回右操作数的值。</p>
+
+<p>总会计算左侧的表达式，但计算结果忽略掉，也就是说，只有左侧表达式有副作用时，，才会使用逗号表达式让代码更通顺。</p>
+
+<p>经常在for循环中使用</p>
+
+<pre><code>for(var i=0,j=10;i&lt;j;i++,j--){
+  console.log(i+j);
+}
+</code></pre>
+
+                        </div>
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/js/intro-2/">js intro 类型/值/变量</a></li>
+        
+        <li><a href="/post/js/intro-1/">js intro 基本介绍</a></li>
+        
+        <li><a href="/post/js/danger/">js 保留关键字以及危险变量名</a></li>
+        
+        <li><a href="/post/css/intro-box/">CSS入门笔记 － 认识盒子模型</a></li>
+        
+        <li><a href="/post/css/intro-1/">CSS入门笔记 － 初识CSS</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://zhaolion.com/tags/Javascript">Javascript</a></li>
+                                
+                                <li><a href="https://zhaolion.com/tags/basic">basic</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zhaolion/chaldea-comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/package/reflect/" title="初步了解 golang reflect pkg">初步了解 golang reflect pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/package/bufio/" title="初步了解 golang bufio pkg">初步了解 golang bufio pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/basic/interface/" title="Go Interface 从理解到深入">Go Interface 从理解到深入</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/tips/coding.in.go/" title="如何写好 golang 代码的一些 tips">如何写好 golang 代码的一些 tips</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/regexp/basic/" title="正则表达式基本使用介绍">正则表达式基本使用介绍</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/mysql/basic/" title="MySQL的基础使用相关知识">MySQL的基础使用相关知识</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/js/intro-5/" title="js intro 对象">js intro 对象</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/js/intro-4/" title="js intro 语句">js intro 语句</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/js/intro-3/" title="js intro 表达式和运算符">js intro 表达式和运算符</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/js/intro-2/" title="js intro 类型/值/变量">js intro 类型/值/变量</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Golang/">Golang(4)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
+    
+    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
+    
+    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
+    
+    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
+    
+    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
+    
+    <a href="https://zhaolion.com/tags/basic/">basic</a>
+    
+    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
+    
+    <a href="https://zhaolion.com/tags/golang/">golang</a>
+    
+    <a href="https://zhaolion.com/tags/interface/">interface</a>
+    
+    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
+    
+    <a href="https://zhaolion.com/tags/tips/">tips</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-132382167-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+</html>

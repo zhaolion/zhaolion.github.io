@@ -6,7 +6,7 @@
     <description>Recent content in Categories on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 13 Sep 2016 22:23:52 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Sep 2016 22:28:03 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>CSS</title>
       <link>https://zhaolion.com/categories/CSS/</link>
-      <pubDate>Tue, 13 Sep 2016 22:23:52 +0800</pubDate>
+      <pubDate>Wed, 14 Sep 2016 22:28:03 +0800</pubDate>
       
       <guid>https://zhaolion.com/categories/CSS/</guid>
       <description></description>
@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>Javascript</title>
+      <link>https://zhaolion.com/categories/Javascript/</link>
+      <pubDate>Tue, 18 Oct 2016 22:33:39 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/categories/Javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>MySQL</title>
       <link>https://zhaolion.com/categories/MySQL/</link>
       <pubDate>Fri, 13 Jan 2017 18:45:26 +0800</pubDate>
@@ -59,7 +68,7 @@
     <item>
       <title>Web</title>
       <link>https://zhaolion.com/categories/Web/</link>
-      <pubDate>Tue, 13 Sep 2016 22:23:52 +0800</pubDate>
+      <pubDate>Tue, 18 Oct 2016 22:33:39 +0800</pubDate>
       
       <guid>https://zhaolion.com/categories/Web/</guid>
       <description></description>

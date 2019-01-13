@@ -6,7 +6,7 @@
     <description>Recent content in Tags on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 13 Sep 2016 22:23:52 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 14 Sep 2016 22:28:03 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>CSS</title>
       <link>https://zhaolion.com/tags/CSS/</link>
-      <pubDate>Tue, 13 Sep 2016 22:23:52 +0800</pubDate>
+      <pubDate>Wed, 14 Sep 2016 22:28:03 +0800</pubDate>
       
       <guid>https://zhaolion.com/tags/CSS/</guid>
       <description></description>
@@ -26,6 +26,15 @@
       <pubDate>Sat, 10 Sep 2016 22:20:36 +0800</pubDate>
       
       <guid>https://zhaolion.com/tags/HTML/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>https://zhaolion.com/tags/Javascript/</link>
+      <pubDate>Tue, 18 Oct 2016 22:33:39 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/tags/Javascript/</guid>
       <description></description>
     </item>
     

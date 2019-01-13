@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on zhaolion&#39;s dropbox</title>
+    <link>https://zhaolion.com/categories/Javascript/</link>
+    <description>Recent content in Javascript on zhaolion&#39;s dropbox</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 18 Oct 2016 22:33:39 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhaolion.com/categories/Javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>js intro 对象</title>
+      <link>https://zhaolion.com/post/js/intro-5/</link>
+      <pubDate>Tue, 18 Oct 2016 22:33:39 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/js/intro-5/</guid>
+      <description>对象 对象(object)是js的基本数据类型。是一种复合值：将很多值（原始值或者其它对象）聚合在一起，可以通过名字访问这些值。
+每个属性都是一个名/值对(key/value)，属性名是字符串，因此我们可以把对象看成从字符串到值的映射。
+然而对象不仅仅是字符串到值的映射，除了保持自有的属性，js对象还可以从一个称为原型的对象继承属性。
+对象的方法通常是继承的属性，这种原型式继承是js的核心特征。
+js对象是动态的，可以新增属性，也可以删除属性。
+除了字符串、数字、true、false、null和undefined之外，js中的值都是对象。
+对象是可变的，我们通过引用而非值来操作对象。如果变量x是指向一个对象的引用，那么执行代码
+var y = x;
+变量y也是指向同一个对象的引用，而非这个对象的副本。通过y来修改这个对象也会对变量x造成影响
+js的属性，除了名字和值之外，每个属性还有一些与之相关的值，称为 属性特性： - 可写，表明是否可以设置该属性的值 - 可枚举，表明是否可以通过for/in循环返回该属性 - 可配置，表明是否可以删除或修改该属性
+除了包含属性之外，每个对象还拥有三个相关的对象特性： - 对象的原型(prototype)指向另一个对象，本对象的属性继承自它的原型对象 - 对象的类是一个标识对象类型的字符串 - 对象的扩展标记(extensible flag)指明了在ECMAScript5中是否可以向该对象添加新的属性
+三类js对象和两类属性的区分： - 内置对象(native object)是由ECMAScript规范定义的对象或类。例如，数组、函数、日期和正则表达式 - 宿主对象(host object)是由js解释器所嵌入的宿主环境（比如WEB浏览器）定义的。客户端js中表示网页结构的HTMLElement对象均是宿主对象。既然宿主环境定义的方法可以当成普通的js函数对象，那么宿主对象也可以当成内置对象 - 自定义对象(user-defined Object)是由运行中的js代码创建的对象 - 自有属性(own property)是直接在对象中定义的属性 - 继承属性(inherited property)是在对象的原型对象中定义的属性
+创建对象 创建对象主要有三种方法: - 对象直接量 - 关键字new创建 - Object.create()函数
+对象直接量 对象直接量是由若干名值对组成的映射表，名值对中间用冒号分割，名值对之间用逗号分割，整个映射表用花括号括起来
+属性名可以是js标识符也可以是字符串直接量
+属性的值可以是任意类型js表达式、表达式的值就是这个属性的值
+来个例子：
+var empty = {}; // 没有任何属性的对象 var point = { x:0, y:1 }; // 两个属性 var point2 = { x: point.</description>
+    </item>
+    
+    <item>
+      <title>js intro 语句</title>
+      <link>https://zhaolion.com/post/js/intro-4/</link>
+      <pubDate>Mon, 17 Oct 2016 22:33:39 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/js/intro-4/</guid>
+      <description>语句 js程序其实就是一系列可执行语句的集合。只要掌握了语句，就可以开始写js程序
+默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序: - 条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如if语句、switch语句 - 循环语句，可以重复执行语句，如while语句和for语句 - 跳转语句，可以让解释器跳转至程序的其他部分继续执行，如break语句、return语句、 throw语句
+表达式语句  赋值语句 递增、递减运算符 函数调用  greeting = &amp;quot;hello&amp;quot; + name; i *= 3; counter++; delete o.x; window.close(); cx = Math.cos(x);  复合语句和空语句 js可以讲多条语句联合在一起，形成一条复合语句，只需要用花括号将多条语句括起来即可。
+下面代码可以当成一条单独的语句，使用在任何js希望使用一条语句的地方：
+{ x = Math.PI; cx = Math.cos(x); console.log(&amp;quot;cos(pi) = &amp;quot; + cx); }  关于语句块，需要注意: - 语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要 - 语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好 - js中没有快级作用域，语句块中声明的变量并不是语句块私有的
+在js中，希望多条语句被当作一条语句使用时，使用复合语句来替代，空语句正好相反，允许包含0条语句 空语句如下:
+;  js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用
+for(var i=0; i&amp;lt;a.length; a[i++]=0) ;  注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug
+if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; // 这一行总会执行  如果有特殊目的需要使用空语句，最好在代码中注释</description>
+    </item>
+    
+    <item>
+      <title>js intro 表达式和运算符</title>
+      <link>https://zhaolion.com/post/js/intro-3/</link>
+      <pubDate>Sun, 16 Oct 2016 22:33:39 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/js/intro-3/</guid>
+      <description>表达式和运算符  程序中最简单的表达式就是，程序中的常量 变量名也是一种简单的表达式 复杂的表达式是由简单的表达式组成的 函数调用表达式是由函数对象的表达式和0个或多个参数表达式构成 可以使用运算符来将简单的表达式来组合成复杂的表达式  原始表达式 “原始表达式”，说简单点就是最简单的表达式，并且不再包含其他表达式
+&amp;gt;js中原始表达式有以下： - 常量 - 直接量 - 关键字 - 变量
+ 栗子：
+//直接量 1.23 // 数字直接量 &amp;quot;hello&amp;quot; // 字符串直接量 /pattern/ // 正则表达式直接 //保留字 true false null // 返回空 this // 返回“当前对象” //变量 i // 返回i的值 sum // 返回sum的值 undefined // undefined是全局变量，和null不同，不是一个关键字   对象和数组的初始化表达式 对象和数组的初始化表达式实际上是一个新创建的对象和数组，并不是原始表达式
+数组初始化表达式  栗子: - [] //空数组 - [1+2,3+4] // 2个元素数组 [3,7] - var matrix = [[1,2],[3,4]] // 数组可嵌套</description>
+    </item>
+    
+    <item>
+      <title>js intro 类型/值/变量</title>
+      <link>https://zhaolion.com/post/js/intro-2/</link>
+      <pubDate>Sat, 15 Oct 2016 22:33:39 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/js/intro-2/</guid>
+      <description>词法结构  字符集：unicode 区分大小写，关键字、变量、函数名、标示符必须采取大小写一致 注释
+``` // 单行注释 /* ~一段注释~ / // 另一段注释 /  多行注释 多行注释 */ ```  直接量  12 // 数字 1.2 // 小数 &amp;quot;hello world&amp;quot; // 一个字符串 &#39;hi&#39; // 另一种字符串 true // 布尔值 /^javascript$/gi //正则表达式直接量 null // 空 { x:1 ,y:2} // 对象 [ 1,2,3,4,5 ] //数组  标示符、保留字 TBD
+ 可选的分号
+ 在任何需要分割的地方使用 ; 进行分隔 在任何可以省略分号的地方都将其省略
+   如果不使用分号，由于语句的分隔规则，会导致一些意想不到的情况，建议无论什么时候都使用分号进行分割
+类型、值和变量 js中的数据类型： - 数字 - 字符串 - 布尔值 - null - undefine - 对象</description>
+    </item>
+    
+    <item>
+      <title>js intro 基本介绍</title>
+      <link>https://zhaolion.com/post/js/intro-1/</link>
+      <pubDate>Sat, 15 Oct 2016 22:32:36 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/js/intro-1/</guid>
+      <description>什么是 JavaScript? JavaScript 是一门跨平台、面向对象的轻量级脚本语言。 在主机环境中， JavaScript能够通过连接环境对象而实现可控制编译。
+JavaScript内置了一个包含一系列对象的标准库，比如数组，日期，数学和一个语言元素核心集合包括操作符，流程控制符以及语句等。JavaScript的核心部分可以通过组合已有语言核心对象来扩展语言以适应不同用途；例如： - 客户端的JavaScript通过提供控制浏览器及其文档对象模型（DOM）的对象来扩展语言核心。例如：客户端版本直接支持应用将元素放在在HTML表单中并且支持响应用户事件比如鼠标点击、表单提交和页面导航 - 服务端的JavaScript则通过提供有关在服务器上运行JavaScript的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作
+JavaScript 和 ECMAScript 规范 JavaScript 的标准化组织是 ECMA ——这个欧洲信息与通信系统标准化协会提供基于 Javascript 的标准化方案（ECMA 原先是欧洲计算机制造商协会的首字母缩写）。这种标准化版本的JavaScript被称作ECMAScript，在所有支持该标准的应用中以相同的方式工作。公司可以使用开放标准语言来开发他们自己的JavaScript实现版本。ECMAScript标准被记录于ECMA－262规范说明中。 参照 JavaScript的新特性 以便学习更多关于不同版本的JavaScript和ECMAScript规范版本。
+ECMAScript 规范是一套用于实现ECMAScript的要求。如果你想在你的ECMAScript实现版本 或 引擎（例如火狐的SpiderMonkey和Chrome 的V8）中实现标准兼容语言（例如ES6）的特性，这将十分有用.
+ECMAScript 文档并不有助于脚本编程。编写脚本时请参考 JavaScript 文档。
+JavaScript上手 Javascript的上手是非常简单的，你仅仅只需要一个浏览器，比如Chrome浏览器
+在Chrome浏览器菜单栏“设置按键”=&amp;gt;”更多工具“=&amp;gt;&amp;ldquo;开发者工具&amp;rdquo;可以打开控制台，点击Element旁边的console便可以打开console
+Hello world 不写一段Hello World代码，怎么能叫在学习一门语言呢，SO～DO it in the console
+在console中输入
+console.log(&#39;Hello World!&#39;)  你便能看到</description>
+    </item>
+    
+    <item>
+      <title>js 保留关键字以及危险变量名</title>
+      <link>https://zhaolion.com/post/js/danger/</link>
+      <pubDate>Fri, 14 Oct 2016 22:30:56 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/js/danger/</guid>
+      <description>Javascript 的保留关键字（标识符）不可以用作变量、标签或者函数名。
+有些保留关键字是作为 Javascript 以后扩展使用。
+关键字是严格不允许，而浏览器定义的变量名或者类名在使用的时候注意确保作用域
+EMCAScript 中的关键字    break case catch continue s     abstract arguments boolean break byte   case catch char class* const   continue debugger default delete do   double else enum* eval export*   extends* false final finally float   for function goto if implements   import* in instanceof int interface   let long native new null   package private protected public return   short static super* switch synchronized   this throw throws transient true   try typeof var void volatile   while with yield      &amp;lsquo;*&amp;rsquo; 标记的关键字是 ECMAScript5 中新添加的。</description>
+    </item>
+    
+  </channel>
+</rss>
