@@ -6,7 +6,7 @@
     <description>Recent content in basic on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 13 Jan 2019 18:48:34 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Jan 2017 18:48:34 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.github.io/tags/basic/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>正则表达式基本使用介绍</title>
       <link>https://zhaolion.github.io/post/regexp/basic/</link>
-      <pubDate>Sun, 13 Jan 2019 18:48:34 +0800</pubDate>
+      <pubDate>Fri, 13 Jan 2017 18:48:34 +0800</pubDate>
       
       <guid>https://zhaolion.github.io/post/regexp/basic/</guid>
       <description>正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
@@ -36,7 +36,7 @@
     <item>
       <title>MySQL的基础使用相关知识</title>
       <link>https://zhaolion.github.io/post/mysql/basic/</link>
-      <pubDate>Sun, 13 Jan 2019 18:45:26 +0800</pubDate>
+      <pubDate>Fri, 13 Jan 2017 18:45:26 +0800</pubDate>
       
       <guid>https://zhaolion.github.io/post/mysql/basic/</guid>
       <description>登录到MySQL mysql -h hostname -P hostport -u username -p
