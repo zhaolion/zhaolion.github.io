@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhaolion.com/post/golang/basic/go.mod/</loc>
+    <lastmod>2019-01-14T00:24:08+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/golang/package/reflect/</loc>
     <lastmod>2019-01-12T11:43:35+08:00</lastmod>
   </url>
@@ -18,7 +23,7 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/post/golang/basic/interface/</loc>
+    <loc>https://zhaolion.com/post/golang/upgrade/interface/</loc>
     <lastmod>2018-09-13T18:24:50+08:00</lastmod>
   </url>
   
@@ -101,8 +106,14 @@
   </url>
   
   <url>
+    <loc>https://zhaolion.com/tags/Golang/</loc>
+    <lastmod>2019-01-14T00:24:08+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/categories/Golang/</loc>
-    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
+    <lastmod>2019-01-14T00:24:08+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -144,7 +155,7 @@
   
   <url>
     <loc>https://zhaolion.com/post/</loc>
-    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
+    <lastmod>2019-01-14T00:24:08+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -185,14 +196,14 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/tags/golang/</loc>
-    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
+    <loc>https://zhaolion.com/tags/interface/</loc>
+    <lastmod>2018-09-13T18:24:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zhaolion.com/tags/interface/</loc>
-    <lastmod>2018-09-13T18:24:50+08:00</lastmod>
+    <loc>https://zhaolion.com/tags/module/</loc>
+    <lastmod>2019-01-14T00:24:08+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -216,7 +227,7 @@
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
+    <lastmod>2019-01-14T00:24:08+08:00</lastmod>
     <priority>0</priority>
   </url>
   

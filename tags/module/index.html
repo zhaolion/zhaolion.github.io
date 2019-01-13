@@ -7,22 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Regexp | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="Regexp - zhaolion&#39;s dropbox">
+    <title>module | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="module - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
         
     <meta name="Keywords" content="萌新">
-    <meta name="description" content="Regexp">
+    <meta name="description" content="module">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/tags/Regexp/">
+    <meta property="og:url" content="https://zhaolion.com/tags/module/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.com/tags/Regexp/index.xml" title="zhaolion's dropbox" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.com/tags/module/index.xml" title="zhaolion's dropbox" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -67,7 +67,7 @@
                     
                     <h3 class="archive-title">
                         包含标签
-                        <span class="keyword">Regexp</span>
+                        <span class="keyword">module</span>
                         的文章
                     </h3>
                     
@@ -76,36 +76,28 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/regexp/basic/">正则表达式基本使用介绍</a>
+                                    <a href="https://zhaolion.com/post/golang/basic/go.mod/">Go Modules 简单介绍</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2017年1月13日
+                                2019年1月14日
                             </date>
                             
                             <div class="post-meta meta-category">
                                 |
                                 
-                                    <a href="https://zhaolion.com/categories/Regexp">Regexp</a>
+                                    <a href="https://zhaolion.com/categories/Golang">Golang</a>
                                 
                             </div>
                             
                             <div class="post-content">
-                                正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
-字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符 &gt;.at，可以匹配&rdquo;cat&rdquo;,&ldquo;sat&rdquo;,&ldquo;mat&rdquo;等，一般这种通配符用于匹配操作系统中的文件名
- 限定范围 &gt; 1. 如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 &gt;2. 可以列出一个集合，[aeiou]，来匹配所有元音字母 &gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 &gt;4. 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符
-  重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和+，这两个符号放在表示式后面 - *表示这个模式可以重复0次或多次 - +表示这个模式可以重复1次或更多次
- c+at，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，但是无法匹配&rdquo;at&rdquo; c*at，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，也可以匹配&rdquo;at&rdquo;
- 子表达式 通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。
- (very )*large，可以匹配：&rdquo;large&rdquo;,&ldquo;very large&rdquo;,&ldquo;very very large&rdquo;
- 子表达式计数 可以在花括号{}中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围
- (very){1, 2}，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo; (very){3}，可以匹配&rdquo;veryveryvery&rdquo; (very)(1,)，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;,&ldquo;veryveryvery&rdquo;&hellip;
- 定位到字符串的开始或末尾 脱字符号^用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处 字符$，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾
- ^bob，用于在字符串开始处匹配bob com$,用于在字符串末尾处匹配com ^[a-z]$，这个将只能匹配a-z之间的字符组成的字符串
- 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配&rdquo;com&rdquo;,&ldquo;net&rdquo;,&ldquo;edu&rdquo;中任意一个
-匹配特殊字符 如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠\\
-特殊字符主要有： - \: 转义字符 - ^: 在字符串开始匹配 - $: 在字符串末尾匹配 - .……
-                                <p class="readmore"><a href="https://zhaolion.com/post/regexp/basic/">阅读全文</a></p>
+                                Go Modules Golang 在 1.11 版本推出了万众期待的依赖管理工具 go Modules
+我厌倦了 Glide 那无穷无尽的 update 状态之后，还是决定自己再一次尝试新的依赖管理工具 (~~ 毕竟是 google 爸爸推出的~~)
+还好尝试的比较晚，已经有许多 bug 得到解决，社区也有许多文章给出了最佳实践，建议先看看 intro-to-go-modules
+1. enable GO111MODULE go modules 默认是没有开启的，需要设置环境变量 GO111MODULE=on, 如果没有设置, 会有一些提示。
+2. help doc 接下来就是查看一下帮助手册 go mod help:
+Go mod provides access to operations on modules. Note that support for modules is built into all the go commands, not just 'go mod'. For example, day-to-day adding, removing, upgrading, and downgrading of dependencies should be done using 'go get'.……
+                                <p class="readmore"><a href="https://zhaolion.com/post/golang/basic/go.mod/">阅读全文</a></p>
                             </div>
                         </article>
                     

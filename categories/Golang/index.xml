@@ -6,10 +6,24 @@
     <description>Recent content in Golang on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 12 Jan 2019 11:43:35 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 14 Jan 2019 00:24:08 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.com/categories/Golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go Modules 简单介绍</title>
+      <link>https://zhaolion.com/post/golang/basic/go.mod/</link>
+      <pubDate>Mon, 14 Jan 2019 00:24:08 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/golang/basic/go.mod/</guid>
+      <description>Go Modules Golang 在 1.11 版本推出了万众期待的依赖管理工具 go Modules
+我厌倦了 Glide 那无穷无尽的 update 状态之后，还是决定自己再一次尝试新的依赖管理工具 (~~ 毕竟是 google 爸爸推出的~~)
+还好尝试的比较晚，已经有许多 bug 得到解决，社区也有许多文章给出了最佳实践，建议先看看 intro-to-go-modules
+1. enable GO111MODULE go modules 默认是没有开启的，需要设置环境变量 GO111MODULE=on, 如果没有设置, 会有一些提示。
+2. help doc 接下来就是查看一下帮助手册 go mod help:
+Go mod provides access to operations on modules. Note that support for modules is built into all the go commands, not just &#39;go mod&#39;. For example, day-to-day adding, removing, upgrading, and downgrading of dependencies should be done using &#39;go get&#39;.</description>
+    </item>
     
     <item>
       <title>初步了解 golang reflect pkg</title>
@@ -54,10 +68,10 @@ producer buffer destination (io.Writer) a -----&amp;gt; a b -----&amp;gt; ab c -
     
     <item>
       <title>Go Interface 从理解到深入</title>
-      <link>https://zhaolion.com/post/golang/basic/interface/</link>
+      <link>https://zhaolion.com/post/golang/upgrade/interface/</link>
       <pubDate>Thu, 13 Sep 2018 18:24:50 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/basic/interface/</guid>
+      <guid>https://zhaolion.com/post/golang/upgrade/interface/</guid>
       <description>Go Interface 从理解到深入 如果说 goroutine 和 channel 是 Go 并发的两大基石，那么接口是 Go 语言编程中数据类型的关键。在 Go 语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是 Go 语言中所有数据结构的核心
 Go 不是一种典型的 OO 语言，它在语法上不支持类和继承的概念
 没有继承是否就无法拥有多态行为了呢？答案是否定的，Go 语言引入了一种新类型—Interface，它在效果上实现了类似于 C++ 的 “多态” 概念，虽然与 C++ 的多态在语法上并非完全对等，但至少在最终实现的效果上，它有多态的影子
