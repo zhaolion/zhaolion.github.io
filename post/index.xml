@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on zhaolion&#39;s dropbox</title>
+    <link>https://zhaolion.github.io/post/</link>
+    <description>Recent content in Posts on zhaolion&#39;s dropbox</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    
+	<atom:link href="https://zhaolion.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>https://zhaolion.github.io/post/README/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhaolion.github.io/post/README/</guid>
+      <description>zhaolion&amp;rsquo;s dropbox 个人随手整理的一些文章
+golang package: - bufio 如何使用 - reflect 如何使用
+tips: - 一些简单的代码规范
+basic: - Interface 从理解到深入</description>
+    </item>
+    
+    <item>
+      <title>Go Interface 从理解到深入</title>
+      <link>https://zhaolion.github.io/post/golang/basic/interface/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhaolion.github.io/post/golang/basic/interface/</guid>
+      <description>Go Interface 从理解到深入 如果说 goroutine 和 channel 是 Go 并发的两大基石，那么接口是 Go 语言编程中数据类型的关键。在 Go 语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是 Go 语言中所有数据结构的核心
+Go 不是一种典型的 OO 语言，它在语法上不支持类和继承的概念
+没有继承是否就无法拥有多态行为了呢？答案是否定的，Go 语言引入了一种新类型—Interface，它在效果上实现了类似于 C++ 的 “多态” 概念，虽然与 C++ 的多态在语法上并非完全对等，但至少在最终实现的效果上，它有多态的影子
+虽然 Go 语言没有类的概念，但它支持的数据类型可以定义对应的 method(s)。本质上说，所谓的 method(s) 其实就是函数，只不过与普通函数相比，这类函数是作用在某个数据类型上的，所以在函数签名中，会有个 receiver(接收器) 来表明当前定义的函数会作用在该 receiver 上
+Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定义其 method（而并非只有 struct 才支持 method），只不过实际项目中，method(s) 多定义在 struct 上而已。 从这一点来看，我们可以把 Go 中的 struct 看作是不支持继承行为的轻量级的 “类”，这一点比较类似 Abstract Class
+从语法上看，Interface 定义了一个或一组 method(s)，这些 method(s) 只有函数签名，没有具体的实现代码（有没有联想起 C++ 中的虚函数？）。若某个数据类型实现了 Interface 中定义的那些被称为 &amp;ldquo;methods&amp;rdquo; 的函数，则称这些数据类型实现（implement）了 interface。这是我们常用的 OO 方式</description>
+    </item>
+    
+    <item>
+      <title>初步了解 golang bufio pkg</title>
+      <link>https://zhaolion.github.io/post/golang/package/bufio/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhaolion.github.io/post/golang/package/bufio/</guid>
+      <description>bufio package in Golang golang 通过 package bufio 来支持 buffered I/O。
+熟悉一下: Reader, Writer and Scanner…
+bufio.Writer 对 I/O 的频繁操作会极大的影响性能，每次 写 I/O 都是一次 syscall，因此频繁操作会给 CPU 带来极大的负担。对于磁盘来说，批量写操作有着更好的性能。golang 通过 bufio.Writer 来合并写操作，避免频繁的写操作。因此在写密集场景下，应该使用 bufio.Writer，而不是 io.Writer
+bufio.Writer 通过将写内容缓存至 buffer，buffer 满了之后，再进行一次写操作，这样极大的优化性能:
+producer --&amp;gt; buffer --&amp;gt; io.Writer  举个例子，9 次写操作，buffer 是如何工作的:
+producer buffer destination (io.Writer) a -----&amp;gt; a b -----&amp;gt; ab c -----&amp;gt; abc d -----&amp;gt; abcd e -----&amp;gt; e ------&amp;gt; abcd f -----&amp;gt; ef abcd g -----&amp;gt; efg abcd h -----&amp;gt; efgh abcd i -----&amp;gt; i ------&amp;gt; abcdefgh  看份代码来感受一下，如何使用:</description>
+    </item>
+    
+    <item>
+      <title>初步了解 golang reflect pkg</title>
+      <link>https://zhaolion.github.io/post/golang/package/reflect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhaolion.github.io/post/golang/package/reflect/</guid>
+      <description>初步了解 golang reflect pkg [TOC]
+阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
+Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。
+什么时候应该用 reflect
+ 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp;amp; Kind &amp;amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value: - Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &amp;hellip; - Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &amp;hellip; - Value: 也就是 Go value, 承载变量 / 常量的值
+ type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈</description>
+    </item>
+    
+    <item>
+      <title>如何写好 golang 代码的一些 tips</title>
+      <link>https://zhaolion.github.io/post/golang/tips/coding.in.go/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhaolion.github.io/post/golang/tips/coding.in.go/</guid>
+      <description>如何写好 golang 代码的一些 tips 1. 首先需要知道的概念  不要像其他语言一样写 Go, Go 不是 Java/Python/Ruby/PHP，Go 的程序思维很古典也很超前 保持简洁，避免过度工程化 学会阅读源码 interface 很重要，很多问题都可以用 interface 解决 保持函数精炼，变量名长度合适 (在不丢失意义的情况下，尽量短小) 用更小的单元实现代码功能，然后 ** 组合 ** 慎重使用全局变量 (尤其是跨 package 使用，变量作用域上容易踩坑，可以参考 vs6IeAu5U5n)  2. 函数声明的 tips  函数声明首先是函数名字要具有自解释性，需要能够解释清楚大致提供的功能，而不是模糊的 common/util。 其次具体的功能解释，这个要说到代码注释了，这里就不赘述了。 除了函数声明外，还有函数的形参定义。这里以一个例子来说一下扩展性好的函数的参数应该如何定义 (见 2.1)。  2.1 普通函数 假设我们需要一个简单的 server，我们可以像下面这样定义，addr 表示 server 启动在哪个端口上。
+func NewServer(addr string)  第一期的需求很简单，就上面这些足够满足了。项目上线跑了一段时间发现，由于连接没有设置超时，很多连接一直得不到释放（异常情况），严重影响服务器性能。
+好，那第二期我们加个 timeout。
+func NewServer(addr string, timeout time.Duration)  这个时候尴尬的情况出现了，调用你代码的所有人都需要改动代码。而且这只是一个改动，之后如果要支持 tls，那么又得改动一次。
+2.2 不定参数 解决上面的窘境的一种方法是使用不定参数。
+比如我要实现一个整数加法。
+func Add(list .</description>
+    </item>
+    
+  </channel>
+</rss>

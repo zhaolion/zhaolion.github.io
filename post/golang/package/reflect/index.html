@@ -1,0 +1,1687 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.53" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>初步了解 golang reflect pkg | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="初步了解 golang reflect pkg - zhaolion&#39;s dropbox">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="瑟瑟发抖.jpg">
+    <meta name="description" content="初步了解 golang reflect pkg">
+        
+    <meta name="author" content="zhaolion">
+    <meta property="og:url" content="https://zhaolion.github.io/post/golang/package/reflect/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://zhaolion.github.io">
+                        zhaolion&#39;s dropbox
+                    </a>
+                
+                <p class="description">编程 5 分钟，吹水 2 小时</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://zhaolion.github.io">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">初步了解 golang reflect pkg</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            1年1月1日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://zhaolion.github.io/categories/Golang">Golang</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            
+
+<h1 id="初步了解-golang-reflect-pkg">初步了解 golang reflect pkg</h1>
+
+<p>[TOC]</p>
+
+<p>阅读这篇文章之前，建议先熟悉官方文档 <a href="https://golang.org/pkg/reflect/">pkg/reflect</a></p>
+
+<p>Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。</p>
+
+<p><strong>什么时候应该用 reflect</strong></p>
+
+<ol>
+<li>首先你得确认你会使用 reflect pkg，并且不是乱用</li>
+<li>更好的抽象和约束，减少 bug 几率</li>
+<li>提升代码的易读性</li>
+<li>提高开发效率</li>
+</ol>
+
+<h2 id="1-理解-type-kind-value">1 理解 Type &amp; Kind &amp; Value</h2>
+
+<p>reflect package 提供了 3 个重要的结构体 <a href="https://golang.org/pkg/reflect/#Type">Type</a>、<a href="https://golang.org/pkg/reflect/#Kind">Kind</a> 和 <a href="https://golang.org/pkg/reflect/#Value">Value</a>:
+- Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &hellip;
+- Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &hellip;
+- Value: 也就是 Go value, 承载变量 / 常量的值</p>
+
+<blockquote>
+<p><code>type Kind uint</code>
+<code>Kind</code> 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈</p>
+</blockquote>
+
+<p>Type 和 Kind，在真正的使用中是隐藏在背后的，并且在不阅读相关文档的情况下，其实会不明白有什么差别。举个例子来说明其中的差别:</p>
+
+<p>** 例子:**
+参考一个典型的 struct:</p>
+
+<pre><code class="language-golang">type User struct {
+    Name string
+}
+</code></pre>
+
+<p>如果实例化一个 <code>User</code> 结构体 <code>user1 := User{&quot;zhaolion&quot;}</code> 那么 <code>user1</code> 对象的 Type 和 Kind 分别是:
+- Type: <code>pkg.User</code>
+- Kind: <code>Struct</code></p>
+
+<p>如果实例化一个 <code>User</code> 结构体 <code>user2 := &amp;User{&quot;zhaolion&quot;}</code> 那么 <code>user2</code> 对象的 Type 和 Kind 分别是:
+- Type: <code>*pkg.User</code>
+- Kind: <code>Ptr</code></p>
+
+<p>运行结果可以参考这份代码 <a href="https://play.golang.org/p/V6VgdLLeBWb">V6VgdLLeBWb</a></p>
+
+<pre><code class="language-golang">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+type User struct {
+    Name string
+}
+
+
+func main() {
+	user1 := User{&quot;zhaolion&quot;}
+	user2 := &amp;User{&quot;zhaolion&quot;}
+
+	fmt.Printf(&quot;user1 kind: %s, type: %s\n&quot;, reflect.ValueOf(user1).Kind(), reflect.TypeOf(user1))
+	fmt.Printf(&quot;user2 kind: %s, type: %s&quot;, reflect.ValueOf(user2).Kind(), reflect.TypeOf(user2))
+}
+</code></pre>
+
+<p>输出:</p>
+
+<pre><code>user1 kind: struct, type: main.User
+user2 kind: ptr, type: *main.User
+</code></pre>
+
+<p>那么有什么样的方式可以让我们直接获取到变量内部的信息 (Type/Value) 呢？</p>
+
+<pre><code>/ ValueOf returns a new Value initialized to the concrete value
+// stored in the interface i.  ValueOf(nil) returns the zero
+func ValueOf(i interface{}) Value {...}
+</code></pre>
+
+<pre><code>// TypeOf returns the reflection Type that represents the dynamic type of i.
+// If i is a nil interface value, TypeOf returns nil.
+func TypeOf(i interface{}) Type {...}
+</code></pre>
+
+<p>这样就能拿到 <code>Object</code> 的 <code>Type</code> 和 <code>Value</code>，做自己想做的事情</p>
+
+<p>更详细的细节，可以去看源码，这里简单介绍一下 <code>Type</code> 和 <code>Value</code>:</p>
+
+<pre><code class="language-golang">type Type interface {
+    // 变量的内存对齐，返回 rtype.align
+    Align() int
+
+    // struct 字段的内存对齐，返回 rtype.fieldAlign
+    FieldAlign() int
+
+    // 根据传入的 i，返回方法实例，表示类型的第 i 个方法
+    Method(int) Method
+
+    // 根据名字返回方法实例，这个比较常用
+    MethodByName(string) (Method, bool)
+
+    // 返回类型方法集中可导出的方法的数量
+    NumMethod() int
+
+    // 只返回类型名，不含包名
+    Name() string
+
+    // 返回导入路径，即 import 路径
+    PkgPath() string
+
+    // 返回 rtype.size 即类型大小，单位是字节数
+    Size() uintptr
+
+    // 返回类型名字，实际就是 PkgPath() + Name()
+    String() string
+
+    // 返回 rtype.kind，描述一种基础类型
+    Kind() Kind
+
+    // 检查当前类型有没有实现接口 u
+    Implements(u Type) bool
+
+    // 检查当前类型能不能赋值给接口 u
+    AssignableTo(u Type) bool
+
+    // 检查当前类型能不能转换成接口 u 类型
+    ConvertibleTo(u Type) bool
+
+    // 检查当前类型能不能做比较运算，其实就是看这个类型底层有没有绑定 typeAlg 的 equal 方法。
+    // 打住！不要去搜 typeAlg 是什么，不然你会陷进去的！先把本文看完。
+    Comparable() bool
+
+    // 返回类型的位大小，但不是所有类型都能调这个方法，不能调的会 panic
+    Bits() int
+
+    // 返回 channel 类型的方向，如果不是 channel，会 panic
+    ChanDir() ChanDir
+
+    // 返回函数类型的最后一个参数是不是可变数量的，&quot;...&quot; 就这样的，同样，如果不是函数类型，会 panic
+    IsVariadic() bool
+
+    // 返回所包含元素的类型，只有 Array, Chan, Map, Ptr, Slice 这些才能调，其他类型会 panic。
+    Elem() Type
+
+    // 返回 struct 类型的第 i 个字段，不是 struct 会 panic，i 越界也会 panic
+    Field(i int) StructField
+
+    // 跟上边一样，不过是嵌套调用的，比如 [1, 2] 就是说返回当前 struct 的第 1 个 struct 的第 2 个字段，适用于 struct 本身嵌套的类型
+    FieldByIndex(index []int) StructField
+
+    // 按名字找 struct 字段，第二个返回值 ok 表示有没有
+    FieldByName(name string) (StructField, bool)
+
+    // 按函数名找 struct 字段，因为 struct 里也可能有类型是 func 的嘛
+    FieldByNameFunc(match func(string) bool) (StructField, bool)
+
+    // 返回函数第 i 个参数的类型，不是 func 会 panic
+    In(i int) Type
+
+    // 返回 map 的 key 的类型，不是 map 会 panic
+    Key() Type
+
+    // 返回 array 的长度，不是 array 会 panic
+    Len() int
+
+    // 返回 struct 字段数量，不是 struct 会 panic
+    NumField() int
+
+    // 返回函数的参数数量，不是 func 会 panic
+    NumIn() int
+
+    // 返回函数的返回值数量，不是 func 会 panic
+    NumOut() int
+
+    // 返回函数第 i 个返回值的类型，不是 func 会 panic
+    Out(i int) Type
+}
+</code></pre>
+
+<pre><code class="language-golang">type Value struct {
+    // 反射出来此值的类型，rtype 是啥往上看，但可别弄错了，这 typ 是未导出的，从外部调不到 Type 接口的方法
+    typ *rtype
+
+    // 数据形式的指针值
+    ptr unsafe.Pointer
+
+    // 保存元数据
+    flag
+}
+</code></pre>
+
+<p>Value 的方法太多了，参考开头的官方文档吧，挑几个重点：</p>
+
+<pre><code class="language-golang">// 前提 v 是一个 func，然后调用 v，并传入 in 参数，第一个参数是 in[0]，第二个是 in[1]，以此类推
+func (v Value) Call(in []Value) []Value
+
+// 返回 v 的接口值或者指针
+func (v Value) Elem() Value
+
+// 前提 v 是一个 struct，返回第 i 个字段，这个主要用于遍历
+func (v Value) Field(i int) Value
+
+// 前提 v 是一个 struct，根据字段名直接定位返回
+func (v Value) FieldByName(name string) Value
+
+// 前提 v 是 Array, Slice, String 之一，返回第 i 个元素，主要也是用于遍历，注意不能越界
+func (v Value) Index(i int) Value
+
+// 判断 v 是不是 nil，只有 chan, func, interface, map, pointer, slice 可以用，其他类型会 panic
+func (v Value) IsNil() bool
+
+// 判断 v 是否合法，如果返回 false，那么除了 String() 以外的其他方法调用都会 panic，事前检查是必要的
+func (v Value) IsValid() bool
+
+// 前提 v 是个 map，返回对应 value
+func (v Value) MapIndex(key Value)
+
+// 前提 v 是个 map，返回所有 key 组成的一个 slice
+func (v Value) MapKeys() []Value
+
+// 前提 v 是个 struct，返回字段个数
+func (v Value) NumField() int
+
+// 赋值
+func (v Value) Set(x Value)
+
+// 类型
+func (v Value) Type() Type
+</code></pre>
+
+<h2 id="2-根据-type-创建变量">2 根据 Type 创建变量</h2>
+
+<p>如何根据类型创建变量?</p>
+
+<ul>
+<li>我们想要拿到变量的类型信息，那就需要使用 <code>reflect.Type</code></li>
+<li>再根据类型创建一个对应的 · 零值 (Zero values)·，也就是未初始化的变量</li>
+</ul>
+
+<pre><code>`Type` =&gt; `Value` =&gt; `interface{}`
+</code></pre>
+
+<h3 id="2-1-创建基础类型变量">2.1 创建基础类型变量</h3>
+
+<p>对于这些 Golang 的基础类型可以使用 <code>reflect.Zero</code> 可以创建对应的变量值而不需要做任何处理:</p>
+
+<pre><code>        Bool
+        Int
+        Int8
+        Int16
+        Int32
+        Int64
+        Uint
+        Uint8
+        Uint16
+        Uint32
+        Uint64
+        Uintptr
+        Float32
+        Float64
+        Complex64
+        Complex128
+        String
+        UnsafePointer
+</code></pre>
+
+<p>可以使用下面这个函数来创建基础类型的变量对应的值变量，如果想要真正使用，只需要提取一些类型信息包装一下就行。</p>
+
+<pre><code class="language-golang">func Create(t reflect.Type) reflect.Value {
+  return reflect.Zero(t)
+}
+</code></pre>
+
+<p>我们平时使用的对象需要具体的类型，因此需要从 <code>reflect.Value</code> 提取 (Extract) 具体的类型和值。</p>
+
+<p>golang 提供了许多方法来为基础类型提取对象的值和类型</p>
+
+<h4 id="2-1-1-extract-integer-values">2.1.1 Extract Integer values</h4>
+
+<p>Golang 有 5 种 Integer:</p>
+
+<pre><code>        Int
+        Int8
+        Int16
+        Int32
+        Int64
+</code></pre>
+
+<p>每种 <code>Integer</code> 都是不同的类型，因此需要转换成对应的类型。</p>
+
+<p>reflect package 提供了 <code>reflect.Type &gt; func (v Value) Int() int64</code> 来做这件事。</p>
+
+<p>为什么返回值是 <code>int64</code> ?
+&gt; 这是因为其他几种 <code>Integer</code> 类型都可以在 <code>int64</code> 中进行编码</p>
+
+<p>只需要进行一些基本的类型转换就可以获取想要的类型对象：</p>
+
+<pre><code class="language-golang">// Extract Int64:
+func extractInt64(v reflect.Value) (int64, error) {
+  if reflect.Kind() != reflect.Int64 {
+    panic(&quot;invalid input&quot;)
+  }
+  var intVal int64
+  intVal = v.Int()
+  return intVal, nil
+}
+// Extract Int32
+func extractInt32(v reflect.Value) (int32, error) {
+  if reflect.Kind() != reflect.Int32 {
+    panic(&quot;invalid input&quot;)
+  }
+  var intVal int64
+  intVal = v.Int()
+  return int32(intVal), nil
+}
+// Extract Int16
+func extractInt16(v reflect.Value) (int16, error) {
+  if reflect.Kind() != reflect.Int16 {
+    panic(&quot;invalid input&quot;)
+  }
+  var intVal int64
+  intVal = v.Int()
+  return int16(intVal), nil
+}
+// Extract Int8
+func extractInt8(v reflect.Value) (int8, error) {
+  if reflect.Kind() != reflect.Int8 {
+    panic(&quot;invalid input&quot;)
+  }
+  var intVal int64
+  intVal = v.Int()
+  return int8(intVal), nil
+}
+// Extract Int
+func extractInt(v reflect.Value) (int, error) {
+  if reflect.Kind() != reflect.Int {
+    panic(&quot;invalid input&quot;)
+  }
+  var intVal int64
+  intVal = v.Int()
+  return int(intVal), nil
+}
+</code></pre>
+
+<h4 id="2-1-2-extract-unsigned-integers">2.1.2 Extract Unsigned Integers</h4>
+
+<p>Golang 有 5 种 Unsigned Integer types:</p>
+
+<pre><code>        Uint
+        Uint8
+        Uint16
+        Uint32
+        Uint64
+</code></pre>
+
+<p>reflect package 提供了 <code>reflect.Type &gt; func (v Value) Uint() uint64</code> 来做这件事。</p>
+
+<p>为什么返回值是 <code>uint64</code> ?
+&gt; 这是因为其他几种 <code>Unsigned Integer</code> 类型都可以在 <code>uint64</code> 中进行编码</p>
+
+<p>只需要进行一些基本的类型转换就可以获取想要的类型对象：</p>
+
+<pre><code class="language-golang">// Extract Uint64
+func extractUint64(v reflect.Value) (uint64, error) {
+  if reflect.Kind() != reflect.Uint64 {
+    panic(&quot;invalid input&quot;)
+  }
+  var uintVal uint64
+  uintVal = v.Uint()
+  return uintVal, nil
+}
+// Extract Uint32
+func extractUint32(v reflect.Value) (uint32, error) {
+  if reflect.Kind() != reflect.Uint32 {
+    panic(&quot;invalid input&quot;)
+  }
+  var uintVal uint64
+  uintVal = v.Uint()
+  return uint32(uintVal), nil
+}
+// Extract Uint16
+func extractUint16(v reflect.Value) (uint16, error) {
+  if reflect.Kind() != reflect.Uint16 {
+    panic(&quot;invalid input&quot;)
+  }
+  var uintVal uint64
+  uintVal = v.Uint()
+  return uint16(uintVal), nil
+}
+// Extract Uint8
+func extractUint8(v reflect.Value) (uint8, error) {
+  if reflect.Kind() != reflect.Uint8 {
+    panic(&quot;invalid input&quot;)
+  }
+  var uintVal uint64
+  uintVal = v.Uint()
+  return uint8(uintVal), nil
+}
+// Extract Uint
+func extractUint(v reflect.Value) (uint, error) {
+  if reflect.Kind() != reflect.Uint {
+    panic(&quot;invalid input&quot;)
+  }
+  var uintVal uint64
+  uintVal = v.Uint()
+  return uint(uintVal), nil
+}
+</code></pre>
+
+<h4 id="2-1-3-extract-boolean-values">2.1.3 Extract Boolean values</h4>
+
+<p>Boolean values 可以通过内建常量表示</p>
+
+<p>reflect package 提供了 <code>reflect.Type &gt; func (v Value) Bool() bool</code> 来做这件事。</p>
+
+<pre><code class="language-golang">// Extract Bool
+func extractBool(v reflect.Value) (bool, error) {
+  if reflect.Kind() != reflect.Bool {
+    panic(&quot;invalid input&quot;)
+  }
+  return v.Bool(), nil
+}
+</code></pre>
+
+<h4 id="2-1-4-extract-floating-point-numbers">2.1.4 Extract Floating Point Numbers</h4>
+
+<p>Golang 有 2 种 Floating Point Number types:</p>
+
+<pre><code>        Float32
+        Float64
+</code></pre>
+
+<p>reflect package 提供了 <code>reflect.Type &gt; func (v Value) Float() float64</code> 来做这件事。</p>
+
+<p>只需要进行一些基本的类型转换就可以获取想要的类型对象：</p>
+
+<pre><code class="language-golang">// Extract Float64
+func extractFloat64(v reflect.Value) (float64, error) {
+  if reflect.Kind() != reflect.Float64 {
+    panic(&quot;invalid input&quot;)
+  }
+  var floatVal float64
+  floatVal = v.Float()
+  return floatVal, nil
+}
+// Extract Float32
+func extractFloat32(v reflect.Value) (float32, error) {
+  if reflect.Kind() != reflect.Float32 {
+    panic(&quot;invalid input&quot;)
+  }
+  var floatVal float64
+  floatVal = v.Float()
+  return float32(floatVal), nil
+}
+</code></pre>
+
+<h4 id="2-1-5-extract-complex-values">2.1.5 Extract Complex Values</h4>
+
+<p>Golang 有 2 种 Complex Values:</p>
+
+<pre><code>        Complex64
+        Complex128
+</code></pre>
+
+<p>reflect package 提供了 <code>reflect.Type &gt; func (v Value) Complex() complex128</code> 来做这件事。</p>
+
+<p>只需要进行一些基本的类型转换就可以获取想要的类型对象：</p>
+
+<pre><code class="language-golang">// Extract Complex128
+func extractComplex128(v reflect.Value) (complex128, error) {
+  if reflect.Kind() != reflect.Complex128 {
+    panic(&quot;invalid input&quot;)
+  }
+  var complexVal complex128
+  complexVal = v.Complex()
+  return complexVal, nil
+}
+// Extract Complex64
+func extractComplex64(v reflect.Value) (complex64, error) {
+  if reflect.Kind() != reflect.Complex64 {
+    panic(&quot;invalid input&quot;)
+  }
+  var complexVal complex128
+  complexVal = v.Complex()
+  return complex64(complexVal), nil
+}
+</code></pre>
+
+<h4 id="2-1-6-extract-string-values">2.1.6 Extract string values</h4>
+
+<p>Boolean values 也是通过内建常量 <code>String</code> 表示</p>
+
+<p>reflect package 提供了 <code>reflect.Type &gt; func (v Value) String() string</code> 来做这件事。</p>
+
+<pre><code class="language-golang">// Extract String
+func extractString(v reflect.Value) (string, error) {
+  if reflect.Kind() != reflect.String {
+    panic(&quot;invalid input&quot;)
+  }
+  return v.String(), nil
+}
+</code></pre>
+
+<h4 id="2-1-7-extract-pointer-values">2.1.7 Extract Pointer values</h4>
+
+<p>Golang 有 2 种 Pointer values:</p>
+
+<pre><code>        Uintptr
+        UnsafePointer
+</code></pre>
+
+<p><code>Uintptr</code> and <code>UnsafePointer</code> 都是 <code>uint</code> 值，指向一块内存地址。</p>
+
+<p>不同之处在于:</p>
+
+<ul>
+<li><code>Uintptr</code> 被 <code>runtime</code> 进行过类型确认</li>
+<li><code>UnsafePointer</code> 则没有</li>
+</ul>
+
+<blockquote>
+<p><code>UnsafePointer</code> 被用来进行内存排布相同之间的类型转换</p>
+</blockquote>
+
+<p>获取这两种类型对象的内部函数有一点难理解，不过先接受吧 (可以仔细了解 runtime 再来理解):</p>
+
+<ul>
+<li><code>Uintptr</code>: <code>reflect.Type &gt; func (v Value) Addr() Value</code></li>
+<li><code>UnsafePointer</code>: <code>reflect.Type &gt;  func (v Value) UnsafeAddr() uintptr</code></li>
+</ul>
+
+<pre><code class="language-golang">// Extract Uintptr
+func extractUintptr(v reflect.Value) (uintptr, error) {
+  if reflect.Kind() != reflect.Uintptr {
+    panic(&quot;invalid input&quot;)
+  }
+  var ptrVal uintptr
+  ptrVal = v.Addr()
+  return ptrVal, nil
+}
+// Extract UnsafePointer
+func extractUnsafePointer(v reflect.Value) (unsafe.Pointer, error) {
+  if reflect.Kind() != reflect.UnsafePointer {
+    panic(&quot;invalid input&quot;)
+  }
+  var unsafeVal unsafe.Pointer
+  unsafeVal = unsafe.Pointer(v.UnsafeAddr())
+  return unsafeVal, nil
+}
+</code></pre>
+
+<h3 id="2-2-根据基本类型创建-基本复合类型-变量">2.2 根据基本类型创建 &lsquo;基本复合类型&rsquo; 变量</h3>
+
+<p>自定义一些复合类型，如果类型的 Kind 是以下基本类型的话，那和基本类型的方法是差不多的</p>
+
+<pre><code>        Bool
+        Int
+        Int8
+        Int16
+        Int32
+        Int64
+        Uint
+        Uint8
+        Uint16
+        Uint32
+        Uint64
+        Uintptr
+        Float32
+        Float64
+        Complex64
+        Complex128
+        String
+        UnsafePointer
+</code></pre>
+
+<p>假设自定义一个复合类型 <code>type Name string</code> 那么 <code>Name</code> 的 <code>Kind</code> 是 <code>string</code>，<code>Type</code> 是 <code>Name</code>，可以通过零值进行构造</p>
+
+<pre><code>type Name string
+
+func CreateObject(t reflect.Type) reflect.Value {
+    return reflect.Zero(t)
+}
+
+func extractObject(v reflect.Value) (Name, error) {
+    if v.Type().String() != &quot;Name&quot; {
+        panic(&quot;invalid input&quot;)
+    }
+
+    return v.String(), nil
+}
+</code></pre>
+
+<h3 id="2-3-根据复合类型创建复合类型变量">2.3 根据复合类型创建复合类型变量</h3>
+
+<p>复合类型是包含了其他类型，例如 <code>Map</code><code>Struct</code> <code>Array</code> &hellip;</p>
+
+<p>复合类型对应的 Kind 列表:</p>
+
+<pre><code>        Array
+        Chan
+        Func
+        Interface
+        Map
+        Ptr
+        Slice
+        Struct
+</code></pre>
+
+<p>对于以下复合类型，也能够像基本类型一样使用 Zero value 来创建空值变量，但是需要一些额外的初始化步骤。</p>
+
+<pre><code class="language-golang">        Array
+        Chan
+        Func
+        Interface
+        Map
+        Ptr
+        Slice
+        Struct
+</code></pre>
+
+<h4 id="2-3-1-根据类型创建-array">2.3.1 根据类型创建 Array</h4>
+
+<p>空的 <code>Array</code> 可以通过 <code>reflect.Zero</code> 创建:</p>
+
+<pre><code class="language-golang">func CreateCompositeObject(t reflect.Type) reflect.Value {
+ return reflect.Zero(t)
+}
+</code></pre>
+
+<p>获得 <code>reflect.Value</code> 之后，可以通过 <code>reflect.Type &gt; func ArrayOf(count int, elem Type) Type</code> 创建一个包含对应类型及数量的 <code>Array</code></p>
+
+<pre><code class="language-golang">func CreateArray(t reflect.Type, length int) reflect.Value {
+  var arrayType reflect.Type
+  arrayType = reflect.ArrayOf(length, t)
+  return reflect.Zero(arrayType)
+}
+</code></pre>
+
+<p><code>Array</code> 的元素类型是通过传入参数 <code>reflect.Type</code> 定义的，因此如果你想要将批量对象导出为 <code>Array</code>，最佳选择是处理 <code>Array</code> 为 <code>interface{}</code>(因为没有泛型，需要写很多导出函数）</p>
+
+<pre><code class="language-golang">func extractArray(v reflect.Value) (interface{}, error) {
+  if v.Kind() != reflect.Array {
+    panic(&quot;invalid input&quot;)
+  }
+  var array interface{}
+  array = v.Interface()
+  return array, nil
+}
+</code></pre>
+
+<p>还有一种做法是 <code>reflect.Value &gt; func (v Value) Slice(i, j int) Value</code> 来导出 <code>Array</code>，但是这个函数前提是 <code>reflect.Value</code> 已经被处理为一个 <code>addressable array</code>，最好还是使用 <code>Interface()</code> 函数，这样会更简单</p>
+
+<h4 id="2-3-2-根据类型创建-channel">2.3.2 根据类型创建 Channel</h4>
+
+<p>空的 <code>Channel</code> 可以通过 <code>reflect.Zero</code> 创建:</p>
+
+<pre><code class="language-golang">func CreateCompositeObject(t reflect.Type) reflect.Value {
+ return reflect.Zero(t)
+}
+</code></pre>
+
+<p>reflect package 提供了两个方法来组合创建 <code>Channel</code>，<code>ChanOf</code> 函数创建带函数签名的 <code>Channel</code> 类型，<code>MakeChan</code> 用来分配内存。</p>
+
+<ul>
+<li><code>reflect.Type &gt; func ChanOf(dir ChanDir, t Type) Type</code></li>
+<li><code>reflect.Value &gt; func MakeChan(typ Type, buffer int) Value</code></li>
+</ul>
+
+<blockquote>
+<p>ChanDir:</p>
+
+<ul>
+<li>SendDir</li>
+<li>RecvDir</li>
+<li>BothDir</li>
+</ul>
+</blockquote>
+
+<pre><code class="language-golang">func CreateChan(t reflect.Type, buffer int) reflect.Value {
+ chanType := reflect.ChanOf(reflect.BothDir, t)
+ return reflect.MakeChan(chanType, buffer)
+}
+</code></pre>
+
+<p>导出为具体类型的 <code>Channel</code>，也需要使用 <code>Interface()</code> 函数</p>
+
+<pre><code class="language-golang">func extractChan(v reflect.Value) (interface{}, error) {
+  if v.Kind() != reflect.Chan {
+    panic(&quot;invalid input&quot;)
+  }
+  var ch interface{}
+  ch = v.Interface()
+  return ch, nil
+}
+</code></pre>
+
+<h4 id="2-3-3-根据类型创建-function-object">2.3.3 根据类型创建 Function Object</h4>
+
+<p>FBI warning: 无法使用 <code>reflect.Zero</code> 创建 <code>Function Object</code></p>
+
+<p>reflect package 提供了两个方法来组合创建 <code>Function Object</code>，<code>FuncOf</code> 函数创建带函数签名的 <code>Function Object</code> 类型，<code>MakeFunc(Type, func(args []Value) (results []Value)) Value</code> 用来分配内存。</p>
+
+<ul>
+<li><code>reflect.Type &gt; func FuncOf(in, out []Type, variadic bool) Type</code></li>
+<li><code>reflect.Value &gt; func MakeFunc(typ Type, fn func(args []Value) (results []Value)) Value</code></li>
+</ul>
+
+<p>看个例子:</p>
+
+<pre><code class="language-golang">func CreateFunc(
+    fType reflect.Type,
+    f func(args []reflect.Value) (results []reflect.Value)
+) (reflect.Value, error)
+{
+    if fType.Kind() != reflect.Func {
+        panic(&quot;invalid input&quot;)
+    }
+
+    var ins, outs *[]reflect.Type
+    ins = new([]reflect.Type)
+    outs = new([]reflect.Type)
+
+    for i:=0; i&lt;fType.NumIn(); i++ {
+        *ins = append(*ins, fType.In(i))
+    }
+
+    for i:=0; i&lt;fType.NumOut(); i++ {
+        *outs = append(*outs, fType.Out(i))
+    }
+    var variadic bool
+    variadic = fType.IsVariadic()
+    return AllocateStackFrame(*ins, *outs, variadic, f), nil
+}
+
+func AllocateStackFrame(
+    ins []reflect.Type,
+    outs []reflect.Type,
+    variadic bool,
+    f func(args []reflect.Value) (results []reflect.Value)
+) reflect.Value
+{
+    var funcType reflect.Type
+    funcType = reflect.FuncOf(ins, outs, variadic)
+    return reflect.MakeFunc(funcType, f)
+}
+</code></pre>
+
+<p>获取函数类型的 <code>Type</code> 可以这么做:</p>
+
+<p>先定义一个函数签名: <code>type fn func(int) (int)</code></p>
+
+<pre><code>var funcVar fn
+var funcType reflect.Type
+funcType = reflect.TypeOf(funcVar)
+</code></pre>
+
+<p>满足 <code>fn</code> 的一个函数:</p>
+
+<pre><code class="language-golang">func doubler(input int) (int) {
+ return input * 2
+}
+</code></pre>
+
+<p>上面 <code>CreateFunc</code> 第二个参数是 <code>f func(args []reflect.Value) (results []reflect.Value)</code>, doubler 并不满足这个泛型函数。</p>
+
+<p>为了满足泛型函数，可以这么做:</p>
+
+<pre><code class="language-goalng">func doublerGeneric(args []reflect.Value) (result []reflect.Value) {
+    if len(args) != 1 {
+        panic(&quot;invalid input&quot;)
+    }
+
+    if args[0].Kind() != reflect.Int {
+        panic(&quot;invalid input args type&quot;)
+    }
+
+    var intVal int64
+    intVal = args[0].Int()
+
+    var doubleIntVal int
+    doubleIntVal = doubler(int(intVal))
+
+    var returnValue reflect.Value
+    returnValue = reflect.ValueOf(doubleIntVal)
+
+    return []reflect.Value{returnValue}
+}
+</code></pre>
+
+<p>这样的话 <code>doublerGeneric</code> 即等价于 <code>doubler</code>，也满足泛型函数</p>
+
+<p>最终可以这样使用:</p>
+
+<pre><code>func main() {
+    var funcVar fn
+    var funcType reflect.Type
+    funcType = reflect.TypeOf(funcVar)
+    v, err := CreateFunc(funcType, doublerGeneric)
+    if err != nil {
+        fmt.Printf(&quot;Error creating function %v\n&quot;, err)
+    }
+
+    input := 42
+
+    ins := []reflect.Value([]reflect.Value{reflect.ValueOf(input)})
+    outs := v.Call(ins)
+    for i := range outs {
+        fmt.Printf(&quot;%+v\n&quot;, outs[i].Interface())
+    }
+}
+
+</code></pre>
+
+<pre><code>// Output: 84
+</code></pre>
+
+<h4 id="2-3-4-根据类型创建-map-object">2.3.4 根据类型创建 Map Object</h4>
+
+<p>空的 <code>Map</code> 可以通过 <code>reflect.Zero</code> 创建:</p>
+
+<pre><code class="language-golang">func CreateCompositeObject(t reflect.Type) reflect.Value {
+    return reflect.Zero(t)
+}
+</code></pre>
+
+<p>reflect package 提供了 <code>reflect.Type &gt; func MapOf(key, elem Type) Type</code> 来创建 Key 和 Value 具体类型的 Map.</p>
+
+<pre><code class="language-golang">func CreateMap(key , elem reflect.Type) reflect.Value {
+    var mapType reflect.Type
+    mapType = reflect.MapOf(key, elem)
+    return reflect.MakeMap(mapType)
+}
+</code></pre>
+
+<p>使用 <code>Interface()</code> 导出具体的 Map 仍然是最佳选择</p>
+
+<pre><code class="language-golang">func extractMap(v reflect.Value) (interface{}, error) {
+    if v.Kind() != reflect.Map {
+        panic(&quot;invalid input&quot;)
+    }
+    var mapVal interface{}
+    mapVal = v.Interface()
+    return mapVal, nil
+}
+</code></pre>
+
+<h4 id="2-3-5-根据类型创建-ptr-object">2.3.5 根据类型创建 Ptr Object</h4>
+
+<p>空的 <code>Ptr</code> 可以通过 <code>reflect.Zero</code> 创建:</p>
+
+<pre><code class="language-golang">func CreateCompositeObject(t reflect.Type) reflect.Value {
+    return reflect.Zero(t)
+}
+</code></pre>
+
+<p>reflect package 提供了 <code>reflect.Type &gt; func PtrTo(t Type) Type</code> 来创建 <code>Ptr</code> object 指向 具体的 <code>Type</code> object</p>
+
+<pre><code class="language-golang">func CreatePtr(t reflect.Type) reflect.Value {
+    var ptrType reflect.Type
+    ptrType = reflect.PtrTo(t)
+    return reflect.Zero(ptrType)
+}
+</code></pre>
+
+<p>导出 <code>Ptr Object</code> 指向元素，可以使用以下方法导出 Value 然后处理成 <code>interface{}</code></p>
+
+<ul>
+<li><code>reflect.Value &gt; func Indirect(v Value) Value</code></li>
+<li><code>reflect.Value &gt; func (v Value) Elem() Value</code></li>
+</ul>
+
+<pre><code class="language-golang">func extractElement(v reflect.Value) (interface{}, error) {
+    if v.Kind() != reflect.Ptr {
+        return nil, errors.New(&quot;invalid input&quot;)
+    }
+    var elem reflect.Value
+    elem = v.Elem()
+
+    var elem interface{}
+    elem = v.Interface()
+    return elem, nil
+}
+</code></pre>
+
+<h4 id="2-3-6-根据类型创建-slice-object">2.3.6 根据类型创建 Slice Object</h4>
+
+<p>空的 <code>Slice</code> 可以通过 <code>reflect.Zero</code> 创建:</p>
+
+<pre><code class="language-golang">func CreateCompositeObject(t reflect.Type) reflect.Value {
+    return reflect.Zero(t)
+}
+</code></pre>
+
+<p>reflect package 提供了 <code>reflect.Type &gt; func SliceOf(t Type) Type</code> 来创建 <code>Slice</code> 包含具体 <code>Type</code> 的元素</p>
+
+<pre><code class="language-golang">func CreateSlice(t reflect.Type) reflect.Value {
+    var sliceType reflect.Type
+    sliceType = reflect.SliceOf(length, t)
+    return reflect.Zero(sliceType)
+}
+</code></pre>
+
+<p>使用 <code>Interface()</code> 导出具体的 <code>Slice</code> 仍然是最佳选择</p>
+
+<pre><code>func extractSlice(v reflect.Value) (interface{}, error) {
+    if v.Kind() != reflect.Slice {
+        return nil, errors.New(&quot;invalid input&quot;)
+    }
+    var slice interface{}
+    slice = v.Interface()
+    return slice, nil
+}
+</code></pre>
+
+<h4 id="2-3-6-根据类型创建-struct-object">2.3.6 根据类型创建 Struct Object</h4>
+
+<p>空的 <code>Slice</code> 可以通过 <code>reflect.Zero</code> 创建:</p>
+
+<pre><code class="language-golang">func CreateCompositeObject(t reflect.Type) reflect.Value {
+    return reflect.Zero(t)
+}
+</code></pre>
+
+<p>reflect package 提供了 <code>reflect.Type &gt;  func StructOf(fields []StructField) Type</code> 来创建 <code>Struct</code> 包含具体 <code>StructField</code> 的元素</p>
+
+<pre><code class="language-golang">func CreateStruct(fields []reflect.StructField) reflect.Value {
+    var structType reflect.Type
+    structType = reflect.StructOf(fields)
+    return reflect.Zero(structType)
+}
+</code></pre>
+
+<p>使用 <code>Interface()</code> 导出具体的 <code>Struct</code> 仍然是最佳选择</p>
+
+<pre><code>func extractStruct(v reflect.Value) (interface{}, error) {
+    if v.Kind() != reflect.Struct {
+        return nil, errors.New(&quot;invalid input&quot;)
+    }
+    var st interface{}
+    st = v.Interface()
+    return st, nil
+}
+</code></pre>
+
+<h2 id="3-了解如何让-静态语言-实现-动态使用">3. 了解如何让 &lsquo;静态语言&rsquo; 实现 &lsquo;动态使用&rsquo;</h2>
+
+<h3 id="3-1-首先必须了解一下-addressable">3.1 首先必须了解一下 addressable</h3>
+
+<p>Go 语言规范中规定了可寻址 (addressable) 对象的定义</p>
+
+<pre><code>For an operand x of type T, the address operation &amp;x generates a pointer of type *T to x. The operand must be addressable, that is, either a variable, pointer indirection, or slice indexing operation; or a field selector of an addressable struct operand; or an array indexing operation of an addressable array. As an exception to the addressability requirement, x may also be a (possibly parenthesized) composite literal. If the evaluation of x would cause a run-time panic, then the evaluation of &amp;x does too.
+</code></pre>
+
+<p>上面规范中的这段话规定， <code>x</code> 必须是可寻址的， 也就是说，它只能是以下几种方式：</p>
+
+<ul>
+<li>一个变量: <code>&amp;x</code></li>
+<li>指针引用 (pointer indirection): <code>&amp;*x</code></li>
+<li>slice 索引操作 (不管 slice 是否可寻址): <code>&amp;s[1]</code></li>
+<li>可寻址 struct 的字段: <code>&amp;point.X</code></li>
+<li>可寻址数组的索引操作: <code>&amp;a[0]</code></li>
+<li><a href="https://golang.org/ref/spec#Composite_literals">composite literal</a> 类型: <code>&amp;struct{ X int }{1}</code></li>
+</ul>
+
+<p>下列情况 <code>x</code> 是不可以寻址的，你不能使用 <code>&amp;x</code> 取得指针：</p>
+
+<ul>
+<li>字符串中的字节</li>
+<li>map 对象中的元素</li>
+<li>接口对象的动态值 (通过 type assertions 获得)</li>
+<li>常数</li>
+<li><a href="https://golang.org/ref/spec#Integer_literals">literal</a> 值 (非 composite literal)</li>
+<li>package 级别的函数</li>
+<li>方法 method (用作函数值)</li>
+<li>中间值 (intermediate value):
+
+<ul>
+<li>函数调用</li>
+<li>显式类型转换</li>
+<li>各种类型的操作 （除了指针引用 (pointer dereference) 操作 <code>*x</code>):
+
+<ul>
+<li>channel receive operations</li>
+<li>sub-string operations</li>
+<li>sub-slice operations</li>
+<li>加减乘除等运算符</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>规范中还有几处提到了 addressable:
+- 调用一个 <code>receiver</code> 为指针类型的方法时，使用一个 <code>addressable</code> 的值将自动获取这个值的指针
+- <code>++</code>、<code>--</code> 语句的操作对象必须是 <code>addressable</code> 或者是 <code>map</code> 的 index 操作
+- 赋值语句 <code>=</code> 的左边对象必须是 <code>addressable</code>, 或者是 <code>map</code> 的 index 操作，或者是 <code>_</code>
+- 上条同样使用 <code>for ... range</code> 语句</p>
+
+<h3 id="3-2-reflect-value-canaddr">3.2 reflect.Value CanAddr</h3>
+
+<p>在我们使用 <code>reflect</code> 执行一些底层的操作的时候， 比如编写序列化库、编解码等业务的时候，经常会使用到 <code>reflect.Value</code> 的 <code>CanSet</code> 方法，用来动态的给对象赋值。 <code>CanSet</code> 比 <code>CanAddr</code> 只加了一个限制，就是 <code>struct</code> 类型的 <code>unexported</code> 的字段不能 <code>Set</code>，所以我们这节主要介绍 <code>CanAddr</code></p>
+
+<p>并不是任意的 <code>reflect.Value</code> 的 <code>CanAddr</code> 方法都返回 <code>true</code>, 根据它的 godoc, 我们可以知道：</p>
+
+<pre><code class="language-golang">CanAddr reports whether the value's address can be obtained with Addr.
+Such values are called addressable. A value is addressable if it is an
+element of a slice, an element of an addressable array, a field of an
+addressable struct, or the result of dereferencing a pointer. If
+CanAddr returns false, calling Addr will panic.
+</code></pre>
+
+<p>也就是只有下面的类型 <code>reflect.Value</code> 的 <code>CanAdd</code> 才是 <code>true</code>, 这样的值是 addressable:</p>
+
+<ul>
+<li>slice 的元素</li>
+<li>可寻址数组的元素</li>
+<li>可寻址 struct 的字段</li>
+<li>指针引用的结果</li>
+</ul>
+
+<p>与规范中规定的 <code>addressable</code>, <code>reflect.Value</code> 的 <code>addressable</code> 范围有所缩小， 比如对于栈上分配的变量， 随着方法的生命周期的结束， 栈上的对象也就被回收掉了，这个时候如果获取它们的地址，就会出现不一致的结果，甚至安全问题</p>
+
+<p>所以如果你想通过 <code>reflect.Value</code> 对它的值进行更新，应该确保它的 <code>CanSet</code> 方法返回 <code>true</code>, 这样才能调用 <code>SetXXX</code> 进行设置</p>
+
+<p>使用 <code>reflect.Value</code> 的时候有时会对 <code>func Indirect(v Value) Value</code> 和 <code>func (v Value) Elem() Value</code> 两个方法有些迷惑，有时候他们俩会返回同样的值，有时候又不会。</p>
+
+<p>总结一下：
+- 如果 <code>reflect.Value</code> 是一个指针， 那么 <code>v.Elem()</code> 等价于 <code>reflect.Indirect(v)</code>
+- 如果不是指针:
+    - 如果是 <code>interface</code>, 那么 <code>reflect.Indirect(v)</code> 返回同样的值，而 <code>v.Elem()</code> 返回接口的动态的值
+    - 如果是其它值, <code>v.Elem()</code> 会 panic, 而 r<code>eflect.Indirect(v)</code> 返回原值</p>
+
+<p>下面的代码列出一些 <code>reflect.Value</code> 是否可以 <code>addressable</code>, 你需要注意数组和 <code>struct</code> 字段的情况，也就是 <code>x7</code>、<code>x9</code>、<code>x14</code>、<code>x15</code> 的正确的处理方式</p>
+
+<pre><code class="language-golang">package main
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+	&quot;time&quot;
+)
+func main() {
+	checkCanAddr()
+}
+type S struct {
+	X int
+	Y string
+	z int
+}
+func M() int {
+	return 100
+}
+var x0 = 0
+func checkCanAddr() {
+	// 可寻址的情况
+	v := reflect.ValueOf(x0)
+	fmt.Printf(&quot;x0: %v \tcan be addressable and set: %t, %t\n&quot;, x0, v.CanAddr(), v.CanSet()) //false,false
+	var x1 = 1
+	v = reflect.Indirect(reflect.ValueOf(x1))
+	fmt.Printf(&quot;x1: %v \tcan be addressable and set: %t, %t\n&quot;, x1, v.CanAddr(), v.CanSet()) //false,false
+	var x2 = &amp;x1
+	v = reflect.Indirect(reflect.ValueOf(x2))
+	fmt.Printf(&quot;x2: %v \tcan be addressable and set: %t, %t\n&quot;, x2, v.CanAddr(), v.CanSet()) //true,true
+	var x3 = time.Now()
+	v = reflect.Indirect(reflect.ValueOf(x3))
+	fmt.Printf(&quot;x3: %v \tcan be addressable and set: %t, %t\n&quot;, x3, v.CanAddr(), v.CanSet()) //false,false
+	var x4 = &amp;x3
+	v = reflect.Indirect(reflect.ValueOf(x4))
+	fmt.Printf(&quot;x4: %v \tcan be addressable and set: %t, %t\n&quot;, x4, v.CanAddr(), v.CanSet()) // true,true
+	var x5 = []int{1, 2, 3}
+	v = reflect.ValueOf(x5)
+	fmt.Printf(&quot;x5: %v \tcan be addressable and set: %t, %t\n&quot;, x5, v.CanAddr(), v.CanSet()) // false,false
+	var x6 = []int{1, 2, 3}
+	v = reflect.ValueOf(x6[0])
+	fmt.Printf(&quot;x6: %v \tcan be addressable and set: %t, %t\n&quot;, x6[0], v.CanAddr(), v.CanSet()) //false,false
+	var x7 = []int{1, 2, 3}
+	v = reflect.ValueOf(x7).Index(0)
+	fmt.Printf(&quot;x7: %v \tcan be addressable and set: %t, %t\n&quot;, x7[0], v.CanAddr(), v.CanSet()) //true,true
+	v = reflect.ValueOf(&amp;x7[1])
+	fmt.Printf(&quot;x7.1: %v \tcan be addressable and set: %t, %t\n&quot;, x7[1], v.CanAddr(), v.CanSet()) //true,true
+	var x8 = [3]int{1, 2, 3}
+	v = reflect.ValueOf(x8[0])
+	fmt.Printf(&quot;x8: %v \tcan be addressable and set: %t, %t\n&quot;, x8[0], v.CanAddr(), v.CanSet()) //false,false
+	// https://groups.google.com/forum/#!topic/golang-nuts/RF9zsX82MWw
+	var x9 = [3]int{1, 2, 3}
+	v = reflect.Indirect(reflect.ValueOf(x9).Index(0))
+	fmt.Printf(&quot;x9: %v \tcan be addressable and set: %t, %t\n&quot;, x9[0], v.CanAddr(), v.CanSet()) //false,false
+	var x10 = [3]int{1, 2, 3}
+	v = reflect.Indirect(reflect.ValueOf(&amp;x10)).Index(0)
+	fmt.Printf(&quot;x9: %v \tcan be addressable and set: %t, %t\n&quot;, x10[0], v.CanAddr(), v.CanSet()) //true,true
+	var x11 = S{}
+	v = reflect.ValueOf(x11)
+	fmt.Printf(&quot;x11: %v \tcan be addressable and set: %t, %t\n&quot;, x11, v.CanAddr(), v.CanSet()) //false,false
+	var x12 = S{}
+	v = reflect.Indirect(reflect.ValueOf(&amp;x12))
+	fmt.Printf(&quot;x12: %v \tcan be addressable and set: %t, %t\n&quot;, x12, v.CanAddr(), v.CanSet()) //true,true
+	var x13 = S{}
+	v = reflect.ValueOf(x13).FieldByName(&quot;X&quot;)
+	fmt.Printf(&quot;x13: %v \tcan be addressable and set: %t, %t\n&quot;, x13, v.CanAddr(), v.CanSet()) //false,false
+	var x14 = S{}
+	v = reflect.Indirect(reflect.ValueOf(&amp;x14)).FieldByName(&quot;X&quot;)
+	fmt.Printf(&quot;x14: %v \tcan be addressable and set: %t, %t\n&quot;, x14, v.CanAddr(), v.CanSet()) //true,true
+	var x15 = S{}
+	v = reflect.Indirect(reflect.ValueOf(&amp;x15)).FieldByName(&quot;z&quot;)
+	fmt.Printf(&quot;x15: %v \tcan be addressable and set: %t, %t\n&quot;, x15, v.CanAddr(), v.CanSet()) //true,false
+	v = reflect.Indirect(reflect.ValueOf(&amp;S{}))
+	fmt.Printf(&quot;x15.1: %v \tcan be addressable and set: %t, %t\n&quot;, &amp;S{}, v.CanAddr(), v.CanSet()) //true,true
+	var x16 = M
+	v = reflect.ValueOf(x16)
+	fmt.Printf(&quot;x16: %p \tcan be addressable and set: %t, %t\n&quot;, x16, v.CanAddr(), v.CanSet()) //false,false
+	var x17 = M
+	v = reflect.Indirect(reflect.ValueOf(&amp;x17))
+	fmt.Printf(&quot;x17: %p \tcan be addressable and set: %t, %t\n&quot;, x17, v.CanAddr(), v.CanSet()) //true,true
+	var x18 interface{} = &amp;x11
+	v = reflect.ValueOf(x18)
+	fmt.Printf(&quot;x18: %v \tcan be addressable and set: %t, %t\n&quot;, x18, v.CanAddr(), v.CanSet()) //false,false
+	var x19 interface{} = &amp;x11
+	v = reflect.ValueOf(x19).Elem()
+	fmt.Printf(&quot;x19: %v \tcan be addressable and set: %t, %t\n&quot;, x19, v.CanAddr(), v.CanSet()) //true,true
+	var x20 = [...]int{1, 2, 3}
+	v = reflect.ValueOf([...]int{1, 2, 3})
+	fmt.Printf(&quot;x20: %v \tcan be addressable and set: %t, %t\n&quot;, x20, v.CanAddr(), v.CanSet()) //false,false
+}
+</code></pre>
+
+<p>// Output</p>
+
+<pre><code>x0: 0   can be addressable and set: false, false
+x1: 1   can be addressable and set: false, false
+x2: 0xc0000180d8        can be addressable and set: true, true
+x3: 2019-01-06 21:08:05.735797 +0800 CST m=+0.000439737         can be addressable and set: false, false
+x4: 2019-01-06 21:08:05.735797 +0800 CST m=+0.000439737         can be addressable and set: true, true
+x5: [1 2 3]     can be addressable and set: false, false
+x6: 1   can be addressable and set: false, false
+x7: 1   can be addressable and set: true, true
+x7.1: 2         can be addressable and set: false, false
+x8: 1   can be addressable and set: false, false
+x9: 1   can be addressable and set: false, false
+x9: 1   can be addressable and set: true, true
+x11: {0  0}     can be addressable and set: false, false
+x12: {0  0}     can be addressable and set: true, true
+x13: {0  0}     can be addressable and set: false, false
+x14: {0  0}     can be addressable and set: true, true
+x15: {0  0}     can be addressable and set: true, false
+x15.1: &amp;{0  0}  can be addressable and set: true, true
+x16: 0x10935f0  can be addressable and set: false, false
+x17: 0x10935f0  can be addressable and set: true, true
+x18: &amp;{0  0}    can be addressable and set: false, false
+x19: &amp;{0  0}    can be addressable and set: true, true
+x20: [1 2 3]    can be addressable and set: false, false
+</code></pre>
+
+<h3 id="3-3-通过-reflect-value-设置实际变量的值">3.3 通过 reflect.Value 设置实际变量的值</h3>
+
+<p><code>reflect.Value</code>是通过<code>reflect.ValueOf(X)</code>获得的，只有当<code>X</code>是指针的时候，才可以通过<code>reflec.Value</code>修改实际变量X的值，即：要修改反射类型的对象就一定要保证其值是<strong>addressable</strong> 的。</p>
+
+<p>看个例子就懂了:</p>
+
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+func main() {
+
+	var num float64 = 1.2345
+	fmt.Println(&quot;old value of pointer:&quot;, num)
+
+	// 通过reflect.ValueOf获取num中的reflect.Value，注意，参数必须是指针才能修改其值
+	pointer := reflect.ValueOf(&amp;num)
+	newValue := pointer.Elem()
+
+	fmt.Println(&quot;type of pointer:&quot;, newValue.Type())
+	fmt.Println(&quot;settability of pointer:&quot;, newValue.CanSet())
+
+	// 重新赋值
+	newValue.SetFloat(77)
+	fmt.Println(&quot;new value of pointer:&quot;, num)
+
+	////////////////////
+	// 如果reflect.ValueOf的参数不是指针，会如何？
+	pointer = reflect.ValueOf(num)
+	//newValue = pointer.Elem() // 如果非指针，这里直接panic，“panic: reflect: call of reflect.Value.Elem on float64 Value”
+}
+</code></pre>
+
+<p>// Output</p>
+
+<pre><code>old value of pointer: 1.2345
+type of pointer: float64
+settability of pointer: true
+new value of pointer: 77
+</code></pre>
+
+<p>解释一下:</p>
+
+<ul>
+<li>需要传入的参数是<code>*float64</code>这个指针，然后可以通过<code>pointer.Elem()</code>去获取所指向的<code>Value</code>，注意一定要是指针</li>
+<li>如果传入的参数不是指针，而是变量，那么
+
+<ul>
+<li>通过<code>Elem</code>获取原始值对应的对象则直接<code>panic</code></li>
+<li>通过<code>CanSet</code>方法查询是否可以设置返回<code>false</code></li>
+</ul></li>
+<li><code>newValue.CantSet()</code>表示是否可以重新设置其值，如果输出的是<code>true</code>则可修改，否则不能修改，修改完之后再进行打印发现真的已经修改了</li>
+<li><code>reflect.Value.Elem()</code> 表示获取原始值对应的反射对象，只有原始对象才能修改，当前反射对象是不能修改的</li>
+<li>也就是说如果要修改反射类型对象，其值必须是<strong>addressable</strong> (对应的要传入的是指针，同时要通过<code>Elem</code>方法获取原始值对应的反射对象)</li>
+<li><code>struct</code> 或者 <code>struct</code> 的嵌套都是一样的判断处理方式</li>
+</ul>
+
+<h3 id="3-4-已知原有类型进行转换">3.4 已知原有类型进行转换</h3>
+
+<p>已知类型后转换为其对应的类型的做法如下，直接通过Interface方法然后强制转换，如下：</p>
+
+<pre><code class="language-golang">realValue := value.Interface().(已知的类型)
+</code></pre>
+
+<pre><code class="language-golang">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+func main() {
+	var num float64 = 1.2345
+
+	pointer := reflect.ValueOf(&amp;num)
+	value := reflect.ValueOf(num)
+
+	// 可以理解为“强制转换”，但是需要注意的时候，转换的时候，如果转换的类型不完全符合，则直接panic
+	// Golang 对类型要求非常严格，类型一定要完全符合
+	// 如下两个，一个是*float64，一个是float64，如果弄混，则会panic
+	convertPointer := pointer.Interface().(*float64)
+	convertValue := value.Interface().(float64)
+
+	fmt.Println(convertPointer)
+	fmt.Println(convertValue)
+}
+</code></pre>
+
+<p>// Output</p>
+
+<pre><code>0x416020
+1.2345
+</code></pre>
+
+<p>解释一下:</p>
+
+<ul>
+<li>转换的时候，如果转换的类型不完全符合，则直接panic，类型要求非常严格！</li>
+<li>转换的时候，要区分是指针还是值类型</li>
+<li>反射可以将<code>反射类型对象</code>再重新转换为<code>接口类型变量</code></li>
+</ul>
+
+<h3 id="3-5-探测未知类型">3.5 探测未知类型</h3>
+
+<p>很多情况下，我们可能并不知道其具体类型，那么这个时候，该如何做呢？需要我们进行遍历探测其<code>Field</code>来得知，示例如下</p>
+
+<pre><code class="language-golang">package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+type User struct {
+	Id   int
+	Name string
+	Age  int
+}
+
+func (u User) ReflectCallFunc() {
+	fmt.Println(&quot;Allen.Wu ReflectCallFunc&quot;)
+}
+
+func main() {
+
+	user := User{1, &quot;Allen.Wu&quot;, 25}
+
+	DoFiledAndMethod(user)
+
+}
+
+// 通过接口来获取任意参数，然后一一揭晓
+func DoFiledAndMethod(input interface{}) {
+
+	getType := reflect.TypeOf(input)
+	fmt.Println(&quot;get Type is :&quot;, getType.Name())
+
+	getValue := reflect.ValueOf(input)
+	fmt.Println(&quot;get all Fields is:&quot;, getValue)
+
+	// 获取方法字段
+	// 1. 先获取interface的reflect.Type，然后通过NumField进行遍历
+	// 2. 再通过reflect.Type的Field获取其Field
+	// 3. 最后通过Field的Interface()得到对应的value
+	for i := 0; i &lt; getType.NumField(); i++ {
+		field := getType.Field(i)
+		value := getValue.Field(i).Interface()
+		fmt.Printf(&quot;%s: %v = %v\n&quot;, field.Name, field.Type, value)
+	}
+
+	// 获取方法
+	// 1. 先获取interface的reflect.Type，然后通过.NumMethod进行遍历
+	for i := 0; i &lt; getType.NumMethod(); i++ {
+		m := getType.Method(i)
+		fmt.Printf(&quot;%s: %v\n&quot;, m.Name, m.Type)
+	}
+}
+</code></pre>
+
+<p>Output</p>
+
+<pre><code>get Type is : User
+get all Fields is: {1 Allen.Wu 25}
+Id: int = 1
+Name: string = Allen.Wu
+Age: int = 25
+ReflectCallFunc: func(main.User)
+</code></pre>
+
+<p>解释一下:</p>
+
+<p>通过运行结果可以得知获取未知类型的<code>interface</code>的具体变量及其类型的步骤为:
+- 先获取<code>interface</code>的<code>reflect.Type</code>，然后通过<code>NumField</code>进行遍历
+- 再通过<code>reflect.Type</code>的<code>Field</code>获取其 <code>Field</code>
+- 最后通过<code>Field</code>的Interface()得到对应的<code>value</code></p>
+
+<p>通过运行结果可以得知获取未知类型的<code>interface</code>的所属方法（函数）的步骤为：
+- 先获取<code>interface</code>的<code>reflect.Type</code>，然后通过<code>NumMethod</code>进行遍历
+- 再分别通过<code>reflect.Type</code>的<code>Method</code>获取对应的真实的方法（函数）
+- 最后对结果取其<code>Name</code>和<code>Type</code>得知具体的方法名
+- 也就是说反射可以将“反射类型对象”再重新转换为<code>接口类型变量 interface{}</code>
+- <code>struct</code> 或者 <code>struct</code> 的嵌套都是一样的判断处理方式</p>
+
+<h3 id="3-6-动态调用方法">3.6 动态调用方法</h3>
+
+<p>结构体的方法我们不光可以正常的调用，还可以使用反射进行调用。要想反射调用，我们先要获取到需要调用的方法，然后进行传参调用，如下示例：</p>
+
+<pre><code>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+func main() {
+	u := User{&quot;张三&quot;,20}
+	v := reflect.ValueOf(u)
+
+	mPrint := v.MethodByName(&quot;Print&quot;)
+	fmt.Printf(&quot;mPrint is Valid: %v\n&quot;, mPrint.IsValid())
+	
+	args := []reflect.Value{reflect.ValueOf(&quot;前缀&quot;)}
+	fmt.Println(mPrint.Call(args))
+
+}
+
+type User struct{
+	Name string
+	Age int
+}
+
+func (u User) Print(prfix string){
+	fmt.Printf(&quot;%s:Name is %s,Age is %d&quot;,prfix,u.Name,u.Age)
+}
+</code></pre>
+
+<p>// Output</p>
+
+<pre><code>mPrint is Valid: true
+前缀:Name is 张三,Age is 20[]
+</code></pre>
+
+<p>解释一下:
+- <code>reflect.Value &gt; func (v Value) MethodByName(name string) Value</code>方法可以让我们根据一个方法名获取一个方法对象，然后我们构建好该方法需要的参数，最后调用<code>Call</code>就达到了动态调用方法的目的。
+- 获取到的方法我们可以使用<code>IsValid</code> 来判断是否可用（存在）。</p>
+
+<ul>
+<li>这里的参数是一个<code>Value</code>类型的数组，所以需要的参数，我们必须要通过<code>reflect.Value &gt; func ValueOf(i interface{}) Value</code>函数进行转换。</li>
+</ul>
+
+<h3 id="3-7-struct-tag-解析">3.7 struct tag 解析</h3>
+
+<p>想要获取 struct tag 只需要通过 <code>field</code> 的 <code>Tag</code> 函数就能获取<a href="https://golang.org/src/reflect/type.go?s=30991:31012#L1111">StructTag</a>。</p>
+
+<p><code>StructTag</code> 提供了 <code>Lookup</code> 查询 tag key 对应值的方法，还是比较方便使用</p>
+
+<pre><code>type T struct {
+    A int    `json:&quot;aaa&quot; test:&quot;testaaa&quot;`
+    B string `json:&quot;bbb&quot; test:&quot;testbbb&quot;`
+}
+
+func main() {
+    t := T{
+        A: 123,
+        B: &quot;hello&quot;,
+    }
+    tt := reflect.TypeOf(t)
+    for i := 0; i &lt; tt.NumField(); i++ {
+        field := tt.Field(i)
+        if json, ok := field.Tag.Lookup(&quot;json&quot;); ok {
+            fmt.Println(json)
+        }
+        test := field.Tag.Get(&quot;test&quot;)
+        fmt.Println(test)
+    }
+}
+</code></pre>
+
+<h2 id="4-反射三定律">4 反射三定律</h2>
+
+<ul>
+<li>反射可以将 <code>interface{}</code> 转换为 <code>reflect.Type</code> 和 <code>reflect.Value</code></li>
+<li>反射可以将<code>reflect.Type</code> 和 <code>reflect.Value</code>转换为<code>interface{}</code></li>
+<li>如果要修改 <code>反射类型对象</code>，其值必须是 <strong>可写的（settable）</strong>。</li>
+</ul>
+
+                        </div>
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/golang/tips/coding.in.go/">如何写好 golang 代码的一些 tips</a></li>
+        
+        <li><a href="/post/golang/package/bufio/">初步了解 golang bufio pkg</a></li>
+        
+        <li><a href="/post/golang/basic/interface/">Go Interface 从理解到深入</a></li>
+        
+        <li><a href="/archives/"></a></li>
+        
+        <li><a href="/post/README/"></a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://zhaolion.github.io/tags/golang">golang</a></li>
+                                
+                                <li><a href="https://zhaolion.github.io/tags/reflect">reflect</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zhaolion/chaldea-comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://zhaolion.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/README/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/basic/interface/" title="Go Interface 从理解到深入">Go Interface 从理解到深入</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/package/bufio/" title="初步了解 golang bufio pkg">初步了解 golang bufio pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/package/reflect/" title="初步了解 golang reflect pkg">初步了解 golang reflect pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/tips/coding.in.go/" title="如何写好 golang 代码的一些 tips">如何写好 golang 代码的一些 tips</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.github.io/categories/Golang/">Golang(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://zhaolion.github.io/tags/bufio/">bufio</a>
+    
+    <a href="https://zhaolion.github.io/tags/golang/">golang</a>
+    
+    <a href="https://zhaolion.github.io/tags/interface/">interface</a>
+    
+    <a href="https://zhaolion.github.io/tags/reflect/">reflect</a>
+    
+    <a href="https://zhaolion.github.io/tags/tips/">tips</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://zhaolion.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2018 <a href="https://zhaolion.github.io">zhaolion&#39;s dropbox By zhaolion</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="http://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+</html>

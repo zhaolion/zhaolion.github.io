@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>reflect on zhaolion&#39;s dropbox</title>
+    <link>https://zhaolion.github.io/tags/reflect/</link>
+    <description>Recent content in reflect on zhaolion&#39;s dropbox</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    
+	<atom:link href="https://zhaolion.github.io/tags/reflect/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>初步了解 golang reflect pkg</title>
+      <link>https://zhaolion.github.io/post/golang/package/reflect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://zhaolion.github.io/post/golang/package/reflect/</guid>
+      <description>初步了解 golang reflect pkg [TOC]
+阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
+Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。
+什么时候应该用 reflect
+ 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp;amp; Kind &amp;amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value: - Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &amp;hellip; - Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &amp;hellip; - Value: 也就是 Go value, 承载变量 / 常量的值
+ type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈</description>
+    </item>
+    
+  </channel>
+</rss>

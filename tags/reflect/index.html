@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.53" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>reflect | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="reflect - zhaolion&#39;s dropbox">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="瑟瑟发抖.jpg">
+    <meta name="description" content="reflect">
+        
+    <meta name="author" content="zhaolion">
+    <meta property="og:url" content="https://zhaolion.github.io/tags/reflect/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.github.io/tags/reflect/index.xml" title="zhaolion's dropbox" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://zhaolion.github.io">
+                        zhaolion&#39;s dropbox
+                    </a>
+                
+                <p class="description">编程 5 分钟，吹水 2 小时</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://zhaolion.github.io">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        包含标签
+                        <span class="keyword">reflect</span>
+                        的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://zhaolion.github.io/post/golang/package/reflect/">初步了解 golang reflect pkg</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                1年1月1日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://zhaolion.github.io/categories/Golang">Golang</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                初步了解 golang reflect pkg [TOC]
+阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
+Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。
+什么时候应该用 reflect
+ 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp; Kind &amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value: - Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &hellip; - Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &hellip; - Value: 也就是 Go value, 承载变量 / 常量的值
+ type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈……
+                                <p class="readmore"><a href="https://zhaolion.github.io/post/golang/package/reflect/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://zhaolion.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/README/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/basic/interface/" title="Go Interface 从理解到深入">Go Interface 从理解到深入</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/package/bufio/" title="初步了解 golang bufio pkg">初步了解 golang bufio pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/package/reflect/" title="初步了解 golang reflect pkg">初步了解 golang reflect pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/tips/coding.in.go/" title="如何写好 golang 代码的一些 tips">如何写好 golang 代码的一些 tips</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.github.io/categories/Golang/">Golang(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://zhaolion.github.io/tags/bufio/">bufio</a>
+    
+    <a href="https://zhaolion.github.io/tags/golang/">golang</a>
+    
+    <a href="https://zhaolion.github.io/tags/interface/">interface</a>
+    
+    <a href="https://zhaolion.github.io/tags/reflect/">reflect</a>
+    
+    <a href="https://zhaolion.github.io/tags/tips/">tips</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://zhaolion.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2018 <a href="https://zhaolion.github.io">zhaolion&#39;s dropbox By zhaolion</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="http://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+</html>

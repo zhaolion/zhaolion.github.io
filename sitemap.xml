@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://zhaolion.github.io/archives/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/post/README/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/post/golang/basic/interface/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/categories/Golang/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/post/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/tags/bufio/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/tags/golang/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/tags/interface/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/tags/reflect/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/tags/tips/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/post/golang/package/bufio/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/post/golang/package/reflect/</loc>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/post/golang/tips/coding.in.go/</loc>
+  </url>
+  
+</urlset>

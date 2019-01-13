@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.53" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>tips | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="tips - zhaolion&#39;s dropbox">
+    <meta property="og:type" content="article">
+        
+        
+    <meta name="Keywords" content="瑟瑟发抖.jpg">
+    <meta name="description" content="tips">
+        
+    <meta name="author" content="zhaolion">
+    <meta property="og:url" content="https://zhaolion.github.io/tags/tips/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.github.io/tags/tips/index.xml" title="zhaolion's dropbox" />
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://zhaolion.github.io">
+                        zhaolion&#39;s dropbox
+                    </a>
+                
+                <p class="description">编程 5 分钟，吹水 2 小时</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="" href="https://zhaolion.github.io">首页</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    
+                    <h3 class="archive-title">
+                        包含标签
+                        <span class="keyword">tips</span>
+                        的文章
+                    </h3>
+                    
+
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://zhaolion.github.io/post/golang/tips/coding.in.go/">如何写好 golang 代码的一些 tips</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                1年1月1日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://zhaolion.github.io/categories/Golang">Golang</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                如何写好 golang 代码的一些 tips 1. 首先需要知道的概念  不要像其他语言一样写 Go, Go 不是 Java/Python/Ruby/PHP，Go 的程序思维很古典也很超前 保持简洁，避免过度工程化 学会阅读源码 interface 很重要，很多问题都可以用 interface 解决 保持函数精炼，变量名长度合适 (在不丢失意义的情况下，尽量短小) 用更小的单元实现代码功能，然后 ** 组合 ** 慎重使用全局变量 (尤其是跨 package 使用，变量作用域上容易踩坑，可以参考 vs6IeAu5U5n)  2. 函数声明的 tips  函数声明首先是函数名字要具有自解释性，需要能够解释清楚大致提供的功能，而不是模糊的 common/util。 其次具体的功能解释，这个要说到代码注释了，这里就不赘述了。 除了函数声明外，还有函数的形参定义。这里以一个例子来说一下扩展性好的函数的参数应该如何定义 (见 2.1)。  2.1 普通函数 假设我们需要一个简单的 server，我们可以像下面这样定义，addr 表示 server 启动在哪个端口上。
+func NewServer(addr string)  第一期的需求很简单，就上面这些足够满足了。项目上线跑了一段时间发现，由于连接没有设置超时，很多连接一直得不到释放（异常情况），严重影响服务器性能。
+好，那第二期我们加个 timeout。
+func NewServer(addr string, timeout time.Duration)  这个时候尴尬的情况出现了，调用你代码的所有人都需要改动代码。而且这只是一个改动，之后如果要支持 tls，那么又得改动一次。
+2.2 不定参数 解决上面的窘境的一种方法是使用不定参数。
+比如我要实现一个整数加法。
+func Add(list .……
+                                <p class="readmore"><a href="https://zhaolion.github.io/post/golang/tips/coding.in.go/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+
+                    
+
+
+
+
+                </div>
+            </div>
+
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://zhaolion.github.io">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/README/" title=""></a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/basic/interface/" title="Go Interface 从理解到深入">Go Interface 从理解到深入</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/package/bufio/" title="初步了解 golang bufio pkg">初步了解 golang bufio pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/package/reflect/" title="初步了解 golang reflect pkg">初步了解 golang reflect pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.github.io/post/golang/tips/coding.in.go/" title="如何写好 golang 代码的一些 tips">如何写好 golang 代码的一些 tips</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.github.io/categories/Golang/">Golang(4)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://zhaolion.github.io/tags/bufio/">bufio</a>
+    
+    <a href="https://zhaolion.github.io/tags/golang/">golang</a>
+    
+    <a href="https://zhaolion.github.io/tags/interface/">interface</a>
+    
+    <a href="https://zhaolion.github.io/tags/reflect/">reflect</a>
+    
+    <a href="https://zhaolion.github.io/tags/tips/">tips</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://zhaolion.github.io/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2018 <a href="https://zhaolion.github.io">zhaolion&#39;s dropbox By zhaolion</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="http://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+
+</body>
+</html>
