@@ -23,7 +23,7 @@
     <item>
       <title>Golang</title>
       <link>https://zhaolion.com/tags/Golang/</link>
-      <pubDate>Mon, 14 Jan 2019 00:24:08 +0800</pubDate>
+      <pubDate>Mon, 14 Jan 2019 00:37:49 +0800</pubDate>
       
       <guid>https://zhaolion.com/tags/Golang/</guid>
       <description></description>
@@ -80,6 +80,15 @@
       <pubDate>Sat, 13 Oct 2018 21:54:10 +0800</pubDate>
       
       <guid>https://zhaolion.com/tags/bufio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>database/sql</title>
+      <link>https://zhaolion.com/tags/database-sql/</link>
+      <pubDate>Mon, 14 Jan 2019 00:37:49 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/tags/database-sql/</guid>
       <description></description>
     </item>
     

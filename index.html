@@ -66,6 +66,32 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/" title="database/sql: Stmt的使用以及坑" >database/sql: Stmt的使用以及坑</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年1月14日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                基本知识 众所周知，Golang 操作数据库，是通过 database/sql 包，以及第三方的实现了 database/sql/driver 接口的数据库驱动包来共同完成的。
+其中 database/sql/driver 中的接口 Conn 和 Stmt，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 database/sql 包中的 DB 和 Stmt 是协程安全的，因为内部实现是连接池。
+如何使用 database/sql 的 MySQL 驱动的使用范例 基本类似于
+// Insert stmtIns, err := db.Prepare(&quot;INSERT INTO squareNum VALUES( ?, ? )&quot;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&quot;SELECT squareNumber FROM squarenum WHERE number = ?……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/basic/go.mod/" title="Go Modules 简单介绍" >Go Modules 简单介绍</a>
                                 </h1>
                             </header>
@@ -335,39 +361,6 @@ var empty = {}; // 没有任何属性的对象 var point = { x:0, y:1 }; // 两�
                             <p class="readmore"><a href="https://zhaolion.com/post/js/intro-5/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/js/intro-4/" title="js intro 语句" >js intro 语句</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年10月17日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Javascript">Javascript</a></span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                语句 js程序其实就是一系列可执行语句的集合。只要掌握了语句，就可以开始写js程序
-默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序: - 条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如if语句、switch语句 - 循环语句，可以重复执行语句，如while语句和for语句 - 跳转语句，可以让解释器跳转至程序的其他部分继续执行，如break语句、return语句、 throw语句
-表达式语句  赋值语句 递增、递减运算符 函数调用  greeting = &quot;hello&quot; + name; i *= 3; counter++; delete o.x; window.close(); cx = Math.cos(x);  复合语句和空语句 js可以讲多条语句联合在一起，形成一条复合语句，只需要用花括号将多条语句括起来即可。
-下面代码可以当成一条单独的语句，使用在任何js希望使用一条语句的地方：
-{ x = Math.PI; cx = Math.cos(x); console.log(&quot;cos(pi) = &quot; + cx); }  关于语句块，需要注意: - 语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要 - 语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好 - js中没有快级作用域，语句块中声明的变量并不是语句块私有的
-在js中，希望多条语句被当作一条语句使用时，使用复合语句来替代，空语句正好相反，允许包含0条语句 空语句如下:
-;  js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用
-for(var i=0; i&lt;a.length; a[i++]=0) ;  注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug
-if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; // 这一行总会执行  如果有特殊目的需要使用空语句，最好在代码中注释……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/js/intro-4/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -412,6 +405,10 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/" title="database/sql: Stmt的使用以及坑">database/sql: Stmt的使用以及坑</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/golang/basic/go.mod/" title="Go Modules 简单介绍">Go Modules 简单介绍</a>
     </li>
     
@@ -447,10 +444,6 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
         <a href="https://zhaolion.com/post/js/intro-5/" title="js intro 对象">js intro 对象</a>
     </li>
     
-    <li>
-        <a href="https://zhaolion.com/post/js/intro-4/" title="js intro 语句">js intro 语句</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -465,7 +458,7 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(6)</a>
+        <a href="https://zhaolion.com/categories/Golang/">Golang(7)</a>
     </li>
     
     <li>
@@ -510,6 +503,8 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
     <a href="https://zhaolion.com/tags/basic/">basic</a>
     
     <a href="https://zhaolion.com/tags/bufio/">bufio</a>
+    
+    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
     
     <a href="https://zhaolion.com/tags/interface/">interface</a>
     

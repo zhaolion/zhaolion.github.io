@@ -76,6 +76,32 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/">database/sql: Stmt的使用以及坑</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年1月14日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://zhaolion.com/categories/Golang">Golang</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                基本知识 众所周知，Golang 操作数据库，是通过 database/sql 包，以及第三方的实现了 database/sql/driver 接口的数据库驱动包来共同完成的。
+其中 database/sql/driver 中的接口 Conn 和 Stmt，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 database/sql 包中的 DB 和 Stmt 是协程安全的，因为内部实现是连接池。
+如何使用 database/sql 的 MySQL 驱动的使用范例 基本类似于
+// Insert stmtIns, err := db.Prepare(&quot;INSERT INTO squareNum VALUES( ?, ? )&quot;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&quot;SELECT squareNumber FROM squarenum WHERE number = ?……
+                                <p class="readmore"><a href="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/basic/go.mod/">Go Modules 简单介绍</a>
                                 </h1>
                             </header>
@@ -265,6 +291,10 @@ func Add(list .……
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/" title="database/sql: Stmt的使用以及坑">database/sql: Stmt的使用以及坑</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/golang/basic/go.mod/" title="Go Modules 简单介绍">Go Modules 简单介绍</a>
     </li>
     
@@ -300,10 +330,6 @@ func Add(list .……
         <a href="https://zhaolion.com/post/js/intro-5/" title="js intro 对象">js intro 对象</a>
     </li>
     
-    <li>
-        <a href="https://zhaolion.com/post/js/intro-4/" title="js intro 语句">js intro 语句</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -318,7 +344,7 @@ func Add(list .……
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(6)</a>
+        <a href="https://zhaolion.com/categories/Golang/">Golang(7)</a>
     </li>
     
     <li>
@@ -363,6 +389,8 @@ func Add(list .……
     <a href="https://zhaolion.com/tags/basic/">basic</a>
     
     <a href="https://zhaolion.com/tags/bufio/">bufio</a>
+    
+    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
     
     <a href="https://zhaolion.com/tags/interface/">interface</a>
     

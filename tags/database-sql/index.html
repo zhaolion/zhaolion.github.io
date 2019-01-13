@@ -7,22 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>interface | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="interface - zhaolion&#39;s dropbox">
+    <title>database/sql | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="database/sql - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
         
     <meta name="Keywords" content="萌新">
-    <meta name="description" content="interface">
+    <meta name="description" content="database/sql">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/tags/interface/">
+    <meta property="og:url" content="https://zhaolion.com/tags/database-sql/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.com/tags/interface/index.xml" title="zhaolion's dropbox" />
+    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.com/tags/database-sql/index.xml" title="zhaolion's dropbox" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -67,7 +67,7 @@
                     
                     <h3 class="archive-title">
                         包含标签
-                        <span class="keyword">interface</span>
+                        <span class="keyword">database/sql</span>
                         的文章
                     </h3>
                     
@@ -76,11 +76,11 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/golang/upgrade/interface/">Go Interface 从理解到深入</a>
+                                    <a href="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/">database/sql: Stmt的使用以及坑</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
-                                2018年9月13日
+                                2019年1月14日
                             </date>
                             
                             <div class="post-meta meta-category">
@@ -91,13 +91,11 @@
                             </div>
                             
                             <div class="post-content">
-                                Go Interface 从理解到深入 如果说 goroutine 和 channel 是 Go 并发的两大基石，那么接口是 Go 语言编程中数据类型的关键。在 Go 语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是 Go 语言中所有数据结构的核心
-Go 不是一种典型的 OO 语言，它在语法上不支持类和继承的概念
-没有继承是否就无法拥有多态行为了呢？答案是否定的，Go 语言引入了一种新类型—Interface，它在效果上实现了类似于 C++ 的 “多态” 概念，虽然与 C++ 的多态在语法上并非完全对等，但至少在最终实现的效果上，它有多态的影子
-虽然 Go 语言没有类的概念，但它支持的数据类型可以定义对应的 method(s)。本质上说，所谓的 method(s) 其实就是函数，只不过与普通函数相比，这类函数是作用在某个数据类型上的，所以在函数签名中，会有个 receiver(接收器) 来表明当前定义的函数会作用在该 receiver 上
-Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定义其 method（而并非只有 struct 才支持 method），只不过实际项目中，method(s) 多定义在 struct 上而已。 从这一点来看，我们可以把 Go 中的 struct 看作是不支持继承行为的轻量级的 “类”，这一点比较类似 Abstract Class
-从语法上看，Interface 定义了一个或一组 method(s)，这些 method(s) 只有函数签名，没有具体的实现代码（有没有联想起 C++ 中的虚函数？）。若某个数据类型实现了 Interface 中定义的那些被称为 &ldquo;methods&rdquo; 的函数，则称这些数据类型实现（implement）了 interface。这是我们常用的 OO 方式……
-                                <p class="readmore"><a href="https://zhaolion.com/post/golang/upgrade/interface/">阅读全文</a></p>
+                                基本知识 众所周知，Golang 操作数据库，是通过 database/sql 包，以及第三方的实现了 database/sql/driver 接口的数据库驱动包来共同完成的。
+其中 database/sql/driver 中的接口 Conn 和 Stmt，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 database/sql 包中的 DB 和 Stmt 是协程安全的，因为内部实现是连接池。
+如何使用 database/sql 的 MySQL 驱动的使用范例 基本类似于
+// Insert stmtIns, err := db.Prepare(&quot;INSERT INTO squareNum VALUES( ?, ? )&quot;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&quot;SELECT squareNumber FROM squarenum WHERE number = ?……
+                                <p class="readmore"><a href="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/">阅读全文</a></p>
                             </div>
                         </article>
                     
