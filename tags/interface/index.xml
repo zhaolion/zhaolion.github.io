@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>interface on zhaolion&#39;s dropbox</title>
-    <link>http://zhaolion.github.io/tags/interface/</link>
+    <link>http://zhaolion.com/tags/interface/</link>
     <description>Recent content in interface on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 13 Sep 2018 18:24:50 +0800</lastBuildDate>
     
-	<atom:link href="http://zhaolion.github.io/tags/interface/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://zhaolion.com/tags/interface/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go Interface 从理解到深入</title>
-      <link>http://zhaolion.github.io/post/golang/basic/interface/</link>
+      <link>http://zhaolion.com/post/golang/basic/interface/</link>
       <pubDate>Thu, 13 Sep 2018 18:24:50 +0800</pubDate>
       
-      <guid>http://zhaolion.github.io/post/golang/basic/interface/</guid>
+      <guid>http://zhaolion.com/post/golang/basic/interface/</guid>
       <description>Go Interface 从理解到深入 如果说 goroutine 和 channel 是 Go 并发的两大基石，那么接口是 Go 语言编程中数据类型的关键。在 Go 语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是 Go 语言中所有数据结构的核心
 Go 不是一种典型的 OO 语言，它在语法上不支持类和继承的概念
 没有继承是否就无法拥有多态行为了呢？答案是否定的，Go 语言引入了一种新类型—Interface，它在效果上实现了类似于 C++ 的 “多态” 概念，虽然与 C++ 的多态在语法上并非完全对等，但至少在最终实现的效果上，它有多态的影子
