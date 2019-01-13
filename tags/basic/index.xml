@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>basic on zhaolion&#39;s dropbox</title>
-    <link>http://zhaolion.com/tags/basic/</link>
+    <link>https://zhaolion.com/tags/basic/</link>
     <description>Recent content in basic on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 13 Jan 2017 18:48:34 +0800</lastBuildDate>
     
-	<atom:link href="http://zhaolion.com/tags/basic/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhaolion.com/tags/basic/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>正则表达式基本使用介绍</title>
-      <link>http://zhaolion.com/post/regexp/basic/</link>
+      <link>https://zhaolion.com/post/regexp/basic/</link>
       <pubDate>Fri, 13 Jan 2017 18:48:34 +0800</pubDate>
       
-      <guid>http://zhaolion.com/post/regexp/basic/</guid>
+      <guid>https://zhaolion.com/post/regexp/basic/</guid>
       <description>正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
 字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符 &amp;gt;.at，可以匹配&amp;rdquo;cat&amp;rdquo;,&amp;ldquo;sat&amp;rdquo;,&amp;ldquo;mat&amp;rdquo;等，一般这种通配符用于匹配操作系统中的文件名
  限定范围 &amp;gt; 1. 如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 &amp;gt;2. 可以列出一个集合，[aeiou]，来匹配所有元音字母 &amp;gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 &amp;gt;4. 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符
@@ -35,10 +35,10 @@
     
     <item>
       <title>MySQL的基础使用相关知识</title>
-      <link>http://zhaolion.com/post/mysql/basic/</link>
+      <link>https://zhaolion.com/post/mysql/basic/</link>
       <pubDate>Fri, 13 Jan 2017 18:45:26 +0800</pubDate>
       
-      <guid>http://zhaolion.com/post/mysql/basic/</guid>
+      <guid>https://zhaolion.com/post/mysql/basic/</guid>
       <description>登录到MySQL mysql -h hostname -P hostport -u username -p
  -h 指定希望连接的主机，可以用来连接远程主机上的MySQL，如果忽略默认登录本机数据库 -P 指定所连接主机开放的MySQL端口，如果忽略此项默认使用3306端口登录 -u 指定连接数据库时使用的用户名称，如果忽略此项默认使用你的本机用户名 -p 告诉服务器会使用密码来连接数据库，如果忽略此项使用无密码登录  使用密码登入时，会出现以下响应
 Enter password:  输入密码后成功登录会得到以下响应

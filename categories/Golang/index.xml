@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on zhaolion&#39;s dropbox</title>
-    <link>http://zhaolion.com/categories/Golang/</link>
+    <link>https://zhaolion.com/categories/Golang/</link>
     <description>Recent content in Golang on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 12 Jan 2019 11:43:35 +0800</lastBuildDate>
     
-	<atom:link href="http://zhaolion.com/categories/Golang/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhaolion.com/categories/Golang/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>初步了解 golang reflect pkg</title>
-      <link>http://zhaolion.com/post/golang/package/reflect/</link>
+      <link>https://zhaolion.com/post/golang/package/reflect/</link>
       <pubDate>Sat, 12 Jan 2019 11:43:35 +0800</pubDate>
       
-      <guid>http://zhaolion.com/post/golang/package/reflect/</guid>
+      <guid>https://zhaolion.com/post/golang/package/reflect/</guid>
       <description>初步了解 golang reflect pkg [TOC]
 阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
 Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。
@@ -27,10 +27,10 @@ Golang 语言实现了反射，反射机制就是在运行时动态的调用对�
     
     <item>
       <title>初步了解 golang bufio pkg</title>
-      <link>http://zhaolion.com/post/golang/package/bufio/</link>
+      <link>https://zhaolion.com/post/golang/package/bufio/</link>
       <pubDate>Sat, 13 Oct 2018 21:54:10 +0800</pubDate>
       
-      <guid>http://zhaolion.com/post/golang/package/bufio/</guid>
+      <guid>https://zhaolion.com/post/golang/package/bufio/</guid>
       <description>bufio package in Golang golang 通过 package bufio 来支持 buffered I/O。
 熟悉一下: Reader, Writer and Scanner…
 bufio.Writer 对 I/O 的频繁操作会极大的影响性能，每次 写 I/O 都是一次 syscall，因此频繁操作会给 CPU 带来极大的负担。对于磁盘来说，批量写操作有着更好的性能。golang 通过 bufio.Writer 来合并写操作，避免频繁的写操作。因此在写密集场景下，应该使用 bufio.Writer，而不是 io.Writer
@@ -41,10 +41,10 @@ producer buffer destination (io.Writer) a -----&amp;gt; a b -----&amp;gt; ab c -
     
     <item>
       <title>Go Interface 从理解到深入</title>
-      <link>http://zhaolion.com/post/golang/basic/interface/</link>
+      <link>https://zhaolion.com/post/golang/basic/interface/</link>
       <pubDate>Thu, 13 Sep 2018 18:24:50 +0800</pubDate>
       
-      <guid>http://zhaolion.com/post/golang/basic/interface/</guid>
+      <guid>https://zhaolion.com/post/golang/basic/interface/</guid>
       <description>Go Interface 从理解到深入 如果说 goroutine 和 channel 是 Go 并发的两大基石，那么接口是 Go 语言编程中数据类型的关键。在 Go 语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是 Go 语言中所有数据结构的核心
 Go 不是一种典型的 OO 语言，它在语法上不支持类和继承的概念
 没有继承是否就无法拥有多态行为了呢？答案是否定的，Go 语言引入了一种新类型—Interface，它在效果上实现了类似于 C++ 的 “多态” 概念，虽然与 C++ 的多态在语法上并非完全对等，但至少在最终实现的效果上，它有多态的影子
@@ -55,10 +55,10 @@ Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定
     
     <item>
       <title>如何写好 golang 代码的一些 tips</title>
-      <link>http://zhaolion.com/post/golang/tips/coding.in.go/</link>
+      <link>https://zhaolion.com/post/golang/tips/coding.in.go/</link>
       <pubDate>Mon, 02 Jul 2018 21:12:55 +0800</pubDate>
       
-      <guid>http://zhaolion.com/post/golang/tips/coding.in.go/</guid>
+      <guid>https://zhaolion.com/post/golang/tips/coding.in.go/</guid>
       <description>如何写好 golang 代码的一些 tips 1. 首先需要知道的概念  不要像其他语言一样写 Go, Go 不是 Java/Python/Ruby/PHP，Go 的程序思维很古典也很超前 保持简洁，避免过度工程化 学会阅读源码 interface 很重要，很多问题都可以用 interface 解决 保持函数精炼，变量名长度合适 (在不丢失意义的情况下，尽量短小) 用更小的单元实现代码功能，然后 ** 组合 ** 慎重使用全局变量 (尤其是跨 package 使用，变量作用域上容易踩坑，可以参考 vs6IeAu5U5n)  2. 函数声明的 tips  函数声明首先是函数名字要具有自解释性，需要能够解释清楚大致提供的功能，而不是模糊的 common/util。 其次具体的功能解释，这个要说到代码注释了，这里就不赘述了。 除了函数声明外，还有函数的形参定义。这里以一个例子来说一下扩展性好的函数的参数应该如何定义 (见 2.1)。  2.1 普通函数 假设我们需要一个简单的 server，我们可以像下面这样定义，addr 表示 server 启动在哪个端口上。
 func NewServer(addr string)  第一期的需求很简单，就上面这些足够满足了。项目上线跑了一段时间发现，由于连接没有设置超时，很多连接一直得不到释放（异常情况），严重影响服务器性能。
 好，那第二期我们加个 timeout。

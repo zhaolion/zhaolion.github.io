@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>reflect on zhaolion&#39;s dropbox</title>
-    <link>http://zhaolion.com/tags/reflect/</link>
+    <link>https://zhaolion.com/tags/reflect/</link>
     <description>Recent content in reflect on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sat, 12 Jan 2019 11:43:35 +0800</lastBuildDate>
     
-	<atom:link href="http://zhaolion.com/tags/reflect/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhaolion.com/tags/reflect/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>初步了解 golang reflect pkg</title>
-      <link>http://zhaolion.com/post/golang/package/reflect/</link>
+      <link>https://zhaolion.com/post/golang/package/reflect/</link>
       <pubDate>Sat, 12 Jan 2019 11:43:35 +0800</pubDate>
       
-      <guid>http://zhaolion.com/post/golang/package/reflect/</guid>
+      <guid>https://zhaolion.com/post/golang/package/reflect/</guid>
       <description>初步了解 golang reflect pkg [TOC]
 阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
 Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。

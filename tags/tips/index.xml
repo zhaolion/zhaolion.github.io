@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tips on zhaolion&#39;s dropbox</title>
-    <link>http://zhaolion.com/tags/tips/</link>
+    <link>https://zhaolion.com/tags/tips/</link>
     <description>Recent content in tips on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 02 Jul 2018 21:12:55 +0800</lastBuildDate>
     
-	<atom:link href="http://zhaolion.com/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://zhaolion.com/tags/tips/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>如何写好 golang 代码的一些 tips</title>
-      <link>http://zhaolion.com/post/golang/tips/coding.in.go/</link>
+      <link>https://zhaolion.com/post/golang/tips/coding.in.go/</link>
       <pubDate>Mon, 02 Jul 2018 21:12:55 +0800</pubDate>
       
-      <guid>http://zhaolion.com/post/golang/tips/coding.in.go/</guid>
+      <guid>https://zhaolion.com/post/golang/tips/coding.in.go/</guid>
       <description>如何写好 golang 代码的一些 tips 1. 首先需要知道的概念  不要像其他语言一样写 Go, Go 不是 Java/Python/Ruby/PHP，Go 的程序思维很古典也很超前 保持简洁，避免过度工程化 学会阅读源码 interface 很重要，很多问题都可以用 interface 解决 保持函数精炼，变量名长度合适 (在不丢失意义的情况下，尽量短小) 用更小的单元实现代码功能，然后 ** 组合 ** 慎重使用全局变量 (尤其是跨 package 使用，变量作用域上容易踩坑，可以参考 vs6IeAu5U5n)  2. 函数声明的 tips  函数声明首先是函数名字要具有自解释性，需要能够解释清楚大致提供的功能，而不是模糊的 common/util。 其次具体的功能解释，这个要说到代码注释了，这里就不赘述了。 除了函数声明外，还有函数的形参定义。这里以一个例子来说一下扩展性好的函数的参数应该如何定义 (见 2.1)。  2.1 普通函数 假设我们需要一个简单的 server，我们可以像下面这样定义，addr 表示 server 启动在哪个端口上。
 func NewServer(addr string)  第一期的需求很简单，就上面这些足够满足了。项目上线跑了一段时间发现，由于连接没有设置超时，很多连接一直得不到释放（异常情况），严重影响服务器性能。
 好，那第二期我们加个 timeout。
