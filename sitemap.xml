@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhaolion.com/post/life/2018.summary/</loc>
+    <lastmod>2019-01-14T00:47:38+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/</loc>
     <lastmod>2019-01-14T00:37:49+08:00</lastmod>
   </url>
@@ -147,6 +152,18 @@
   </url>
   
   <url>
+    <loc>https://zhaolion.com/tags/Life/</loc>
+    <lastmod>2019-01-14T00:47:38+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/categories/Life/</loc>
+    <lastmod>2019-01-14T00:47:38+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/tags/MySQL/</loc>
     <lastmod>2017-01-13T18:45:26+08:00</lastmod>
     <priority>0</priority>
@@ -160,7 +177,7 @@
   
   <url>
     <loc>https://zhaolion.com/post/</loc>
-    <lastmod>2019-01-14T00:37:49+08:00</lastmod>
+    <lastmod>2019-01-14T00:47:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -238,7 +255,7 @@
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-01-14T00:37:49+08:00</lastmod>
+    <lastmod>2019-01-14T00:47:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
