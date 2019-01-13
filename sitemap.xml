@@ -33,12 +33,30 @@
   </url>
   
   <url>
+    <loc>https://zhaolion.com/post/css/intro-1/</loc>
+    <lastmod>2016-09-13T22:23:52+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/html/intro/</loc>
     <lastmod>2016-09-10T22:20:36+08:00</lastmod>
   </url>
   
   <url>
+    <loc>https://zhaolion.com/tags/CSS/</loc>
+    <lastmod>2016-09-13T22:23:52+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/categories/CSS/</loc>
+    <lastmod>2016-09-13T22:23:52+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/categories/</loc>
+    <lastmod>2016-09-13T22:23:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -92,7 +110,13 @@
   
   <url>
     <loc>https://zhaolion.com/tags/</loc>
-    <lastmod>2016-09-10T22:20:36+08:00</lastmod>
+    <lastmod>2016-09-13T22:23:52+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/categories/Web/</loc>
+    <lastmod>2016-09-13T22:23:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
