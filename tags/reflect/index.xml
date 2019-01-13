@@ -6,6 +6,7 @@
     <description>Recent content in reflect on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <lastBuildDate>Sat, 12 Jan 2019 11:43:35 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.github.io/tags/reflect/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,7 +14,7 @@
     <item>
       <title>初步了解 golang reflect pkg</title>
       <link>https://zhaolion.github.io/post/golang/package/reflect/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 12 Jan 2019 11:43:35 +0800</pubDate>
       
       <guid>https://zhaolion.github.io/post/golang/package/reflect/</guid>
       <description>初步了解 golang reflect pkg [TOC]

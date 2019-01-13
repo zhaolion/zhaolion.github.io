@@ -6,6 +6,7 @@
     <description>Recent content in bufio on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <lastBuildDate>Sat, 13 Oct 2018 21:54:10 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.github.io/tags/bufio/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,7 +14,7 @@
     <item>
       <title>初步了解 golang bufio pkg</title>
       <link>https://zhaolion.github.io/post/golang/package/bufio/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Oct 2018 21:54:10 +0800</pubDate>
       
       <guid>https://zhaolion.github.io/post/golang/package/bufio/</guid>
       <description>bufio package in Golang golang 通过 package bufio 来支持 buffered I/O。

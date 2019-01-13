@@ -3,7 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zhaolion.github.io/archives/</loc>
+    <loc>https://zhaolion.github.io/post/golang/package/reflect/</loc>
+    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/post/golang/package/bufio/</loc>
+    <lastmod>2018-10-13T21:54:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/post/golang/basic/interface/</loc>
+    <lastmod>2018-09-13T18:24:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.github.io/post/golang/tips/coding.in.go/</loc>
+    <lastmod>2018-07-02T21:12:55+08:00</lastmod>
   </url>
   
   <url>
@@ -16,16 +32,14 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.github.io/post/golang/basic/interface/</loc>
-  </url>
-  
-  <url>
     <loc>https://zhaolion.github.io/categories/Golang/</loc>
+    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.github.io/post/</loc>
+    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -36,44 +50,42 @@
   
   <url>
     <loc>https://zhaolion.github.io/tags/bufio/</loc>
+    <lastmod>2018-10-13T21:54:10+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.github.io/tags/golang/</loc>
+    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.github.io/tags/interface/</loc>
+    <lastmod>2018-09-13T18:24:50+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.github.io/tags/reflect/</loc>
+    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.github.io/tags/tips/</loc>
+    <lastmod>2018-07-02T21:12:55+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.github.io/</loc>
+    <lastmod>2019-01-12T11:43:35+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zhaolion.github.io/post/golang/package/bufio/</loc>
-  </url>
-  
-  <url>
-    <loc>https://zhaolion.github.io/post/golang/package/reflect/</loc>
-  </url>
-  
-  <url>
-    <loc>https://zhaolion.github.io/post/golang/tips/coding.in.go/</loc>
+    <loc>https://zhaolion.github.io/archives/</loc>
   </url>
   
 </urlset>
