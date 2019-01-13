@@ -98,13 +98,13 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/CSS/</loc>
+    <loc>https://zhaolion.com/tags/CSS/</loc>
     <lastmod>2016-09-14T22:28:03+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zhaolion.com/tags/CSS/</loc>
+    <loc>https://zhaolion.com/categories/CSS/</loc>
     <lastmod>2016-09-14T22:28:03+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -116,20 +116,14 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/Golang/</loc>
-    <lastmod>2019-01-14T00:37:49+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://zhaolion.com/tags/Golang/</loc>
     <lastmod>2019-01-14T00:37:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/HTML/</loc>
-    <lastmod>2016-09-10T22:20:36+08:00</lastmod>
+    <loc>https://zhaolion.com/categories/Golang/</loc>
+    <lastmod>2019-01-14T00:37:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -140,8 +134,8 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/Javascript/</loc>
-    <lastmod>2016-10-18T22:33:39+08:00</lastmod>
+    <loc>https://zhaolion.com/categories/HTML/</loc>
+    <lastmod>2016-09-10T22:20:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -152,8 +146,8 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/Life/</loc>
-    <lastmod>2019-01-14T00:47:38+08:00</lastmod>
+    <loc>https://zhaolion.com/categories/Javascript/</loc>
+    <lastmod>2016-10-18T22:33:39+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -164,13 +158,19 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/MySQL/</loc>
-    <lastmod>2017-01-13T18:45:26+08:00</lastmod>
+    <loc>https://zhaolion.com/categories/Life/</loc>
+    <lastmod>2019-01-14T00:47:38+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.com/tags/MySQL/</loc>
+    <lastmod>2017-01-13T18:45:26+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/categories/MySQL/</loc>
     <lastmod>2017-01-13T18:45:26+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -182,13 +182,13 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/Regexp/</loc>
+    <loc>https://zhaolion.com/tags/Regexp/</loc>
     <lastmod>2017-01-13T18:48:34+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://zhaolion.com/tags/Regexp/</loc>
+    <loc>https://zhaolion.com/categories/Regexp/</loc>
     <lastmod>2017-01-13T18:48:34+08:00</lastmod>
     <priority>0</priority>
   </url>
