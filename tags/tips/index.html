@@ -76,6 +76,40 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/docker/basic.cmd/">常用 Docker 命令</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年1月15日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://zhaolion.com/categories/Docker">Docker</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                下面是一些比较常用的 Docker 命令
+镜像类基本命令 安装镜像
+docker pull ${IMAGE}  显示已经安装镜像的详细内容
+docker images --no-trunc  构建镜像
+docker build --rm=true .  删除指定镜像
+docker rmi ${IMAGE_ID}  删除未使用的镜像
+docker rmi $(docker images --quiet --filter &amp;quot;dangling=true&amp;quot;)  删除所有没有标签的镜像
+docker rmi $(docker images | grep “^” | awk “{print $3}”)  删除所有的镜像
+docker rmi $(docker images)  构建自己的镜像
+docker build -t &lt;镜像名&gt; &lt;Dockerfile 路径&gt;  导出镜像
+docker save docker.io/tomcat:7.0.77-jre7 &gt;/root/mytomcat7.tar.gz  导入镜像
+docker load &lt; /root/mytomcat7.……
+                                <p class="readmore"><a href="https://zhaolion.com/post/docker/basic.cmd/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/tips/coding.in.go/">如何写好 golang 代码的一些 tips</a>
                                 </h1>
                             </header>
@@ -126,6 +160,10 @@ func Add(list .……
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/docker/basic.cmd/" title="常用 Docker 命令">常用 Docker 命令</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/life/2018.summary/" title="程序员 2018 年度总结">程序员 2018 年度总结</a>
     </li>
     
@@ -161,10 +199,6 @@ func Add(list .……
         <a href="https://zhaolion.com/post/regexp/basic/" title="正则表达式基本使用介绍">正则表达式基本使用介绍</a>
     </li>
     
-    <li>
-        <a href="https://zhaolion.com/post/mysql/basic/" title="MySQL的基础使用相关知识">MySQL的基础使用相关知识</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -176,6 +210,10 @@ func Add(list .……
     
     <li>
         <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
     </li>
     
     <li>
@@ -214,6 +252,8 @@ func Add(list .……
 <div class="tagcloud">
     
     <a href="https://zhaolion.com/tags/CSS/">CSS</a>
+    
+    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
     
     <a href="https://zhaolion.com/tags/Golang/">Golang</a>
     

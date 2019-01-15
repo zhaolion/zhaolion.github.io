@@ -6,10 +6,30 @@
     <description>Recent content on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 14 Jan 2019 00:47:38 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Jan 2019 23:28:27 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>常用 Docker 命令</title>
+      <link>https://zhaolion.com/post/docker/basic.cmd/</link>
+      <pubDate>Tue, 15 Jan 2019 23:28:27 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/docker/basic.cmd/</guid>
+      <description>下面是一些比较常用的 Docker 命令
+镜像类基本命令 安装镜像
+docker pull ${IMAGE}  显示已经安装镜像的详细内容
+docker images --no-trunc  构建镜像
+docker build --rm=true .  删除指定镜像
+docker rmi ${IMAGE_ID}  删除未使用的镜像
+docker rmi $(docker images --quiet --filter &amp;amp;quot;dangling=true&amp;amp;quot;)  删除所有没有标签的镜像
+docker rmi $(docker images | grep “^” | awk “{print $3}”)  删除所有的镜像
+docker rmi $(docker images)  构建自己的镜像
+docker build -t &amp;lt;镜像名&amp;gt; &amp;lt;Dockerfile 路径&amp;gt;  导出镜像
+docker save docker.io/tomcat:7.0.77-jre7 &amp;gt;/root/mytomcat7.tar.gz  导入镜像
+docker load &amp;lt; /root/mytomcat7.</description>
+    </item>
     
     <item>
       <title>程序员 2018 年度总结</title>

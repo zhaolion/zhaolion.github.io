@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>js 保留关键字以及危险变量名 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="js 保留关键字以及危险变量名 - zhaolion&#39;s dropbox">
+    <title>常用 Docker 命令 | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="常用 Docker 命令 - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2016-10-14T22:30:56&#43;08:00">
+    <meta property="article:published_time" content="2019-01-15T23:28:27&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2016-10-14T22:30:56&#43;08:00">
+    <meta property="article:modified_time" content="2019-01-15T23:28:27&#43;08:00">
         
     <meta name="Keywords" content="萌新">
-    <meta name="description" content="js 保留关键字以及危险变量名">
+    <meta name="description" content="常用 Docker 命令">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/js/danger/">
+    <meta property="og:url" content="https://zhaolion.com/post/docker/basic.cmd/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -70,18 +70,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">js 保留关键字以及危险变量名</h1>
+                            <h1 class="post-title">常用 Docker 命令</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2016年10月14日
+                            2019年1月15日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Javascript">Javascript</a></span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Docker">Docker</a></span>
                             
                         </div>
                         
@@ -93,385 +91,156 @@
                         <div class="post-content">
                             
 
-<p>Javascript 的保留关键字（标识符）不可以用作变量、标签或者函数名。</p>
+<p>下面是一些比较常用的 Docker 命令</p>
 
-<p>有些保留关键字是作为 Javascript 以后扩展使用。</p>
+<h2 id="镜像类基本命令">镜像类基本命令</h2>
 
-<p>关键字是严格不允许，而浏览器定义的变量名或者类名在使用的时候注意确保作用域</p>
+<p>安装镜像</p>
 
-<h1 id="emcascript-中的关键字">EMCAScript 中的关键字</h1>
+<pre><code class="language-docker">docker pull ${IMAGE}
+</code></pre>
 
-<table>
-<thead>
-<tr>
-<th align="left">break</th>
-<th align="left">case</th>
-<th align="left">catch</th>
-<th align="left">continue</th>
-<th align="left">s</th>
-</tr>
-</thead>
+<p>显示已经安装镜像的详细内容</p>
 
-<tbody>
-<tr>
-<td align="left">abstract</td>
-<td align="left">arguments</td>
-<td align="left">boolean</td>
-<td align="left">break</td>
-<td align="left">byte</td>
-</tr>
+<pre><code class="language-docker">docker images --no-trunc
+</code></pre>
 
-<tr>
-<td align="left">case</td>
-<td align="left">catch</td>
-<td align="left">char</td>
-<td align="left">class*</td>
-<td align="left">const</td>
-</tr>
+<p>构建镜像</p>
 
-<tr>
-<td align="left">continue</td>
-<td align="left">debugger</td>
-<td align="left">default</td>
-<td align="left">delete</td>
-<td align="left">do</td>
-</tr>
+<pre><code class="language-docker">docker build --rm=true .
+</code></pre>
 
-<tr>
-<td align="left">double</td>
-<td align="left">else</td>
-<td align="left">enum*</td>
-<td align="left">eval</td>
-<td align="left">export*</td>
-</tr>
+<p>删除指定镜像</p>
 
-<tr>
-<td align="left">extends*</td>
-<td align="left">false</td>
-<td align="left">final</td>
-<td align="left">finally</td>
-<td align="left">float</td>
-</tr>
+<pre><code class="language-docker">docker rmi ${IMAGE_ID}
+</code></pre>
 
-<tr>
-<td align="left">for</td>
-<td align="left">function</td>
-<td align="left">goto</td>
-<td align="left">if</td>
-<td align="left">implements</td>
-</tr>
+<p>删除未使用的镜像</p>
 
-<tr>
-<td align="left">import*</td>
-<td align="left">in</td>
-<td align="left">instanceof</td>
-<td align="left">int</td>
-<td align="left">interface</td>
-</tr>
+<pre><code class="language-docker">docker rmi $(docker images --quiet --filter &amp;quot;dangling=true&amp;quot;) 
+</code></pre>
 
-<tr>
-<td align="left">let</td>
-<td align="left">long</td>
-<td align="left">native</td>
-<td align="left">new</td>
-<td align="left">null</td>
-</tr>
+<p>删除所有没有标签的镜像</p>
 
-<tr>
-<td align="left">package</td>
-<td align="left">private</td>
-<td align="left">protected</td>
-<td align="left">public</td>
-<td align="left">return</td>
-</tr>
+<pre><code class="language-docker">docker rmi $(docker images | grep “^” | awk “{print $3}”)
+</code></pre>
 
-<tr>
-<td align="left">short</td>
-<td align="left">static</td>
-<td align="left">super*</td>
-<td align="left">switch</td>
-<td align="left">synchronized</td>
-</tr>
+<p>删除所有的镜像</p>
 
-<tr>
-<td align="left">this</td>
-<td align="left">throw</td>
-<td align="left">throws</td>
-<td align="left">transient</td>
-<td align="left">true</td>
-</tr>
+<pre><code class="language-docker">docker rmi $(docker images)
+</code></pre>
 
-<tr>
-<td align="left">try</td>
-<td align="left">typeof</td>
-<td align="left">var</td>
-<td align="left">void</td>
-<td align="left">volatile</td>
-</tr>
+<p>构建自己的镜像</p>
 
-<tr>
-<td align="left">while</td>
-<td align="left">with</td>
-<td align="left">yield</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody>
-</table>
+<pre><code class="language-docker">docker build -t &lt;镜像名&gt; &lt;Dockerfile 路径&gt;
+</code></pre>
 
-<p><strong>&lsquo;*&rsquo; 标记的关键字是 ECMAScript5 中新添加的。</strong></p>
+<p>导出镜像</p>
 
-<h1 id="javascript-对象-属性和方法">JavaScript 对象、属性和方法</h1>
+<pre><code class="language-docker">docker save docker.io/tomcat:7.0.77-jre7 &gt;/root/mytomcat7.tar.gz
+</code></pre>
 
-<p>您也应该避免使用 JavaScript 内置的对象、属性和方法的名称作为 Javascript 的变量或函数名：</p>
+<p>导入镜像</p>
 
-<table>
-<thead>
-<tr>
-<th align="left">abstract</th>
-<th align="left">arguments</th>
-<th align="left">boolean</th>
-<th align="left">break</th>
-<th align="left">byte</th>
-</tr>
-</thead>
+<pre><code class="language-docker">docker load &lt; /root/mytomcat7.tar.gz
+</code></pre>
 
-<tbody>
-<tr>
-<td align="left">Array</td>
-<td align="left">Date</td>
-<td align="left">eval</td>
-<td align="left">function</td>
-<td align="left">hasOwnProperty</td>
-</tr>
+<p>为自定义的镜像打上 tag</p>
 
-<tr>
-<td align="left">Infinity</td>
-<td align="left">isFinite</td>
-<td align="left">isNaN</td>
-<td align="left">isPrototypeOf</td>
-<td align="left">length</td>
-</tr>
+<pre><code class="language-docker">docker tag &lt;image&gt; &lt;username&gt;/&lt;repository&gt;:&lt;tag&gt;
+</code></pre>
 
-<tr>
-<td align="left">Math</td>
-<td align="left">NaN</td>
-<td align="left">name</td>
-<td align="left">Number</td>
-<td align="left">Object</td>
-</tr>
+<p>将自定义的镜像发布到仓库</p>
 
-<tr>
-<td align="left">prototype</td>
-<td align="left">String</td>
-<td align="left">toString</td>
-<td align="left">undefined</td>
-<td align="left">valueOf</td>
-</tr>
-</tbody>
-</table>
+<pre><code class="language-docker">docker push &lt;username&gt;/&lt;repository&gt;:&lt;tag&gt;
+</code></pre>
 
-<h1 id="java-保留关键字">Java 保留关键字</h1>
+<p>查看某个镜像详情</p>
 
-<p>JavaScript 经常与 Java 一起使用。您应该避免使用一些 Java 对象和属性作为 JavaScript 标识符：</p>
+<pre><code class="language-docker">docker inspect &lt;镜像名称&gt;
+</code></pre>
 
-<p>| 保留关键字 | －   | －        | －        | -| -                   |
-|:&mdash;&mdash;&mdash;&ndash;|:&mdash;&ndash;|:&mdash;&mdash;&mdash;-|:&mdash;&mdash;&mdash;-|:&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| getClass   | java | JavaArray | javaClass | JavaObject    |JavaPackage |</p>
+<h2 id="容器类基本命令">容器类基本命令</h2>
 
-<h1 id="windows-保留关键字">Windows 保留关键字</h1>
+<p>查看容器</p>
 
-<p>JavaScript 可以在 HTML 外部使用。它可在许多其他应用程序中作为编程语言使用。
-在 HTML 中，您必须（为了可移植性，您也应该这么做）避免使用 HTML 和 Windows 对象和属性的名称
-作为 Javascript 的变量及函数名：</p>
+<pre><code class="language-docker">docker ps    # 正在运行的容器
+docker ps -a # 所有的容器
+</code></pre>
 
-<table>
-<thead>
-<tr>
-<th align="left">保留关键字</th>
-<th align="left">－</th>
-<th align="left">－</th>
-<th align="left">－</th>
-<th align="left">-</th>
-</tr>
-</thead>
+<p>停止、启动、杀死一个容器</p>
 
-<tbody>
-<tr>
-<td align="left">alert</td>
-<td align="left">all</td>
-<td align="left">anchor</td>
-<td align="left">anchors</td>
-<td align="left">area</td>
-</tr>
+<pre><code class="language-docker">docker stop &lt;容器名 or ID&gt;
+docker start &lt;容器名 or ID&gt;
+docker kill &lt;容器名 or ID&gt;
+</code></pre>
 
-<tr>
-<td align="left">assign</td>
-<td align="left">blur</td>
-<td align="left">button</td>
-<td align="left">checkbox</td>
-<td align="left">clearInterval</td>
-</tr>
+<p>交互方式启动</p>
 
-<tr>
-<td align="left">clearTimeout</td>
-<td align="left">clientInformation</td>
-<td align="left">close</td>
-<td align="left">closed</td>
-<td align="left">confirm</td>
-</tr>
+<pre><code class="language-docker">docker run -it ubuntu:latest /bin/bash
+</code></pre>
 
-<tr>
-<td align="left">constructor</td>
-<td align="left">crypto   decodeURI</td>
-<td align="left">decodeURIComponent</td>
-<td align="left">defaultStatus</td>
-<td align="left"></td>
-</tr>
+<p>守护进程方式启动容器</p>
 
-<tr>
-<td align="left">document</td>
-<td align="left">element</td>
-<td align="left">elements</td>
-<td align="left">embed</td>
-<td align="left">embeds</td>
-</tr>
+<pre><code class="language-docker">docker run -d ubuntu:latest
+</code></pre>
 
-<tr>
-<td align="left">encodeURI</td>
-<td align="left">encodeURIComponent</td>
-<td align="left">escape</td>
-<td align="left">event</td>
-<td align="left">fileUpload</td>
-</tr>
+<p>守护进程方式启动容器并且进行端口映射</p>
 
-<tr>
-<td align="left">focus</td>
-<td align="left">form</td>
-<td align="left">forms</td>
-<td align="left">frame</td>
-<td align="left">innerHeight</td>
-</tr>
+<pre><code class="language-docker">docker run -d -p 9999:8080 docker.io/tomcat:latest
+</code></pre>
 
-<tr>
-<td align="left">innerWidth</td>
-<td align="left">layer</td>
-<td align="left">layers</td>
-<td align="left">link</td>
-<td align="left">location</td>
-</tr>
+<p>查看容器的root用户密码</p>
 
-<tr>
-<td align="left">mimeTypes</td>
-<td align="left">navigate</td>
-<td align="left">navigator</td>
-<td align="left">frames</td>
-<td align="left">frameRate</td>
-</tr>
+<pre><code class="language-docker">docker logs &lt;容器名orID&gt; 2&gt;&amp;1 | grep '^User: ' | tail -n1
+</code></pre>
 
-<tr>
-<td align="left">hidden</td>
-<td align="left">history</td>
-<td align="left">image</td>
-<td align="left">images</td>
-<td align="left">offscreenBuffering</td>
-</tr>
+<p>查看容器日志</p>
 
-<tr>
-<td align="left">open</td>
-<td align="left">opener</td>
-<td align="left">option</td>
-<td align="left">outerHeight</td>
-<td align="left">outerWidth</td>
-</tr>
+<pre><code class="language-docker">docker logs -f &lt;容器名orID&gt;
+</code></pre>
 
-<tr>
-<td align="left">packages</td>
-<td align="left">pageXOffset</td>
-<td align="left">pageYOffset</td>
-<td align="left">parent</td>
-<td align="left">parseFloat</td>
-</tr>
+<p>进入容器</p>
 
-<tr>
-<td align="left">parseInt</td>
-<td align="left">password</td>
-<td align="left">pkcs11</td>
-<td align="left">plugin</td>
-<td align="left">prompt</td>
-</tr>
+<pre><code class="language-docker">docker attach ${CID}
+</code></pre>
 
-<tr>
-<td align="left">propertyIsEnum</td>
-<td align="left">radio</td>
-<td align="left">reset</td>
-<td align="left">screenX</td>
-<td align="left">screenY</td>
-</tr>
+<p>已有容器中运行命令/启动交互进程</p>
 
-<tr>
-<td align="left">scroll</td>
-<td align="left">secure</td>
-<td align="left">select</td>
-<td align="left">self</td>
-<td align="left">setInterval</td>
-</tr>
+<pre><code class="language-docker">docker exec -it ${CID} &lt;执行命令&gt;
+</code></pre>
 
-<tr>
-<td align="left">setTimeout</td>
-<td align="left">status</td>
-<td align="left">submit</td>
-<td align="left">taint</td>
-<td align="left">text</td>
-</tr>
+<p>使用正则表达式删除容器</p>
 
-<tr>
-<td align="left">textarea</td>
-<td align="left">top</td>
-<td align="left">unescape</td>
-<td align="left">untaint</td>
-<td align="left">window</td>
-</tr>
-</tbody>
-</table>
+<pre><code class="language-docker">docker ps -a | grep wildfly | awk '{print $1}' | xargs docker rm -f
+</code></pre>
 
-<h1 id="html-事件句柄">HTML 事件句柄</h1>
+<p>删除所有退出的容器</p>
 
-<p>除此之外，您还应该避免使用 HTML 事件句柄的名称作为 Javascript 的变量及函数名。</p>
+<pre><code class="language-docker">docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
+</code></pre>
 
-<table>
-<thead>
-<tr>
-<th align="left">保留关键字</th>
-<th align="left">－</th>
-<th align="left">－</th>
-<th align="left">－</th>
-</tr>
-</thead>
+<p>删除所有的容器</p>
 
-<tbody>
-<tr>
-<td align="left">onblur</td>
-<td align="left">onclick</td>
-<td align="left">onerror</td>
-<td align="left">onfocus</td>
-</tr>
+<pre><code class="language-docker">docker rm $(docker ps -aq)
+</code></pre>
 
-<tr>
-<td align="left">onkeydown</td>
-<td align="left">onkeypress</td>
-<td align="left">onkeyup</td>
-<td align="left">onmouseover</td>
-</tr>
+<p>显示指定容器的IP</p>
 
-<tr>
-<td align="left">onload</td>
-<td align="left">onmouseup</td>
-<td align="left">onmousedown</td>
-<td align="left">onsubmit</td>
-</tr>
-</tbody>
-</table>
+<pre><code class="language-docker">docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CID}
+</code></pre>
+
+<p>通过正则表达式查找容器的镜像ID</p>
+
+<pre><code>docker ps | grep wildfly | awk '{print $1}'
+</code></pre>
+
+<h2 id="用户和组">用户和组</h2>
+
+<p>登录</p>
+
+<pre><code class="language-docker">docker login
+</code></pre>
 
                         </div>
 
@@ -481,13 +250,15 @@
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/post/css/intro-box/">CSS入门笔记 － 认识盒子模型</a></li>
+        <li><a href="/post/golang/tips/coding.in.go/">如何写好 golang 代码的一些 tips</a></li>
         
-        <li><a href="/post/css/intro-1/">CSS入门笔记 － 初识CSS</a></li>
+        <li><a href="/post/life/2018.summary/">程序员 2018 年度总结</a></li>
         
-        <li><a href="/post/html/intro/">HTML 入门笔记 － 初识HTML</a></li>
+        <li><a href="/post/golang/upgrade/database.sql.driver.stmt/">database/sql: Stmt的使用以及坑</a></li>
         
-        <li><a href="/archives/">归档</a></li>
+        <li><a href="/post/golang/basic/go.mod/">Go Modules 简单介绍</a></li>
+        
+        <li><a href="/post/golang/package/reflect/">初步了解 golang reflect pkg</a></li>
         
     </ul>
 </div>
@@ -497,9 +268,9 @@
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="https://zhaolion.com/tags/Javascript">Javascript</a></li>
+                                <li><a href="https://zhaolion.com/tags/Docker">Docker</a></li>
                                 
-                                <li><a href="https://zhaolion.com/tags/basic">basic</a></li>
+                                <li><a href="https://zhaolion.com/tags/tips">tips</a></li>
                                 
                             </ul>
                             
