@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhaolion.com/post/git/basic/</loc>
+    <lastmod>2019-01-16T23:43:52+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/docker/basic.cmd/</loc>
     <lastmod>2019-01-15T23:28:27+08:00</lastmod>
   </url>
@@ -133,6 +138,18 @@
   </url>
   
   <url>
+    <loc>https://zhaolion.com/tags/Git/</loc>
+    <lastmod>2019-01-16T23:43:52+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/categories/Git/</loc>
+    <lastmod>2019-01-16T23:43:52+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/tags/Golang/</loc>
     <lastmod>2019-01-14T00:37:49+08:00</lastmod>
     <priority>0</priority>
@@ -194,7 +211,7 @@
   
   <url>
     <loc>https://zhaolion.com/post/</loc>
-    <lastmod>2019-01-15T23:28:27+08:00</lastmod>
+    <lastmod>2019-01-16T23:43:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -266,13 +283,13 @@
   
   <url>
     <loc>https://zhaolion.com/tags/tips/</loc>
-    <lastmod>2019-01-15T23:28:27+08:00</lastmod>
+    <lastmod>2019-01-16T23:43:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-01-15T23:28:27+08:00</lastmod>
+    <lastmod>2019-01-16T23:43:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -66,6 +66,42 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/regexp/basic/" title="正则表达式基本使用介绍" >正则表达式基本使用介绍</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2017年1月13日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Regexp">Regexp</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
+字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符 &gt;.at，可以匹配&rdquo;cat&rdquo;,&ldquo;sat&rdquo;,&ldquo;mat&rdquo;等，一般这种通配符用于匹配操作系统中的文件名
+ 限定范围 &gt; 1. 如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 &gt;2. 可以列出一个集合，[aeiou]，来匹配所有元音字母 &gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 &gt;4. 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符
+  重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和+，这两个符号放在表示式后面 - *表示这个模式可以重复0次或多次 - +表示这个模式可以重复1次或更多次
+ c+at，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，但是无法匹配&rdquo;at&rdquo; c*at，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，也可以匹配&rdquo;at&rdquo;
+ 子表达式 通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。
+ (very )*large，可以匹配：&rdquo;large&rdquo;,&ldquo;very large&rdquo;,&ldquo;very very large&rdquo;
+ 子表达式计数 可以在花括号{}中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围
+ (very){1, 2}，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo; (very){3}，可以匹配&rdquo;veryveryvery&rdquo; (very)(1,)，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;,&ldquo;veryveryvery&rdquo;&hellip;
+ 定位到字符串的开始或末尾 脱字符号^用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处 字符$，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾
+ ^bob，用于在字符串开始处匹配bob com$,用于在字符串末尾处匹配com ^[a-z]$，这个将只能匹配a-z之间的字符组成的字符串
+ 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配&rdquo;com&rdquo;,&ldquo;net&rdquo;,&ldquo;edu&rdquo;中任意一个
+匹配特殊字符 如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠\\
+特殊字符主要有： - \: 转义字符 - ^: 在字符串开始匹配 - $: 在字符串末尾匹配 - .……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/regexp/basic/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/mysql/basic/" title="MySQL的基础使用相关知识" >MySQL的基础使用相关知识</a>
                                 </h1>
                             </header>
@@ -367,49 +403,6 @@ p { color:red; text-align:center; }  CSS 注释
                             <p class="readmore"><a href="https://zhaolion.com/post/css/intro-1/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/html/intro/" title="HTML 入门笔记 － 初识HTML" >HTML 入门笔记 － 初识HTML</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年9月10日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/HTML">HTML</a></span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                本人在慕课网学习HTML+CSS基础课程，记录一些文字，方便自己回忆，也希望对大家有所帮助
-基础框架 &lt;!DOCTYPE HTML&gt; &lt;html&gt; &lt;head&gt; &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt; &lt;title&gt;标题标签&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;h1&gt;了不起的盖茨比&lt;/h1&gt; &lt;p&gt;《了不起的盖茨比》为那个奢靡年代的缩影。盖茨比怀揣着对&quot;美国梦&quot;的期翼，投身到那个年代的灯红酒绿之中，却在名利场中看尽世态炎凉，以及浮华背后一切终将逝去的空虚怅惘。1925年《了不起的盖茨比》问世。 &lt;/p&gt; &lt;/body&gt; &lt;/html&gt;  了解HTML的代码注释 什么是代码注释？代码注释的作用是帮助程序员标注代码的用途，过一段时间后再看你所编写的代码，就能很快想起这段代码的用途。代码注释不仅方便程序员自己回忆起以前代码的用途，还可以帮助其他程序员很快的读懂你的程序的功能，方便多人合作开发网页代码。
-语法：
-&lt;!--注释文字 --&gt; 认识标签&lt;head&gt; 文档的头部描述了文档的各种属性和信息，包括文档的标题等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。
-&lt;head&gt; &lt;title&gt;...&lt;/title&gt; &lt;meta&gt; &lt;link&gt; &lt;style&gt;...&lt;/style&gt; &lt;script&gt;...&lt;/script&gt; &lt;/head&gt;   &lt;title&gt;标签
-在&lt;title&gt; 和&lt;title&gt; 标签之间的文字内容是网页的标题信息，它会出现在浏览器的标题栏中。网页的title标签用于告诉用户和搜索引擎这个网页的主要内容是什么，搜索引擎可以通过网页标题，迅速的判断出网页的主题。每个网页的内容都是不同的，每个网页都应该有一个独一无二的title。
-例如：  &lt;head&gt; &lt;title&gt;hello world&lt;/title&gt; &lt;/head&gt;  &lt;title&gt;标签的内容“hello world”会在浏览器中的标题栏上显示出来，如下图所示
-  &lt;body&gt;标签，网页上显示的内容放在这里 在网页上要展示出来的页面内容一定要放在body标签中。如下图是一个新闻文章的网页。 开始学习&lt;p&gt;标签，添加段落 如果想在网页上显示文章，这时就需要&lt;p&gt;标签了，把文章的段落放到&lt;p&gt;标签中。
-语法： &lt;p&gt;段落文本&lt;/p&gt;
-注意一段文字一个&lt;p&gt;标签，如在一篇新闻文章中有3段文字，就要把这3个段落分别放到3个&lt;p&gt;标签中。如下图所示。
-了解&lt;hx(1-6)&gt;标签，为你的网页添加标题 文章的段落用&lt;p&gt;标签，那么文章的标题用什么标签呢？在本节我们将使用&lt;hx&gt;标签来制作文章的标题。
-标题标签一共有6个，h1、h2、h3、h4、h5、h6分别为一级标题、二级标题、三级标题、四级标题、五级标题、六级标题。并且依据重要性递减。&lt;h1&gt;是最高的等级。
-语法：&lt;hx&gt;标题文本&lt;/hx&gt; x:1-6
-注意：因为h1标签在网页中比较重要，所以一般h1标签被用在网站名称上。腾讯网站就是这样做的。如：&lt;h1&gt;腾讯网&lt;/h1&gt;
-h1-h6标签的默认样式：
-标签代码：
-在浏览器中显示的样式：
-加入强调语气，使用&lt;strong&gt;和&lt;em&gt;标签 有了段落又有了标题，现在如果想在一段话中特别强调某几个文字，这时候就可以用到&lt;em&gt;或&lt;strong&gt;标签
-但两者在强调的语气上有区别:……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/html/intro/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -462,7 +455,11 @@ h1-h6标签的默认样式：
 <ul class="widget-list">
     
     <li>
-        <a href="https://zhaolion.com/post/docker/basic.cmd/" title="常用 Docker 命令">常用 Docker 命令</a>
+        <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令">Git 常用命令</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令">Docker 常用命令</a>
     </li>
     
     <li>
@@ -497,10 +494,6 @@ h1-h6标签的默认样式：
         <a href="https://zhaolion.com/post/golang/tips/coding.in.go/" title="如何写好 golang 代码的一些 tips">如何写好 golang 代码的一些 tips</a>
     </li>
     
-    <li>
-        <a href="https://zhaolion.com/post/regexp/basic/" title="正则表达式基本使用介绍">正则表达式基本使用介绍</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -516,6 +509,10 @@ h1-h6标签的默认样式：
     
     <li>
         <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
     </li>
     
     <li>
@@ -556,6 +553,8 @@ h1-h6标签的默认样式：
     <a href="https://zhaolion.com/tags/CSS/">CSS</a>
     
     <a href="https://zhaolion.com/tags/Docker/">Docker</a>
+    
+    <a href="https://zhaolion.com/tags/Git/">Git</a>
     
     <a href="https://zhaolion.com/tags/Golang/">Golang</a>
     

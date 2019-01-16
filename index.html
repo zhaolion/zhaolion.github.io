@@ -66,7 +66,37 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/docker/basic.cmd/" title="常用 Docker 命令" >常用 Docker 命令</a>
+                                    <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令" >Git 常用命令</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年1月16日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Git">Git</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                基本设置 设置你自己的昵称与 email
+git config --global user.name &quot;zhaolion&quot; git config --global user.email &quot;zhaoliangsyn@gmail.com&quot; git config --global push.default simple  配置你的编缉器
+git config --global core.editor emacs   Git 使用你的系统的缺省编辑器，这通常可能是 vi 或者 vim
+ 配置你的比较工具
+git config --global merge.tool vimdiff   Git 可以使用 kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge, 和 opendiff 作为有效的合并工具。你也可以设置一个客户化的工具
+ 检查你的配置
+git config --list  编辑 Git 配置文件
+git config -e [--global]  获取帮助……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/git/basic/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令" >Docker 常用命令</a>
                                 </h1>
                             </header>
                             <date class="post-meta meta-date">
@@ -330,42 +360,6 @@ func Add(list .……
                             <p class="readmore"><a href="https://zhaolion.com/post/golang/tips/coding.in.go/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/regexp/basic/" title="正则表达式基本使用介绍" >正则表达式基本使用介绍</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2017年1月13日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Regexp">Regexp</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
-字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符 &gt;.at，可以匹配&rdquo;cat&rdquo;,&ldquo;sat&rdquo;,&ldquo;mat&rdquo;等，一般这种通配符用于匹配操作系统中的文件名
- 限定范围 &gt; 1. 如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 &gt;2. 可以列出一个集合，[aeiou]，来匹配所有元音字母 &gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 &gt;4. 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符
-  重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和+，这两个符号放在表示式后面 - *表示这个模式可以重复0次或多次 - +表示这个模式可以重复1次或更多次
- c+at，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，但是无法匹配&rdquo;at&rdquo; c*at，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，也可以匹配&rdquo;at&rdquo;
- 子表达式 通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。
- (very )*large，可以匹配：&rdquo;large&rdquo;,&ldquo;very large&rdquo;,&ldquo;very very large&rdquo;
- 子表达式计数 可以在花括号{}中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围
- (very){1, 2}，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo; (very){3}，可以匹配&rdquo;veryveryvery&rdquo; (very)(1,)，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;,&ldquo;veryveryvery&rdquo;&hellip;
- 定位到字符串的开始或末尾 脱字符号^用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处 字符$，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾
- ^bob，用于在字符串开始处匹配bob com$,用于在字符串末尾处匹配com ^[a-z]$，这个将只能匹配a-z之间的字符组成的字符串
- 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配&rdquo;com&rdquo;,&ldquo;net&rdquo;,&ldquo;edu&rdquo;中任意一个
-匹配特殊字符 如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠\\
-特殊字符主要有： - \: 转义字符 - ^: 在字符串开始匹配 - $: 在字符串末尾匹配 - .……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/regexp/basic/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -414,7 +408,11 @@ func Add(list .……
 <ul class="widget-list">
     
     <li>
-        <a href="https://zhaolion.com/post/docker/basic.cmd/" title="常用 Docker 命令">常用 Docker 命令</a>
+        <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令">Git 常用命令</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令">Docker 常用命令</a>
     </li>
     
     <li>
@@ -449,10 +447,6 @@ func Add(list .……
         <a href="https://zhaolion.com/post/golang/tips/coding.in.go/" title="如何写好 golang 代码的一些 tips">如何写好 golang 代码的一些 tips</a>
     </li>
     
-    <li>
-        <a href="https://zhaolion.com/post/regexp/basic/" title="正则表达式基本使用介绍">正则表达式基本使用介绍</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -468,6 +462,10 @@ func Add(list .……
     
     <li>
         <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
     </li>
     
     <li>
@@ -508,6 +506,8 @@ func Add(list .……
     <a href="https://zhaolion.com/tags/CSS/">CSS</a>
     
     <a href="https://zhaolion.com/tags/Docker/">Docker</a>
+    
+    <a href="https://zhaolion.com/tags/Git/">Git</a>
     
     <a href="https://zhaolion.com/tags/Golang/">Golang</a>
     

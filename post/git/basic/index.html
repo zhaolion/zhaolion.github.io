@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="generator" content="Hugo 0.53" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Git 常用命令 | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="Git 常用命令 - zhaolion&#39;s dropbox">
+    <meta property="og:type" content="article">
+        
+    <meta property="article:published_time" content="2019-01-16T23:43:52&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-01-16T23:43:52&#43;08:00">
+        
+    <meta name="Keywords" content="萌新">
+    <meta name="description" content="Git 常用命令">
+        
+    <meta name="author" content="zhaolion">
+    <meta property="og:url" content="https://zhaolion.com/post/git/basic/">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/normalize.css">
+    
+        <link rel="stylesheet" href="/css/prism.css">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    
+
+
+    
+    
+</head>
+
+<body>
+<header id="header" class="clearfix">
+    <div class="container">
+        <div class="col-group">
+            <div class="site-name ">
+                
+                    <a id="logo" href="https://zhaolion.com">
+                        zhaolion&#39;s dropbox
+                    </a>
+                
+                <p class="description">和大家一起分享我们都不知道的东西</p>
+            </div>
+            <div>
+                <nav id="nav-menu" class="clearfix">
+                    <a class="current" href="https://zhaolion.com">首页</a>
+                    
+                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
+                    
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div id="body">
+    <div class="container">
+        <div class="col-group">
+
+            <div class="col-8" id="main">
+                <div class="res-cons">
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Git 常用命令</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年1月16日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
+                            
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Git">Git</a></span>
+                            
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            
+
+<h2 id="基本设置">基本设置</h2>
+
+<p>设置你自己的昵称与 email</p>
+
+<pre><code class="language-bash">git config --global user.name &quot;zhaolion&quot;
+git config --global user.email &quot;zhaoliangsyn@gmail.com&quot;
+git config --global push.default simple
+</code></pre>
+
+<p>配置你的编缉器</p>
+
+<pre><code class="language-bash">git config --global core.editor emacs
+</code></pre>
+
+<blockquote>
+<p>Git 使用你的系统的缺省编辑器，这通常可能是 vi 或者 vim</p>
+</blockquote>
+
+<p>配置你的比较工具</p>
+
+<pre><code class="language-bash">git config --global merge.tool vimdiff
+</code></pre>
+
+<blockquote>
+<p>Git 可以使用 kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge, 和 opendiff 作为有效的合并工具。你也可以设置一个客户化的工具</p>
+</blockquote>
+
+<p>检查你的配置</p>
+
+<pre><code class="language-bash">git config --list
+</code></pre>
+
+<p>编辑 Git 配置文件</p>
+
+<pre><code class="language-bash">git config -e [--global]
+</code></pre>
+
+<p>获取帮助</p>
+
+<pre><code class="language-bash">git help config
+</code></pre>
+
+<h2 id="仓库相关命令">仓库相关命令</h2>
+
+<p>新建代码库</p>
+
+<pre><code class="language-bash">git init
+</code></pre>
+
+<p>检出仓库</p>
+
+<pre><code class="language-bash">git clone [repo]
+</code></pre>
+
+<p>查看远程仓库</p>
+
+<pre><code class="language-bash">git remote -v
+</code></pre>
+
+<p>添加远程仓库</p>
+
+<pre><code class="language-bash">git remote add [name] [url]
+</code></pre>
+
+<p>删除远程仓库</p>
+
+<pre><code class="language-bash">git remote rm [name]
+</code></pre>
+
+<p>修改远程仓库</p>
+
+<pre><code class="language-bash">git remote set-url --push [name] [newUrl]
+</code></pre>
+
+<p>拉取远程仓库</p>
+
+<pre><code class="language-bash">git pull [remoteName] [localBranchName]
+</code></pre>
+
+<p>推送远程仓库</p>
+
+<pre><code>git push [remoteName] [localBranchName]
+</code></pre>
+
+<p>下载远程仓库的所有变动</p>
+
+<pre><code class="language-bash">git fetch [remote]
+</code></pre>
+
+<p>显示某个远程仓库的信息</p>
+
+<pre><code class="language-bash">git remote show [remote]
+</code></pre>
+
+<p>增加一个新的远程仓库，并命名</p>
+
+<pre><code class="language-bash">git remote add [shortname] [url]
+</code></pre>
+
+<p>取回远程仓库的变化，并与本地分支合并</p>
+
+<pre><code class="language-bash">git pull [remote] [branch]
+</code></pre>
+
+<p>上传本地指定分支到远程仓库</p>
+
+<pre><code class="language-bash">git push [remote] [branch]
+</code></pre>
+
+<p>强行推送当前分支到远程仓库，即使有冲突</p>
+
+<pre><code class="language-bash">git push [remote] --force
+</code></pre>
+
+<p>推送所有分支到远程仓库</p>
+
+<pre><code class="language-bash">git push [remote] --all
+</code></pre>
+
+<h2 id="分支-branch-操作相关命令">分支 (branch) 操作相关命令</h2>
+
+<p>查看本地分支</p>
+
+<pre><code class="language-bash">git branch
+</code></pre>
+
+<p>查看远程分支</p>
+
+<pre><code class="language-bash">git branch -r
+</code></pre>
+
+<p>创建本地分支</p>
+
+<pre><code class="language-bash">git branch [name]
+</code></pre>
+
+<blockquote>
+<p>注意新分支创建后不会自动切换为当前分支</p>
+</blockquote>
+
+<p>切换分支</p>
+
+<pre><code class="language-bash">git checkout [name]
+</code></pre>
+
+<p>创建新分支并立即切换到新分支</p>
+
+<pre><code class="language-bash">git checkout -b [name]
+</code></pre>
+
+<p>新建一个分支，指向指定 commit</p>
+
+<pre><code class="language-bash">git branch [branch] [commit]
+</code></pre>
+
+<p>新建一个分支，与指定的远程分支建立追踪关系</p>
+
+<pre><code class="language-bash">git branch --track [branch] [remote-branch]
+</code></pre>
+
+<p>切换到上一个分支</p>
+
+<pre><code class="language-bash">git checkout -
+</code></pre>
+
+<p>建立追踪关系，在现有分支与指定的远程分支之间</p>
+
+<pre><code class="language-bash">git branch --set-upstream [branch] [remote-branch]
+</code></pre>
+
+<p>选择一个 commit，合并进当前分支</p>
+
+<pre><code class="language-bash">git cherry-pick [commit]
+</code></pre>
+
+<p>删除分支</p>
+
+<pre><code class="language-bash">git branch -d [name]
+</code></pre>
+
+<blockquote>
+<p><code>-d</code> 选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用 <code>-D</code> 选项</p>
+</blockquote>
+
+<p>合并分支</p>
+
+<pre><code class="language-bash">git merge [name]
+</code></pre>
+
+<blockquote>
+<p>将名称为 [name] 的分支与当前分支合并</p>
+</blockquote>
+
+<p>创建远程分支 (本地分支 push 到远程)</p>
+
+<pre><code class="language-bash">git push origin [name]
+</code></pre>
+
+<p>删除远程分支</p>
+
+<pre><code class="language-bash">git push origin --delete [branch-name]
+git branch -dr [remote/branch]
+</code></pre>
+
+<p>创建空的分支：(执行命令之前记得先提交你当前分支的修改，否则会被强制删干净没得后悔)</p>
+
+<pre><code class="language-bash">git symbolic-ref HEAD refs/heads/[name]
+rm .git/index
+git clean -fdx
+</code></pre>
+
+<h2 id="增加-删除文件">增加 / 删除文件</h2>
+
+<p>添加指定文件到暂存区</p>
+
+<pre><code class="language-bash">git add [file1] [file2] ...
+</code></pre>
+
+<p>添加指定目录到暂存区，包括子目录</p>
+
+<pre><code class="language-bash">git add [dir]
+</code></pre>
+
+<p>添加当前目录的所有文件到暂存区</p>
+
+<pre><code class="language-bash">git add .
+</code></pre>
+
+<p>添加每个变化前，都会要求确认</p>
+
+<pre><code class="language-bash">git add -p
+</code></pre>
+
+<p>删除工作区文件，并且将这次删除放入暂存区</p>
+
+<pre><code class="language-bash">git rm [file1] [file2] ...
+</code></pre>
+
+<p>停止追踪指定文件，但该文件会保留在工作区</p>
+
+<pre><code class="language-bash">git rm --cached [file]
+</code></pre>
+
+<p>改名文件，并且将这个改名放入暂存区</p>
+
+<pre><code class="language-bash">git mv [file-original] [file-renamed]
+</code></pre>
+
+<h2 id="代码提交-commit">代码提交 (commit)</h2>
+
+<p>提交暂存区到仓库区</p>
+
+<pre><code class="language-bash">git commit -m [message]
+</code></pre>
+
+<p>提交暂存区的指定文件到仓库区</p>
+
+<pre><code class="language-bash">git commit [file1] [file2] ... -m [message]
+</code></pre>
+
+<p>提交工作区自上次 commit 之后的变化，直接到仓库区</p>
+
+<pre><code class="language-bash">git commit -a
+</code></pre>
+
+<p>提交时显示所有 diff 信息</p>
+
+<pre><code class="language-bash">git commit -v
+</code></pre>
+
+<p>使用一次新的 commit，替代上一次提交</p>
+
+<pre><code>git commit --amend -m [message]
+</code></pre>
+
+<blockquote>
+<p>如果代码没有任何新变化，则用来改写上一次 commit 的提交信息
+如果想直接使用上次提交信息 <code>git commit --amend --no-edit</code></p>
+</blockquote>
+
+<p>重做上一次 commit，并包括指定文件的新变化</p>
+
+<pre><code class="language-bash">git commit --amend [file1] [file2] ...
+</code></pre>
+
+<h2 id="版本-tag-操作相关命令">版本 (tag) 操作相关命令</h2>
+
+<p>查看版本</p>
+
+<pre><code class="language-bash">git tag
+</code></pre>
+
+<p>创建版本</p>
+
+<pre><code class="language-bash">git tag [name]
+</code></pre>
+
+<p>删除版本</p>
+
+<pre><code class="language-bash">git tag -d [name]
+</code></pre>
+
+<p>查看远程版本</p>
+
+<pre><code class="language-bash">git tag -r
+</code></pre>
+
+<p>查看 tag 信息</p>
+
+<pre><code class="language-bash">git show [tag]
+</code></pre>
+
+<p>创建远程版本 (本地版本 push 到远程)</p>
+
+<pre><code class="language-bash">git push origin [name]
+</code></pre>
+
+<p>删除远程版本</p>
+
+<pre><code class="language-bash">git push origin :refs/tags/[name]
+</code></pre>
+
+<p>合并远程仓库的 tag 到本地</p>
+
+<pre><code class="language-bash">git pull origin --tags
+</code></pre>
+
+<p>上传本地 tag 到远程仓库</p>
+
+<pre><code class="language-bash">git push origin --tags
+</code></pre>
+
+<p>创建带注释的 tag</p>
+
+<pre><code class="language-bash">git tag -a [name] -m 'message'
+</code></pre>
+
+<h2 id="子模块-submodule-相关操作命令">子模块 (submodule) 相关操作命令</h2>
+
+<p>添加子模块</p>
+
+<pre><code class="language-bash">git submodule add [url] [path]
+</code></pre>
+
+<p>初始化子模块</p>
+
+<pre><code class="language-bash">git submodule init
+</code></pre>
+
+<blockquote>
+<p>只在首次检出仓库时运行一次就行</p>
+</blockquote>
+
+<p>更新子模块</p>
+
+<pre><code class="language-bash">git submodule update
+</code></pre>
+
+<blockquote>
+<p>每次更新或切换分支后都需要运行一下</p>
+</blockquote>
+
+<p>删除子模块</p>
+
+<pre><code class="language-bash">git rm --cached [path]
+
+编辑 &quot;.gitmodules&quot; 文件，将子模块的相关配置节点删除掉
+
+编辑 &quot;.git/config&quot; 文件，将子模块的相关配置节点删除掉
+
+手动删除子模块残留的目录
+</code></pre>
+
+<h2 id="查看信息">查看信息</h2>
+
+<p>显示有变更的文件</p>
+
+<pre><code class="language-bash">git status
+</code></pre>
+
+<p>显示当前分支的版本历史</p>
+
+<pre><code class="language-bash">git log
+</code></pre>
+
+<p>显示 commit 历史，以及每次 commit 发生变更的文件</p>
+
+<pre><code class="language-bash">git log --stat
+</code></pre>
+
+<p>搜索提交历史，根据关键词</p>
+
+<pre><code class="language-bash">git log -S [keyword]
+</code></pre>
+
+<p>显示某个 commit 之后的所有变动，每个 commit 占据一行</p>
+
+<pre><code class="language-bash">git log [tag] HEAD --pretty=format:%s
+</code></pre>
+
+<p>显示某个 commit 之后的所有变动，其 &ldquo;提交说明&rdquo; 必须符合搜索条件</p>
+
+<pre><code class="language-bash">git log [tag] HEAD --grep feature
+</code></pre>
+
+<p>显示某个文件的版本历史，包括文件改名</p>
+
+<pre><code class="language-bash">git log --follow [file]
+git whatchanged [file]
+</code></pre>
+
+<p>显示指定文件相关的每一次 diff</p>
+
+<pre><code class="language-bash">git log -p [file]
+</code></pre>
+
+<p>显示过去 5 次提交</p>
+
+<pre><code class="language-bash">git log -5 --pretty --oneline
+</code></pre>
+
+<p>显示所有提交过的用户，按提交次数排序</p>
+
+<pre><code class="language-bash">git shortlog -sn
+</code></pre>
+
+<p>显示指定文件是什么人在什么时间修改过</p>
+
+<pre><code class="language-bash">git blame [file]
+</code></pre>
+
+<p>显示暂存区和工作区的差异</p>
+
+<pre><code class="language-bash">git diff
+</code></pre>
+
+<p>显示暂存区和上一个 commit 的差异</p>
+
+<pre><code class="language-bash">git diff --cached [file]
+</code></pre>
+
+<p>显示工作区与当前分支最新 commit 之间的差异</p>
+
+<pre><code class="language-bash">git diff HEAD
+</code></pre>
+
+<p>显示两次提交之间的差异</p>
+
+<pre><code class="language-bash">git diff [first-branch]...[second-branch]
+</code></pre>
+
+<p>显示今天你写了多少行代码</p>
+
+<pre><code class="language-bash">git diff --shortstat &quot;@{0 day ago}&quot;
+</code></pre>
+
+<p>显示某次提交的元数据和内容变化</p>
+
+<pre><code class="language-bash">git show [commit]
+</code></pre>
+
+<p>显示某次提交发生变化的文件</p>
+
+<pre><code class="language-bash">git show --name-only [commit]
+</code></pre>
+
+<p>显示某次提交时，某个文件的内容</p>
+
+<pre><code class="language-bash">git show [commit]:[filename]
+</code></pre>
+
+<p>显示当前分支的最近几次提交</p>
+
+<pre><code class="language-bash">git reflog
+</code></pre>
+
+<h2 id="撤销">撤销</h2>
+
+<p>恢复暂存区的指定文件到工作区</p>
+
+<pre><code class="language-bash">git checkout [file]
+</code></pre>
+
+<p>恢复某个 commit 的指定文件到暂存区和工作区</p>
+
+<pre><code class="language-bash">git checkout [commit] [file]
+</code></pre>
+
+<p>恢复暂存区的所有文件到工作区</p>
+
+<pre><code class="language-bash">git checkout .
+</code></pre>
+
+<p>重置暂存区的指定文件，与上一次 commit 保持一致，但工作区不变</p>
+
+<pre><code class="language-bash">git reset [file]
+</code></pre>
+
+<p>重置暂存区与工作区，与上一次 commit 保持一致</p>
+
+<pre><code class="language-bash">git reset --hard
+</code></pre>
+
+<p>重置当前分支的指针为指定 commit，同时重置暂存区，但工作区不变</p>
+
+<pre><code class="language-bash">git reset [commit]
+</code></pre>
+
+<p>重置当前分支的 HEAD 为指定 commit，同时重置暂存区和工作区，与指定 commit 一致</p>
+
+<pre><code class="language-bash">git reset --hard [commit]
+</code></pre>
+
+<p>重置当前 HEAD 为指定 commit，但保持暂存区和工作区不变</p>
+
+<pre><code class="language-bash">git reset --keep [commit]
+</code></pre>
+
+<p>新建一个 commit，用来撤销指定 commit</p>
+
+<pre><code class="language-bash">git revert [commit]
+</code></pre>
+
+<p>暂时将未提交的变化移除，稍后再移入</p>
+
+<pre><code class="language-bash">git stash
+
+git stash pop
+</code></pre>
+
+                        </div>
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/docker/basic.cmd/">Docker 常用命令</a></li>
+        
+        <li><a href="/post/golang/tips/coding.in.go/">如何写好 golang 代码的一些 tips</a></li>
+        
+        <li><a href="/post/life/2018.summary/">程序员 2018 年度总结</a></li>
+        
+        <li><a href="/post/golang/upgrade/database.sql.driver.stmt/">database/sql: Stmt的使用以及坑</a></li>
+        
+        <li><a href="/post/golang/basic/go.mod/">Go Modules 简单介绍</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://zhaolion.com/tags/Git">Git</a></li>
+                                
+                                <li><a href="https://zhaolion.com/tags/tips">tips</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
+                    
+    
+
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zhaolion/chaldea-comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
+                </div>
+            </div>
+            <div id="secondary">
+    <section class="widget">
+        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
+      
+      <input type="text" name="q" maxlength="20" placeholder="Search">
+      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
+      <button type="submit" class="submit icon-search"></button>
+</form>
+    </section>
+    
+    <section class="widget">
+        <h3 class="widget-title">最近文章</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令">Git 常用命令</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令">Docker 常用命令</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/life/2018.summary/" title="程序员 2018 年度总结">程序员 2018 年度总结</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/" title="database/sql: Stmt的使用以及坑">database/sql: Stmt的使用以及坑</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/basic/go.mod/" title="Go Modules 简单介绍">Go Modules 简单介绍</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/package/reflect/" title="初步了解 golang reflect pkg">初步了解 golang reflect pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/package/sync.pool/" title="sync.Pool 的实现原理和适用场景">sync.Pool 的实现原理和适用场景</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/package/bufio/" title="初步了解 golang bufio pkg">初步了解 golang bufio pkg</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/upgrade/interface/" title="Go Interface 从理解到深入">Go Interface 从理解到深入</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/post/golang/tips/coding.in.go/" title="如何写好 golang 代码的一些 tips">如何写好 golang 代码的一些 tips</a>
+    </li>
+    
+</ul>
+    </section>
+
+    
+
+    <section class="widget">
+        <h3 class="widget-title">分类</h3>
+<ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Golang/">Golang(7)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
+    </li>
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
+    </li>
+    
+</ul>
+    </section>
+
+    <section class="widget">
+        <h3 class="widget-title">标签</h3>
+<div class="tagcloud">
+    
+    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
+    
+    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
+    
+    <a href="https://zhaolion.com/tags/Git/">Git</a>
+    
+    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
+    
+    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
+    
+    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
+    
+    <a href="https://zhaolion.com/tags/Life/">Life</a>
+    
+    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
+    
+    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
+    
+    <a href="https://zhaolion.com/tags/basic/">basic</a>
+    
+    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
+    
+    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
+    
+    <a href="https://zhaolion.com/tags/interface/">interface</a>
+    
+    <a href="https://zhaolion.com/tags/module/">module</a>
+    
+    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
+    
+    <a href="https://zhaolion.com/tags/sync/">sync</a>
+    
+    <a href="https://zhaolion.com/tags/tips/">tips</a>
+    
+</div>
+    </section>
+
+    
+<section class="widget">
+    <h3 class="widget-title">友情链接</h3>
+    <ul class="widget-list">
+        
+        <li>
+            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
+        </li>
+        
+    </ul>
+</section>
+
+
+    <section class="widget">
+        <h3 class="widget-title">其它</h3>
+        <ul class="widget-list">
+            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
+        </ul>
+    </section>
+</div>
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="container">
+        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
+        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
+        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+        
+    </div>
+</footer>
+
+
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+<a id="rocket" href="#top"></a>
+<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-132382167-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+
+
+
+
+</body>
+</html>

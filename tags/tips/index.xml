@@ -6,13 +6,29 @@
     <description>Recent content in tips on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 15 Jan 2019 23:28:27 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 16 Jan 2019 23:43:52 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.com/tags/tips/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>常用 Docker 命令</title>
+      <title>Git 常用命令</title>
+      <link>https://zhaolion.com/post/git/basic/</link>
+      <pubDate>Wed, 16 Jan 2019 23:43:52 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/git/basic/</guid>
+      <description>基本设置 设置你自己的昵称与 email
+git config --global user.name &amp;quot;zhaolion&amp;quot; git config --global user.email &amp;quot;zhaoliangsyn@gmail.com&amp;quot; git config --global push.default simple  配置你的编缉器
+git config --global core.editor emacs   Git 使用你的系统的缺省编辑器，这通常可能是 vi 或者 vim
+ 配置你的比较工具
+git config --global merge.tool vimdiff   Git 可以使用 kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge, 和 opendiff 作为有效的合并工具。你也可以设置一个客户化的工具
+ 检查你的配置
+git config --list  编辑 Git 配置文件
+git config -e [--global]  获取帮助</description>
+    </item>
+    
+    <item>
+      <title>Docker 常用命令</title>
       <link>https://zhaolion.com/post/docker/basic.cmd/</link>
       <pubDate>Tue, 15 Jan 2019 23:28:27 +0800</pubDate>
       

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on zhaolion&#39;s dropbox</title>
+    <link>https://zhaolion.com/categories/Git/</link>
+    <description>Recent content in Git on zhaolion&#39;s dropbox</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 16 Jan 2019 23:43:52 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhaolion.com/categories/Git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Git 常用命令</title>
+      <link>https://zhaolion.com/post/git/basic/</link>
+      <pubDate>Wed, 16 Jan 2019 23:43:52 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/git/basic/</guid>
+      <description>基本设置 设置你自己的昵称与 email
+git config --global user.name &amp;quot;zhaolion&amp;quot; git config --global user.email &amp;quot;zhaoliangsyn@gmail.com&amp;quot; git config --global push.default simple  配置你的编缉器
+git config --global core.editor emacs   Git 使用你的系统的缺省编辑器，这通常可能是 vi 或者 vim
+ 配置你的比较工具
+git config --global merge.tool vimdiff   Git 可以使用 kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge, 和 opendiff 作为有效的合并工具。你也可以设置一个客户化的工具
+ 检查你的配置
+git config --list  编辑 Git 配置文件
+git config -e [--global]  获取帮助</description>
+    </item>
+    
+  </channel>
+</rss>
