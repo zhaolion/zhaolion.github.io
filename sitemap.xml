@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhaolion.com/post/tools/symbol/</loc>
+    <lastmod>2019-01-19T23:06:55+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/git/basic/</loc>
     <lastmod>2019-01-16T23:43:52+08:00</lastmod>
   </url>
@@ -211,7 +216,7 @@
   
   <url>
     <loc>https://zhaolion.com/post/</loc>
-    <lastmod>2019-01-16T23:43:52+08:00</lastmod>
+    <lastmod>2019-01-19T23:06:55+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -230,6 +235,18 @@
   <url>
     <loc>https://zhaolion.com/tags/</loc>
     <lastmod>2016-09-14T22:28:03+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/tags/Tools/</loc>
+    <lastmod>2019-01-19T23:06:55+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/categories/Tools/</loc>
+    <lastmod>2019-01-19T23:06:55+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -283,13 +300,13 @@
   
   <url>
     <loc>https://zhaolion.com/tags/tips/</loc>
-    <lastmod>2019-01-16T23:43:52+08:00</lastmod>
+    <lastmod>2019-01-19T23:06:55+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-01-16T23:43:52+08:00</lastmod>
+    <lastmod>2019-01-19T23:06:55+08:00</lastmod>
     <priority>0</priority>
   </url>
   

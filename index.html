@@ -66,6 +66,29 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/tools/symbol/" title="常见英文符号" >常见英文符号</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年1月19日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Tools">Tools</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                asterisk (*) plus sign (+) minus sign (-) forward slash (/) backslash (\) percent symbol (%) exclamation point symbol (!) underscore (_) equal sign (=) decimal points (.) semicolon (;) increment (++) operators decrement (--) operators ( ) Parenthesis { } Braces [ ] Brackets , Comma ; Semicolon ' Quote @ At +　plus　加号；正号 -　minus　减号；负号 ±　plus or minus　正负号 ×　is multiplied by　乘号 ÷　is divided by　除号 ＝　is equal to　等于号 ≠　is not equal to　不等于号 ≡　is equivalent to　全等于号 ≌　is equal to or approximately equal to　等于或约等于号 ≈　is approximately equal to　约等于号 ＜　is less than　小于号 ＞　is more than　大于号 ≮　is not less than　不小于号 ≯　is not more than　不大于号 ≤　is less than or equal to　小于或等于号 ≥　is more than or equal to　大于或等于号 %　per cent　百分之… ‰　per mill　千分之… ∞　infinity　无限大号 ∝　varies as　与…成比例 √　(square) root　平方根 ∵　since; because　因为 ∴　hence　所以 ∷　equals, as (proportion)　等于，成比例 ∠　angle　角 ⌒　semicircle　半圆 ⊙　circle　圆 ○　circumference　圆周 π　pi 圆周率 △　triangle　三角形 ⊥　perpendicular to　垂直于 ∪　union of　并，合集 ∩　intersection of 交，通集 ∫　the integral of …的积分 ∑　(sigma) summation of　总和 °　degree　度 ′　minute　分 〃　second　秒 ℃　Celsius system　摄氏度 {　open brace, open curly　左花括号 }　close brace, close curly　右花括号 (　open parenthesis, open paren　左圆括号 )　close parenthesis, close paren　右圆括号 () brakets/ parentheses　括号 [　open bracket 左方括号 ]　close bracket 右方括号 [] square brackets　方括号 .……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/tools/symbol/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令" >Git 常用命令</a>
                                 </h1>
                             </header>
@@ -331,35 +354,6 @@ Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定
                             <p class="readmore"><a href="https://zhaolion.com/post/golang/upgrade/interface/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/golang/tips/coding.in.go/" title="如何写好 golang 代码的一些 tips" >如何写好 golang 代码的一些 tips</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2018年7月2日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                如何写好 golang 代码的一些 tips 1. 首先需要知道的概念  不要像其他语言一样写 Go, Go 不是 Java/Python/Ruby/PHP，Go 的程序思维很古典也很超前 保持简洁，避免过度工程化 学会阅读源码 interface 很重要，很多问题都可以用 interface 解决 保持函数精炼，变量名长度合适 (在不丢失意义的情况下，尽量短小) 用更小的单元实现代码功能，然后 ** 组合 ** 慎重使用全局变量 (尤其是跨 package 使用，变量作用域上容易踩坑，可以参考 vs6IeAu5U5n)  2. 函数声明的 tips  函数声明首先是函数名字要具有自解释性，需要能够解释清楚大致提供的功能，而不是模糊的 common/util。 其次具体的功能解释，这个要说到代码注释了，这里就不赘述了。 除了函数声明外，还有函数的形参定义。这里以一个例子来说一下扩展性好的函数的参数应该如何定义 (见 2.1)。  2.1 普通函数 假设我们需要一个简单的 server，我们可以像下面这样定义，addr 表示 server 启动在哪个端口上。
-func NewServer(addr string)  第一期的需求很简单，就上面这些足够满足了。项目上线跑了一段时间发现，由于连接没有设置超时，很多连接一直得不到释放（异常情况），严重影响服务器性能。
-好，那第二期我们加个 timeout。
-func NewServer(addr string, timeout time.Duration)  这个时候尴尬的情况出现了，调用你代码的所有人都需要改动代码。而且这只是一个改动，之后如果要支持 tls，那么又得改动一次。
-2.2 不定参数 解决上面的窘境的一种方法是使用不定参数。
-比如我要实现一个整数加法。
-func Add(list .……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/golang/tips/coding.in.go/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -408,6 +402,10 @@ func Add(list .……
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/tools/symbol/" title="常见英文符号">常见英文符号</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令">Git 常用命令</a>
     </li>
     
@@ -441,10 +439,6 @@ func Add(list .……
     
     <li>
         <a href="https://zhaolion.com/post/golang/upgrade/interface/" title="Go Interface 从理解到深入">Go Interface 从理解到深入</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/coding.in.go/" title="如何写好 golang 代码的一些 tips">如何写好 golang 代码的一些 tips</a>
     </li>
     
 </ul>
@@ -493,6 +487,10 @@ func Add(list .……
     </li>
     
     <li>
+        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
     </li>
     
@@ -520,6 +518,8 @@ func Add(list .……
     <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
     
     <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
+    
+    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
     
     <a href="https://zhaolion.com/tags/basic/">basic</a>
     
