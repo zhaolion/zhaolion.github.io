@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on zhaolion&#39;s dropbox</title>
+    <link>https://zhaolion.com/categories/Linux/</link>
+    <description>Recent content in Linux on zhaolion&#39;s dropbox</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 20 Jan 2019 22:28:19 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhaolion.com/categories/Linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux 常用命令 grep</title>
+      <link>https://zhaolion.com/post/linux/basic_usage/grep/</link>
+      <pubDate>Sun, 20 Jan 2019 22:28:19 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/linux/basic_usage/grep/</guid>
+      <description>在文件中查找字符串(不区分大小写)
+grep -i [word] [file]  在一个文件夹中递归查询包含指定字符串的文件
+grep -r [word] [file / path]  从文件中读取关键词进行搜索
+cat [file] | grep -f [word]  从文件中读取关键词进行搜索 且显示行号
+cat [file] | grep -nf [word]  从多个文件中查找关键词
+grep [word] [file1] [file2]  显示包含 a 或者 b 字符的内容行
+cat [file] |grep -E &amp;quot;a|b&amp;quot;  grep 不显示本身进程
+ps aux | grep [word] | grep -v &amp;quot;grep&amp;quot;  使用 ^ 符号输出所有以某指定模式开头的行
+grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行</description>
+    </item>
+    
+  </channel>
+</rss>
