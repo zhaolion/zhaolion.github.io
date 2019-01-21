@@ -66,6 +66,37 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find" >Linux 常用命令 find</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年1月21日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Linux">Linux</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                查找指定文件名的文件(不区分大小写)
+find -iname [filename]  对找到的文件执行某个命令
+find -iname [filename] -exec md5sum {} \;  查找目录下的所有空文件
+find [dir] -empty  按照文件权限来查找文件
+find [dir] -perm [mode] –print  按照文件的更改时间来查找文件， -n表示文件更改时间距现在n天以内，+n表示文件更改时间距现在n天以前
+find [dir] -mtime -5 –print  查找更改时间比文件file1新但比文件file2旧的文件
+find [dir] -newer file1 ! file2  根据类型查找 -type
+find [dir] -type d –print   b - 块设备文件 d - 目录 c - 字符设备文件 p - 管道文件 l - 符号链接文件 f - 普通文件
+ 忽略某个目录……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/linux/basic_usage/find/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/linux/basic_usage/grep/" title="Linux 常用命令 grep" >Linux 常用命令 grep</a>
                                 </h1>
                             </header>
@@ -329,34 +360,6 @@ Golang 语言实现了反射，反射机制就是在运行时动态的调用对�
                             <p class="readmore"><a href="https://zhaolion.com/post/golang/package/sync.pool/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/golang/package/bufio/" title="初步了解 golang bufio pkg" >初步了解 golang bufio pkg</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2018年10月13日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                bufio package in Golang golang 通过 package bufio 来支持 buffered I/O。
-熟悉一下: Reader, Writer and Scanner…
-bufio.Writer 对 I/O 的频繁操作会极大的影响性能，每次 写 I/O 都是一次 syscall，因此频繁操作会给 CPU 带来极大的负担。对于磁盘来说，批量写操作有着更好的性能。golang 通过 bufio.Writer 来合并写操作，避免频繁的写操作。因此在写密集场景下，应该使用 bufio.Writer，而不是 io.Writer
-bufio.Writer 通过将写内容缓存至 buffer，buffer 满了之后，再进行一次写操作，这样极大的优化性能:
-producer --&gt; buffer --&gt; io.Writer  举个例子，9 次写操作，buffer 是如何工作的:
-producer buffer destination (io.Writer) a -----&gt; a b -----&gt; ab c -----&gt; abc d -----&gt; abcd e -----&gt; e ------&gt; abcd f -----&gt; ef abcd g -----&gt; efg abcd h -----&gt; efgh abcd i -----&gt; i ------&gt; abcdefgh  看份代码来感受一下，如何使用:……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/golang/package/bufio/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -405,6 +408,10 @@ producer buffer destination (io.Writer) a -----&gt; a b -----&gt; ab c -----&gt;
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/linux/basic_usage/grep/" title="Linux 常用命令 grep">Linux 常用命令 grep</a>
     </li>
     
@@ -438,10 +445,6 @@ producer buffer destination (io.Writer) a -----&gt; a b -----&gt; ab c -----&gt;
     
     <li>
         <a href="https://zhaolion.com/post/golang/package/sync.pool/" title="sync.Pool 的实现原理和适用场景">sync.Pool 的实现原理和适用场景</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/package/bufio/" title="初步了解 golang bufio pkg">初步了解 golang bufio pkg</a>
     </li>
     
 </ul>
@@ -482,7 +485,7 @@ producer buffer destination (io.Writer) a -----&gt; a b -----&gt; ab c -----&gt;
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(1)</a>
+        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
     </li>
     
     <li>

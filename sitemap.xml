@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhaolion.com/post/linux/basic_usage/find/</loc>
+    <lastmod>2019-01-21T22:39:31+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/linux/basic_usage/grep/</loc>
     <lastmod>2019-01-20T22:28:19+08:00</lastmod>
   </url>
@@ -209,13 +214,13 @@
   
   <url>
     <loc>https://zhaolion.com/tags/Linux/</loc>
-    <lastmod>2019-01-20T22:28:19+08:00</lastmod>
+    <lastmod>2019-01-21T22:39:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.com/categories/Linux/</loc>
-    <lastmod>2019-01-20T22:28:19+08:00</lastmod>
+    <lastmod>2019-01-21T22:39:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -233,7 +238,7 @@
   
   <url>
     <loc>https://zhaolion.com/post/</loc>
-    <lastmod>2019-01-20T22:28:19+08:00</lastmod>
+    <lastmod>2019-01-21T22:39:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -317,13 +322,13 @@
   
   <url>
     <loc>https://zhaolion.com/tags/tips/</loc>
-    <lastmod>2019-01-20T22:28:19+08:00</lastmod>
+    <lastmod>2019-01-21T22:39:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-01-20T22:28:19+08:00</lastmod>
+    <lastmod>2019-01-21T22:39:31+08:00</lastmod>
     <priority>0</priority>
   </url>
   
