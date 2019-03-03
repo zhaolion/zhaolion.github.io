@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhaolion.com/post/knowledge/company_blog/</loc>
+    <lastmod>2019-03-03T22:27:01+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/linux/basic_usage/find/</loc>
     <lastmod>2019-01-21T22:39:31+08:00</lastmod>
   </url>
@@ -201,6 +206,18 @@
   </url>
   
   <url>
+    <loc>https://zhaolion.com/tags/Knowledge/</loc>
+    <lastmod>2019-03-03T22:27:01+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/categories/Knowledge/</loc>
+    <lastmod>2019-03-03T22:27:01+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/tags/Life/</loc>
     <lastmod>2019-01-14T00:47:38+08:00</lastmod>
     <priority>0</priority>
@@ -238,7 +255,7 @@
   
   <url>
     <loc>https://zhaolion.com/post/</loc>
-    <lastmod>2019-01-21T22:39:31+08:00</lastmod>
+    <lastmod>2019-03-03T22:27:01+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -281,6 +298,12 @@
   <url>
     <loc>https://zhaolion.com/tags/basic/</loc>
     <lastmod>2017-01-13T18:48:34+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/tags/blog/</loc>
+    <lastmod>2019-03-03T22:27:01+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -328,7 +351,7 @@
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-01-21T22:39:31+08:00</lastmod>
+    <lastmod>2019-03-03T22:27:01+08:00</lastmod>
     <priority>0</priority>
   </url>
   

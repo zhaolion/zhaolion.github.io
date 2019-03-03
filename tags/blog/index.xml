@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>blog on zhaolion&#39;s dropbox</title>
+    <link>https://zhaolion.com/tags/blog/</link>
+    <description>Recent content in blog on zhaolion&#39;s dropbox</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 03 Mar 2019 22:27:01 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhaolion.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>知名公司工程博客</title>
+      <link>https://zhaolion.com/post/knowledge/company_blog/</link>
+      <pubDate>Sun, 03 Mar 2019 22:27:01 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/knowledge/company_blog/</guid>
+      <description> Airbnb Engineering Atlassian Developers Autodesk Engineering AWS Blog Bitly Engineering Blog Box Blogs Cloudera Developer Blog Dropbox Tech Blog Engineering at Quora Ebay Tech Blog Evernote Tech Blog Etsy Code as Craft Facebook Engineering Flickr Code Foursquare Engineering Blog GitHub Engineering Blog Google Research Blog Groupon Engineering Blog Heroku Engineering Blog Hubspot Engineering Blog High Scalability Instagram Engineering Intel Software Blog Jane Street Tech Blog LinkedIn Engineering Microsoft Engineering Microsoft Python Engineering Netflix Tech Blog Paypal Developer Blog Pinterest Engineering Blog Quora Engineering Reddit Blog Salesforce Engineering Blog Slack Engineering Blog Spotify Labs Twilio Engineering Blog Twitter Engineering Uber Engineering Blog Yahoo Engineering Blog Yelp Engineering Blog Zynga Engineering Blog  </description>
+    </item>
+    
+  </channel>
+</rss>
