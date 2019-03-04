@@ -66,6 +66,34 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/golang/package/reflect/" title="初步了解 golang reflect pkg" >初步了解 golang reflect pkg</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年1月12日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                初步了解 golang reflect pkg [TOC]
+阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
+Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。
+什么时候应该用 reflect
+ 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp; Kind &amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value: - Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &hellip; - Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &hellip; - Value: 也就是 Go value, 承载变量 / 常量的值
+ type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/golang/package/reflect/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/package/sync.pool/" title="sync.Pool 的实现原理和适用场景" >sync.Pool 的实现原理和适用场景</a>
                                 </h1>
                             </header>
@@ -341,36 +369,6 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
                             <p class="readmore"><a href="https://zhaolion.com/post/js/intro-3/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/js/intro-2/" title="js intro 类型/值/变量" >js intro 类型/值/变量</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2016年10月15日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Javascript">Javascript</a></span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                词法结构  字符集：unicode 区分大小写，关键字、变量、函数名、标示符必须采取大小写一致 注释
-``` // 单行注释 /* ~一段注释~ / // 另一段注释 /  多行注释 多行注释 */ ```  直接量  12 // 数字 1.2 // 小数 &quot;hello world&quot; // 一个字符串 'hi' // 另一种字符串 true // 布尔值 /^javascript$/gi //正则表达式直接量 null // 空 { x:1 ,y:2} // 对象 [ 1,2,3,4,5 ] //数组  标示符、保留字 TBD
- 可选的分号
- 在任何需要分割的地方使用 ; 进行分隔 在任何可以省略分号的地方都将其省略
-   如果不使用分号，由于语句的分隔规则，会导致一些意想不到的情况，建议无论什么时候都使用分号进行分割
-类型、值和变量 js中的数据类型： - 数字 - 字符串 - 布尔值 - null - undefine - 对象……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/js/intro-2/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -423,6 +421,10 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/backend/dsn/" title="DNS 域名系统">DNS 域名系统</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
     </li>
     
@@ -458,10 +460,6 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
         <a href="https://zhaolion.com/post/golang/basic/go.mod/" title="Go Modules 简单介绍">Go Modules 简单介绍</a>
     </li>
     
-    <li>
-        <a href="https://zhaolion.com/post/golang/package/reflect/" title="初步了解 golang reflect pkg">初步了解 golang reflect pkg</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -470,6 +468,10 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
     <section class="widget">
         <h3 class="widget-title">分类</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.com/categories/Backend/">Backend(1)</a>
+    </li>
     
     <li>
         <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
@@ -529,6 +531,8 @@ if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; 
     <section class="widget">
         <h3 class="widget-title">标签</h3>
 <div class="tagcloud">
+    
+    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
     
     <a href="https://zhaolion.com/tags/CSS/">CSS</a>
     
