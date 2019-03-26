@@ -13,10 +13,10 @@
     
     <item>
       <title>DNS 域名系统</title>
-      <link>https://zhaolion.com/post/backend/dsn/</link>
+      <link>https://zhaolion.com/post/backend/dns/</link>
       <pubDate>Mon, 04 Mar 2019 23:55:47 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/backend/dsn/</guid>
+      <guid>https://zhaolion.com/post/backend/dns/</guid>
       <description>DNS （Domain Name System）的作用，就是根据域名查出 IP 地址，是把 www.example.com 等域名转换成 IP 地址。
 域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名） IP 时，路由或 ISP 提供连接 DNS 服务器的信息。较底层的 DNS 服务器缓存映射，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 存活时间 TTL。
 CloudFlare 等平台提供管理 DNS 的功能。某些 DNS 服务通过集中方式来路由流量:
