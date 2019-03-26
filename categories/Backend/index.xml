@@ -12,7 +12,21 @@
     
     
     <item>
-      <title># 从入门到放弃 - Raft</title>
+      <title>DNS 域名系统</title>
+      <link>https://zhaolion.com/post/backend/dns/</link>
+      <pubDate>Mon, 04 Mar 2019 23:55:47 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/backend/dns/</guid>
+      <description>DNS （Domain Name System）的作用，就是根据域名查出 IP 地址，是把 www.example.com 等域名转换成 IP 地址。
+域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名） IP 时，路由或 ISP 提供连接 DNS 服务器的信息。较底层的 DNS 服务器缓存映射，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 存活时间 TTL。
+CloudFlare 等平台提供管理 DNS 的功能。某些 DNS 服务通过集中方式来路由流量:
+ 加权轮询调度  防止流量进入维护中的服务器 在不同大小集群间负载均衡  A/B 测试 基于延迟路由 基于地理位置路由  一些缺陷:
+ 虽说缓存可以减轻 DNS 延迟，但连接 DNS 服务器还是带来了轻微的延迟 虽然它们通常由政府，网络服务提供商和大公司管理，但 DNS 服务管理仍是复杂的 DNS 服务最近遭受 DDoS 攻击，阻止不知道 Twitter IP 地址的用户访问 Twitter  延伸阅读:
+ DNS 架构 DNS wiki 关于 DNS 的文章  查询过程 虽然只需要返回一个 IP 地址，但是 DNS 的查询过程非常复杂，分成多个步骤。</description>
+    </item>
+    
+    <item>
+      <title>从入门到放弃 - Raft</title>
       <link>https://zhaolion.com/post/backend/raft/</link>
       <pubDate>Mon, 04 Mar 2019 23:55:47 +0800</pubDate>
       
@@ -33,20 +47,6 @@ Raft 通过选举一个领导者，然后给予他全部的管理复制日志的
 一个领导人可以宕机，可以和其他服务器失去连接，这时一个新的领导人会被选举出来
  Raft 算法通过领导人的方式，将一致性问题分解成了三个相对独立的子问题:
  领导选举(Leader election)：一个新的领导人需要被选举出来，当现存的领导人宕机的时候 日志复制(Log replication)：领导人必须从客户端接收日志然后复制到集群中的其他节点，并且强制要求其他节点的日志保持和自己相同。 安全性(Safety)：在 Raft 中安全性的关键是状态机安全：如果有任何的服务器节点已经应用了一个确定的日志条目到它的状态机中，那么其他服务器节点不能在同一个日志索引位置应用一个不同的指令。  为了一些可用性问题，额外考虑了:</description>
-    </item>
-    
-    <item>
-      <title>DNS 域名系统</title>
-      <link>https://zhaolion.com/post/backend/dns/</link>
-      <pubDate>Mon, 04 Mar 2019 23:55:47 +0800</pubDate>
-      
-      <guid>https://zhaolion.com/post/backend/dns/</guid>
-      <description>DNS （Domain Name System）的作用，就是根据域名查出 IP 地址，是把 www.example.com 等域名转换成 IP 地址。
-域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名） IP 时，路由或 ISP 提供连接 DNS 服务器的信息。较底层的 DNS 服务器缓存映射，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 存活时间 TTL。
-CloudFlare 等平台提供管理 DNS 的功能。某些 DNS 服务通过集中方式来路由流量:
- 加权轮询调度  防止流量进入维护中的服务器 在不同大小集群间负载均衡  A/B 测试 基于延迟路由 基于地理位置路由  一些缺陷:
- 虽说缓存可以减轻 DNS 延迟，但连接 DNS 服务器还是带来了轻微的延迟 虽然它们通常由政府，网络服务提供商和大公司管理，但 DNS 服务管理仍是复杂的 DNS 服务最近遭受 DDoS 攻击，阻止不知道 Twitter IP 地址的用户访问 Twitter  延伸阅读:
- DNS 架构 DNS wiki 关于 DNS 的文章  查询过程 虽然只需要返回一个 IP 地址，但是 DNS 的查询过程非常复杂，分成多个步骤。</description>
     </item>
     
   </channel>

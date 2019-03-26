@@ -3,12 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://zhaolion.com/post/backend/raft/</loc>
+    <loc>https://zhaolion.com/post/backend/dns/</loc>
     <lastmod>2019-03-04T23:55:47+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhaolion.com/post/backend/dns/</loc>
+    <loc>https://zhaolion.com/post/backend/raft/</loc>
     <lastmod>2019-03-04T23:55:47+08:00</lastmod>
   </url>
   
@@ -288,12 +288,6 @@
   </url>
   
   <url>
-    <loc>https://zhaolion.com/categories/Raft/</loc>
-    <lastmod>2019-03-04T23:55:47+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://zhaolion.com/tags/Regexp/</loc>
     <lastmod>2017-01-13T18:48:34+08:00</lastmod>
     <priority>0</priority>
@@ -385,12 +379,6 @@
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-03-04T23:55:47+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://zhaolion.com/categories/%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E6%94%BE%E5%BC%83/</loc>
     <lastmod>2019-03-04T23:55:47+08:00</lastmod>
     <priority>0</priority>
   </url>
