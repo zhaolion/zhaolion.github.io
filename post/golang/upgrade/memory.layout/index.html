@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>知名公司工程博客 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="知名公司工程博客 - zhaolion&#39;s dropbox">
+    <title>Go 内存排布 | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="Go 内存排布 - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2019-03-03T22:27:01&#43;08:00">
+    <meta property="article:published_time" content="2019-03-29T21:47:27&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2019-03-03T22:27:01&#43;08:00">
+    <meta property="article:modified_time" content="2019-03-29T21:47:27&#43;08:00">
         
     <meta name="Keywords" content="萌新">
-    <meta name="description" content="知名公司工程博客">
+    <meta name="description" content="Go 内存排布">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/knowledge/company_blog/">
+    <meta property="og:url" content="https://zhaolion.com/post/golang/upgrade/memory.layout/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -70,16 +70,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">知名公司工程博客</h1>
+                            <h1 class="post-title">Go 内存排布</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2019年3月3日
+                            2019年3月29日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Knowledge">Knowledge</a></span>
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
                             
                         </div>
                         
@@ -89,49 +89,287 @@
                         </div>
                         
                         <div class="post-content">
-                            <ul>
-<li><a href="http://nerds.airbnb.com/">Airbnb Engineering</a></li>
-<li><a href="https://developer.atlassian.com/blog/">Atlassian Developers</a></li>
-<li><a href="http://cloudengineering.autodesk.com/blog/">Autodesk Engineering</a></li>
-<li><a href="https://aws.amazon.com/blogs/aws/">AWS Blog</a></li>
-<li><a href="http://word.bitly.com/">Bitly Engineering Blog</a></li>
-<li><a href="https://www.box.com/blog/engineering/">Box Blogs</a></li>
-<li><a href="http://blog.cloudera.com/blog/">Cloudera Developer Blog</a></li>
-<li><a href="https://tech.dropbox.com/">Dropbox Tech Blog</a></li>
-<li><a href="http://engineering.quora.com/">Engineering at Quora</a></li>
-<li><a href="http://www.ebaytechblog.com/">Ebay Tech Blog</a></li>
-<li><a href="https://blog.evernote.com/tech/">Evernote Tech Blog</a></li>
-<li><a href="http://codeascraft.com/">Etsy Code as Craft</a></li>
-<li><a href="https://www.facebook.com/Engineering">Facebook Engineering</a></li>
-<li><a href="http://code.flickr.net/">Flickr Code</a></li>
-<li><a href="http://engineering.foursquare.com/">Foursquare Engineering Blog</a></li>
-<li><a href="http://githubengineering.com/">GitHub Engineering Blog</a></li>
-<li><a href="http://googleresearch.blogspot.com/">Google Research Blog</a></li>
-<li><a href="https://engineering.groupon.com/">Groupon Engineering Blog</a></li>
-<li><a href="https://engineering.heroku.com/">Heroku Engineering Blog</a></li>
-<li><a href="http://product.hubspot.com/blog/topic/engineering">Hubspot Engineering Blog</a></li>
-<li><a href="http://highscalability.com/">High Scalability</a></li>
-<li><a href="http://instagram-engineering.tumblr.com/">Instagram Engineering</a></li>
-<li><a href="https://software.intel.com/en-us/blogs/">Intel Software Blog</a></li>
-<li><a href="https://blogs.janestreet.com/category/ocaml/">Jane Street Tech Blog</a></li>
-<li><a href="http://engineering.linkedin.com/blog">LinkedIn Engineering</a></li>
-<li><a href="https://engineering.microsoft.com/">Microsoft Engineering</a></li>
-<li><a href="https://blogs.msdn.microsoft.com/pythonengineering/">Microsoft Python Engineering</a></li>
-<li><a href="http://techblog.netflix.com/">Netflix Tech Blog</a></li>
-<li><a href="https://devblog.paypal.com/category/engineering/">Paypal Developer Blog</a></li>
-<li><a href="http://engineering.pinterest.com/">Pinterest Engineering Blog</a></li>
-<li><a href="https://engineering.quora.com/">Quora Engineering</a></li>
-<li><a href="http://www.redditblog.com/">Reddit Blog</a></li>
-<li><a href="https://developer.salesforce.com/blogs/engineering/">Salesforce Engineering Blog</a></li>
-<li><a href="https://slack.engineering/">Slack Engineering Blog</a></li>
-<li><a href="https://labs.spotify.com/">Spotify Labs</a></li>
-<li><a href="http://www.twilio.com/engineering">Twilio Engineering Blog</a></li>
-<li><a href="https://engineering.twitter.com/">Twitter Engineering</a></li>
-<li><a href="http://eng.uber.com/">Uber Engineering Blog</a></li>
-<li><a href="http://yahooeng.tumblr.com/">Yahoo Engineering Blog</a></li>
-<li><a href="http://engineeringblog.yelp.com/">Yelp Engineering Blog</a></li>
-<li><a href="https://www.zynga.com/blogs/engineering">Zynga Engineering Blog</a></li>
-</ul>
+                            
+
+<h1 id="go-内存布局">Go 内存布局</h1>
+
+<p>了解对象内存布局，有助于深入理解 Go 语言本身，写出更漂亮的代码</p>
+
+<h2 id="基本类型">基本类型</h2>
+
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>长度</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>bool</td>
+<td>1</td>
+<td>false</td>
+<td></td>
+</tr>
+
+<tr>
+<td>byte</td>
+<td>1</td>
+<td>0</td>
+<td>uint8</td>
+</tr>
+
+<tr>
+<td>rune</td>
+<td>4</td>
+<td>0</td>
+<td>Unicode point, int32</td>
+</tr>
+
+<tr>
+<td>int/uint</td>
+<td><sup>4</sup>&frasl;<sub>8</sub></td>
+<td>0</td>
+<td>32位/64位</td>
+</tr>
+
+<tr>
+<td>int8/uint8</td>
+<td>1</td>
+<td>0</td>
+<td>-128~127, 0~255</td>
+</tr>
+
+<tr>
+<td>Int16/uint16</td>
+<td>2</td>
+<td>0</td>
+<td>-32768~32767, 0~65535</td>
+</tr>
+
+<tr>
+<td>Int32/uint32</td>
+<td>4</td>
+<td>0</td>
+<td>-21亿~21亿, 0~42亿</td>
+</tr>
+
+<tr>
+<td>Int64/uint64</td>
+<td>8</td>
+<td>0</td>
+<td></td>
+</tr>
+
+<tr>
+<td>float32</td>
+<td>4</td>
+<td>0.0</td>
+<td></td>
+</tr>
+
+<tr>
+<td>float64</td>
+<td>8</td>
+<td>0.0</td>
+<td></td>
+</tr>
+
+<tr>
+<td>complex64</td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>complex128</td>
+<td>16</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr>
+<td>uintptr</td>
+<td><sup>4</sup>&frasl;<sub>8</sub></td>
+<td></td>
+<td>足以存储指针的 uint32/uint64 整数</td>
+</tr>
+
+<tr>
+<td>array</td>
+<td></td>
+<td></td>
+<td>值类型</td>
+</tr>
+
+<tr>
+<td>struct</td>
+<td></td>
+<td></td>
+<td>值类型</td>
+</tr>
+
+<tr>
+<td>string</td>
+<td></td>
+<td><code>”&quot;</code></td>
+<td>UTF-8 字符串</td>
+</tr>
+
+<tr>
+<td>slice</td>
+<td></td>
+<td>nil</td>
+<td>引用类型</td>
+</tr>
+
+<tr>
+<td>map</td>
+<td></td>
+<td>nil</td>
+<td>引用类型</td>
+</tr>
+
+<tr>
+<td>chnnael</td>
+<td></td>
+<td>nil</td>
+<td>引用类型</td>
+</tr>
+
+<tr>
+<td>interface</td>
+<td></td>
+<td>nil</td>
+<td>接口</td>
+</tr>
+
+<tr>
+<td>function</td>
+<td></td>
+<td>nil</td>
+<td>函数</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="对象内存布局">对象内存布局</h2>
+
+<p>在对基础类型的大小有基本概念后，可以来看下这些类型的内存布局</p>
+
+<pre><code>+--------+
+|   1    |  int
++--------+
++--------+
+|  3.14  |  float32
++--------+
++---+---+---+---+
+| 1 | 2 | 3 | 4 | [4]int
++---+---+---+---+
+</code></pre>
+
+<p>string:</p>
+
+<pre><code>+---------+---------+ 
+| pointer | len = 5 | s = &quot;hello&quot;
++---------+---------+
+    |
+    +---+---+---+---+---+
+    | h | e | l | l | o | 
+    +---+---+---+---+---+
+        |
+        +---------+---------+
+        | pointer | len = 2 | [5]byte sub=s[1:3]
+        +---------+---------+
+</code></pre>
+
+<p>struct:</p>
+
+<pre><code>+---+---+---+---+---+---+---+---+
+| 1 | 2 | 0 | 0 | 3 | 0 | 0 | 0 | struct { a byte; b byte; c int32 } = { 1, 2, 3 } 
++---+---+---+---+---+---+---+---+
+  a   b   c
+
++-----------+-----+
+| pointer a |  b  |  struct{ a *int; b int }
++-----------+-----+
+    |
+    +-----+ 
+    | int | 
+    +-----+
+</code></pre>
+
+<p>slice:</p>
+
+<pre><code>+---------+---------+---------+
+| pointer |  len=8  |  cap=8  | x=[]int{0,1,2,3,4,5,6,7} 
++---------+---------+---------+
+    |
+    +---+---+---+---+---+---+---+---+
+    | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | [8]int 
+    +---+---+---+---+---+---+---+---+
+        |
+        +---------+---------+---------+ 
+        | pointer |  len=2  |  cap=5  | y=x[1:3:6] 
+        +---------+---------+---------+
+</code></pre>
+
+<p>interface:</p>
+
+<pre><code>+---------+---------+
+|  *itab  |  *data  | struct Iface
++---------+---------+
+     |         |
+     +------+  +------+ 
+     | Itab |  | data | 
+     +------+  +------+
+</code></pre>
+
+<p>new:</p>
+
+<pre><code>+---------+
+| pointer |     s = new([3]int)
++---------+
+    |
+    +---+---+---+
+    | 0 | 0 | 0 | [3]int
+    +---+---+---+
+</code></pre>
+
+<p>make:</p>
+
+<pre><code>+---------+---------+---------+
+| pointer |  len=1  |  cap=3  | slice=make([]int,1,3) 
++---------+---------+---------+
+    |
+    +---+---+---+ 
+    | 0 | 0 | 0 | [3]int
+    +---+---+---+
+
++---------+
+| pointer | map = make(map[string]int); 实际返回的是⼀一个指针包装对象。
++---------+
+    |
+    ..................
+    .                .
+    . hashmap.c Hmap . 
+    .                . 
+    ..................
+
++---------+
+| pointer | channel = make(chan int); 实际返回的是⼀一个指针包装对象。 
++---------+ 
+    |
+    ................ 
+    .              . 
+    . chan.c Hchan . 
+    .              .
+    ................
+</code></pre>
 
                         </div>
 
@@ -141,15 +379,15 @@
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/post/linux/basic_usage/find/">Linux 常用命令 find</a></li>
+        <li><a href="/post/golang/upgrade/database.sql.driver.stmt/">database/sql: Stmt的使用以及坑</a></li>
         
-        <li><a href="/post/linux/basic_usage/grep/">Linux 常用命令 grep</a></li>
+        <li><a href="/post/golang/basic/go.mod/">Go Modules 简单介绍</a></li>
         
-        <li><a href="/post/tools/symbol/">常见英文符号</a></li>
+        <li><a href="/post/golang/package/reflect/">初步了解 golang reflect pkg</a></li>
         
-        <li><a href="/post/git/basic/">Git 常用命令</a></li>
+        <li><a href="/post/golang/package/sync.pool/">sync.Pool 的实现原理和适用场景</a></li>
         
-        <li><a href="/post/docker/basic.cmd/">Docker 常用命令</a></li>
+        <li><a href="/post/golang/package/bufio/">初步了解 golang bufio pkg</a></li>
         
     </ul>
 </div>
@@ -159,9 +397,7 @@
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="https://zhaolion.com/tags/Knowledge">Knowledge</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/blog">blog</a></li>
+                                <li><a href="https://zhaolion.com/tags/Golang">Golang</a></li>
                                 
                             </ul>
                             

@@ -6,10 +6,20 @@
     <description>Recent content in Golang on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 14 Jan 2019 00:37:49 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 29 Mar 2019 21:47:27 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.com/tags/Golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Go 内存排布</title>
+      <link>https://zhaolion.com/post/golang/upgrade/memory.layout/</link>
+      <pubDate>Fri, 29 Mar 2019 21:47:27 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/golang/upgrade/memory.layout/</guid>
+      <description>Go 内存布局 了解对象内存布局，有助于深入理解 Go 语言本身，写出更漂亮的代码
+基本类型    类型 长度 默认值 说明     bool 1 false    byte 1 0 uint8   rune 4 0 Unicode point, int32   int/uint 4&amp;frasl;8 0 32位/64位   int8/uint8 1 0 -128~127, 0~255   Int16/uint16 2 0 -32768~32767, 0~65535   Int32/uint32 4 0 -21亿~21亿, 0~42亿   Int64/uint64 8 0    float32 4 0.</description>
+    </item>
     
     <item>
       <title>database/sql: Stmt的使用以及坑</title>
