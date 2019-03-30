@@ -66,6 +66,34 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别" >new 与 make 的差别</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年3月30日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Go语言中new和make是内建的两个函数，主要用来创建分配类型内存
+new(T) 返回的是 T 的指针 这是 new 函数的注释:
+// The new built-in function allocates memory. The first argument is a type, // not a value, and the value returned is a pointer to a newly // allocated zero value of that type. func new(Type) *Type  new(T) 为一个 T 类型新值分配空间并将此空间初始化为 T 的零值，返回的是新值的地址，也就是 T 类型的指针 *T，该指针指向 T 的新分配的零值
+ 对于有哪些零值可以看看 之前的博客 里面有基础类型的零值
+ make make 函数的注释:
+The make built-in function allocates and initializes an object of type slice, map, or chan (only).……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布" >Go 内存排布</a>
                                 </h1>
                             </header>
@@ -325,45 +353,6 @@ docker load &lt; /root/mytomcat7.……
                             <p class="readmore"><a href="https://zhaolion.com/post/docker/basic.cmd/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/life/2018.summary/" title="程序员 2018 年度总结" >程序员 2018 年度总结</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年1月14日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Life">Life</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                这一年里，你一共写了 34 万行代码
-你热衷于使用组合键 ⌘ + C 和 ⌘ + V
-你热爱学习，喜欢和同事一起分享你们两个都不懂的技术知识
-你每天早上都会打开 Github 假装了解最新的技术知识
-2018年，你说的最多的几句话是:
- 这个需求做不了 在我电脑上是好的啊 你重启下电脑试试  4.23 大概是很特别的一天
-这一天里，你用了 548 次复制和粘贴的功能，提交了 549 行代码
-8.27 这一天你睡的很晚
-凌晨 2:33 你才把自己的 Bug 列表清空
-然后在朋友圈里发表了一句: my code is No.1 我的代码就没有 Bug
-那一刻你好像感觉自己也成为了一个大佬
-2018 年的时间里
-你使用了 5 瓶霸王洗发露
-发际线上升了 4 cm
-各种颜色的格子衫挂满了你的衣柜
-2019 年
-May the Bug be with you.……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/life/2018.summary/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -412,6 +401,10 @@ May the Bug be with you.……
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
     </li>
     
@@ -447,10 +440,6 @@ May the Bug be with you.……
         <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令">Docker 常用命令</a>
     </li>
     
-    <li>
-        <a href="https://zhaolion.com/post/life/2018.summary/" title="程序员 2018 年度总结">程序员 2018 年度总结</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -477,7 +466,7 @@ May the Bug be with you.……
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(8)</a>
+        <a href="https://zhaolion.com/categories/Golang/">Golang(9)</a>
     </li>
     
     <li>

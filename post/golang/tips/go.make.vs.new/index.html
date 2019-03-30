@@ -7,22 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>MySQL | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="MySQL - zhaolion&#39;s dropbox">
+    <title>new 与 make 的差别 | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="new 与 make 的差别 - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
+    <meta property="article:published_time" content="2019-03-30T19:02:11&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-03-30T19:02:11&#43;08:00">
         
     <meta name="Keywords" content="萌新">
-    <meta name="description" content="MySQL">
+    <meta name="description" content="new 与 make 的差别">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/tags/MySQL/">
+    <meta property="og:url" content="https://zhaolion.com/post/golang/tips/go.make.vs.new/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
+        <link rel="stylesheet" href="/css/prism.css">
+    
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.com/tags/MySQL/index.xml" title="zhaolion's dropbox" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -31,7 +36,6 @@
     
     
 </head>
-
 
 <body>
 <header id="header" class="clearfix">
@@ -47,7 +51,7 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="https://zhaolion.com">首页</a>
+                    <a class="current" href="https://zhaolion.com">首页</a>
                     
                     <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
                     
@@ -64,50 +68,176 @@
 
             <div class="col-8" id="main">
                 <div class="res-cons">
-                    
-                    <h3 class="archive-title">
-                        包含标签
-                        <span class="keyword">MySQL</span>
-                        的文章
-                    </h3>
-                    
-
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/mysql/basic/">MySQL的基础使用相关知识</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2017年1月13日
-                            </date>
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">new 与 make 的差别</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年3月30日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
                             
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="https://zhaolion.com/categories/MySQL">MySQL</a>
-                                
-                            </div>
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
                             
-                            <div class="post-content">
-                                登录到MySQL mysql -h hostname -P hostport -u username -p
- -h 指定希望连接的主机，可以用来连接远程主机上的MySQL，如果忽略默认登录本机数据库 -P 指定所连接主机开放的MySQL端口，如果忽略此项默认使用3306端口登录 -u 指定连接数据库时使用的用户名称，如果忽略此项默认使用你的本机用户名 -p 告诉服务器会使用密码来连接数据库，如果忽略此项使用无密码登录  使用密码登入时，会出现以下响应
-Enter password:  输入密码后成功登录会得到以下响应
-Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 4 Server version: 5.7.12 MySQL Community Server (GPL) Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved. Oracle is a registered trademark of Oracle Corporation and/or its affiliates.……
-                                <p class="readmore"><a href="https://zhaolion.com/post/mysql/basic/">阅读全文</a></p>
-                            </div>
-                        </article>
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            
+
+<p>Go语言中new和make是内建的两个函数，主要用来创建分配类型内存</p>
+
+<h2 id="new-t-返回的是-t-的指针">new(T) 返回的是 T 的指针</h2>
+
+<p>这是 <code>new</code> 函数的注释:</p>
+
+<pre><code>// The new built-in function allocates memory. The first argument is a type,
+// not a value, and the value returned is a pointer to a newly
+// allocated zero value of that type.
+func new(Type) *Type
+</code></pre>
+
+<p><code>new(T)</code> 为一个 <code>T</code> 类型新值分配空间并将此空间初始化为 <code>T</code> 的<strong>零值</strong>，返回的是新值的地址，也就是 <code>T</code> 类型的指针 <code>*T</code>，该指针指向 <code>T</code> 的新分配的零值</p>
+
+<blockquote>
+<p>对于有哪些零值可以看看 <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/">之前的博客</a> 里面有基础类型的零值</p>
+</blockquote>
+
+<h2 id="make">make</h2>
+
+<p><code>make</code> 函数的注释:</p>
+
+<pre><code>The make built-in function allocates and initializes an object of type slice, map, or chan (only). Like new, the first argument is a type, not a value. Unlike new, make's return type is the same as the type of its argument, not a pointer to it. The specification of the result depends on the type:
+
+Slice: The size specifies the length. The capacity of the slice is
+equal to its length. A second integer argument may be provided to
+specify a different capacity; it must be no smaller than the
+length. For example, make([]int, 0, 10) allocates an underlying array
+of size 10 and returns a slice of length 0 and capacity 10 that is
+backed by this underlying array.
+Map: An empty map is allocated with enough space to hold the
+specified number of elements. The size may be omitted, in which case
+a small starting size is allocated.
+Channel: The channel's buffer is initialized with the specified
+buffer capacity. If zero, or the size is omitted, the channel is
+unbuffered.
+
+func make(t Type, size ...IntegerType) Type
+</code></pre>
+
+<p><code>make</code> 只能用于 <code>slice</code>，<code>map</code>，<code>channel</code> 三种类型，<code>make(T, args)</code> 返回的是初始化之后的 <code>T</code> 类型的值，这个新值并不是 <code>T</code> 类型的零值，也不是指针 <code>*T</code>，是经过初始化之后的 <code>T</code> 的引用</p>
+
+<h2 id="make-vs-new">make vs new</h2>
+
+<p><a href="https://zhaolion.com/post/golang/upgrade/memory.layout/">之前的博客</a>里面有提到 <code>make</code> 和 <code>new</code> 在内存排布上差别，直接贴出来:</p>
+
+<p>new:</p>
+
+<pre><code>+---------+
+| pointer |     s = new([3]int)
++---------+
+    |
+    +---+---+---+
+    | 0 | 0 | 0 | [3]int
+    +---+---+---+
+</code></pre>
+
+<p>make:</p>
+
+<pre><code>+---------+---------+---------+
+| pointer |  len=1  |  cap=3  | slice=make([]int,1,3) 
++---------+---------+---------+
+    |
+    +---+---+---+ 
+    | 0 | 0 | 0 | [3]int
+    +---+---+---+
+
++---------+
+| pointer | map = make(map[string]int); 实际返回的是⼀一个指针包装对象。
++---------+
+    |
+    ..................
+    .                .
+    . hashmap.c Hmap . 
+    .                . 
+    ..................
+
++---------+
+| pointer | channel = make(chan int); 实际返回的是⼀一个指针包装对象。 
++---------+ 
+    |
+    ................ 
+    .              . 
+    . chan.c Hchan . 
+    .              .
+    ................
+</code></pre>
+
+<p>总结:</p>
+
+<ul>
+<li>二者都是内存的分配（堆上），但是 <code>make</code> 只用于 <code>slice</code>、<code>map</code> 以及 <code>channel</code>的初始化（非零值</li>
+<li><code>new</code> 用于类型的内存分配，并且内存置为零</li>
+<li><code>make</code> 返回的还是这三个引用类型本身；而 <code>new</code> 返回的是指向类型的指针</li>
+</ul>
+
+                        </div>
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/golang/tips/coding.in.go/">如何写好 golang 代码的一些 tips</a></li>
+        
+        <li><a href="/post/golang/upgrade/memory.layout/">Go 内存排布</a></li>
+        
+        <li><a href="/post/backend/dns/">DNS 域名系统</a></li>
+        
+        <li><a href="/post/linux/basic_usage/find/">Linux 常用命令 find</a></li>
+        
+        <li><a href="/post/linux/basic_usage/grep/">Linux 常用命令 grep</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://zhaolion.com/tags/Golang">Golang</a></li>
+                                
+                                <li><a href="https://zhaolion.com/tags/tips">tips</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
                     
+    
 
-                    
-
-
-
-
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zhaolion/chaldea-comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
                 </div>
             </div>
-
             <div id="secondary">
     <section class="widget">
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
@@ -316,6 +446,22 @@ Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection i
 </footer>
 
 
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 <a id="rocket" href="#top"></a>
 <script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
@@ -333,7 +479,6 @@ if (!doNotTrack) {
 
 
 <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
 
 
 

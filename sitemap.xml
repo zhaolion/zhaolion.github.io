@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhaolion.com/post/golang/tips/go.make.vs.new/</loc>
+    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/golang/upgrade/memory.layout/</loc>
     <lastmod>2019-03-29T21:47:27+08:00</lastmod>
   </url>
@@ -198,13 +203,13 @@
   
   <url>
     <loc>https://zhaolion.com/categories/Golang/</loc>
-    <lastmod>2019-03-29T21:47:27+08:00</lastmod>
+    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.com/tags/Golang/</loc>
-    <lastmod>2019-03-29T21:47:27+08:00</lastmod>
+    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -282,7 +287,7 @@
   
   <url>
     <loc>https://zhaolion.com/post/</loc>
-    <lastmod>2019-03-29T21:47:27+08:00</lastmod>
+    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -378,13 +383,13 @@
   
   <url>
     <loc>https://zhaolion.com/tags/tips/</loc>
-    <lastmod>2019-03-04T23:55:47+08:00</lastmod>
+    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-03-29T21:47:27+08:00</lastmod>
+    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
     <priority>0</priority>
   </url>
   
