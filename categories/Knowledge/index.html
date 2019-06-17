@@ -76,6 +76,38 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/k8s/kubectl/">Kubectl wiki</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年6月17日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://zhaolion.com/categories/Knowledge">Knowledge</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                基于 kubernetes v1.14.3 版本
+1. basic kubectl 命令行语法:
+$ kubectl [command] [TYPE] [NAME] [flags]
+1) command: 子命令，用于操作 K8s 集群资源对象的命令，例如 create/delete/describe/get/apply
+2) TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示
+ 以下 3 种 TYPE 是等价的: - kubectl get pod pod1 - kubectl get pods pod1 - kubectl get po pod1
+ 3) NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表
+4) flags: kubectl 子命令的可选参数
+获取 kubectl 可操作的资源对象列表: kubectl api-resources
+   NAME SHORTNAMES APIGROUP NAMESPACED KIND     bindings   true Binding   componentstatuses cs  false ComponentStatus   configmaps cm  true ConfigMap   endpoints ep  true Endpoints   events ev  true Event   limitranges limits  true LimitRange   namespaces ns  false Namespace   nodes no  false Node   persistentvolumeclaims pvc  true PersistentVolumeClaim   persistentvolumes pv  false PersistentVolume   pods po  true Pod   podtemplates   true PodTemplate   replicationcontrollers rc  true ReplicationController   resourcequotas quota  true ResourceQuota   secrets   true Secret   serviceaccounts sa  true ServiceAccount   services svc  true Service   mutatingwebhookconfigurations  admissionregistration.……
+                                <p class="readmore"><a href="https://zhaolion.com/post/k8s/kubectl/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/knowledge/company_blog/">知名公司工程博客</a>
                                 </h1>
                             </header>
@@ -120,6 +152,10 @@
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
     </li>
     
@@ -153,10 +189,6 @@
     
     <li>
         <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令">Git 常用命令</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令">Docker 常用命令</a>
     </li>
     
 </ul>
@@ -197,7 +229,7 @@
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(1)</a>
+        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
     </li>
     
     <li>
@@ -268,6 +300,12 @@
     <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
     
     <a href="https://zhaolion.com/tags/interface/">interface</a>
+    
+    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
+    
+    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
+    
+    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
     
     <a href="https://zhaolion.com/tags/module/">module</a>
     

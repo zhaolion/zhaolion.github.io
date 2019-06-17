@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhaolion.com/post/k8s/kubectl/</loc>
+    <lastmod>2019-06-17T23:45:12+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/golang/tips/go.make.vs.new/</loc>
     <lastmod>2019-03-30T19:02:11+08:00</lastmod>
   </url>
@@ -245,7 +250,7 @@
   
   <url>
     <loc>https://zhaolion.com/categories/Knowledge/</loc>
-    <lastmod>2019-03-03T22:27:01+08:00</lastmod>
+    <lastmod>2019-06-17T23:45:12+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -287,7 +292,7 @@
   
   <url>
     <loc>https://zhaolion.com/post/</loc>
-    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
+    <lastmod>2019-06-17T23:45:12+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -364,6 +369,24 @@
   </url>
   
   <url>
+    <loc>https://zhaolion.com/tags/k8s/</loc>
+    <lastmod>2019-06-17T23:45:12+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/tags/kubectl/</loc>
+    <lastmod>2019-06-17T23:45:12+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/tags/kubernetes/</loc>
+    <lastmod>2019-06-17T23:45:12+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/tags/module/</loc>
     <lastmod>2019-01-14T00:24:08+08:00</lastmod>
     <priority>0</priority>
@@ -389,7 +412,7 @@
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
+    <lastmod>2019-06-17T23:45:12+08:00</lastmod>
     <priority>0</priority>
   </url>
   

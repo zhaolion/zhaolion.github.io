@@ -66,6 +66,40 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令" >Docker 常用命令</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年1月15日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Docker">Docker</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                下面是一些比较常用的 Docker 命令
+镜像类基本命令 安装镜像
+docker pull ${IMAGE}  显示已经安装镜像的详细内容
+docker images --no-trunc  构建镜像
+docker build --rm=true .  删除指定镜像
+docker rmi ${IMAGE_ID}  删除未使用的镜像
+docker rmi $(docker images --quiet --filter &amp;quot;dangling=true&amp;quot;)  删除所有没有标签的镜像
+docker rmi $(docker images | grep “^” | awk “{print $3}”)  删除所有的镜像
+docker rmi $(docker images)  构建自己的镜像
+docker build -t &lt;镜像名&gt; &lt;Dockerfile 路径&gt;  导出镜像
+docker save docker.io/tomcat:7.0.77-jre7 &gt;/root/mytomcat7.tar.gz  导入镜像
+docker load &lt; /root/mytomcat7.……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/docker/basic.cmd/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/life/2018.summary/" title="程序员 2018 年度总结" >程序员 2018 年度总结</a>
                                 </h1>
                             </header>
@@ -332,32 +366,6 @@ func Add(list .……
                             <p class="readmore"><a href="https://zhaolion.com/post/regexp/basic/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/mysql/basic/" title="MySQL的基础使用相关知识" >MySQL的基础使用相关知识</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2017年1月13日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/MySQL">MySQL</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                登录到MySQL mysql -h hostname -P hostport -u username -p
- -h 指定希望连接的主机，可以用来连接远程主机上的MySQL，如果忽略默认登录本机数据库 -P 指定所连接主机开放的MySQL端口，如果忽略此项默认使用3306端口登录 -u 指定连接数据库时使用的用户名称，如果忽略此项默认使用你的本机用户名 -p 告诉服务器会使用密码来连接数据库，如果忽略此项使用无密码登录  使用密码登入时，会出现以下响应
-Enter password:  输入密码后成功登录会得到以下响应
-Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 4 Server version: 5.7.12 MySQL Community Server (GPL) Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved. Oracle is a registered trademark of Oracle Corporation and/or its affiliates.……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/mysql/basic/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -380,6 +388,10 @@ Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection i
     
     <li >
         <a href="https://zhaolion.com/page/3/">3</a>
+    </li>
+    
+    <li >
+        <a href="https://zhaolion.com/page/4/">4</a>
     </li>
     
 
@@ -408,6 +420,10 @@ Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection i
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
+    </li>
     
     <li>
         <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
@@ -443,10 +459,6 @@ Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection i
     
     <li>
         <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令">Git 常用命令</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令">Docker 常用命令</a>
     </li>
     
 </ul>
@@ -487,7 +499,7 @@ Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection i
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(1)</a>
+        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
     </li>
     
     <li>
@@ -558,6 +570,12 @@ Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection i
     <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
     
     <a href="https://zhaolion.com/tags/interface/">interface</a>
+    
+    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
+    
+    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
+    
+    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
     
     <a href="https://zhaolion.com/tags/module/">module</a>
     

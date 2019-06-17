@@ -66,6 +66,38 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki" >Kubectl wiki</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年6月17日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Knowledge">Knowledge</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                基于 kubernetes v1.14.3 版本
+1. basic kubectl 命令行语法:
+$ kubectl [command] [TYPE] [NAME] [flags]
+1) command: 子命令，用于操作 K8s 集群资源对象的命令，例如 create/delete/describe/get/apply
+2) TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示
+ 以下 3 种 TYPE 是等价的: - kubectl get pod pod1 - kubectl get pods pod1 - kubectl get po pod1
+ 3) NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表
+4) flags: kubectl 子命令的可选参数
+获取 kubectl 可操作的资源对象列表: kubectl api-resources
+   NAME SHORTNAMES APIGROUP NAMESPACED KIND     bindings   true Binding   componentstatuses cs  false ComponentStatus   configmaps cm  true ConfigMap   endpoints ep  true Endpoints   events ev  true Event   limitranges limits  true LimitRange   namespaces ns  false Namespace   nodes no  false Node   persistentvolumeclaims pvc  true PersistentVolumeClaim   persistentvolumes pv  false PersistentVolume   pods po  true Pod   podtemplates   true PodTemplate   replicationcontrollers rc  true ReplicationController   resourcequotas quota  true ResourceQuota   secrets   true Secret   serviceaccounts sa  true ServiceAccount   services svc  true Service   mutatingwebhookconfigurations  admissionregistration.……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/k8s/kubectl/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别" >new 与 make 的差别</a>
                                 </h1>
                             </header>
@@ -319,40 +351,6 @@ git config -e [--global]  获取帮助……
                             <p class="readmore"><a href="https://zhaolion.com/post/git/basic/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令" >Docker 常用命令</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年1月15日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Docker">Docker</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                下面是一些比较常用的 Docker 命令
-镜像类基本命令 安装镜像
-docker pull ${IMAGE}  显示已经安装镜像的详细内容
-docker images --no-trunc  构建镜像
-docker build --rm=true .  删除指定镜像
-docker rmi ${IMAGE_ID}  删除未使用的镜像
-docker rmi $(docker images --quiet --filter &amp;quot;dangling=true&amp;quot;)  删除所有没有标签的镜像
-docker rmi $(docker images | grep “^” | awk “{print $3}”)  删除所有的镜像
-docker rmi $(docker images)  构建自己的镜像
-docker build -t &lt;镜像名&gt; &lt;Dockerfile 路径&gt;  导出镜像
-docker save docker.io/tomcat:7.0.77-jre7 &gt;/root/mytomcat7.tar.gz  导入镜像
-docker load &lt; /root/mytomcat7.……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/docker/basic.cmd/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -371,6 +369,10 @@ docker load &lt; /root/mytomcat7.……
     
     <li >
         <a href="https://zhaolion.com/page/3/">3</a>
+    </li>
+    
+    <li >
+        <a href="https://zhaolion.com/page/4/">4</a>
     </li>
     
 
@@ -399,6 +401,10 @@ docker load &lt; /root/mytomcat7.……
     <section class="widget">
         <h3 class="widget-title">最近文章</h3>
 <ul class="widget-list">
+    
+    <li>
+        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
+    </li>
     
     <li>
         <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
@@ -434,10 +440,6 @@ docker load &lt; /root/mytomcat7.……
     
     <li>
         <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令">Git 常用命令</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/docker/basic.cmd/" title="Docker 常用命令">Docker 常用命令</a>
     </li>
     
 </ul>
@@ -478,7 +480,7 @@ docker load &lt; /root/mytomcat7.……
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(1)</a>
+        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
     </li>
     
     <li>
@@ -549,6 +551,12 @@ docker load &lt; /root/mytomcat7.……
     <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
     
     <a href="https://zhaolion.com/tags/interface/">interface</a>
+    
+    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
+    
+    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
+    
+    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
     
     <a href="https://zhaolion.com/tags/module/">module</a>
     

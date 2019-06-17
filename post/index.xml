@@ -6,10 +6,28 @@
     <description>Recent content in Posts on zhaolion&#39;s dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 30 Mar 2019 19:02:11 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 17 Jun 2019 23:45:12 +0800</lastBuildDate>
     
 	<atom:link href="https://zhaolion.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubectl wiki</title>
+      <link>https://zhaolion.com/post/k8s/kubectl/</link>
+      <pubDate>Mon, 17 Jun 2019 23:45:12 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/k8s/kubectl/</guid>
+      <description>基于 kubernetes v1.14.3 版本
+1. basic kubectl 命令行语法:
+$ kubectl [command] [TYPE] [NAME] [flags]
+1) command: 子命令，用于操作 K8s 集群资源对象的命令，例如 create/delete/describe/get/apply
+2) TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示
+ 以下 3 种 TYPE 是等价的: - kubectl get pod pod1 - kubectl get pods pod1 - kubectl get po pod1
+ 3) NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表
+4) flags: kubectl 子命令的可选参数
+获取 kubectl 可操作的资源对象列表: kubectl api-resources
+   NAME SHORTNAMES APIGROUP NAMESPACED KIND     bindings   true Binding   componentstatuses cs  false ComponentStatus   configmaps cm  true ConfigMap   endpoints ep  true Endpoints   events ev  true Event   limitranges limits  true LimitRange   namespaces ns  false Namespace   nodes no  false Node   persistentvolumeclaims pvc  true PersistentVolumeClaim   persistentvolumes pv  false PersistentVolume   pods po  true Pod   podtemplates   true PodTemplate   replicationcontrollers rc  true ReplicationController   resourcequotas quota  true ResourceQuota   secrets   true Secret   serviceaccounts sa  true ServiceAccount   services svc  true Service   mutatingwebhookconfigurations  admissionregistration.</description>
+    </item>
     
     <item>
       <title>new 与 make 的差别</title>
