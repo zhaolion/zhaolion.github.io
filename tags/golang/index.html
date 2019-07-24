@@ -76,6 +76,36 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/">初步了解使用 go AST 知识</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年7月24日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://zhaolion.com/categories/Golang">Golang</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。
+第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(
+sed -n 's/^type \([A-Z][^[:space:]]*\) interface .*/\1/p' &quot;interfaces.go&quot;  第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
+下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:
+ go/ast - goc AST wiki  AST 是什么？ AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。
+当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。
+了解 Go 对应的语法规则，就能对 Go 代码进行语法分析，当然完成最上面的需求就很简单了
+Go 的 AST 是什么？ 一般来说，需要词法分析，然后进行语法分析。Go 的 AST library 能够将 Go 文件 或者 包含 Go 文件目录 作为输入，使用 Scaner 分析生成 token，然后将 token 送进 Parser 变成语法树……
+                                <p class="readmore"><a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/">new 与 make 的差别</a>
                                 </h1>
                             </header>
@@ -343,6 +373,10 @@ func Add(list .……
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
     </li>
     
@@ -378,10 +412,6 @@ func Add(list .……
         <a href="https://zhaolion.com/post/tools/symbol/" title="常见英文符号">常见英文符号</a>
     </li>
     
-    <li>
-        <a href="https://zhaolion.com/post/git/basic/" title="Git 常用命令">Git 常用命令</a>
-    </li>
-    
 </ul>
     </section>
 
@@ -408,7 +438,7 @@ func Add(list .……
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(9)</a>
+        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
     </li>
     
     <li>
@@ -481,6 +511,8 @@ func Add(list .……
     <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
     
     <a href="https://zhaolion.com/tags/Tools/">Tools</a>
+    
+    <a href="https://zhaolion.com/tags/ast/">ast</a>
     
     <a href="https://zhaolion.com/tags/basic/">basic</a>
     

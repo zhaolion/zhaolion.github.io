@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhaolion.com/post/golang/upgrade/go.ast.usage/</loc>
+    <lastmod>2019-07-24T23:18:33+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhaolion.com/post/k8s/kubectl/</loc>
     <lastmod>2019-06-17T23:45:12+08:00</lastmod>
   </url>
@@ -208,13 +213,13 @@
   
   <url>
     <loc>https://zhaolion.com/tags/Golang/</loc>
-    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
+    <lastmod>2019-07-24T23:18:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://zhaolion.com/categories/Golang/</loc>
-    <lastmod>2019-03-30T19:02:11+08:00</lastmod>
+    <lastmod>2019-07-24T23:18:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -292,7 +297,7 @@
   
   <url>
     <loc>https://zhaolion.com/post/</loc>
-    <lastmod>2019-06-17T23:45:12+08:00</lastmod>
+    <lastmod>2019-07-24T23:18:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -335,6 +340,12 @@
   <url>
     <loc>https://zhaolion.com/categories/Web/</loc>
     <lastmod>2016-10-18T22:33:39+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://zhaolion.com/tags/ast/</loc>
+    <lastmod>2019-07-24T23:18:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -412,7 +423,7 @@
   
   <url>
     <loc>https://zhaolion.com/</loc>
-    <lastmod>2019-06-17T23:45:12+08:00</lastmod>
+    <lastmod>2019-07-24T23:18:33+08:00</lastmod>
     <priority>0</priority>
   </url>
   

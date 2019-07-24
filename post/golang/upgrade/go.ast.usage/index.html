@@ -7,20 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>正则表达式基本使用介绍 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="正则表达式基本使用介绍 - zhaolion&#39;s dropbox">
+    <title>初步了解使用 go AST 知识 | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="初步了解使用 go AST 知识 - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
-    <meta property="article:published_time" content="2017-01-13T18:48:34&#43;08:00">
+    <meta property="article:published_time" content="2019-07-24T23:18:33&#43;08:00">
         
         
-    <meta property="article:modified_time" content="2017-01-13T18:48:34&#43;08:00">
+    <meta property="article:modified_time" content="2019-07-24T23:18:33&#43;08:00">
         
     <meta name="Keywords" content="萌新">
-    <meta name="description" content="正则表达式基本使用介绍">
+    <meta name="description" content="初步了解使用 go AST 知识">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/regexp/basic/">
+    <meta property="og:url" content="https://zhaolion.com/post/golang/upgrade/go.ast.usage/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
@@ -70,16 +70,16 @@
                 <div class="res-cons">
                     <article class="post">
                         <header>
-                            <h1 class="post-title">正则表达式基本使用介绍</h1>
+                            <h1 class="post-title">初步了解使用 go AST 知识</h1>
                         </header>
                         <date class="post-meta meta-date">
-                            2017年1月13日
+                            2019年7月24日
                         </date>
                         
                         <div class="post-meta">
                             <span>|</span>
                             
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Regexp">Regexp</a></span>
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
                             
                         </div>
                         
@@ -91,88 +91,177 @@
                         <div class="post-content">
                             
 
-<p>正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格</p>
+<p>最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。</p>
 
-<h1 id="字符集和类">字符集和类</h1>
+<p>第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(</p>
 
-<ol>
-<li><p>通配符，可以匹配除换行符（<code>\\n</code>）之外的任意一个字符
-&gt;<code>.at</code>，可以匹配&rdquo;cat&rdquo;,&ldquo;sat&rdquo;,&ldquo;mat&rdquo;等，一般这种通配符用于匹配操作系统中的文件名</p></li>
+<pre><code>sed -n 's/^type \([A-Z][^[:space:]]*\) interface .*/\1/p' &quot;interfaces.go&quot;
+</code></pre>
 
-<li><p>限定范围
-&gt; 1. 如果要限定匹配的范围，可以使用<code>[a-z]at</code>形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合
-&gt;2. 可以列出一个集合，<code>[aeiou]</code>，来匹配所有元音字母
-&gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:<code>[a-zA-Z]</code>，这个集合代表任何的大小字母
-&gt;4. 也可以指明不属于某个集合，<code>[^a-z]</code>，用来匹配不在小写字母中的字符</p></li>
-</ol>
+<p>第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 <a href="https://github.com/zhaolion/gengo/tree/master/cmd/gomock">代码</a></p>
 
-<h1 id="重复">重复</h1>
+<p>下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:</p>
 
-<p>如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:<code>*</code>和<code>+</code>，这两个符号放在表示式后面
-- <code>*</code>表示这个模式可以重复0次或多次
-- <code>+</code>表示这个模式可以重复1次或更多次</p>
+<ul>
+<li><a href="https://godoc.org/go/ast">go/ast - goc</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST wiki</a></li>
+</ul>
 
-<blockquote>
-<p><code>c+at</code>，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，但是无法匹配&rdquo;at&rdquo;
-<code>c*at</code>，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，也可以匹配&rdquo;at&rdquo;</p>
-</blockquote>
+<h2 id="ast-是什么">AST 是什么？</h2>
 
-<h1 id="子表达式">子表达式</h1>
+<p>AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。</p>
 
-<p>通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。</p>
+<p>当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。</p>
 
-<blockquote>
-<p><code>(very )*large</code>，可以匹配：&rdquo;large&rdquo;,&ldquo;very large&rdquo;,&ldquo;very very large&rdquo;</p>
-</blockquote>
+<p>了解 Go 对应的语法规则，就能对 Go 代码进行语法分析，当然完成最上面的需求就很简单了</p>
 
-<h1 id="子表达式计数">子表达式计数</h1>
+<h2 id="go-的-ast-是什么">Go 的 AST 是什么？</h2>
 
-<p>可以在花括号<code>{}</code>中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围</p>
+<p>一般来说，需要词法分析，然后进行语法分析。Go 的 AST library 能够将 <code>Go 文件</code> 或者 <code>包含 Go 文件目录</code> 作为输入，使用 Scaner 分析生成 token，然后将 token 送进 Parser 变成语法树</p>
 
-<blockquote>
-<p><code>(very){1, 2}</code>，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;
-<code>(very){3}</code>，可以匹配&rdquo;veryveryvery&rdquo;
-<code>(very)(1,)</code>，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;,&ldquo;veryveryvery&rdquo;&hellip;</p>
-</blockquote>
+<p>在 Go 中，每个 token 都以它所处的位置，类型和原始字面量来表示</p>
 
-<h1 id="定位到字符串的开始或末尾">定位到字符串的开始或末尾</h1>
+<p>看下官网的 demo:</p>
 
-<p>脱字符号<code>^</code>用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处
-字符<code>$</code>，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾</p>
+<p>code:</p>
 
-<blockquote>
-<p><code>^bob</code>，用于在字符串开始处匹配bob
-<code>com$</code>,用于在字符串末尾处匹配com
-<code>^[a-z]$</code>，这个将只能匹配a-z之间的字符组成的字符串</p>
-</blockquote>
+<pre><code>// src is the input for which we want to print the AST.
+src := `
+package main
+func main() {
+	println(&quot;Hello, World!&quot;)
+}
+`
 
-<h1 id="分支">分支</h1>
+// Create the AST by parsing src.
+fset := token.NewFileSet() // positions are relative to fset
+f, err := parser.ParseFile(fset, &quot;&quot;, src, 0)
+if err != nil {
+    panic(err)
+}
 
-<p>可以使用正则表达式中一条竖线，来表示一个选择
-<code>com|edu|net</code>，来匹配&rdquo;com&rdquo;,&ldquo;net&rdquo;,&ldquo;edu&rdquo;中任意一个</p>
+// Print the AST.
+ast.Print(fset, f)
+</code></pre>
 
-<h1 id="匹配特殊字符">匹配特殊字符</h1>
+<p>Output:</p>
 
-<p>如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠<code>\\</code></p>
+<pre><code>     0  *ast.File {
+     1  .  Package: 2:1
+     2  .  Name: *ast.Ident {
+     3  .  .  NamePos: 2:9
+     4  .  .  Name: &quot;main&quot;
+     5  .  }
+     6  .  Decls: []ast.Decl (len = 1) {
+     7  .  .  0: *ast.FuncDecl {
+     8  .  .  .  Name: *ast.Ident {
+     9  .  .  .  .  NamePos: 3:6
+    10  .  .  .  .  Name: &quot;main&quot;
+    11  .  .  .  .  Obj: *ast.Object {
+    12  .  .  .  .  .  Kind: func
+    13  .  .  .  .  .  Name: &quot;main&quot;
+    14  .  .  .  .  .  Decl: *(obj @ 7)
+    15  .  .  .  .  }
+    16  .  .  .  }
+    17  .  .  .  Type: *ast.FuncType {
+    18  .  .  .  .  Func: 3:1
+    19  .  .  .  .  Params: *ast.FieldList {
+    20  .  .  .  .  .  Opening: 3:10
+    21  .  .  .  .  .  Closing: 3:11
+    22  .  .  .  .  }
+    23  .  .  .  }
+    24  .  .  .  Body: *ast.BlockStmt {
+    25  .  .  .  .  Lbrace: 3:13
+    26  .  .  .  .  List: []ast.Stmt (len = 1) {
+    27  .  .  .  .  .  0: *ast.ExprStmt {
+    28  .  .  .  .  .  .  X: *ast.CallExpr {
+    29  .  .  .  .  .  .  .  Fun: *ast.Ident {
+    30  .  .  .  .  .  .  .  .  NamePos: 4:2
+    31  .  .  .  .  .  .  .  .  Name: &quot;println&quot;
+    32  .  .  .  .  .  .  .  }
+    33  .  .  .  .  .  .  .  Lparen: 4:9
+    34  .  .  .  .  .  .  .  Args: []ast.Expr (len = 1) {
+    35  .  .  .  .  .  .  .  .  0: *ast.BasicLit {
+    36  .  .  .  .  .  .  .  .  .  ValuePos: 4:10
+    37  .  .  .  .  .  .  .  .  .  Kind: STRING
+    38  .  .  .  .  .  .  .  .  .  Value: &quot;\&quot;Hello, World!\&quot;&quot;
+    39  .  .  .  .  .  .  .  .  }
+    40  .  .  .  .  .  .  .  }
+    41  .  .  .  .  .  .  .  Ellipsis: -
+    42  .  .  .  .  .  .  .  Rparen: 4:25
+    43  .  .  .  .  .  .  }
+    44  .  .  .  .  .  }
+    45  .  .  .  .  }
+    46  .  .  .  .  Rbrace: 5:1
+    47  .  .  .  }
+    48  .  .  }
+    49  .  }
+    50  .  Scope: *ast.Scope {
+    51  .  .  Objects: map[string]*ast.Object (len = 1) {
+    52  .  .  .  &quot;main&quot;: *(obj @ 11)
+    53  .  .  }
+    54  .  }
+    55  .  Unresolved: []*ast.Ident (len = 1) {
+    56  .  .  0: *(obj @ 29)
+    57  .  }
+    58  }
+</code></pre>
 
-<p>特殊字符主要有：
-- \: 转义字符
-- <code>^</code>: 在字符串开始匹配
-- <code>$</code>: 在字符串末尾匹配
-- <code>.</code>: 匹配除换行符之外的字符（字符串末尾仅代表<code>.</code>）
-- <code>|</code>: 选择分支的开始
-- <code>(</code>: 子模式开始
-- <code>)</code>: 子模式结束
-- <code>*</code>: 重复0次或多次
-- <code>+</code>: 重复1次或多次
-- <code>{</code>: 最小／最大量记号开始
-- <code>}</code>: 最小／最大量记号结束
-- <code>?</code>: 标记一个子模式为可选</p>
+<p>上面结果可以使用 <a href="https://yuroyoro.github.io/goast-viewer/index.html">goast-viewer</a> 自己查看</p>
 
-<blockquote>
-<p>\\，表示匹配反斜杠<br />
-<code>\\$</code>，表示匹配<code>$</code></p>
-</blockquote>
+<p>最后用图来更好的理解:</p>
+
+<p><img src="https://i.imgur.com/C2wPSiL.png" alt="ast.tree.demo" /></p>
+
+<p>总结一下，Go 将所有可以识别的 token 抽象成 Node，通过 interface 方式组织在一起，它们之间的关系如下图示意</p>
+
+<p><img src="https://i.imgur.com/i1a9ojJ.png" alt="golang_ast_relation" /></p>
+
+<h2 id="通过-ast-找出所有的-interface">通过 AST 找出所有的 interface</h2>
+
+<p>大概理解完 AST 组织结构，所以想要找出所有的 interface，可以顺着下面结构找</p>
+
+<p>FileSet -&gt; Package -&gt; Files -&gt; File.Scope.Objects -&gt; obj.Decl -&gt; ast.TypeSpec.Type -&gt; ast.InterfaceType</p>
+
+<p>核心代码</p>
+
+<pre><code class="language-go">func (ff *lookup) find(base, dir string) {
+	fs := token.NewFileSet()
+	pkgs, err := parser.ParseDir(fs, dir, func(info os.FileInfo) bool {
+		return true
+	}, parser.AllErrors)
+	if err != nil {
+		panic(err)
+	}
+
+	interfaces := make([]*ityp, 0, 16)
+	for p, pkg := range pkgs {
+		for fileName, file := range pkg.Files {
+			for _, obj := range file.Scope.Objects {
+				typ, ok := obj.Decl.(*ast.TypeSpec)
+				if !ok {
+					continue
+				}
+
+				_, ok = typ.Type.(*ast.InterfaceType)
+				if !ok {
+					continue
+				}
+
+				if strings.ToLower(string(obj.Name[0])) != string(obj.Name[0]) {
+					interfaces = append(interfaces, &amp;ityp{
+						packageName: p,
+						importPath:  filepath.Join(base, filepath.Dir(fileName)),
+						name:        obj.Name,
+					})
+				}
+			}
+		}
+	}
+
+	ff.append(interfaces)
+}
+</code></pre>
 
                         </div>
 
@@ -182,15 +271,15 @@
     <h2>See Also</h2>
     <ul class="listing">
         
-        <li><a href="/post/mysql/basic/">MySQL的基础使用相关知识</a></li>
+        <li><a href="/post/golang/tips/go.make.vs.new/">new 与 make 的差别</a></li>
         
-        <li><a href="/post/js/intro-5/">js intro 对象</a></li>
+        <li><a href="/post/golang/upgrade/memory.layout/">Go 内存排布</a></li>
         
-        <li><a href="/post/js/intro-4/">js intro 语句</a></li>
+        <li><a href="/post/golang/upgrade/database.sql.driver.stmt/">database/sql: Stmt的使用以及坑</a></li>
         
-        <li><a href="/post/js/intro-3/">js intro 表达式和运算符</a></li>
+        <li><a href="/post/golang/basic/go.mod/">Go Modules 简单介绍</a></li>
         
-        <li><a href="/post/js/intro-2/">js intro 类型/值/变量</a></li>
+        <li><a href="/post/golang/package/reflect/">初步了解 golang reflect pkg</a></li>
         
     </ul>
 </div>
@@ -200,9 +289,9 @@
                             
                             <ul class="clearfix">
                                 
-                                <li><a href="https://zhaolion.com/tags/Regexp">Regexp</a></li>
+                                <li><a href="https://zhaolion.com/tags/Golang">Golang</a></li>
                                 
-                                <li><a href="https://zhaolion.com/tags/basic">basic</a></li>
+                                <li><a href="https://zhaolion.com/tags/ast">ast</a></li>
                                 
                             </ul>
                             
