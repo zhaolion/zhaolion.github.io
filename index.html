@@ -66,6 +66,36 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR" >Best Practice about ROR</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年12月12日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Ruby">Ruby</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                [TOC]
+About ruby 带 block 遍历数组应该使用 each 而不是 for before:
+这里需要遍历数组并且打印
+for elem in [1, 2, 3, 4, 5] puts elem end  Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:
+[1, 2, 3, 4, 5].each do |elem| puts elem end  还可以变得更简单一点:
+[1, 2, 3, 4, 5].each { |elem| puts elem }  收集结果(遍历数组元素的处理结果)使用 map 而不是 each + &lt;&lt; 这里希望收集数组中特定元素的大写形式
+before:
+result = [] ['biology', 'english', 'Math'].each do |major| next if major.……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/ruby/best.practice.on.rails/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识" >初步了解使用 go AST 知识</a>
                                 </h1>
                             </header>
@@ -328,29 +358,6 @@ grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行…�
                             <p class="readmore"><a href="https://zhaolion.com/post/linux/basic_usage/grep/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/tools/symbol/" title="常见英文符号" >常见英文符号</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年1月19日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Tools">Tools</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                asterisk (*) plus sign (+) minus sign (-) forward slash (/) backslash (\) percent symbol (%) exclamation point symbol (!) underscore (_) equal sign (=) decimal points (.) semicolon (;) increment (++) operators decrement (--) operators ( ) Parenthesis { } Braces [ ] Brackets , Comma ; Semicolon ' Quote @ At +　plus　加号；正号 -　minus　减号；负号 ±　plus or minus　正负号 ×　is multiplied by　乘号 ÷　is divided by　除号 ＝　is equal to　等于号 ≠　is not equal to　不等于号 ≡　is equivalent to　全等于号 ≌　is equal to or approximately equal to　等于或约等于号 ≈　is approximately equal to　约等于号 ＜　is less than　小于号 ＞　is more than　大于号 ≮　is not less than　不小于号 ≯　is not more than　不大于号 ≤　is less than or equal to　小于或等于号 ≥　is more than or equal to　大于或等于号 %　per cent　百分之… ‰　per mill　千分之… ∞　infinity　无限大号 ∝　varies as　与…成比例 √　(square) root　平方根 ∵　since; because　因为 ∴　hence　所以 ∷　equals, as (proportion)　等于，成比例 ∠　angle　角 ⌒　semicircle　半圆 ⊙　circle　圆 ○　circumference　圆周 π　pi 圆周率 △　triangle　三角形 ⊥　perpendicular to　垂直于 ∪　union of　并，合集 ∩　intersection of 交，通集 ∫　the integral of …的积分 ∑　(sigma) summation of　总和 °　degree　度 ′　minute　分 〃　second　秒 ℃　Celsius system　摄氏度 {　open brace, open curly　左花括号 }　close brace, close curly　右花括号 (　open parenthesis, open paren　左圆括号 )　close parenthesis, close paren　右圆括号 () brakets/ parentheses　括号 [　open bracket 左方括号 ]　close bracket 右方括号 [] square brackets　方括号 .……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/tools/symbol/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -403,6 +410,10 @@ grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行…�
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
     </li>
     
@@ -436,10 +447,6 @@ grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行…�
     
     <li>
         <a href="https://zhaolion.com/post/linux/basic_usage/grep/" title="Linux 常用命令 grep">Linux 常用命令 grep</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/tools/symbol/" title="常见英文符号">常见英文符号</a>
     </li>
     
 </ul>
@@ -500,6 +507,10 @@ grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行…�
     </li>
     
     <li>
+        <a href="https://zhaolion.com/categories/Ruby/">Ruby(1)</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
     </li>
     
@@ -515,6 +526,8 @@ grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行…�
 <div class="tagcloud">
     
     <a href="https://zhaolion.com/tags/Backend/">Backend</a>
+    
+    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
     
     <a href="https://zhaolion.com/tags/CSS/">CSS</a>
     
@@ -538,7 +551,11 @@ grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行…�
     
     <a href="https://zhaolion.com/tags/Raft/">Raft</a>
     
+    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
+    
     <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
+    
+    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
     
     <a href="https://zhaolion.com/tags/Tools/">Tools</a>
     

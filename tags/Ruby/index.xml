@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruby on zhaolion&#39;s dropbox</title>
+    <link>https://zhaolion.com/tags/Ruby/</link>
+    <description>Recent content in Ruby on zhaolion&#39;s dropbox</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 12 Dec 2019 22:17:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhaolion.com/tags/Ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Best Practice about ROR</title>
+      <link>https://zhaolion.com/post/ruby/best.practice.on.rails/</link>
+      <pubDate>Thu, 12 Dec 2019 22:17:42 +0800</pubDate>
+      
+      <guid>https://zhaolion.com/post/ruby/best.practice.on.rails/</guid>
+      <description>[TOC]
+About ruby 带 block 遍历数组应该使用 each 而不是 for before:
+这里需要遍历数组并且打印
+for elem in [1, 2, 3, 4, 5] puts elem end  Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:
+[1, 2, 3, 4, 5].each do |elem| puts elem end  还可以变得更简单一点:
+[1, 2, 3, 4, 5].each { |elem| puts elem }  收集结果(遍历数组元素的处理结果)使用 map 而不是 each + &amp;lt;&amp;lt; 这里希望收集数组中特定元素的大写形式
+before:
+result = [] [&#39;biology&#39;, &#39;english&#39;, &#39;Math&#39;].each do |major| next if major.</description>
+    </item>
+    
+  </channel>
+</rss>
