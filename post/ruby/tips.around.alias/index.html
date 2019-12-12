@@ -173,6 +173,22 @@ Klass.new.salute
 <li>prepend 将 module 加入到 类 继承链的下方</li>
 </ul>
 
+<p>下方的位置，正好是方法查找时优先查找的位置，利用这一优势，可以覆写当前类的同名方法，同时通过 super 关键字还可以调用到该类中的原始方法，实现同样的目的而不需要 alias method，不会污染作用域方法</p>
+
+<pre><code>module LengthMixin
+    def length
+        &quot;Length of'#{self}'is: #{super}&quot;
+    end
+end
+
+class String
+  prepend LengthMixin
+end
+
+&quot;abc&quot;.length
+#=&gt; &quot;Length of'abc'is: 3&quot;
+</code></pre>
+
 <p>同时想知道怎么样理解和处理 <code>Prepend</code> 和 <code>Alias method chain</code>  可以参考 NewRelic 工程师团队的博客文章 <a href="https://blog.newrelic.com/engineering/ruby-agent-module-prepend-alias-method-chains/">ruby-agent-module-prepend-alias-method-chains</a></p>
 
 <p>对于 Alias method chain 和 prepend 之间使用的坑，NewRelic 工程师团队也给出了建议:</p>
