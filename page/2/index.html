@@ -66,6 +66,37 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/linux/basic_usage/grep/" title="Linux 常用命令 grep" >Linux 常用命令 grep</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年1月20日
+                            </date>
+                            
+                            <div class="post-meta">
+                                <span>|</span>
+                                
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Linux">Linux</a></span>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                在文件中查找字符串(不区分大小写)
+grep -i [word] [file]  在一个文件夹中递归查询包含指定字符串的文件
+grep -r [word] [file / path]  从文件中读取关键词进行搜索
+cat [file] | grep -f [word]  从文件中读取关键词进行搜索 且显示行号
+cat [file] | grep -nf [word]  从多个文件中查找关键词
+grep [word] [file1] [file2]  显示包含 a 或者 b 字符的内容行
+cat [file] |grep -E &quot;a|b&quot;  grep 不显示本身进程
+ps aux | grep [word] | grep -v &quot;grep&quot;  使用 ^ 符号输出所有以某指定模式开头的行
+grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行……
+                            </div>
+                            <p class="readmore"><a href="https://zhaolion.com/post/linux/basic_usage/grep/">阅读全文</a></p>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/tools/symbol/" title="常见英文符号" >常见英文符号</a>
                                 </h1>
                             </header>
@@ -326,34 +357,6 @@ producer buffer destination (io.Writer) a -----&gt; a b -----&gt; ab c -----&gt;
                             <p class="readmore"><a href="https://zhaolion.com/post/golang/package/bufio/">阅读全文</a></p>
                         </article>
                     
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/golang/upgrade/interface/" title="Go Interface 从理解到深入" >Go Interface 从理解到深入</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2018年9月13日
-                            </date>
-                            
-                            <div class="post-meta">
-                                <span>|</span>
-                                
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
-                                
-                            </div>
-                            
-                            <div class="post-content">
-                                Go Interface 从理解到深入 如果说 goroutine 和 channel 是 Go 并发的两大基石，那么接口是 Go 语言编程中数据类型的关键。在 Go 语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是 Go 语言中所有数据结构的核心
-Go 不是一种典型的 OO 语言，它在语法上不支持类和继承的概念
-没有继承是否就无法拥有多态行为了呢？答案是否定的，Go 语言引入了一种新类型—Interface，它在效果上实现了类似于 C++ 的 “多态” 概念，虽然与 C++ 的多态在语法上并非完全对等，但至少在最终实现的效果上，它有多态的影子
-虽然 Go 语言没有类的概念，但它支持的数据类型可以定义对应的 method(s)。本质上说，所谓的 method(s) 其实就是函数，只不过与普通函数相比，这类函数是作用在某个数据类型上的，所以在函数签名中，会有个 receiver(接收器) 来表明当前定义的函数会作用在该 receiver 上
-Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定义其 method（而并非只有 struct 才支持 method），只不过实际项目中，method(s) 多定义在 struct 上而已。 从这一点来看，我们可以把 Go 中的 struct 看作是不支持继承行为的轻量级的 “类”，这一点比较类似 Abstract Class
-从语法上看，Interface 定义了一个或一组 method(s)，这些 method(s) 只有函数签名，没有具体的实现代码（有没有联想起 C++ 中的虚函数？）。若某个数据类型实现了 Interface 中定义的那些被称为 &ldquo;methods&rdquo; 的函数，则称这些数据类型实现（implement）了 interface。这是我们常用的 OO 方式……
-                            </div>
-                            <p class="readmore"><a href="https://zhaolion.com/post/golang/upgrade/interface/">阅读全文</a></p>
-                        </article>
-                    
 
                     
 
@@ -410,6 +413,10 @@ Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
     </li>
     
@@ -443,10 +450,6 @@ Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定
     
     <li>
         <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/grep/" title="Linux 常用命令 grep">Linux 常用命令 grep</a>
     </li>
     
 </ul>
@@ -507,7 +510,7 @@ Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(1)</a>
+        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
     </li>
     
     <li>

@@ -76,6 +76,33 @@
                         <article class="post">
                             <header>
                                 <h1 class="post-title">
+                                    <a href="https://zhaolion.com/post/ruby/tips.around.alias/">Around Alias</a>
+                                </h1>
+                            </header>
+                            <date class="post-meta meta-date">
+                                2019年12月12日
+                            </date>
+                            
+                            <div class="post-meta meta-category">
+                                |
+                                
+                                    <a href="https://zhaolion.com/categories/Ruby">Ruby</a>
+                                
+                            </div>
+                            
+                            <div class="post-content">
+                                Ruby 中的环绕别名 (around Alias) 带来的一系列 Google 先来看一段代码，体验一下什么是环绕别名 (around Alias) :
+class String alias :old_length :length def length &quot;Length of'#{self}'is: #{old_length}&quot; end end &quot;abc&quot;.length #=&gt; &quot;Length of'abc'is: 3&quot;  后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 alias_method_chain 来辅助实现。
+归根结底: 通过环绕别名，既修改了自己的逻辑，又不需要调用者更改自己的代码
+什么是 alias_method_chain 很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: Ruby on Rails: alias_method_chain, what exactly does it do?
+when would you use alias_method_chain and why?……
+                                <p class="readmore"><a href="https://zhaolion.com/post/ruby/tips.around.alias/">阅读全文</a></p>
+                            </div>
+                        </article>
+                    
+                        <article class="post">
+                            <header>
+                                <h1 class="post-title">
                                     <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/">new 与 make 的差别</a>
                                 </h1>
                             </header>
@@ -331,6 +358,10 @@ func Add(list .……
 <ul class="widget-list">
     
     <li>
+        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
+    </li>
+    
+    <li>
         <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
     </li>
     
@@ -364,10 +395,6 @@ func Add(list .……
     
     <li>
         <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/grep/" title="Linux 常用命令 grep">Linux 常用命令 grep</a>
     </li>
     
 </ul>
@@ -428,7 +455,7 @@ func Add(list .……
     </li>
     
     <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(1)</a>
+        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
     </li>
     
     <li>

@@ -7,22 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>module | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="module - zhaolion&#39;s dropbox">
+    <title>Around Alias | zhaolion&#39;s dropbox</title>
+    <meta property="og:title" content="Around Alias - zhaolion&#39;s dropbox">
     <meta property="og:type" content="article">
         
+    <meta property="article:published_time" content="2019-12-12T22:56:34&#43;08:00">
+        
+        
+    <meta property="article:modified_time" content="2019-12-12T22:56:34&#43;08:00">
         
     <meta name="Keywords" content="萌新">
-    <meta name="description" content="module">
+    <meta name="description" content="Around Alias">
         
     <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/tags/module/">
+    <meta property="og:url" content="https://zhaolion.com/post/ruby/tips.around.alias/">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/css/normalize.css">
     
+        <link rel="stylesheet" href="/css/prism.css">
+    
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="alternate" type="application/rss+xml+xml" href="https://zhaolion.com/tags/module/index.xml" title="zhaolion's dropbox" />
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     
@@ -31,7 +36,6 @@
     
     
 </head>
-
 
 <body>
 <header id="header" class="clearfix">
@@ -47,7 +51,7 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="" href="https://zhaolion.com">首页</a>
+                    <a class="current" href="https://zhaolion.com">首页</a>
                     
                     <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
                     
@@ -64,52 +68,174 @@
 
             <div class="col-8" id="main">
                 <div class="res-cons">
-                    
-                    <h3 class="archive-title">
-                        包含标签
-                        <span class="keyword">module</span>
-                        的文章
-                    </h3>
-                    
-
-                    
-                        <article class="post">
-                            <header>
-                                <h1 class="post-title">
-                                    <a href="https://zhaolion.com/post/golang/basic/go.mod/">Go Modules 简单介绍</a>
-                                </h1>
-                            </header>
-                            <date class="post-meta meta-date">
-                                2019年1月14日
-                            </date>
+                    <article class="post">
+                        <header>
+                            <h1 class="post-title">Around Alias</h1>
+                        </header>
+                        <date class="post-meta meta-date">
+                            2019年12月12日
+                        </date>
+                        
+                        <div class="post-meta">
+                            <span>|</span>
                             
-                            <div class="post-meta meta-category">
-                                |
-                                
-                                    <a href="https://zhaolion.com/categories/Golang">Golang</a>
-                                
-                            </div>
+                                <span class="meta-category"><a href="https://zhaolion.com/categories/Ruby">Ruby</a></span>
                             
-                            <div class="post-content">
-                                Go Modules Golang 在 1.11 版本推出了万众期待的依赖管理工具 go Modules
-我厌倦了 Glide 那无穷无尽的 update 状态之后，还是决定自己再一次尝试新的依赖管理工具 (~~ 毕竟是 google 爸爸推出的~~)
-还好尝试的比较晚，已经有许多 bug 得到解决，社区也有许多文章给出了最佳实践，建议先看看 intro-to-go-modules
-1. enable GO111MODULE go modules 默认是没有开启的，需要设置环境变量 GO111MODULE=on, 如果没有设置, 会有一些提示。
-2. help doc 接下来就是查看一下帮助手册 go mod help:
-Go mod provides access to operations on modules. Note that support for modules is built into all the go commands, not just 'go mod'. For example, day-to-day adding, removing, upgrading, and downgrading of dependencies should be done using 'go get'.……
-                                <p class="readmore"><a href="https://zhaolion.com/post/golang/basic/go.mod/">阅读全文</a></p>
-                            </div>
-                        </article>
+                        </div>
+                        
+                        
+                        <div class="post-meta">
+                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
+                        </div>
+                        
+                        <div class="post-content">
+                            
+
+<h2 id="ruby-中的环绕别名-around-alias-带来的一系列-google">Ruby 中的环绕别名 (around Alias) 带来的一系列 Google</h2>
+
+<p>先来看一段代码，体验一下什么是环绕别名 (around Alias) :</p>
+
+<pre><code class="language-ruby">class String
+  alias :old_length :length
+
+  def length
+    &quot;Length of'#{self}'is: #{old_length}&quot;
+  end
+end
+
+&quot;abc&quot;.length
+#=&gt; &quot;Length of'abc'is: 3&quot;
+</code></pre>
+
+<p>后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 <code>alias_method_chain</code> 来辅助实现。</p>
+
+<p>归根结底: 通过环绕别名，既修改了自己的逻辑，又不需要调用者更改自己的代码</p>
+
+<h2 id="什么是-alias-method-chain">什么是 alias_method_chain</h2>
+
+<p>很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: <a href="https://stackoverflow.com/questions/3695839/ruby-on-rails-alias-method-chain-what-exactly-does-it-do">Ruby on Rails: alias_method_chain, what exactly does it do?</a></p>
+
+<p>when would you use alias_method_chain and why?</p>
+
+<blockquote>
+<p>the following is largely based on the discussion of <code>alias_method_chain()</code> in Metaprogramming Ruby by Paolo Perrotta, which is an excellent book that you should get your hands on.)</p>
+</blockquote>
+
+<p>这里指的是 《Ruby 元编程》这本书里面提及的 AR 相关部分代码解析，具体可以查书了。（我没看懂那部分&hellip; T.T）</p>
+
+<p>看段代码吧:</p>
+
+<pre><code>class Klass
+  def salute
+    puts &quot;Aloha!&quot;
+  end
+end
+
+Klass.new.salute # =&gt; Aloha!
+</code></pre>
+
+<p>现在希望给代码加上一些日志扩展方法功能：</p>
+
+<pre><code>class Klass
+  def salute_with_log
+    puts &quot;Calling method...&quot;
+    salute_without_log
+    puts &quot;...Method called&quot;
+  end
+
+  alias_method :salute_without_log, :salute
+  alias_method :salute, :salute_with_log
+end
+
+Klass.new.salute
+# Prints the following:
+# Calling method...
+# Aloha!
+# ...Method called
+</code></pre>
+
+<p>看完代码，其实就是你定义第一个版本 <code>foo()</code>，然后扩展一个 feature 得到 <code>foo()</code> 和  <code>foo_with_feature()</code> 然后再定义一个没有 feature 原始方法 <code>foo_without_feature()</code>，为了避免到处都是 <code>alias</code> 的定义，ActiveSupport 提供了一个 <code>alias_method_chain</code> 来处理。</p>
+
+<p>这样你只需要写: <code>alias_method_chain :foo, :feature</code></p>
+
+<p>你就得到了 3 个方法: <code>foo</code>, <code>foo_with_feature</code>, <code>foo_without_feature</code></p>
+
+<p>但是在 Ruby 2.0 中出来新的 feature <code>prepend</code> 可以替代这种设计模式 or alias_method_chain</p>
+
+<h2 id="ruby-prepend-是干嘛的">Ruby Prepend 是干嘛的</h2>
+
+<p>这个部分可以参考 RubyChina 另外一个大神写的文章 <a href="https://ruby-china.org/topics/28712">理解 Ruby 中的 include 和 prepend</a></p>
+
+<p>从 Ruby 继承链来看就是:</p>
+
+<ul>
+<li>include 将 module 加入到 类 继承链的上方</li>
+<li>prepend 将 module 加入到 类 继承链的下方</li>
+</ul>
+
+<p>同时想知道怎么样理解和处理 <code>Prepend</code> 和 <code>Alias method chain</code>  可以参考 NewRelic 工程师团队的博客文章 <a href="https://blog.newrelic.com/engineering/ruby-agent-module-prepend-alias-method-chains/">ruby-agent-module-prepend-alias-method-chains</a></p>
+
+<p>对于 Alias method chain 和 prepend 之间使用的坑，NewRelic 工程师团队也给出了建议:</p>
+
+<ul>
+<li>only Module#prepend</li>
+<li>only alias_method</li>
+<li>have Module#prepend happen after alias_method</li>
+</ul>
+
+                        </div>
+
+                        
+
+<div class="post-archive">
+    <h2>See Also</h2>
+    <ul class="listing">
+        
+        <li><a href="/post/ruby/best.practice.on.rails/">Best Practice about ROR</a></li>
+        
+        <li><a href="/post/golang/tips/go.make.vs.new/">new 与 make 的差别</a></li>
+        
+        <li><a href="/post/backend/dns/">DNS 域名系统</a></li>
+        
+        <li><a href="/post/linux/basic_usage/find/">Linux 常用命令 find</a></li>
+        
+        <li><a href="/post/linux/basic_usage/grep/">Linux 常用命令 grep</a></li>
+        
+    </ul>
+</div>
+
+
+                        <div class="post-meta meta-tags">
+                            
+                            <ul class="clearfix">
+                                
+                                <li><a href="https://zhaolion.com/tags/Ruby">Ruby</a></li>
+                                
+                                <li><a href="https://zhaolion.com/tags/Rails">Rails</a></li>
+                                
+                                <li><a href="https://zhaolion.com/tags/tips">tips</a></li>
+                                
+                            </ul>
+                            
+                        </div>
+                    </article>
                     
+    
 
-                    
-
-
-
-
+    
+    
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "zhaolion/chaldea-comments"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+    
                 </div>
             </div>
-
             <div id="secondary">
     <section class="widget">
         <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
@@ -336,6 +462,22 @@ Go mod provides access to operations on modules. Note that support for modules i
 </footer>
 
 
+    <script type="text/javascript">
+    
+    (function(){
+        $("pre code").parent().addClass("line-numbers")
+    }())
+
+    window.MathJax = {
+        tex2jax: {
+            inlineMath: [ ['$','$'] ],
+            processEscapes: true
+        }
+    };
+    </script>
+    <script type="text/javascript" src="/js/prism.js" async="true"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
 <a id="rocket" href="#top"></a>
 <script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
 
@@ -353,7 +495,6 @@ if (!doNotTrack) {
 
 
 <script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
 
 
 
