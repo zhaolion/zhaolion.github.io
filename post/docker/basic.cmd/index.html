@@ -1,560 +1,292 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Docker 常用命令 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="Docker 常用命令 - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2019-01-15T23:28:27&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2019-01-15T23:28:27&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="Docker 常用命令">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/docker/basic.cmd/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>Docker 常用命令 - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="下面是一些比较常用的 Docker 命令
+镜像类基本命令 安装镜像
+docker pull ${IMAGE}显示已经安装镜像的详细内容
+docker images --no-trunc构建镜像
+docker build --rm=true .删除指定镜像
+docker rmi ${IMAGE_ID}删除未使用的镜像
+docker rmi $(docker images --quiet --filter &amp;amp;quot;dangling=true&amp;amp;quot;) 删除所有没有标签的镜像
+docker rmi $(docker images | grep “^” | awk “{print $3}”)删除所有的镜像
+docker rmi $(docker images)构建自己的镜像
+docker build -t &amp;lt;镜像名&amp;gt; &amp;lt;Dockerfile 路径&amp;gt;导出镜像
+docker save docker.io/tomcat:7.0.77-jre7 &amp;gt;/root/mytomcat7.tar.gz导入镜像
+docker load &amp;lt; /root/mytomcat7.tar.gz为自定义的镜像打上 tag
+docker tag &amp;lt;image&amp;gt; &amp;lt;username&amp;gt;/&amp;lt;repository&amp;gt;:&amp;lt;tag&amp;gt;将自定义的镜像发布到仓库
+docker push &amp;lt;username&amp;gt;/&amp;lt;repository&amp;gt;:&amp;lt;tag&amp;gt;查看某个镜像详情
+docker inspect &amp;lt;镜像名称&amp;gt;容器类基本命令 查看容器
+docker ps # 正在运行的容器docker ps -a # 所有的容器停止、启动、杀死一个容器"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/docker/basic.cmd/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="下面是一些比较常用的 Docker 命令
+镜像类基本命令 安装镜像
+docker pull ${IMAGE}显示已经安装镜像的详细内容
+docker images --no-trunc构建镜像
+docker build --rm=true .删除指定镜像
+docker rmi ${IMAGE_ID}删除未使用的镜像
+docker rmi $(docker images --quiet --filter &amp;amp;quot;dangling=true&amp;amp;quot;) 删除所有没有标签的镜像
+docker rmi $(docker images | grep “^” | awk “{print $3}”)删除所有的镜像
+docker rmi $(docker images)构建自己的镜像
+docker build -t &amp;lt;镜像名&amp;gt; &amp;lt;Dockerfile 路径&amp;gt;导出镜像
+docker save docker.io/tomcat:7.0.77-jre7 &amp;gt;/root/mytomcat7.tar.gz导入镜像
+docker load &amp;lt; /root/mytomcat7.tar.gz为自定义的镜像打上 tag
+docker tag &amp;lt;image&amp;gt; &amp;lt;username&amp;gt;/&amp;lt;repository&amp;gt;:&amp;lt;tag&amp;gt;将自定义的镜像发布到仓库
+docker push &amp;lt;username&amp;gt;/&amp;lt;repository&amp;gt;:&amp;lt;tag&amp;gt;查看某个镜像详情
+docker inspect &amp;lt;镜像名称&amp;gt;容器类基本命令 查看容器
+docker ps # 正在运行的容器docker ps -a # 所有的容器停止、启动、杀死一个容器" />
+<meta name="twitter:title" content="Docker 常用命令 - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="Docker 常用命令 - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="下面是一些比较常用的 Docker 命令
+镜像类基本命令 安装镜像
+docker pull ${IMAGE}显示已经安装镜像的详细内容
+docker images --no-trunc构建镜像
+docker build --rm=true .删除指定镜像
+docker rmi ${IMAGE_ID}删除未使用的镜像
+docker rmi $(docker images --quiet --filter &amp;amp;quot;dangling=true&amp;amp;quot;) 删除所有没有标签的镜像
+docker rmi $(docker images | grep “^” | awk “{print $3}”)删除所有的镜像
+docker rmi $(docker images)构建自己的镜像
+docker build -t &amp;lt;镜像名&amp;gt; &amp;lt;Dockerfile 路径&amp;gt;导出镜像
+docker save docker.io/tomcat:7.0.77-jre7 &amp;gt;/root/mytomcat7.tar.gz导入镜像
+docker load &amp;lt; /root/mytomcat7.tar.gz为自定义的镜像打上 tag
+docker tag &amp;lt;image&amp;gt; &amp;lt;username&amp;gt;/&amp;lt;repository&amp;gt;:&amp;lt;tag&amp;gt;将自定义的镜像发布到仓库
+docker push &amp;lt;username&amp;gt;/&amp;lt;repository&amp;gt;:&amp;lt;tag&amp;gt;查看某个镜像详情
+docker inspect &amp;lt;镜像名称&amp;gt;容器类基本命令 查看容器
+docker ps # 正在运行的容器docker ps -a # 所有的容器停止、启动、杀死一个容器" property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/docker/basic.cmd/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Docker" />
+<meta property="article:published_time" content="2019-01-15 23:28:27 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "Docker 常用命令",
+    "genre": "Docker",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/docker\/basic.cmd\/",
+    "datePublished": "2019-01-15 23:28:27 \u002b0800 CST",
+    "description": "下面是一些比较常用的 Docker 命令\n镜像类基本命令 安装镜像\ndocker pull ${IMAGE}显示已经安装镜像的详细内容\ndocker images --no-trunc构建镜像\ndocker build --rm=true .删除指定镜像\ndocker rmi ${IMAGE_ID}删除未使用的镜像\ndocker rmi $(docker images --quiet --filter \u0026amp;quot;dangling=true\u0026amp;quot;) 删除所有没有标签的镜像\ndocker rmi $(docker images | grep “^” | awk “{print $3}”)删除所有的镜像\ndocker rmi $(docker images)构建自己的镜像\ndocker build -t \u0026lt;镜像名\u0026gt; \u0026lt;Dockerfile 路径\u0026gt;导出镜像\ndocker save docker.io\/tomcat:7.0.77-jre7 \u0026gt;\/root\/mytomcat7.tar.gz导入镜像\ndocker load \u0026lt; \/root\/mytomcat7.tar.gz为自定义的镜像打上 tag\ndocker tag \u0026lt;image\u0026gt; \u0026lt;username\u0026gt;\/\u0026lt;repository\u0026gt;:\u0026lt;tag\u0026gt;将自定义的镜像发布到仓库\ndocker push \u0026lt;username\u0026gt;\/\u0026lt;repository\u0026gt;:\u0026lt;tag\u0026gt;查看某个镜像详情\ndocker inspect \u0026lt;镜像名称\u0026gt;容器类基本命令 查看容器\ndocker ps # 正在运行的容器docker ps -a # 所有的容器停止、启动、杀死一个容器",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">Docker 常用命令</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2019年1月15日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Docker">Docker</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">Docker 常用命令</h1>
+            <p class="post-meta"><time datetime='2019-01-15T23:28:27&#43;08:00' itemprop="datePublished">January 15, 2019</time></p>
+                 
+          </header>
 
-<p>下面是一些比较常用的 Docker 命令</p>
-
+          <div class="post-content" itemprop="articleBody">
+            <p>下面是一些比较常用的 Docker 命令</p>
 <h2 id="镜像类基本命令">镜像类基本命令</h2>
-
 <p>安装镜像</p>
-
-<pre><code class="language-docker">docker pull ${IMAGE}
-</code></pre>
-
-<p>显示已经安装镜像的详细内容</p>
-
-<pre><code class="language-docker">docker images --no-trunc
-</code></pre>
-
-<p>构建镜像</p>
-
-<pre><code class="language-docker">docker build --rm=true .
-</code></pre>
-
-<p>删除指定镜像</p>
-
-<pre><code class="language-docker">docker rmi ${IMAGE_ID}
-</code></pre>
-
-<p>删除未使用的镜像</p>
-
-<pre><code class="language-docker">docker rmi $(docker images --quiet --filter &amp;quot;dangling=true&amp;quot;) 
-</code></pre>
-
-<p>删除所有没有标签的镜像</p>
-
-<pre><code class="language-docker">docker rmi $(docker images | grep “^” | awk “{print $3}”)
-</code></pre>
-
-<p>删除所有的镜像</p>
-
-<pre><code class="language-docker">docker rmi $(docker images)
-</code></pre>
-
-<p>构建自己的镜像</p>
-
-<pre><code class="language-docker">docker build -t &lt;镜像名&gt; &lt;Dockerfile 路径&gt;
-</code></pre>
-
-<p>导出镜像</p>
-
-<pre><code class="language-docker">docker save docker.io/tomcat:7.0.77-jre7 &gt;/root/mytomcat7.tar.gz
-</code></pre>
-
-<p>导入镜像</p>
-
-<pre><code class="language-docker">docker load &lt; /root/mytomcat7.tar.gz
-</code></pre>
-
-<p>为自定义的镜像打上 tag</p>
-
-<pre><code class="language-docker">docker tag &lt;image&gt; &lt;username&gt;/&lt;repository&gt;:&lt;tag&gt;
-</code></pre>
-
-<p>将自定义的镜像发布到仓库</p>
-
-<pre><code class="language-docker">docker push &lt;username&gt;/&lt;repository&gt;:&lt;tag&gt;
-</code></pre>
-
-<p>查看某个镜像详情</p>
-
-<pre><code class="language-docker">docker inspect &lt;镜像名称&gt;
-</code></pre>
-
-<h2 id="容器类基本命令">容器类基本命令</h2>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker pull <span style="color:#e6db74">${</span>IMAGE<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>显示已经安装镜像的详细内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker images --no-trunc<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>构建镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker build --rm<span style="color:#f92672">=</span>true .<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>删除指定镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker rmi <span style="color:#e6db74">${</span>IMAGE_ID<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>删除未使用的镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker rmi <span style="color:#66d9ef">$(</span>docker images --quiet --filter &amp;quot;dangling<span style="color:#f92672">=</span>true&amp;quot;<span style="color:#66d9ef">)</span> <span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>删除所有没有标签的镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker rmi <span style="color:#66d9ef">$(</span>docker images | grep “^” | awk “<span style="color:#f92672">{</span>print $3<span style="color:#f92672">}</span>”<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>删除所有的镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker rmi <span style="color:#66d9ef">$(</span>docker images<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>构建自己的镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker build -t &lt;镜像名&gt; &lt;Dockerfile 路径&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>导出镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker save docker.io/tomcat:7.0.77-jre7 &gt;/root/mytomcat7.tar.gz<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>导入镜像</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker load &lt; /root/mytomcat7.tar.gz<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>为自定义的镜像打上 tag</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker tag &lt;image&gt; &lt;username&gt;/&lt;repository&gt;:&lt;tag&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>将自定义的镜像发布到仓库</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker push &lt;username&gt;/&lt;repository&gt;:&lt;tag&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>查看某个镜像详情</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker inspect &lt;镜像名称&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h2 id="容器类基本命令">容器类基本命令</h2>
 <p>查看容器</p>
-
-<pre><code class="language-docker">docker ps    # 正在运行的容器
-docker ps -a # 所有的容器
-</code></pre>
-
-<p>停止、启动、杀死一个容器</p>
-
-<pre><code class="language-docker">docker stop &lt;容器名 or ID&gt;
-docker start &lt;容器名 or ID&gt;
-docker kill &lt;容器名 or ID&gt;
-</code></pre>
-
-<p>交互方式启动</p>
-
-<pre><code class="language-docker">docker run -it ubuntu:latest /bin/bash
-</code></pre>
-
-<p>守护进程方式启动容器</p>
-
-<pre><code class="language-docker">docker run -d ubuntu:latest
-</code></pre>
-
-<p>守护进程方式启动容器并且进行端口映射</p>
-
-<pre><code class="language-docker">docker run -d -p 9999:8080 docker.io/tomcat:latest
-</code></pre>
-
-<p>查看容器的root用户密码</p>
-
-<pre><code class="language-docker">docker logs &lt;容器名orID&gt; 2&gt;&amp;1 | grep '^User: ' | tail -n1
-</code></pre>
-
-<p>查看容器日志</p>
-
-<pre><code class="language-docker">docker logs -f &lt;容器名orID&gt;
-</code></pre>
-
-<p>进入容器</p>
-
-<pre><code class="language-docker">docker attach ${CID}
-</code></pre>
-
-<p>已有容器中运行命令/启动交互进程</p>
-
-<pre><code class="language-docker">docker exec -it ${CID} &lt;执行命令&gt;
-</code></pre>
-
-<p>使用正则表达式删除容器</p>
-
-<pre><code class="language-docker">docker ps -a | grep wildfly | awk '{print $1}' | xargs docker rm -f
-</code></pre>
-
-<p>删除所有退出的容器</p>
-
-<pre><code class="language-docker">docker rm -f $(docker ps -a | grep Exit | awk '{ print $1 }')
-</code></pre>
-
-<p>删除所有的容器</p>
-
-<pre><code class="language-docker">docker rm $(docker ps -aq)
-</code></pre>
-
-<p>显示指定容器的IP</p>
-
-<pre><code class="language-docker">docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${CID}
-</code></pre>
-
-<p>通过正则表达式查找容器的镜像ID</p>
-
-<pre><code>docker ps | grep wildfly | awk '{print $1}'
-</code></pre>
-
-<h2 id="用户和组">用户和组</h2>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker ps    <span style="color:#75715e"># 正在运行的容器</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>docker ps -a <span style="color:#75715e"># 所有的容器</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>停止、启动、杀死一个容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker stop &lt;容器名 or ID&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>docker start &lt;容器名 or ID&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>docker kill &lt;容器名 or ID&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>交互方式启动</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker run -it ubuntu:latest /bin/bash<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>守护进程方式启动容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker run -d ubuntu:latest<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>守护进程方式启动容器并且进行端口映射</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker run -d -p 9999:8080 docker.io/tomcat:latest<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>查看容器的root用户密码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker logs &lt;容器名orID&gt; 2&gt;&amp;<span style="color:#ae81ff">1</span> | grep <span style="color:#e6db74">&#39;^User: &#39;</span> | tail -n1<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>查看容器日志</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker logs -f &lt;容器名orID&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>进入容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker attach <span style="color:#e6db74">${</span>CID<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>已有容器中运行命令/启动交互进程</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker exec -it <span style="color:#e6db74">${</span>CID<span style="color:#e6db74">}</span> &lt;执行命令&gt;<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>使用正则表达式删除容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker ps -a | grep wildfly | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span> | xargs docker rm -f<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>删除所有退出的容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker rm -f <span style="color:#66d9ef">$(</span>docker ps -a | grep Exit | awk <span style="color:#e6db74">&#39;{ print $1 }&#39;</span><span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>删除所有的容器</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker rm <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color:#66d9ef">)</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>显示指定容器的IP</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker inspect --format <span style="color:#e6db74">&#39;{{ .NetworkSettings.IPAddress }}&#39;</span> <span style="color:#e6db74">${</span>CID<span style="color:#e6db74">}</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>通过正则表达式查找容器的镜像ID</p>
+<pre tabindex="0"><code>docker ps | grep wildfly | awk &#39;{print $1}&#39;
+</code></pre><h2 id="用户和组">用户和组</h2>
 <p>登录</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-docker" data-lang="docker"><span style="display:flex;"><span>docker login<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div>
+          </div>
 
-<pre><code class="language-docker">docker login
-</code></pre>
-
-                        </div>
-
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/golang/tips/coding.in.go/">如何写好 golang 代码的一些 tips</a></li>
-        
-        <li><a href="/post/life/2018.summary/">程序员 2018 年度总结</a></li>
-        
-        <li><a href="/post/golang/upgrade/database.sql.driver.stmt/">database/sql: Stmt的使用以及坑</a></li>
-        
-        <li><a href="/post/golang/basic/go.mod/">Go Modules 简单介绍</a></li>
-        
-        <li><a href="/post/golang/package/reflect/">初步了解 golang reflect pkg</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Docker">Docker</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/tips">tips</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/git/basic/">&laquo; Git 常用命令</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/life/2018.summary/">程序员 2018 年度总结 &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

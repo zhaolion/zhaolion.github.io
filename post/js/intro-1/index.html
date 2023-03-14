@@ -1,448 +1,232 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>js intro 基本介绍 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="js intro 基本介绍 - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2016-10-15T22:32:36&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2016-10-15T22:32:36&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="js intro 基本介绍">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/js/intro-1/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>js intro 基本介绍 - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="什么是 JavaScript? JavaScript 是一门跨平台、面向对象的轻量级脚本语言。 在主机环境中， JavaScript能够通过连接环境对象而实现可控制编译。
+JavaScript内置了一个包含一系列对象的标准库，比如数组，日期，数学和一个语言元素核心集合包括操作符，流程控制符以及语句等。JavaScript的核心部分可以通过组合已有语言核心对象来扩展语言以适应不同用途；例如：
+ 客户端的JavaScript通过提供控制浏览器及其文档对象模型（DOM）的对象来扩展语言核心。例如：客户端版本直接支持应用将元素放在在HTML表单中并且支持响应用户事件比如鼠标点击、表单提交和页面导航 服务端的JavaScript则通过提供有关在服务器上运行JavaScript的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作  JavaScript 和 ECMAScript 规范 JavaScript 的标准化组织是 ECMA ——这个欧洲信息与通信系统标准化协会提供基于 Javascript 的标准化方案（ECMA 原先是欧洲计算机制造商协会的首字母缩写）。这种标准化版本的JavaScript被称作ECMAScript，在所有支持该标准的应用中以相同的方式工作。公司可以使用开放标准语言来开发他们自己的JavaScript实现版本。ECMAScript标准被记录于ECMA－262规范说明中。 参照 JavaScript的新特性 以便学习更多关于不同版本的JavaScript和ECMAScript规范版本。
+ECMAScript 规范是一套用于实现ECMAScript的要求。如果你想在你的ECMAScript实现版本 或 引擎（例如火狐的SpiderMonkey和Chrome 的V8）中实现标准兼容语言（例如ES6）的特性，这将十分有用.
+ECMAScript 文档并不有助于脚本编程。编写脚本时请参考 JavaScript 文档。
+JavaScript上手 Javascript的上手是非常简单的，你仅仅只需要一个浏览器，比如Chrome浏览器
+在Chrome浏览器菜单栏“设置按键”=&amp;gt;”更多工具“=&amp;gt;&amp;ldquo;开发者工具&amp;quot;可以打开控制台，点击Element旁边的console便可以打开console
+Hello world 不写一段Hello World代码，怎么能叫在学习一门语言呢，SO～DO it in the console
+在console中输入
+console.log(&amp;#39;Hello World!&amp;#39;) 你便能看到"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/js/intro-1/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="什么是 JavaScript? JavaScript 是一门跨平台、面向对象的轻量级脚本语言。 在主机环境中， JavaScript能够通过连接环境对象而实现可控制编译。
+JavaScript内置了一个包含一系列对象的标准库，比如数组，日期，数学和一个语言元素核心集合包括操作符，流程控制符以及语句等。JavaScript的核心部分可以通过组合已有语言核心对象来扩展语言以适应不同用途；例如：
+ 客户端的JavaScript通过提供控制浏览器及其文档对象模型（DOM）的对象来扩展语言核心。例如：客户端版本直接支持应用将元素放在在HTML表单中并且支持响应用户事件比如鼠标点击、表单提交和页面导航 服务端的JavaScript则通过提供有关在服务器上运行JavaScript的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作  JavaScript 和 ECMAScript 规范 JavaScript 的标准化组织是 ECMA ——这个欧洲信息与通信系统标准化协会提供基于 Javascript 的标准化方案（ECMA 原先是欧洲计算机制造商协会的首字母缩写）。这种标准化版本的JavaScript被称作ECMAScript，在所有支持该标准的应用中以相同的方式工作。公司可以使用开放标准语言来开发他们自己的JavaScript实现版本。ECMAScript标准被记录于ECMA－262规范说明中。 参照 JavaScript的新特性 以便学习更多关于不同版本的JavaScript和ECMAScript规范版本。
+ECMAScript 规范是一套用于实现ECMAScript的要求。如果你想在你的ECMAScript实现版本 或 引擎（例如火狐的SpiderMonkey和Chrome 的V8）中实现标准兼容语言（例如ES6）的特性，这将十分有用.
+ECMAScript 文档并不有助于脚本编程。编写脚本时请参考 JavaScript 文档。
+JavaScript上手 Javascript的上手是非常简单的，你仅仅只需要一个浏览器，比如Chrome浏览器
+在Chrome浏览器菜单栏“设置按键”=&amp;gt;”更多工具“=&amp;gt;&amp;ldquo;开发者工具&amp;quot;可以打开控制台，点击Element旁边的console便可以打开console
+Hello world 不写一段Hello World代码，怎么能叫在学习一门语言呢，SO～DO it in the console
+在console中输入
+console.log(&amp;#39;Hello World!&amp;#39;) 你便能看到" />
+<meta name="twitter:title" content="js intro 基本介绍 - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="js intro 基本介绍 - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="什么是 JavaScript? JavaScript 是一门跨平台、面向对象的轻量级脚本语言。 在主机环境中， JavaScript能够通过连接环境对象而实现可控制编译。
+JavaScript内置了一个包含一系列对象的标准库，比如数组，日期，数学和一个语言元素核心集合包括操作符，流程控制符以及语句等。JavaScript的核心部分可以通过组合已有语言核心对象来扩展语言以适应不同用途；例如：
+ 客户端的JavaScript通过提供控制浏览器及其文档对象模型（DOM）的对象来扩展语言核心。例如：客户端版本直接支持应用将元素放在在HTML表单中并且支持响应用户事件比如鼠标点击、表单提交和页面导航 服务端的JavaScript则通过提供有关在服务器上运行JavaScript的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作  JavaScript 和 ECMAScript 规范 JavaScript 的标准化组织是 ECMA ——这个欧洲信息与通信系统标准化协会提供基于 Javascript 的标准化方案（ECMA 原先是欧洲计算机制造商协会的首字母缩写）。这种标准化版本的JavaScript被称作ECMAScript，在所有支持该标准的应用中以相同的方式工作。公司可以使用开放标准语言来开发他们自己的JavaScript实现版本。ECMAScript标准被记录于ECMA－262规范说明中。 参照 JavaScript的新特性 以便学习更多关于不同版本的JavaScript和ECMAScript规范版本。
+ECMAScript 规范是一套用于实现ECMAScript的要求。如果你想在你的ECMAScript实现版本 或 引擎（例如火狐的SpiderMonkey和Chrome 的V8）中实现标准兼容语言（例如ES6）的特性，这将十分有用.
+ECMAScript 文档并不有助于脚本编程。编写脚本时请参考 JavaScript 文档。
+JavaScript上手 Javascript的上手是非常简单的，你仅仅只需要一个浏览器，比如Chrome浏览器
+在Chrome浏览器菜单栏“设置按键”=&amp;gt;”更多工具“=&amp;gt;&amp;ldquo;开发者工具&amp;quot;可以打开控制台，点击Element旁边的console便可以打开console
+Hello world 不写一段Hello World代码，怎么能叫在学习一门语言呢，SO～DO it in the console
+在console中输入
+console.log(&amp;#39;Hello World!&amp;#39;) 你便能看到" property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/js/intro-1/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Javascript" /><meta property="article:section" content="Web" />
+<meta property="article:published_time" content="2016-10-15 22:32:36 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "js intro 基本介绍",
+    "genre": "JavascriptWeb",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/js\/intro-1\/",
+    "datePublished": "2016-10-15 22:32:36 \u002b0800 CST",
+    "description": "什么是 JavaScript? JavaScript 是一门跨平台、面向对象的轻量级脚本语言。 在主机环境中， JavaScript能够通过连接环境对象而实现可控制编译。\nJavaScript内置了一个包含一系列对象的标准库，比如数组，日期，数学和一个语言元素核心集合包括操作符，流程控制符以及语句等。JavaScript的核心部分可以通过组合已有语言核心对象来扩展语言以适应不同用途；例如：\n 客户端的JavaScript通过提供控制浏览器及其文档对象模型（DOM）的对象来扩展语言核心。例如：客户端版本直接支持应用将元素放在在HTML表单中并且支持响应用户事件比如鼠标点击、表单提交和页面导航 服务端的JavaScript则通过提供有关在服务器上运行JavaScript的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作  JavaScript \u0008和 ECMAScript \u0008规范 JavaScript 的标准化组织是 ECMA ——这个欧洲信息与通信系统标准化协会提供基于 Javascript 的标准化方案（ECMA 原先是欧洲计算机制造商协会的首字母缩写）。这种标准化版本的JavaScript被称作ECMAScript，在所有支持该标准的应用中以相同的方式工作。公司可以使用开放标准语言来开发他们自己的JavaScript实现版本。ECMAScript标准被记录于ECMA－262规范说明中。 参照 JavaScript的新特性 以便学习更多关于不同版本的JavaScript和ECMAScript规范版本。\nECMAScript 规范是一套用于实现ECMAScript的要求。如果你想在你的ECMAScript实现版本 或 引擎（例如火狐的SpiderMonkey和Chrome 的V8）中实现标准兼容语言（例如ES6）的特性，这将十分有用.\nECMAScript 文档并不有助于脚本编程。编写脚本时请参考 JavaScript 文档。\nJavaScript上手 Javascript的上手是非常简单的，你仅仅只需要一个浏览器，比如Chrome浏览器\n在Chrome浏览器菜单栏“设置按键”=\u0026gt;”更多工具“=\u0026gt;\u0026ldquo;开发者工具\u0026quot;可以打开控制台，点击Element旁边的console便可以打开console\nHello world 不写一段Hello World代码，怎么能叫在学习一门语言呢，SO～DO it in the console\n在console中输入\nconsole.log(\u0026#39;Hello World!\u0026#39;) 你便能看到",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">js intro 基本介绍</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2016年10月15日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Javascript">Javascript</a></span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">js intro 基本介绍</h1>
+            <p class="post-meta"><time datetime='2016-10-15T22:32:36&#43;08:00' itemprop="datePublished">October 15, 2016</time></p>
+                 
+          </header>
 
-<h1 id="什么是-javascript">什么是 JavaScript?</h1>
-
+          <div class="post-content" itemprop="articleBody">
+            <h1 id="什么是-javascript">什么是 JavaScript?</h1>
 <p>JavaScript 是一门跨平台、面向对象的轻量级脚本语言。 在主机环境中， JavaScript能够通过连接环境对象而实现可控制编译。</p>
-
-<p>JavaScript内置了一个包含一系列对象的标准库，比如数组，日期，数学和一个语言元素核心集合包括操作符，流程控制符以及语句等。JavaScript的核心部分可以通过组合已有语言核心对象来扩展语言以适应不同用途；例如：
-- 客户端的JavaScript通过提供控制浏览器及其文档对象模型（DOM）的对象来扩展语言核心。例如：客户端版本直接支持应用将元素放在在HTML表单中并且支持响应用户事件比如鼠标点击、表单提交和页面导航
-- 服务端的JavaScript则通过提供有关在服务器上运行JavaScript的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作</p>
-
+<p>JavaScript内置了一个包含一系列对象的标准库，比如数组，日期，数学和一个语言元素核心集合包括操作符，流程控制符以及语句等。JavaScript的核心部分可以通过组合已有语言核心对象来扩展语言以适应不同用途；例如：</p>
+<ul>
+<li>客户端的JavaScript通过提供控制浏览器及其文档对象模型（DOM）的对象来扩展语言核心。例如：客户端版本直接支持应用将元素放在在HTML表单中并且支持响应用户事件比如鼠标点击、表单提交和页面导航</li>
+<li>服务端的JavaScript则通过提供有关在服务器上运行JavaScript的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作</li>
+</ul>
 <h1 id="javascript-和-ecmascript-规范">JavaScript 和 ECMAScript 规范</h1>
-
 <p>JavaScript 的标准化组织是 ECMA ——这个欧洲信息与通信系统标准化协会提供基于 Javascript 的标准化方案（ECMA 原先是欧洲计算机制造商协会的首字母缩写）。这种标准化版本的JavaScript被称作ECMAScript，在所有支持该标准的应用中以相同的方式工作。公司可以使用开放标准语言来开发他们自己的JavaScript实现版本。ECMAScript标准被记录于ECMA－262规范说明中。 参照 JavaScript的新特性 以便学习更多关于不同版本的JavaScript和ECMAScript规范版本。</p>
-
 <p>ECMAScript 规范是一套用于实现ECMAScript的要求。如果你想在你的ECMAScript实现版本 或 引擎（例如火狐的SpiderMonkey和Chrome 的V8）中实现标准兼容语言（例如ES6）的特性，这将十分有用.</p>
-
 <p>ECMAScript 文档并不有助于脚本编程。编写脚本时请参考  JavaScript 文档。</p>
-
 <h1 id="javascript上手">JavaScript上手</h1>
-
 <p>Javascript的上手是非常简单的，你仅仅只需要一个浏览器，比如Chrome浏览器</p>
-
-<p>在Chrome浏览器菜单栏“设置按键”=&gt;”更多工具“=&gt;&ldquo;开发者工具&rdquo;可以打开控制台，点击Element旁边的console便可以打开console</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-024dce9d8bbcc961.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
+<p>在Chrome浏览器菜单栏“设置按键”=&gt;”更多工具“=&gt;&ldquo;开发者工具&quot;可以打开控制台，点击Element旁边的console便可以打开console</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-024dce9d8bbcc961.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h1 id="hello-world">Hello world</h1>
-
 <p>不写一段Hello World代码，怎么能叫在学习一门语言呢，SO～DO it in the console</p>
-
 <p>在console中输入</p>
+<pre tabindex="0"><code>console.log(&#39;Hello World!&#39;)
+</code></pre><p>你便能看到</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-10e0194c81743c37.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 
-<pre><code>console.log('Hello World!')
-</code></pre>
+          </div>
 
-<p>你便能看到</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-10e0194c81743c37.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
-                        </div>
-
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/js/danger/">js 保留关键字以及危险变量名</a></li>
-        
-        <li><a href="/post/css/intro-box/">CSS入门笔记 － 认识盒子模型</a></li>
-        
-        <li><a href="/post/css/intro-1/">CSS入门笔记 － 初识CSS</a></li>
-        
-        <li><a href="/post/html/intro/">HTML 入门笔记 － 初识HTML</a></li>
-        
-        <li><a href="/archives/">归档</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Javascript">Javascript</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/basic">basic</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/js/intro-2/">&laquo; js intro 类型/值/变量</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/js/danger/">js 保留关键字以及危险变量名 &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

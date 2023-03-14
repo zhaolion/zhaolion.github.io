@@ -1,22 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Raft on zhaolion&#39;s dropbox</title>
-    <link>https://zhaolion.com/tags/Raft/</link>
-    <description>Recent content in Raft on zhaolion&#39;s dropbox</description>
+    <title>Raft on zhaolion&#39;s knowledge dropbox</title>
+    <link>https://blog.zhaolion.dev/tags/Raft/</link>
+    <description>Recent content in Raft on zhaolion&#39;s knowledge dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 04 Mar 2019 23:55:47 +0800</lastBuildDate>
-    
-	<atom:link href="https://zhaolion.com/tags/Raft/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 04 Mar 2019 23:55:47 +0800</lastBuildDate><atom:link href="https://blog.zhaolion.dev/tags/Raft/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>从入门到放弃 - Raft</title>
-      <link>https://zhaolion.com/post/backend/raft/</link>
+      <link>https://blog.zhaolion.dev/post/backend/raft/</link>
       <pubDate>Mon, 04 Mar 2019 23:55:47 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/backend/raft/</guid>
+      <guid>https://blog.zhaolion.dev/post/backend/raft/</guid>
       <description>根据 Raft 中文翻译和各种来源，按照自己更好理解的方式进行重新组织和增加一些说明
 [TOC]
 TL;DR 根据作者的话来说，Raft 算法是为了 寻找一种易于理解的一致性算法，作为管理复制日志的一致性算法，提供了和 Paxos 算法相同的功能和性能。(顺带吐槽 Paxos 难以理解)

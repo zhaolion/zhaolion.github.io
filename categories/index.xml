@@ -1,148 +1,144 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on zhaolion&#39;s dropbox</title>
-    <link>https://zhaolion.com/categories/</link>
-    <description>Recent content in Categories on zhaolion&#39;s dropbox</description>
+    <title>Categories on zhaolion&#39;s knowledge dropbox</title>
+    <link>https://blog.zhaolion.dev/categories/</link>
+    <description>Recent content in Categories on zhaolion&#39;s knowledge dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 04 Mar 2019 23:55:47 +0800</lastBuildDate>
-    
-	<atom:link href="https://zhaolion.com/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 12 Dec 2019 22:56:34 +0800</lastBuildDate><atom:link href="https://blog.zhaolion.dev/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Backend</title>
-      <link>https://zhaolion.com/categories/Backend/</link>
-      <pubDate>Mon, 04 Mar 2019 23:55:47 +0800</pubDate>
+      <title>Ruby</title>
+      <link>https://blog.zhaolion.dev/categories/Ruby/</link>
+      <pubDate>Thu, 12 Dec 2019 22:56:34 +0800</pubDate>
       
-      <guid>https://zhaolion.com/categories/Backend/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CSS</title>
-      <link>https://zhaolion.com/categories/CSS/</link>
-      <pubDate>Wed, 14 Sep 2016 22:28:03 +0800</pubDate>
-      
-      <guid>https://zhaolion.com/categories/CSS/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>https://zhaolion.com/categories/Docker/</link>
-      <pubDate>Tue, 15 Jan 2019 23:28:27 +0800</pubDate>
-      
-      <guid>https://zhaolion.com/categories/Docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>https://zhaolion.com/categories/Git/</link>
-      <pubDate>Wed, 16 Jan 2019 23:43:52 +0800</pubDate>
-      
-      <guid>https://zhaolion.com/categories/Git/</guid>
+      <guid>https://blog.zhaolion.dev/categories/Ruby/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>https://zhaolion.com/categories/Golang/</link>
+      <link>https://blog.zhaolion.dev/categories/Golang/</link>
       <pubDate>Wed, 24 Jul 2019 23:18:33 +0800</pubDate>
       
-      <guid>https://zhaolion.com/categories/Golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>HTML</title>
-      <link>https://zhaolion.com/categories/HTML/</link>
-      <pubDate>Sat, 10 Sep 2016 22:20:36 +0800</pubDate>
-      
-      <guid>https://zhaolion.com/categories/HTML/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Javascript</title>
-      <link>https://zhaolion.com/categories/Javascript/</link>
-      <pubDate>Tue, 18 Oct 2016 22:33:39 +0800</pubDate>
-      
-      <guid>https://zhaolion.com/categories/Javascript/</guid>
+      <guid>https://blog.zhaolion.dev/categories/Golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Knowledge</title>
-      <link>https://zhaolion.com/categories/Knowledge/</link>
+      <link>https://blog.zhaolion.dev/categories/Knowledge/</link>
       <pubDate>Mon, 17 Jun 2019 23:45:12 +0800</pubDate>
       
-      <guid>https://zhaolion.com/categories/Knowledge/</guid>
+      <guid>https://blog.zhaolion.dev/categories/Knowledge/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Life</title>
-      <link>https://zhaolion.com/categories/Life/</link>
-      <pubDate>Mon, 14 Jan 2019 00:47:38 +0800</pubDate>
+      <title>Backend</title>
+      <link>https://blog.zhaolion.dev/categories/Backend/</link>
+      <pubDate>Mon, 04 Mar 2019 23:55:47 +0800</pubDate>
       
-      <guid>https://zhaolion.com/categories/Life/</guid>
+      <guid>https://blog.zhaolion.dev/categories/Backend/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://zhaolion.com/categories/Linux/</link>
+      <link>https://blog.zhaolion.dev/categories/Linux/</link>
       <pubDate>Mon, 21 Jan 2019 22:39:31 +0800</pubDate>
       
-      <guid>https://zhaolion.com/categories/Linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MySQL</title>
-      <link>https://zhaolion.com/categories/MySQL/</link>
-      <pubDate>Fri, 13 Jan 2017 18:45:26 +0800</pubDate>
-      
-      <guid>https://zhaolion.com/categories/MySQL/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Regexp</title>
-      <link>https://zhaolion.com/categories/Regexp/</link>
-      <pubDate>Fri, 13 Jan 2017 18:48:34 +0800</pubDate>
-      
-      <guid>https://zhaolion.com/categories/Regexp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ruby</title>
-      <link>https://zhaolion.com/categories/Ruby/</link>
-      <pubDate>Thu, 12 Dec 2019 22:56:34 +0800</pubDate>
-      
-      <guid>https://zhaolion.com/categories/Ruby/</guid>
+      <guid>https://blog.zhaolion.dev/categories/Linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tools</title>
-      <link>https://zhaolion.com/categories/Tools/</link>
+      <link>https://blog.zhaolion.dev/categories/Tools/</link>
       <pubDate>Sat, 19 Jan 2019 23:06:55 +0800</pubDate>
       
-      <guid>https://zhaolion.com/categories/Tools/</guid>
+      <guid>https://blog.zhaolion.dev/categories/Tools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>https://blog.zhaolion.dev/categories/Git/</link>
+      <pubDate>Wed, 16 Jan 2019 23:43:52 +0800</pubDate>
+      
+      <guid>https://blog.zhaolion.dev/categories/Git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://blog.zhaolion.dev/categories/Docker/</link>
+      <pubDate>Tue, 15 Jan 2019 23:28:27 +0800</pubDate>
+      
+      <guid>https://blog.zhaolion.dev/categories/Docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Life</title>
+      <link>https://blog.zhaolion.dev/categories/Life/</link>
+      <pubDate>Mon, 14 Jan 2019 00:47:38 +0800</pubDate>
+      
+      <guid>https://blog.zhaolion.dev/categories/Life/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regexp</title>
+      <link>https://blog.zhaolion.dev/categories/Regexp/</link>
+      <pubDate>Fri, 13 Jan 2017 18:48:34 +0800</pubDate>
+      
+      <guid>https://blog.zhaolion.dev/categories/Regexp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MySQL</title>
+      <link>https://blog.zhaolion.dev/categories/MySQL/</link>
+      <pubDate>Fri, 13 Jan 2017 18:45:26 +0800</pubDate>
+      
+      <guid>https://blog.zhaolion.dev/categories/MySQL/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>https://blog.zhaolion.dev/categories/Javascript/</link>
+      <pubDate>Tue, 18 Oct 2016 22:33:39 +0800</pubDate>
+      
+      <guid>https://blog.zhaolion.dev/categories/Javascript/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Web</title>
-      <link>https://zhaolion.com/categories/Web/</link>
+      <link>https://blog.zhaolion.dev/categories/Web/</link>
       <pubDate>Tue, 18 Oct 2016 22:33:39 +0800</pubDate>
       
-      <guid>https://zhaolion.com/categories/Web/</guid>
+      <guid>https://blog.zhaolion.dev/categories/Web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CSS</title>
+      <link>https://blog.zhaolion.dev/categories/CSS/</link>
+      <pubDate>Wed, 14 Sep 2016 22:28:03 +0800</pubDate>
+      
+      <guid>https://blog.zhaolion.dev/categories/CSS/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTML</title>
+      <link>https://blog.zhaolion.dev/categories/HTML/</link>
+      <pubDate>Sat, 10 Sep 2016 22:20:36 +0800</pubDate>
+      
+      <guid>https://blog.zhaolion.dev/categories/HTML/</guid>
       <description></description>
     </item>
     

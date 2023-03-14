@@ -1,119 +1,141 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>new 与 make 的差别 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="new 与 make 的差别 - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2019-03-30T19:02:11&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2019-03-30T19:02:11&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="new 与 make 的差别">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/golang/tips/go.make.vs.new/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>new 与 make 的差别 - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="Go语言中new和make是内建的两个函数，主要用来创建分配类型内存
+new(T) 返回的是 T 的指针 这是 new 函数的注释:
+// The new built-in function allocates memory. The first argument is a type, // not a value, and the value returned is a pointer to a newly // allocated zero value of that type. func new(Type) *Type new(T) 为一个 T 类型新值分配空间并将此空间初始化为 T 的零值，返回的是新值的地址，也就是 T 类型的指针 *T，该指针指向 T 的新分配的零值
+ 对于有哪些零值可以看看 之前的博客 里面有基础类型的零值
+ make make 函数的注释:
+The make built-in function allocates and initializes an object of type slice, map, or chan (only)."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/golang/tips/go.make.vs.new/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Go语言中new和make是内建的两个函数，主要用来创建分配类型内存
+new(T) 返回的是 T 的指针 这是 new 函数的注释:
+// The new built-in function allocates memory. The first argument is a type, // not a value, and the value returned is a pointer to a newly // allocated zero value of that type. func new(Type) *Type new(T) 为一个 T 类型新值分配空间并将此空间初始化为 T 的零值，返回的是新值的地址，也就是 T 类型的指针 *T，该指针指向 T 的新分配的零值
+ 对于有哪些零值可以看看 之前的博客 里面有基础类型的零值
+ make make 函数的注释:
+The make built-in function allocates and initializes an object of type slice, map, or chan (only)." />
+<meta name="twitter:title" content="new 与 make 的差别 - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="new 与 make 的差别 - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="Go语言中new和make是内建的两个函数，主要用来创建分配类型内存
+new(T) 返回的是 T 的指针 这是 new 函数的注释:
+// The new built-in function allocates memory. The first argument is a type, // not a value, and the value returned is a pointer to a newly // allocated zero value of that type. func new(Type) *Type new(T) 为一个 T 类型新值分配空间并将此空间初始化为 T 的零值，返回的是新值的地址，也就是 T 类型的指针 *T，该指针指向 T 的新分配的零值
+ 对于有哪些零值可以看看 之前的博客 里面有基础类型的零值
+ make make 函数的注释:
+The make built-in function allocates and initializes an object of type slice, map, or chan (only)." property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/golang/tips/go.make.vs.new/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Golang" />
+<meta property="article:published_time" content="2019-03-30 19:02:11 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "new 与 make 的差别",
+    "genre": "Golang",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/golang\/tips\/go.make.vs.new\/",
+    "datePublished": "2019-03-30 19:02:11 \u002b0800 CST",
+    "description": "Go语言中new和make是内建的两个函数，主要用来创建分配类型内存\nnew(T) 返回的是 T 的指针 这是 new 函数的注释:\n\/\/ The new built-in function allocates memory. The first argument is a type, \/\/ not a value, and the value returned is a pointer to a newly \/\/ allocated zero value of that type. func new(Type) *Type new(T) 为一个 T 类型新值分配空间并将此空间初始化为 T 的零值，返回的是新值的地址，也就是 T 类型的指针 *T，该指针指向 T 的新分配的零值\n 对于有哪些零值可以看看 之前的博客 里面有基础类型的零值\n make make 函数的注释:\nThe make built-in function allocates and initializes an object of type slice, map, or chan (only).",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">new 与 make 的差别</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2019年3月30日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">new 与 make 的差别</h1>
+            <p class="post-meta"><time datetime='2019-03-30T19:02:11&#43;08:00' itemprop="datePublished">March 30, 2019</time></p>
+                 
+          </header>
 
-<p>Go语言中new和make是内建的两个函数，主要用来创建分配类型内存</p>
-
-<h2 id="new-t-返回的是-t-的指针">new(T) 返回的是 T 的指针</h2>
-
+          <div class="post-content" itemprop="articleBody">
+            <p>Go语言中new和make是内建的两个函数，主要用来创建分配类型内存</p>
+<h2 id="newt-返回的是-t-的指针">new(T) 返回的是 T 的指针</h2>
 <p>这是 <code>new</code> 函数的注释:</p>
-
-<pre><code>// The new built-in function allocates memory. The first argument is a type,
+<pre tabindex="0"><code>// The new built-in function allocates memory. The first argument is a type,
 // not a value, and the value returned is a pointer to a newly
 // allocated zero value of that type.
 func new(Type) *Type
-</code></pre>
-
-<p><code>new(T)</code> 为一个 <code>T</code> 类型新值分配空间并将此空间初始化为 <code>T</code> 的<strong>零值</strong>，返回的是新值的地址，也就是 <code>T</code> 类型的指针 <code>*T</code>，该指针指向 <code>T</code> 的新分配的零值</p>
-
+</code></pre><p><code>new(T)</code> 为一个 <code>T</code> 类型新值分配空间并将此空间初始化为 <code>T</code> 的<strong>零值</strong>，返回的是新值的地址，也就是 <code>T</code> 类型的指针 <code>*T</code>，该指针指向 <code>T</code> 的新分配的零值</p>
 <blockquote>
 <p>对于有哪些零值可以看看 <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/">之前的博客</a> 里面有基础类型的零值</p>
 </blockquote>
-
 <h2 id="make">make</h2>
-
 <p><code>make</code> 函数的注释:</p>
-
-<pre><code>The make built-in function allocates and initializes an object of type slice, map, or chan (only). Like new, the first argument is a type, not a value. Unlike new, make's return type is the same as the type of its argument, not a pointer to it. The specification of the result depends on the type:
+<pre tabindex="0"><code>The make built-in function allocates and initializes an object of type slice, map, or chan (only). Like new, the first argument is a type, not a value. Unlike new, make&#39;s return type is the same as the type of its argument, not a pointer to it. The specification of the result depends on the type:
 
 Slice: The size specifies the length. The capacity of the slice is
 equal to its length. A second integer argument may be provided to
@@ -124,33 +146,24 @@ backed by this underlying array.
 Map: An empty map is allocated with enough space to hold the
 specified number of elements. The size may be omitted, in which case
 a small starting size is allocated.
-Channel: The channel's buffer is initialized with the specified
+Channel: The channel&#39;s buffer is initialized with the specified
 buffer capacity. If zero, or the size is omitted, the channel is
 unbuffered.
 
 func make(t Type, size ...IntegerType) Type
-</code></pre>
-
-<p><code>make</code> 只能用于 <code>slice</code>，<code>map</code>，<code>channel</code> 三种类型，<code>make(T, args)</code> 返回的是初始化之后的 <code>T</code> 类型的值，这个新值并不是 <code>T</code> 类型的零值，也不是指针 <code>*T</code>，是经过初始化之后的 <code>T</code> 的引用</p>
-
+</code></pre><p><code>make</code> 只能用于 <code>slice</code>，<code>map</code>，<code>channel</code> 三种类型，<code>make(T, args)</code> 返回的是初始化之后的 <code>T</code> 类型的值，这个新值并不是 <code>T</code> 类型的零值，也不是指针 <code>*T</code>，是经过初始化之后的 <code>T</code> 的引用</p>
 <h2 id="make-vs-new">make vs new</h2>
-
 <p><a href="https://zhaolion.com/post/golang/upgrade/memory.layout/">之前的博客</a>里面有提到 <code>make</code> 和 <code>new</code> 在内存排布上差别，直接贴出来:</p>
-
 <p>new:</p>
-
-<pre><code>+---------+
+<pre tabindex="0"><code>+---------+
 | pointer |     s = new([3]int)
 +---------+
     |
     +---+---+---+
     | 0 | 0 | 0 | [3]int
     +---+---+---+
-</code></pre>
-
-<p>make:</p>
-
-<pre><code>+---------+---------+---------+
+</code></pre><p>make:</p>
+<pre tabindex="0"><code>+---------+---------+---------+
 | pointer |  len=1  |  cap=3  | slice=make([]int,1,3) 
 +---------+---------+---------+
     |
@@ -177,329 +190,84 @@ func make(t Type, size ...IntegerType) Type
     . chan.c Hchan . 
     .              .
     ................
-</code></pre>
-
-<p>总结:</p>
-
+</code></pre><p>总结:</p>
 <ul>
 <li>二者都是内存的分配（堆上），但是 <code>make</code> 只用于 <code>slice</code>、<code>map</code> 以及 <code>channel</code>的初始化（非零值</li>
 <li><code>new</code> 用于类型的内存分配，并且内存置为零</li>
 <li><code>make</code> 返回的还是这三个引用类型本身；而 <code>new</code> 返回的是指向类型的指针</li>
 </ul>
 
-                        </div>
+          </div>
 
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/golang/tips/coding.in.go/">如何写好 golang 代码的一些 tips</a></li>
-        
-        <li><a href="/post/golang/upgrade/memory.layout/">Go 内存排布</a></li>
-        
-        <li><a href="/post/backend/dns/">DNS 域名系统</a></li>
-        
-        <li><a href="/post/linux/basic_usage/find/">Linux 常用命令 find</a></li>
-        
-        <li><a href="/post/linux/basic_usage/grep/">Linux 常用命令 grep</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Golang">Golang</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/tips">tips</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/k8s/kubectl/">&laquo; Kubectl wiki</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/golang/upgrade/memory.layout/">Go 内存排布 &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

@@ -1,22 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>sync on zhaolion&#39;s dropbox</title>
-    <link>https://zhaolion.com/tags/sync/</link>
-    <description>Recent content in sync on zhaolion&#39;s dropbox</description>
+    <title>sync on zhaolion&#39;s knowledge dropbox</title>
+    <link>https://blog.zhaolion.dev/tags/sync/</link>
+    <description>Recent content in sync on zhaolion&#39;s knowledge dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 13 Nov 2018 22:52:14 +0800</lastBuildDate>
-    
-	<atom:link href="https://zhaolion.com/tags/sync/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 13 Nov 2018 22:52:14 +0800</lastBuildDate><atom:link href="https://blog.zhaolion.dev/tags/sync/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>sync.Pool 的实现原理和适用场景</title>
-      <link>https://zhaolion.com/post/golang/package/sync.pool/</link>
+      <link>https://blog.zhaolion.dev/post/golang/package/sync.pool/</link>
       <pubDate>Tue, 13 Nov 2018 22:52:14 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/package/sync.pool/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/package/sync.pool/</guid>
       <description>sync.Pool 的实现原理和适用场景 Golang GC 大大减少了程序编程负担，但 GC 是一把双刃剑，带来了编程的方便但同时也增加了运行时开销，使用不当甚至会严重影响程序的性能。因此性能要求高的场景不能任意产生太多的垃圾，如何解决呢？
 那就是 ** 重用对象 **
 我们可以简单的使用一个 chan 把这些可重用的对象缓存起来，但如果很多 goroutine 竞争一个 chan 性能肯定是问题，为了避免大家重造车轮，因此官方统一出了一个包 sync.Pool

@@ -1,418 +1,398 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>CSS入门笔记 － 认识盒子模型 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="CSS入门笔记 － 认识盒子模型 - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2016-09-14T22:28:03&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2016-09-14T22:28:03&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="CSS入门笔记 － 认识盒子模型">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/css/intro-box/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>CSS入门笔记 － 认识盒子模型 - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="引言 这次给大家带来了CSS－盒子模型部分的笔记，大家一同交流😊
+认识盒子模型之前，先来了解一下CSS元素的分类吧，后面再细细道来～
+CSS元素分类 在CSS中，html中的标签元素大体被分为三种不同的类型：
+ 块状元素 内联元素(又叫行内元素) 内联块状元素  常用的块状元素有： &amp;lt;div&amp;gt;、&amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt;...&amp;lt;h6&amp;gt;、&amp;lt;ol&amp;gt;、&amp;lt;ul&amp;gt;、&amp;lt;dl&amp;gt;、&amp;lt;table&amp;gt;、&amp;lt;address&amp;gt;、&amp;lt;blockquote&amp;gt; 、&amp;lt;form&amp;gt;
+常用的内联元素有： &amp;lt;a&amp;gt;、&amp;lt;span&amp;gt;、&amp;lt;br&amp;gt;、&amp;lt;i&amp;gt;、&amp;lt;em&amp;gt;、&amp;lt;strong&amp;gt;、&amp;lt;label&amp;gt;、&amp;lt;q&amp;gt;、&amp;lt;var&amp;gt;、&amp;lt;cite&amp;gt;、&amp;lt;code&amp;gt;
+常用的内联块状元素有:
+&amp;lt;img&amp;gt;、&amp;lt;input&amp;gt;
+元素分类&amp;ndash;块级元素 什么是块级元素？在html中&amp;lt;div&amp;gt;、 &amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt;、&amp;lt;form&amp;gt;、&amp;lt;ul&amp;gt; 、 &amp;lt;li&amp;gt;就是块级元素。设置display:block就是将元素显示为块级元素。 如下代码就是将内联元素a转换为块状元素，从而使a元素具有块状元素特点。
+a{display:block;}
+块级元素特点：
+ 每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行） 元素的高度、宽度、行高以及顶和底边距都可设置。 元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。  元素分类&amp;ndash;内联元素 在html中，&amp;lt;span&amp;gt;、&amp;lt;a&amp;gt;、&amp;lt;label&amp;gt;、 &amp;lt;strong&amp;gt; 、&amp;lt;em&amp;gt;就是典型的内联元素（行内元素）（inline）元素。
+当然块状元素也可以通过代码display:inline将元素设置为内联元素。如下代码就是将块状元素div转换为内联元素，从而使 div 元素具有内联元素特点。
+div{ display:inline; } ...... &amp;lt;div&amp;gt;我要变成内联元素&amp;lt;/div&amp;gt; 内联元素特点：
+ 和其他元素都在一行 元素的高度、宽度及顶部和底部边距不可设置 元素的宽度就是它包含的文字或图片的宽度，不可改变。  友情提示：行内元素之间会产生间隙bug问题的场景：
+当行内元素之间有“回车”、“tab”、“空格”时就会出现间隙。 如下代码：
+&amp;lt;div&amp;gt; &amp;lt;a&amp;gt;1&amp;lt;/a&amp;gt; &amp;lt;a&amp;gt;2&amp;lt;/a&amp;gt; &amp;lt;span&amp;gt;33333&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;44444&amp;lt;/span&amp;gt; &amp;lt;em&amp;gt;555555&amp;lt;/em&amp;gt; &amp;lt;/div&amp;gt; 解决方法：
+ 写在一行，之间不要有空格之类的符号。 使用font-size:0  div{font-size:0;} a,span,em{font-size:16px;} 元素分类&amp;ndash;内联块状元素 内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码display:inline-block就是将元素设置为内联块状元素。(css2.1新增)
+&amp;lt;img&amp;gt;、&amp;lt;input&amp;gt;标签就是这种内联块状标签。
+inline-block 元素特点："/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/css/intro-box/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="引言 这次给大家带来了CSS－盒子模型部分的笔记，大家一同交流😊
+认识盒子模型之前，先来了解一下CSS元素的分类吧，后面再细细道来～
+CSS元素分类 在CSS中，html中的标签元素大体被分为三种不同的类型：
+ 块状元素 内联元素(又叫行内元素) 内联块状元素  常用的块状元素有： &amp;lt;div&amp;gt;、&amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt;...&amp;lt;h6&amp;gt;、&amp;lt;ol&amp;gt;、&amp;lt;ul&amp;gt;、&amp;lt;dl&amp;gt;、&amp;lt;table&amp;gt;、&amp;lt;address&amp;gt;、&amp;lt;blockquote&amp;gt; 、&amp;lt;form&amp;gt;
+常用的内联元素有： &amp;lt;a&amp;gt;、&amp;lt;span&amp;gt;、&amp;lt;br&amp;gt;、&amp;lt;i&amp;gt;、&amp;lt;em&amp;gt;、&amp;lt;strong&amp;gt;、&amp;lt;label&amp;gt;、&amp;lt;q&amp;gt;、&amp;lt;var&amp;gt;、&amp;lt;cite&amp;gt;、&amp;lt;code&amp;gt;
+常用的内联块状元素有:
+&amp;lt;img&amp;gt;、&amp;lt;input&amp;gt;
+元素分类&amp;ndash;块级元素 什么是块级元素？在html中&amp;lt;div&amp;gt;、 &amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt;、&amp;lt;form&amp;gt;、&amp;lt;ul&amp;gt; 、 &amp;lt;li&amp;gt;就是块级元素。设置display:block就是将元素显示为块级元素。 如下代码就是将内联元素a转换为块状元素，从而使a元素具有块状元素特点。
+a{display:block;}
+块级元素特点：
+ 每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行） 元素的高度、宽度、行高以及顶和底边距都可设置。 元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。  元素分类&amp;ndash;内联元素 在html中，&amp;lt;span&amp;gt;、&amp;lt;a&amp;gt;、&amp;lt;label&amp;gt;、 &amp;lt;strong&amp;gt; 、&amp;lt;em&amp;gt;就是典型的内联元素（行内元素）（inline）元素。
+当然块状元素也可以通过代码display:inline将元素设置为内联元素。如下代码就是将块状元素div转换为内联元素，从而使 div 元素具有内联元素特点。
+div{ display:inline; } ...... &amp;lt;div&amp;gt;我要变成内联元素&amp;lt;/div&amp;gt; 内联元素特点：
+ 和其他元素都在一行 元素的高度、宽度及顶部和底部边距不可设置 元素的宽度就是它包含的文字或图片的宽度，不可改变。  友情提示：行内元素之间会产生间隙bug问题的场景：
+当行内元素之间有“回车”、“tab”、“空格”时就会出现间隙。 如下代码：
+&amp;lt;div&amp;gt; &amp;lt;a&amp;gt;1&amp;lt;/a&amp;gt; &amp;lt;a&amp;gt;2&amp;lt;/a&amp;gt; &amp;lt;span&amp;gt;33333&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;44444&amp;lt;/span&amp;gt; &amp;lt;em&amp;gt;555555&amp;lt;/em&amp;gt; &amp;lt;/div&amp;gt; 解决方法：
+ 写在一行，之间不要有空格之类的符号。 使用font-size:0  div{font-size:0;} a,span,em{font-size:16px;} 元素分类&amp;ndash;内联块状元素 内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码display:inline-block就是将元素设置为内联块状元素。(css2.1新增)
+&amp;lt;img&amp;gt;、&amp;lt;input&amp;gt;标签就是这种内联块状标签。
+inline-block 元素特点：" />
+<meta name="twitter:title" content="CSS入门笔记 － 认识盒子模型 - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="CSS入门笔记 － 认识盒子模型 - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="引言 这次给大家带来了CSS－盒子模型部分的笔记，大家一同交流😊
+认识盒子模型之前，先来了解一下CSS元素的分类吧，后面再细细道来～
+CSS元素分类 在CSS中，html中的标签元素大体被分为三种不同的类型：
+ 块状元素 内联元素(又叫行内元素) 内联块状元素  常用的块状元素有： &amp;lt;div&amp;gt;、&amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt;...&amp;lt;h6&amp;gt;、&amp;lt;ol&amp;gt;、&amp;lt;ul&amp;gt;、&amp;lt;dl&amp;gt;、&amp;lt;table&amp;gt;、&amp;lt;address&amp;gt;、&amp;lt;blockquote&amp;gt; 、&amp;lt;form&amp;gt;
+常用的内联元素有： &amp;lt;a&amp;gt;、&amp;lt;span&amp;gt;、&amp;lt;br&amp;gt;、&amp;lt;i&amp;gt;、&amp;lt;em&amp;gt;、&amp;lt;strong&amp;gt;、&amp;lt;label&amp;gt;、&amp;lt;q&amp;gt;、&amp;lt;var&amp;gt;、&amp;lt;cite&amp;gt;、&amp;lt;code&amp;gt;
+常用的内联块状元素有:
+&amp;lt;img&amp;gt;、&amp;lt;input&amp;gt;
+元素分类&amp;ndash;块级元素 什么是块级元素？在html中&amp;lt;div&amp;gt;、 &amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt;、&amp;lt;form&amp;gt;、&amp;lt;ul&amp;gt; 、 &amp;lt;li&amp;gt;就是块级元素。设置display:block就是将元素显示为块级元素。 如下代码就是将内联元素a转换为块状元素，从而使a元素具有块状元素特点。
+a{display:block;}
+块级元素特点：
+ 每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行） 元素的高度、宽度、行高以及顶和底边距都可设置。 元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。  元素分类&amp;ndash;内联元素 在html中，&amp;lt;span&amp;gt;、&amp;lt;a&amp;gt;、&amp;lt;label&amp;gt;、 &amp;lt;strong&amp;gt; 、&amp;lt;em&amp;gt;就是典型的内联元素（行内元素）（inline）元素。
+当然块状元素也可以通过代码display:inline将元素设置为内联元素。如下代码就是将块状元素div转换为内联元素，从而使 div 元素具有内联元素特点。
+div{ display:inline; } ...... &amp;lt;div&amp;gt;我要变成内联元素&amp;lt;/div&amp;gt; 内联元素特点：
+ 和其他元素都在一行 元素的高度、宽度及顶部和底部边距不可设置 元素的宽度就是它包含的文字或图片的宽度，不可改变。  友情提示：行内元素之间会产生间隙bug问题的场景：
+当行内元素之间有“回车”、“tab”、“空格”时就会出现间隙。 如下代码：
+&amp;lt;div&amp;gt; &amp;lt;a&amp;gt;1&amp;lt;/a&amp;gt; &amp;lt;a&amp;gt;2&amp;lt;/a&amp;gt; &amp;lt;span&amp;gt;33333&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;44444&amp;lt;/span&amp;gt; &amp;lt;em&amp;gt;555555&amp;lt;/em&amp;gt; &amp;lt;/div&amp;gt; 解决方法：
+ 写在一行，之间不要有空格之类的符号。 使用font-size:0  div{font-size:0;} a,span,em{font-size:16px;} 元素分类&amp;ndash;内联块状元素 内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码display:inline-block就是将元素设置为内联块状元素。(css2.1新增)
+&amp;lt;img&amp;gt;、&amp;lt;input&amp;gt;标签就是这种内联块状标签。
+inline-block 元素特点：" property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/css/intro-box/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="CSS" /><meta property="article:section" content="Web" />
+<meta property="article:published_time" content="2016-09-14 22:28:03 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "CSS入门笔记 － 认识盒子模型",
+    "genre": "CSSWeb",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/css\/intro-box\/",
+    "datePublished": "2016-09-14 22:28:03 \u002b0800 CST",
+    "description": "引言 这次给大家带来了CSS－盒子模型部分的笔记，大家一同交流😊\n认识盒子模型之前，先来了解一下CSS元素的分类吧，后面再细细道来～\nCSS元素分类 在CSS中，html中的标签元素大体被分为三种不同的类型：\n 块状元素 内联元素(又叫行内元素) 内联块状元素  常用的块状元素有： \u0026lt;div\u0026gt;、\u0026lt;p\u0026gt;、\u0026lt;h1\u0026gt;...\u0026lt;h6\u0026gt;、\u0026lt;ol\u0026gt;、\u0026lt;ul\u0026gt;、\u0026lt;dl\u0026gt;、\u0026lt;table\u0026gt;、\u0026lt;address\u0026gt;、\u0026lt;blockquote\u0026gt; 、\u0026lt;form\u0026gt;\n常用的内联元素有： \u0026lt;a\u0026gt;、\u0026lt;span\u0026gt;、\u0026lt;br\u0026gt;、\u0026lt;i\u0026gt;、\u0026lt;em\u0026gt;、\u0026lt;strong\u0026gt;、\u0026lt;label\u0026gt;、\u0026lt;q\u0026gt;、\u0026lt;var\u0026gt;、\u0026lt;cite\u0026gt;、\u0026lt;code\u0026gt;\n常用的内联块状元素有:\n\u0026lt;img\u0026gt;、\u0026lt;input\u0026gt;\n元素分类\u0026ndash;块级元素 什么是块级元素？在html中\u0026lt;div\u0026gt;、 \u0026lt;p\u0026gt;、\u0026lt;h1\u0026gt;、\u0026lt;form\u0026gt;、\u0026lt;ul\u0026gt; 、 \u0026lt;li\u0026gt;就是块级元素。设置display:block就是将元素显示为块级元素。 如下代码就是将内联元素a转换为块状元素，从而使a元素具有块状元素特点。\na{display:block;}\n块级元素特点：\n 每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行） 元素的高度、宽度、行高以及顶和底边距都可设置。 元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。  元素分类\u0026ndash;内联元素 在html中，\u0026lt;span\u0026gt;、\u0026lt;a\u0026gt;、\u0026lt;label\u0026gt;、 \u0026lt;strong\u0026gt; 、\u0026lt;em\u0026gt;就是典型的内联元素（行内元素）（inline）元素。\n当然块状元素也可以通过代码display:inline将元素设置为内联元素。如下代码就是将块状元素div转换为内联元素，从而使 div 元素具有内联元素特点。\ndiv{ display:inline; } ...... \u0026lt;div\u0026gt;我要变成内联元素\u0026lt;\/div\u0026gt; 内联元素特点：\n 和其他元素都在一行 元素的高度、宽度及顶部和底部边距不可设置 元素的宽度就是它包含的文字或图片的宽度，不可改变。  友情提示：行内元素之间会产生间隙bug问题的场景：\n当行内元素之间有“回车”、“tab”、“空格”时就会出现间隙。 如下代码：\n\u0026lt;div\u0026gt; \u0026lt;a\u0026gt;1\u0026lt;\/a\u0026gt; \u0026lt;a\u0026gt;2\u0026lt;\/a\u0026gt; \u0026lt;span\u0026gt;33333\u0026lt;\/span\u0026gt; \u0026lt;span\u0026gt;44444\u0026lt;\/span\u0026gt; \u0026lt;em\u0026gt;555555\u0026lt;\/em\u0026gt; \u0026lt;\/div\u0026gt; 解决方法：\n 写在一行，之间不要有空格之类的符号。 使用font-size:0  div{font-size:0;} a,span,em{font-size:16px;} 元素分类\u0026ndash;内联块状元素 内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码display:inline-block就是将元素设置为内联块状元素。(css2.1新增)\n\u0026lt;img\u0026gt;、\u0026lt;input\u0026gt;标签就是这种内联块状标签。\ninline-block 元素特点：",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">CSS入门笔记 － 认识盒子模型</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2016年9月14日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/CSS">CSS</a></span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">CSS入门笔记 － 认识盒子模型</h1>
+            <p class="post-meta"><time datetime='2016-09-14T22:28:03&#43;08:00' itemprop="datePublished">September 14, 2016</time></p>
+                 
+          </header>
 
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-8f761aaee2a9ecde.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
+          <div class="post-content" itemprop="articleBody">
+            <p><img src="http://upload-images.jianshu.io/upload_images/1408656-8f761aaee2a9ecde.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h2 id="引言">引言</h2>
-
 <p>这次给大家带来了CSS－盒子模型部分的笔记，大家一同交流😊</p>
-
 <p>认识盒子模型之前，先来了解一下CSS元素的分类吧，后面再细细道来～</p>
-
 <h2 id="css元素分类">CSS元素分类</h2>
-
-<p>在CSS中，html中的标签元素大体被分为三种不同的类型：
-* 块状元素
-* 内联元素(又叫行内元素)
-* 内联块状元素</p>
-
+<p>在CSS中，html中的标签元素大体被分为三种不同的类型：</p>
+<ul>
+<li>块状元素</li>
+<li>内联元素(又叫行内元素)</li>
+<li>内联块状元素</li>
+</ul>
 <p>常用的块状元素有：
 <code>&lt;div&gt;、&lt;p&gt;、&lt;h1&gt;...&lt;h6&gt;、&lt;ol&gt;、&lt;ul&gt;、&lt;dl&gt;、&lt;table&gt;、&lt;address&gt;、&lt;blockquote&gt; 、&lt;form&gt;</code></p>
-
 <p>常用的内联元素有：
 <code>&lt;a&gt;、&lt;span&gt;、&lt;br&gt;、&lt;i&gt;、&lt;em&gt;、&lt;strong&gt;、&lt;label&gt;、&lt;q&gt;、&lt;var&gt;、&lt;cite&gt;、&lt;code&gt;</code></p>
-
-<p>常用的内联块状元素有:<br />
+<p>常用的内联块状元素有:<br>
 <code>&lt;img&gt;、&lt;input&gt;</code></p>
-
-<h3 id="元素分类-块级元素"><strong>元素分类&ndash;块级元素</strong></h3>
-
+<h3 id="元素分类--块级元素"><strong>元素分类&ndash;块级元素</strong></h3>
 <p>什么是块级元素？在html中<code>&lt;div&gt;、 &lt;p&gt;、&lt;h1&gt;、&lt;form&gt;、&lt;ul&gt; 、 &lt;li&gt;</code>就是块级元素。设置<code>display:block</code>就是将元素显示为块级元素。
-如下代码就是将内联元素a转换为块状元素，从而使a元素具有块状元素特点。<br />
+如下代码就是将内联元素a转换为块状元素，从而使a元素具有块状元素特点。<br>
 <code>a{display:block;}</code></p>
-
-<p>块级元素特点：
-* 每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行）
-* 元素的高度、宽度、行高以及顶和底边距都可设置。
-* 元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。</p>
-
-<h3 id="元素分类-内联元素"><strong>元素分类&ndash;内联元素</strong></h3>
-
-<p>在html中，<code>&lt;span&gt;、&lt;a&gt;、&lt;label&gt;、 &lt;strong&gt; 、&lt;em&gt;</code>就是典型的内联元素（行内元素）（inline）元素。<br />
+<p>块级元素特点：</p>
+<ul>
+<li>每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行）</li>
+<li>元素的高度、宽度、行高以及顶和底边距都可设置。</li>
+<li>元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。</li>
+</ul>
+<h3 id="元素分类--内联元素"><strong>元素分类&ndash;内联元素</strong></h3>
+<p>在html中，<code>&lt;span&gt;、&lt;a&gt;、&lt;label&gt;、 &lt;strong&gt; 、&lt;em&gt;</code>就是典型的内联元素（行内元素）（inline）元素。<br>
 当然块状元素也可以通过代码<code>display:inline</code>将元素设置为内联元素。如下代码就是将块状元素div转换为内联元素，从而使 div 元素具有内联元素特点。</p>
-
-<pre><code>div{
+<pre tabindex="0"><code>div{
     display:inline;
 }
 
 ......
 
 &lt;div&gt;我要变成内联元素&lt;/div&gt;
-</code></pre>
-
-<p>内联元素特点：
-* 和其他元素都在一行
-* 元素的高度、宽度及顶部和底部边距不可设置
-* 元素的宽度就是它包含的文字或图片的宽度，不可改变。</p>
-
-<p><strong>友情提示</strong>：行内元素之间会产生间隙bug问题的场景：<br />
+</code></pre><p>内联元素特点：</p>
+<ul>
+<li>和其他元素都在一行</li>
+<li>元素的高度、宽度及顶部和底部边距不可设置</li>
+<li>元素的宽度就是它包含的文字或图片的宽度，不可改变。</li>
+</ul>
+<p><strong>友情提示</strong>：行内元素之间会产生间隙bug问题的场景：<br>
 当行内元素之间有“回车”、“tab”、“空格”时就会出现间隙。
 如下代码：</p>
-
-<pre><code>&lt;div&gt;
+<pre tabindex="0"><code>&lt;div&gt;
    &lt;a&gt;1&lt;/a&gt;
    &lt;a&gt;2&lt;/a&gt;
    &lt;span&gt;33333&lt;/span&gt;
    &lt;span&gt;44444&lt;/span&gt;
    &lt;em&gt;555555&lt;/em&gt;
 &lt;/div&gt;
-</code></pre>
-
-<p>解决方法：
-1. 写在一行，之间不要有空格之类的符号。
-2. 使用font-size:0</p>
-
-<pre><code>div{font-size:0;}
-a,span,em{font-size:16px;}
-</code></pre>
-
-<h3 id="元素分类-内联块状元素"><strong>元素分类&ndash;内联块状元素</strong></h3>
-
-<p>内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码<code>display:inline-block</code>就是将元素设置为内联块状元素。(css2.1新增)<br />
-<code>&lt;img&gt;、&lt;input&gt;</code>标签就是这种内联块状标签。</p>
-
-<p>inline-block 元素特点：<br />
-1. 和其他元素都在一行上；</p>
-
+</code></pre><p>解决方法：</p>
 <ol>
-<li>元素的高度、宽度、行高以及顶和底边距都可设置。</li>
+<li>写在一行，之间不要有空格之类的符号。</li>
+<li>使用font-size:0</li>
 </ol>
-
+<pre tabindex="0"><code>div{font-size:0;}
+a,span,em{font-size:16px;}
+</code></pre><h3 id="元素分类--内联块状元素"><strong>元素分类&ndash;内联块状元素</strong></h3>
+<p>内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码<code>display:inline-block</code>就是将元素设置为内联块状元素。(css2.1新增)<br>
+<code>&lt;img&gt;、&lt;input&gt;</code>标签就是这种内联块状标签。</p>
+<p>inline-block 元素特点：</p>
+<ol>
+<li>
+<p>和其他元素都在一行上；</p>
+</li>
+<li>
+<p>元素的高度、宽度、行高以及顶和底边距都可设置。</p>
+</li>
+</ol>
 <p><strong>友情提示</strong> 平时开发时候 a 元素设置了宽和高，但都没有起到作用，原因是a在默认的时候是内联元素，内联元素是不可以设置宽和高的</p>
-
 <h2 id="css盒子模型">css盒子模型</h2>
-
 <p>在网页设计中常听的属性名：内容(content)、填充/内边距(padding)、边框(border)、外边距(margin)， CSS盒子模式都具备这些属性。
 这些属性我们可以把它转移到我们日常生活中的盒子（箱子）上来理解，日常生活中所见的盒子也就是能装东西的一种箱子，也具有这些属性，所以叫它盒子模型。</p>
-
 <p>可以把它当成日常中的一个盒子去理解。content就是盒子里装的东西，它有高度（height）和宽度（width）,可以是图片，可以是文字或者小盒子嵌套，在现实中，内容不能大于盒子，内容大于盒子就会撑破盒子，但在css中，盒子有弹性的，顶多内容太大就会撑大盒子，但是不会损害盒子。
-padding即是填充，就好像我们为了保证盒子里的东西不损坏，填充了一些东西，比如泡沫或者塑料薄膜，填充物有大有小，有软有硬，反应在网页中就是padding的大小了。而再外一层就是border边框，因为边框有大小和颜色的属性，相当于盒子的厚度和它的颜色或者材料。margin外边距，就是我们的盒子与其他的盒子或者其他东西的距离。假如有很多盒子，margin就是盒子堆码直接的距离，可以通风，也美观同时方便取出。<br />
+padding即是填充，就好像我们为了保证盒子里的东西不损坏，填充了一些东西，比如泡沫或者塑料薄膜，填充物有大有小，有软有硬，反应在网页中就是padding的大小了。而再外一层就是border边框，因为边框有大小和颜色的属性，相当于盒子的厚度和它的颜色或者材料。margin外边距，就是我们的盒子与其他的盒子或者其他东西的距离。假如有很多盒子，margin就是盒子堆码直接的距离，可以通风，也美观同时方便取出。<br>
 我们理解了盒子模型，有助于我们了解一个元素的最终尺寸是怎么样决定的，同时也帮助我们理解元素在网页上是如何定位的。</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-688353a5969cab8e.gif?imageMogr2/auto-orient/strip" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-688353a5969cab8e.gif?imageMogr2/auto-orient/strip" alt=""></p>
 <p>盒子模型的三维立体结构图</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-b91bdd5bf15785e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
-<p>边框（border），位于盒子的第一层。
-* 元素内容（content）、内边距（padding），两者同位于第二层。
-* 背景图（background-image），位于第三层。
-* 背景色（background-color），位于第四层。
-* 整个盒子的外边距（margin），位于第五层。</p>
-
-<h3 id="盒模型的大小-宽度和高度">盒模型的大小&ndash;宽度和高度</h3>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-c69130e8cb584d2b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-b91bdd5bf15785e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>边框（border），位于盒子的第一层。</p>
+<ul>
+<li>元素内容（content）、内边距（padding），两者同位于第二层。</li>
+<li>背景图（background-image），位于第三层。</li>
+<li>背景色（background-color），位于第四层。</li>
+<li>整个盒子的外边距（margin），位于第五层。</li>
+</ul>
+<h3 id="盒模型的大小--宽度和高度">盒模型的大小&ndash;宽度和高度</h3>
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-c69130e8cb584d2b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>盒模型宽度和高度和我们平常所说的物体的宽度和高度理解是不一样的，css内定义的宽（width）和高（height），指的是填充以里的内容范围。</p>
-
 <p>因此一个 <strong>元素实际宽度（盒子的宽度）=左边界+左边框+左填充+内容宽度+右填充+右边框+右边界</strong>。</p>
-
 <p>元素的高度也是同理。</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-c9b42463ee960909.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-c9b42463ee960909.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>比如：
 css代码：</p>
-
-<pre><code>div{
+<pre tabindex="0"><code>div{
     width:200px;
     padding:20px;
     border:1px solid red;
     margin:10px;    
 }
-</code></pre>
-
-<p>html代码：</p>
-
-<pre><code>&lt;body&gt;
+</code></pre><p>html代码：</p>
+<pre tabindex="0"><code>&lt;body&gt;
    &lt;div&gt;文本内容&lt;/div&gt;
 &lt;/body&gt;
-</code></pre>
-
-<p>元素的实际长度为：10px+1px+20px+200px+20px+1px+10px=262px。在chrome浏览器下可查看元素盒模型，如下图：<br />
-<img src="http://upload-images.jianshu.io/upload_images/1408656-98bf7fdce25a0ec5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
-<h3 id="插曲-标准-w3c-盒子模型-与-ie-盒模型对比">插曲－标准 W3C 盒子模型 与 IE 盒模型对比</h3>
-
+</code></pre><p>元素的实际长度为：10px+1px+20px+200px+20px+1px+10px=262px。在chrome浏览器下可查看元素盒模型，如下图：<br>
+<img src="http://upload-images.jianshu.io/upload_images/1408656-98bf7fdce25a0ec5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="插曲标准-w3c-盒子模型-与-ie-盒模型对比">插曲－标准 W3C 盒子模型 与 IE 盒模型对比</h3>
 <p>上面介绍的是我们熟悉的标准 W3C 盒子模型，然后古老的IE有一个自己的盒子模型，这里插一点新知识</p>
-
-<p><strong>标准 W3C 盒子模型</strong><br />
+<p><strong>标准 W3C 盒子模型</strong>  <br>
 标准 W3C 盒子模型的范围包括 margin、border、padding、content，并且 content 部分不包含其他部分。</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7fb37d4da3d93dfb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
-<p><strong>IE 盒子模型</strong><br />
- IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading。
-<img src="http://upload-images.jianshu.io/upload_images/1408656-af2b13c17ef01dc0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7fb37d4da3d93dfb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p><strong>IE 盒子模型</strong>  <br>
+IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading。
+<img src="http://upload-images.jianshu.io/upload_images/1408656-af2b13c17ef01dc0.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>那应该选择哪中盒子模型呢？当然是“标准 W3C 盒子模型”了。怎么样才算是选择了“标准 W3C 盒子模型”呢？很简单，就是在网页的顶部加上 DOCTYPE 声明。如果不加 DOCTYPE 声明，那么各个浏览器会根据自己的行为去理解网页，即 IE 浏览器会采用 IE 盒子模型去解释你的盒子，而 FF 会采用标准 W3C 盒子模型解释你的盒子，所以网页在不同的浏览器中就显示的不一样了。反之，如果加上了 DOCTYPE 声明，那么所有浏览器都会采用标准 W3C 盒子模型去解释你的盒子，网页就能在各个浏览器中显示一致了。</p>
-
-<h3 id="盒模型-边框-border">盒模型&ndash;边框 - border</h3>
-
+<h3 id="盒模型--边框---border">盒模型&ndash;边框 - border</h3>
 <p>元素的边框 (border) 是围绕元素内容和内边距的一条或多条线。</p>
-
 <p>CSS border 属性允许你规定元素边框的样式、宽度和颜色。
 盒子模型的边框就是围绕着内容及补白的线，这条线你可以设置它的粗细、样式和颜色(边框三个属性)。</p>
-
-<pre><code>border: [&lt;br-width&gt; || &lt;br-style&gt; || &lt;color&gt;] | inherit
+<pre tabindex="0"><code>border: [&lt;br-width&gt; || &lt;br-style&gt; || &lt;color&gt;] | inherit
 border-width: [&lt;length&gt; | thin | medium | thick]{1,4} | inherit
 border-style: [solid | dashed | dotted | ...]{1,4} |inherit
 border-colro: [&lt;color&gt; | transparent]{1,4} | inherit
-</code></pre>
-
-<p>如下面代码为 div 来设置边框粗细为 2px、样式为实心的、颜色为红色的边框：</p>
-
-<pre><code>div{
+</code></pre><p>如下面代码为 div 来设置边框粗细为 2px、样式为实心的、颜色为红色的边框：</p>
+<pre tabindex="0"><code>div{
     border:2px  solid  red;
 }
-</code></pre>
-
-<p>上面是 border 代码的缩写形式，可以分开写：</p>
-
-<pre><code>div{
+</code></pre><p>上面是 border 代码的缩写形式，可以分开写：</p>
+<pre tabindex="0"><code>div{
     border-width:2px;
     border-style:solid;
     border-color:red;
 }
-</code></pre>
-
-<p><strong>注意：</strong><br />
-1. border-style（边框样式）常见样式有：<code>dashed（虚线）| dotted（点线）| solid（实线）</code>.
-2. border-color（边框颜色）中的颜色可设置为十六进制颜色，如:<code>border-color:#888;//前面的井号不要忘掉</code>.
-3. border-width（边框宽度）中的宽度也可以设置为：<code>thin | medium | thick（但不是很常用），最常还是用象素（px）</code>.</p>
-
-<p>现在有一个问题，如果有想为 p 标签单独设置下边框，而其它三边都不设置边框样式怎么办呢？css 样式中允许只为一个方向的边框设置样式：<br />
+</code></pre><p><strong>注意：</strong></p>
+<ol>
+<li>border-style（边框样式）常见样式有：<code>dashed（虚线）| dotted（点线）| solid（实线）</code>.</li>
+<li>border-color（边框颜色）中的颜色可设置为十六进制颜色，如:<code>border-color:#888;//前面的井号不要忘掉</code>.</li>
+<li>border-width（边框宽度）中的宽度也可以设置为：<code>thin | medium | thick（但不是很常用），最常还是用象素（px）</code>.</li>
+</ol>
+<p>现在有一个问题，如果有想为 p 标签单独设置下边框，而其它三边都不设置边框样式怎么办呢？css 样式中允许只为一个方向的边框设置样式：<br>
 <code>div{border-bottom:1px solid red;}</code></p>
-
 <p>同样可以使用下面代码实现其它三边(上、右、左)边框的设置:</p>
-
-<pre><code>border-top:1px solid red;
+<pre tabindex="0"><code>border-top:1px solid red;
 border-right:1px solid red;
 border-left:1px solid red;
-</code></pre>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-d686b66e36b4ef41.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/1408656-d686b66e36b4ef41.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p><strong>border-radius</strong></p>
-
 <p>方方正正的边框很多时候让人感觉设计不够优雅，圆角矩形的边框此时不妨来尝试一下</p>
-
-<pre><code>/* 水平半径/垂直半径 */
+<pre tabindex="0"><code>/* 水平半径/垂直半径 */
 border-radius: [ &lt;length&gt; | &lt;percentage&gt; ]{1,4} [ / [ &lt;length&gt; | &lt;percentage&gt; ]{1,4} ]?
-</code></pre>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-bdb08b46262e82ed.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
-<h3 id="盒模型-填充-内边距-padding">盒模型&ndash;填充(内边距)- padding</h3>
-
+</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/1408656-bdb08b46262e82ed.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="盒模型--填充内边距--padding">盒模型&ndash;填充(内边距)- padding</h3>
 <p>CSS padding 属性定义元素边框与元素内容之间的空白区域.</p>
-
 <p>元素内容与边框之间是可以设置距离的，称之为“填充”。填充也可分为上、右、下、左(顺时针)。如下代码：
 <code>div{padding:20px 10px 15px 30px;}</code>
 顺序一定不要搞混。可以分开写上面代码：</p>
-
-<pre><code>div{
+<pre tabindex="0"><code>div{
    padding-top:20px;
    padding-right:10px;
    padding-bottom:15px;
    padding-left:30px;
 }
-</code></pre>
-
-<p>如果上、右、下、左的填充都为10px;可以这么写  <code>div{padding:10px;}</code><br />
+</code></pre><p>如果上、右、下、左的填充都为10px;可以这么写  <code>div{padding:10px;}</code><br>
 如果上下填充一样为10px，左右一样为20px，可以这么写：  <code>div{padding:10px 20px;}</code></p>
-
-<h3 id="盒模型-外边距-margin">盒模型&ndash;外边距- margin</h3>
-
-<p>设置外边距的最简单的方法就是使用 margin 属性。<br />
-margin 属性接受任何长度单位，可以是像素、英寸、毫米或 em。<br />
-margin 可以设置为 auto。更常见的做法是为外边距设置长度值。下面的声明在 h1 元素的各个边上设置了 <sup>1</sup>&frasl;<sub>4</sub> 英寸宽的空白：<br />
+<h3 id="盒模型--外边距--margin">盒模型&ndash;外边距- margin</h3>
+<p>设置外边距的最简单的方法就是使用 margin 属性。<br>
+margin 属性接受任何长度单位，可以是像素、英寸、毫米或 em。<br>
+margin 可以设置为 auto。更常见的做法是为外边距设置长度值。下面的声明在 h1 元素的各个边上设置了 1/4 英寸宽的空白：<br>
 <code>h1 {margin : 0.25in;}</code>
-下面的例子为 h1 元素的四个边分别定义了不同的外边距，所使用的长度单位是像素 (px)：<br />
+下面的例子为 h1 元素的四个边分别定义了不同的外边距，所使用的长度单位是像素 (px)：<br>
 <code>h1 {margin : 10px 0px 15px 5px;}</code></p>
-
 <p>与内边距的设置相同，这些值的顺序是从上外边距 (top) 开始围着元素顺时针旋转的：  <code>margin: top right bottom left</code>
 另外，还可以为 margin 设置一个百分比数值：  <code>p {margin : 10%;}</code>,百分数是相对于父元素的 width 计算的。上面这个例子为 p 元素设置的外边距是其父元素的 width 的 10%。</p>
-
-<h3 id="盒模型属性-overflow">盒模型属性 － overflow</h3>
-
+<h3 id="盒模型属性--overflow">盒模型属性 － overflow</h3>
 <p>overflow 属性规定当内容溢出元素框时发生的事情。</p>
-
 <p>这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。</p>
-
 <table>
 <thead>
 <tr>
-<th align="left">值</th>
-<th align="left">描述</th>
+<th style="text-align:left">值</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">visible</td>
-<td align="left">默认值。内容不会被修剪，会呈现在元素框之外。</td>
+<td style="text-align:left">visible</td>
+<td style="text-align:left">默认值。内容不会被修剪，会呈现在元素框之外。</td>
 </tr>
-
 <tr>
-<td align="left">hidden</td>
-<td align="left">内容会被修剪，并且其余内容是不可见的。</td>
+<td style="text-align:left">hidden</td>
+<td style="text-align:left">内容会被修剪，并且其余内容是不可见的。</td>
 </tr>
-
 <tr>
-<td align="left">scroll</td>
-<td align="left">内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。</td>
+<td style="text-align:left">scroll</td>
+<td style="text-align:left">内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。</td>
 </tr>
-
 <tr>
-<td align="left">auto</td>
-<td align="left">如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。</td>
+<td style="text-align:left">auto</td>
+<td style="text-align:left">如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。</td>
 </tr>
-
 <tr>
-<td align="left">inherit</td>
-<td align="left">规定应该从父元素继承 overflow 属性的值。</td>
+<td style="text-align:left">inherit</td>
+<td style="text-align:left">规定应该从父元素继承 overflow 属性的值。</td>
 </tr>
 </tbody>
 </table>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7c27cdba66178329.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7c27cdba66178329.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h3 id="盒模型属性-box-shadow">盒模型属性 －box-shadow</h3>
-
 <p>box-shadow 属性向框添加一个或多个阴影。
-语法:<br />
+语法:  <br>
 <code>box-shadow: h-shadow v-shadow blur spread color inset;</code></p>
-
-<pre><code>
+<pre tabindex="0"><code>
 box-shadow: 4px  6px   3px  0px red;
              |    |     |    |
           水平偏移 |     |    |
                垂直偏移  |    |
                     模糊半径  |
                           阴影大小
-</code></pre>
-
-<p>注意：水平与垂直偏移可以为负值即相反方向偏移。颜色默认为文字颜色。阴影不占据空间，仅为修饰效果。</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-adae161942204e34.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
+</code></pre><p>注意：水平与垂直偏移可以为负值即相反方向偏移。颜色默认为文字颜色。阴影不占据空间，仅为修饰效果。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-adae161942204e34.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h3 id="trbl">TRBL</h3>
-
 <p>TRBL (Top, Right, Bottom, Left) 即为顺时针从顶部开始。具有四个方向的属性都可以通过 <code>*-top *-right *-bottom 与 *-left</code> 单独对其进行设置。</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7a68de9f09c01439.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7a68de9f09c01439.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <h3 id="值缩写">值缩写</h3>
-
-<p>下面的值缩写以 padding 为例。<br />
-&gt;对面相等，后者省略；四面相等，只设一个。</p>
-
-<pre><code>/*      四面值 */
+<p>下面的值缩写以 padding 为例。</p>
+<blockquote>
+<p>对面相等，后者省略；四面相等，只设一个。</p>
+</blockquote>
+<pre tabindex="0"><code>/*      四面值 */
 padding: 20px;
 padding: 20px 20px 20px 20px;
 
@@ -423,352 +403,97 @@ padding: 20px 10px 20px 10px;
 /*       上值 右左值 下值 */
 padding: 20px 10px   30px;
 padding: 20px 10px 30px 10px;
-</code></pre>
-
-<h3 id="css-外边距合并">CSS 外边距合并</h3>
-
-<p><strong>外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。</strong><br />
+</code></pre><h3 id="css-外边距合并">CSS 外边距合并</h3>
+<p><strong>外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。</strong><br>
 <strong>合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。</strong></p>
-
 <p>外边距合并</p>
-
-<p>外边距合并（叠加）是一个相当简单的概念。但是，在实践中对网页进行布局时，它会造成许多混淆。<br />
+<p>外边距合并（叠加）是一个相当简单的概念。但是，在实践中对网页进行布局时，它会造成许多混淆。<br>
 简单地说，外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。
 当一个元素出现在另一个元素上面时，第一个元素的下外边距与第二个元素的上外边距会发生合并。请看下图：</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-80168c75b31eb8a9.gif?imageMogr2/auto-orient/strip" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-80168c75b31eb8a9.gif?imageMogr2/auto-orient/strip" alt=""></p>
 <p>当一个元素包含在另一个元素中时（假设没有内边距或边框把外边距分隔开），它们的上和/或下外边距也会发生合并。请看下图：</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7cfa2a2de02b6a02.gif?imageMogr2/auto-orient/strip" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7cfa2a2de02b6a02.gif?imageMogr2/auto-orient/strip" alt=""></p>
 <p>尽管看上去有些奇怪，但是外边距甚至可以与自身发生合并。</p>
-
 <p>假设有一个空元素，它有外边距，但是没有边框或填充。在这种情况下，上外边距与下外边距就碰到了一起，它们会发生合并：</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7fcf527463bfde64.gif?imageMogr2/auto-orient/strip" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-7fcf527463bfde64.gif?imageMogr2/auto-orient/strip" alt=""></p>
 <p>如果这个外边距遇到另一个元素的外边距，它还会发生合并：</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-5efe89e9023eb794.gif?imageMogr2/auto-orient/strip" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-5efe89e9023eb794.gif?imageMogr2/auto-orient/strip" alt=""></p>
 <p>这就是一系列的段落元素占用空间非常小的原因，因为它们的所有外边距都合并到一起，形成了一个小的外边距。</p>
-
 <p>外边距合并初看上去可能有点奇怪，但是实际上，它是有意义的。以由几个段落组成的典型文本页面为例。第一个段落上面的空间等于段落的上外边距。如果没有外边距合并，后续所有段落之间的外边距都将是相邻上外边距和下外边距的和。这意味着段落之间的空间是页面顶部的两倍。如果发生外边距合并，段落之间的上外边距和下外边距就合并在一起，这样各处的距离就一致了。</p>
-
-<p><img src="http://upload-images.jianshu.io/upload_images/1408656-aa9166ab6595a493.gif?imageMogr2/auto-orient/strip" alt="" /></p>
-
+<p><img src="http://upload-images.jianshu.io/upload_images/1408656-aa9166ab6595a493.gif?imageMogr2/auto-orient/strip" alt=""></p>
 <p>注释：只有普通文档流中块框的垂直外边距才会发生外边距合并。行内框、浮动框或绝对定位之间的外边距不会合并。</p>
 
-                        </div>
+          </div>
 
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/css/intro-1/">CSS入门笔记 － 初识CSS</a></li>
-        
-        <li><a href="/post/html/intro/">HTML 入门笔记 － 初识HTML</a></li>
-        
-        <li><a href="/archives/">归档</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/CSS">CSS</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/basic">basic</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/js/danger/">&laquo; js 保留关键字以及危险变量名</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/css/intro-1/">CSS入门笔记 － 初识CSS &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

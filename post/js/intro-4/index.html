@@ -1,116 +1,151 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>js intro 语句 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="js intro 语句 - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2016-10-17T22:33:39&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2016-10-17T22:33:39&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="js intro 语句">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/js/intro-4/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>js intro 语句 - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="语句 js程序其实就是一系列可执行语句的集合。只要掌握了语句，就可以开始写js程序
+默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序:
+ 条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如if语句、switch语句 循环语句，可以重复执行语句，如while语句和for语句 跳转语句，可以让解释器跳转至程序的其他部分继续执行，如break语句、return语句、 throw语句  表达式语句  赋值语句 递增、递减运算符 函数调用  greeting = &amp;#34;hello&amp;#34; &#43; name; i *= 3; counter&#43;&#43;; delete o.x; window.close(); cx = Math.cos(x); 复合语句和空语句 js可以讲多条语句联合在一起，形成一条复合语句，只需要用花括号将多条语句括起来即可。
+下面代码可以当成一条单独的语句，使用在任何js希望使用一条语句的地方：
+{ x = Math.PI; cx = Math.cos(x); console.log(&amp;#34;cos(pi) = &amp;#34; &#43; cx); } 关于语句块，需要注意:
+ 语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要 语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好 js中没有快级作用域，语句块中声明的变量并不是语句块私有的  在js中，希望多条语句被当作一条语句使用时，使用复合语句来替代，空语句正好相反，允许包含0条语句 空语句如下:
+; js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用
+for(var i=0; i&amp;lt;a.length; a[i&#43;&#43;]=0) ; 注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug
+if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; // 这一行总会执行 如果有特殊目的需要使用空语句，最好在代码中注释"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/js/intro-4/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="语句 js程序其实就是一系列可执行语句的集合。只要掌握了语句，就可以开始写js程序
+默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序:
+ 条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如if语句、switch语句 循环语句，可以重复执行语句，如while语句和for语句 跳转语句，可以让解释器跳转至程序的其他部分继续执行，如break语句、return语句、 throw语句  表达式语句  赋值语句 递增、递减运算符 函数调用  greeting = &amp;#34;hello&amp;#34; &#43; name; i *= 3; counter&#43;&#43;; delete o.x; window.close(); cx = Math.cos(x); 复合语句和空语句 js可以讲多条语句联合在一起，形成一条复合语句，只需要用花括号将多条语句括起来即可。
+下面代码可以当成一条单独的语句，使用在任何js希望使用一条语句的地方：
+{ x = Math.PI; cx = Math.cos(x); console.log(&amp;#34;cos(pi) = &amp;#34; &#43; cx); } 关于语句块，需要注意:
+ 语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要 语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好 js中没有快级作用域，语句块中声明的变量并不是语句块私有的  在js中，希望多条语句被当作一条语句使用时，使用复合语句来替代，空语句正好相反，允许包含0条语句 空语句如下:
+; js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用
+for(var i=0; i&amp;lt;a.length; a[i&#43;&#43;]=0) ; 注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug
+if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; // 这一行总会执行 如果有特殊目的需要使用空语句，最好在代码中注释" />
+<meta name="twitter:title" content="js intro 语句 - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="js intro 语句 - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="语句 js程序其实就是一系列可执行语句的集合。只要掌握了语句，就可以开始写js程序
+默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序:
+ 条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如if语句、switch语句 循环语句，可以重复执行语句，如while语句和for语句 跳转语句，可以让解释器跳转至程序的其他部分继续执行，如break语句、return语句、 throw语句  表达式语句  赋值语句 递增、递减运算符 函数调用  greeting = &amp;#34;hello&amp;#34; &#43; name; i *= 3; counter&#43;&#43;; delete o.x; window.close(); cx = Math.cos(x); 复合语句和空语句 js可以讲多条语句联合在一起，形成一条复合语句，只需要用花括号将多条语句括起来即可。
+下面代码可以当成一条单独的语句，使用在任何js希望使用一条语句的地方：
+{ x = Math.PI; cx = Math.cos(x); console.log(&amp;#34;cos(pi) = &amp;#34; &#43; cx); } 关于语句块，需要注意:
+ 语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要 语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好 js中没有快级作用域，语句块中声明的变量并不是语句块私有的  在js中，希望多条语句被当作一条语句使用时，使用复合语句来替代，空语句正好相反，允许包含0条语句 空语句如下:
+; js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用
+for(var i=0; i&amp;lt;a.length; a[i&#43;&#43;]=0) ; 注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug
+if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; // 这一行总会执行 如果有特殊目的需要使用空语句，最好在代码中注释" property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/js/intro-4/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Javascript" /><meta property="article:section" content="Web" />
+<meta property="article:published_time" content="2016-10-17 22:33:39 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "js intro 语句",
+    "genre": "JavascriptWeb",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/js\/intro-4\/",
+    "datePublished": "2016-10-17 22:33:39 \u002b0800 CST",
+    "description": "语句 js程序其实就是一系列可执行语句的集合。只要掌握了语句，就可以开始写js程序\n默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序:\n 条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如if语句、switch语句 循环语句，可以重复执行语句，如while语句和for语句 跳转语句，可以让解释器跳转至程序的其他部分继续执行，如break语句、return语句、 throw语句  表达式语句  赋值语句 递增、递减运算符 函数调用  greeting = \u0026#34;hello\u0026#34; \u002b name; i *= 3; counter\u002b\u002b; delete o.x; window.close(); cx = Math.cos(x); 复合语句和空语句 js可以讲多条语句联合在一起，形成一条复合语句，只需要用花括号将多条语句括起来即可。\n下面代码可以当成一条单独的语句，使用在任何js希望使用一条语句的地方：\n{ x = Math.PI; cx = Math.cos(x); console.log(\u0026#34;cos(pi) = \u0026#34; \u002b cx); } 关于语句块，需要注意:\n 语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要 语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好 js中没有快级作用域，语句块中声明的变量并不是语句块私有的  在js中，希望多条语句被当作一条语句使用时，使用复合语句来替代，空语句正好相反，允许包含0条语句 空语句如下:\n; js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用\nfor(var i=0; i\u0026lt;a.length; a[i\u002b\u002b]=0) ; 注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug\nif((a == 0) || ( b == 0)); \/\/ 这一行代码没有执行任何东西 o = null; \/\/ 这一行总会执行 如果有特殊目的需要使用空语句，最好在代码中注释",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">js intro 语句</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2016年10月17日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Javascript">Javascript</a></span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">js intro 语句</h1>
+            <p class="post-meta"><time datetime='2016-10-17T22:33:39&#43;08:00' itemprop="datePublished">October 17, 2016</time></p>
+                 
+          </header>
 
-<h1 id="语句">语句</h1>
-
+          <div class="post-content" itemprop="articleBody">
+            <h1 id="语句">语句</h1>
 <p>js程序其实就是一系列可执行语句的集合。只要掌握了语句，就可以开始写js程序</p>
-
-<p>默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序:
-- 条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如<code>if</code>语句、<code>switch</code>语句
-- 循环语句，可以重复执行语句，如<code>while</code>语句和<code>for</code>语句
-- 跳转语句，可以让解释器跳转至程序的其他部分继续执行，如<code>break</code>语句、<code>return</code>语句、 <code>throw</code>语句</p>
-
+<p>默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序:</p>
+<ul>
+<li>条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如<code>if</code>语句、<code>switch</code>语句</li>
+<li>循环语句，可以重复执行语句，如<code>while</code>语句和<code>for</code>语句</li>
+<li>跳转语句，可以让解释器跳转至程序的其他部分继续执行，如<code>break</code>语句、<code>return</code>语句、 <code>throw</code>语句</li>
+</ul>
 <h2 id="表达式语句">表达式语句</h2>
-
 <ul>
 <li>赋值语句</li>
 <li>递增、递减运算符</li>
 <li>函数调用</li>
 </ul>
-
-<pre><code>greeting = &quot;hello&quot; + name;
+<pre tabindex="0"><code>greeting = &#34;hello&#34; + name;
 i *= 3;
 
 counter++;
@@ -120,142 +155,92 @@ delete o.x;
 window.close();
 
 cx = Math.cos(x);
-</code></pre>
-
-<h2 id="复合语句和空语句">复合语句和空语句</h2>
-
+</code></pre><h2 id="复合语句和空语句">复合语句和空语句</h2>
 <p>js可以讲多条语句联合在一起，形成一条复合语句，只需要用花括号将多条语句括起来即可。</p>
-
 <p>下面代码可以当成一条单独的语句，使用在任何js希望使用一条语句的地方：</p>
-
-<pre><code>{
+<pre tabindex="0"><code>{
   x = Math.PI;
   cx = Math.cos(x);
-  console.log(&quot;cos(pi) = &quot; + cx);
+  console.log(&#34;cos(pi) = &#34; + cx);
 }
-</code></pre>
-
-<p>关于语句块，需要注意:
-- 语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要
-- 语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好
-- js中没有快级作用域，语句块中声明的变量并不是语句块私有的</p>
-
+</code></pre><p>关于语句块，需要注意:</p>
+<ul>
+<li>语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要</li>
+<li>语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好</li>
+<li>js中没有快级作用域，语句块中声明的变量并不是语句块私有的</li>
+</ul>
 <p>在js中，希望多条语句被当作一条语句使用时，使用复合语句来替代，空语句正好相反，允许包含0条语句
 空语句如下:</p>
-
-<pre><code>;
-</code></pre>
-
-<p>js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用</p>
-
-<pre><code>for(var i=0; i&lt;a.length; a[i++]=0) ;
-</code></pre>
-
-<p>注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug</p>
-
-<pre><code>if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西
+<pre tabindex="0"><code>;
+</code></pre><p>js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用</p>
+<pre tabindex="0"><code>for(var i=0; i&lt;a.length; a[i++]=0) ;
+</code></pre><p>注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug</p>
+<pre tabindex="0"><code>if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西
 o = null;    // 这一行总会执行
-</code></pre>
-
-<p><strong>如果有特殊目的需要使用空语句，最好在代码中注释</strong></p>
-
+</code></pre><p><strong>如果有特殊目的需要使用空语句，最好在代码中注释</strong></p>
 <h2 id="声明语句">声明语句</h2>
-
 <p><code>var</code>和<code>function</code>都是声明语句，它们声明或定义变量或函数。</p>
-
 <h3 id="var">var</h3>
-
 <p><code>var</code> 语句用来声明一个或多个变量。关键字var后面跟随的是要声明的变量列表，每个变量都可以带有初始化表达式，用于指定初始值</p>
-
 <p>栗子：</p>
-
-<pre><code>var i;
+<pre tabindex="0"><code>var i;
 var j = 0;
 var p,q;
-var greeting = &quot;hello&quot; + name;
+var greeting = &#34;hello&#34; + name;
 var x = 2.34,y = Math.cos(1), r, theta;
 var x = 2,
     f = function(x) { return x*x;},
     y = f(x);
-</code></pre>
-
-<p>如果var语句出现在函数体内，那么定义的是一个局部变量，作用域就是这个函数。</p>
-
+</code></pre><p>如果var语句出现在函数体内，那么定义的是一个局部变量，作用域就是这个函数。</p>
 <p>如果在顶层代码中使用var语句，那么声明的是一个全局变量，在整个js程序都是可见的</p>
-
 <p>var声明的变量是无法通过delete删除的</p>
-
 <p>如果var语句中的变量没有指定初始化值，那么这个变量的值初始化为undefined</p>
-
 <h3 id="function">function</h3>
-
 <p>关键字<code>function</code>用来定义函数，例如以下函数定义表达式形式写法来定义函数：</p>
-
-<pre><code>var f = function(x) { return x*x; };
+<pre tabindex="0"><code>var f = function(x) { return x*x; };
 function f(x) { return x+1; };
-</code></pre>
-
-<p>大括号包起来的是函数体，函数体是由js语句组成的，语句数量不限。</p>
-
+</code></pre><p>大括号包起来的是函数体，函数体是由js语句组成的，语句数量不限。</p>
 <p>在定义函数时，并不执行函数体内的语句，它和调用函数时的新函数对象相关联。</p>
-
-<p>注意即使只有一条语句，也需要用花括号包起来。<br />
+<p>注意即使只有一条语句，也需要用花括号包起来。 <br>
 下面是一些函数声明形式的栗子：</p>
-
-<pre><code>function hypotense(x,y) {
+<pre tabindex="0"><code>function hypotense(x,y) {
   return x*x + y*y;
 }
-</code></pre>
-
-<p>函数声明语句通常出现在js代码的最顶层，也可以嵌套在其它函数体内。但是嵌套函数定义时，注意函数声明只能出现在所嵌套函数顶部
+</code></pre><p>函数声明语句通常出现在js代码的最顶层，也可以嵌套在其它函数体内。但是嵌套函数定义时，注意函数声明只能出现在所嵌套函数顶部
 不能出现在if语句、while循环或其他任何语句中</p>
-
-<p>函数声明语句和函数定义表达式的不同:
-- 函数声明语句中的函数名是一个变量名，变量指向函数对象。和通过var声明变量一样，函数定义语句的函数被显式的“提前”到了脚本或函数的顶部，在整个脚本和函数内是可见的
-- 使用var的话，只有变量名被提前了，变量初始化代码仍然在原来的位置。使用函数声明语句的话，函数名称和函数体均被提前。</p>
-
+<p>函数声明语句和函数定义表达式的不同:</p>
+<ul>
+<li>函数声明语句中的函数名是一个变量名，变量指向函数对象。和通过var声明变量一样，函数定义语句的函数被显式的“提前”到了脚本或函数的顶部，在整个脚本和函数内是可见的</li>
+<li>使用var的话，只有变量名被提前了，变量初始化代码仍然在原来的位置。使用函数声明语句的话，函数名称和函数体均被提前。</li>
+</ul>
 <p>和var语句一样，函数声明语句创建的变量是无法删除的。</p>
-
 <h2 id="条件语句">条件语句</h2>
-
 <p>js中基本的条件语句有<code>if/else</code>语句和<code>switch</code>语句</p>
-
 <h3 id="if语句">if语句</h3>
-
-<p>主要有3种形式
-- <code>if ...</code>
-- <code>if...else...</code>
-- <code>if...else if...else...</code></p>
-
+<p>主要有3种形式</p>
+<ul>
+<li><code>if ...</code></li>
+<li><code>if...else...</code></li>
+<li><code>if...else if...else...</code></li>
+</ul>
 <p><strong><code>if ...</code></strong></p>
-
-<pre><code>if (exoression)
+<pre tabindex="0"><code>if (exoression)
   statement;
-</code></pre>
-
-<p><strong><code>if...else...</code></strong></p>
-
-<pre><code>if (expression)
+</code></pre><p><strong><code>if...else...</code></strong></p>
+<pre tabindex="0"><code>if (expression)
   statement1;
 else
   statement2;
-</code></pre>
-
-<p><strong><code>if...else if...else...</code></strong></p>
-
-<pre><code>if (expression1)
+</code></pre><p><strong><code>if...else if...else...</code></strong></p>
+<pre tabindex="0"><code>if (expression1)
   statement1;
 else if(expression2)
   statement2;
 else
   statement3;
-</code></pre>
-
-<h3 id="switch语句">switch语句</h3>
-
+</code></pre><h3 id="switch语句">switch语句</h3>
 <p>如果所有的程序执行分支都依赖于同一个表达式时，if-else并不是最佳解决方案，而switch语句正适合处理这种情况</p>
-
-<pre><code>switch(n): {
+<pre tabindex="0"><code>switch(n): {
   case 1:
     // 执行代码块1
     break;
@@ -269,127 +254,74 @@ else
     // 执行代码块4
     break;
 }
-</code></pre>
-
-<p>由于switch语句每次执行时候，不是所有的case表达式都能执行，因此，应当避免使用带有副作用的case表达式，
+</code></pre><p>由于switch语句每次执行时候，不是所有的case表达式都能执行，因此，应当避免使用带有副作用的case表达式，
 最安全的做法是case中使用常量表达式</p>
-
 <h2 id="循环语句">循环语句</h2>
-
 <p>js中有4中循环语句，<code>while</code>,<code>do/while</code>,<code>for</code>,<code>for/in</code></p>
-
 <h3 id="while语句">while语句</h3>
-
 <p>while 语句基本语法如下:</p>
-
-<pre><code>while(expression)
+<pre tabindex="0"><code>while(expression)
   statement
-</code></pre>
-
-<p>执行while之前，js解释器先计算expression值，如果值是假的，那么程序将跳过循环体中的逻辑。反之，js将执行循环体内的逻辑，
+</code></pre><p>执行while之前，js解释器先计算expression值，如果值是假的，那么程序将跳过循环体中的逻辑。反之，js将执行循环体内的逻辑，
 然后再次计算表达式expression的值，这种循环会一直下去，直到expression值为假值为止。</p>
-
 <p>下面这个示例演示while循环输出0-9:</p>
-
-<pre><code>var count = 0;
+<pre tabindex="0"><code>var count = 0;
 while( count &lt; 10 ){
   console.log(count++);
 }
-</code></pre>
-
-<h3 id="do-while语句">do/while语句</h3>
-
+</code></pre><h3 id="dowhile语句">do/while语句</h3>
 <p>do/while语句和while语句非常接近，只不过检测循环表达式是在循环结束时候，也就说至少执行一次</p>
-
-<pre><code>do {
+<pre tabindex="0"><code>do {
   statement
 }while(expression)
-</code></pre>
-
-<p>下面是一个do/while循环的栗子：</p>
-
-<pre><code>var count = 0;
+</code></pre><p>下面是一个do/while循环的栗子：</p>
+<pre tabindex="0"><code>var count = 0;
 do {
   console.log(count++)
 }while(count&lt;10)
-</code></pre>
-
-<h3 id="for语句">for语句</h3>
-
+</code></pre><h3 id="for语句">for语句</h3>
 <p>大部分循环都有特定的计数变量，在循环开始之前，初始化这个变量，然后每次循环执行之前都检测一下他的值，最后，
 计数器变量做自增操作。</p>
-
 <p>在这类循环中，计数器的三个关键操作是：初始化、检测、更新</p>
-
 <p>for语句将这三步操作明确声明为循环语法一部分，各自使用一个表达式来表示。</p>
-
 <p>for语句的语法如下：</p>
-
-<pre><code>for(initialize; test; increment;){
+<pre tabindex="0"><code>for(initialize; test; increment;){
   statement
 }
-</code></pre>
-
-<p>initialize,test,increment三个表达式之间用分号分割，分别负责初始化操作，循环条件判断和计数器变量更新。</p>
-
+</code></pre><p>initialize,test,increment三个表达式之间用分号分割，分别负责初始化操作，循环条件判断和计数器变量更新。</p>
 <p>for循环输出0-9的栗子：</p>
-
-<pre><code>for(var count=0; count&lt;10;count++){
+<pre tabindex="0"><code>for(var count=0; count&lt;10;count++){
   console.log(count);
 }
-</code></pre>
-
-<h3 id="for-in语句">for/in语句</h3>
-
+</code></pre><h3 id="forin语句">for/in语句</h3>
 <p>for/in语句和常规for循环完全不同。语法如下：</p>
-
-<pre><code>for(variable in object){
+<pre tabindex="0"><code>for(variable in object){
   statement
 }
-</code></pre>
-
-<p>variable 通常是一个变量名，也可以是一个产生左值的表达式或者一个通过var语句声明的变量，总之必须是一个适合赋值
+</code></pre><p>variable 通常是一个变量名，也可以是一个产生左值的表达式或者一个通过var语句声明的变量，总之必须是一个适合赋值
 表达式左侧的值。object是一个表达式，这个表达式计算结果是一个对象。</p>
-
 <p>for循环遍历数组元素是非常简单的，for/in循环更适合用来遍历对象属性成员</p>
-
-<pre><code>for(var p in o){
+<pre tabindex="0"><code>for(var p in o){
   console.log(o[p])
 }
-</code></pre>
-
-<p>需要注意的是，只要for/in循环中，variable的值可以当作赋值表达式的左值，它可以是任意表达式。每次循环都会计算这个表达式，
+</code></pre><p>需要注意的是，只要for/in循环中，variable的值可以当作赋值表达式的左值，它可以是任意表达式。每次循环都会计算这个表达式，
 也就是说，每次循环他计算的值都有可能不同。</p>
-
 <p>例如，可以使用下面这段代码将所有对象属性复制到一个数组中</p>
-
-<pre><code>var o = {x:1,y:2};
+<pre tabindex="0"><code>var o = {x:1,y:2};
 var a=[],i=0;
 for(a[i++] in o) ; /*empty*/
-</code></pre>
-
-<p>js数组不过是一种特殊的对象，因此，for/in循环可以像枚举对象属性一样，枚举数组索引。</p>
-
+</code></pre><p>js数组不过是一种特殊的对象，因此，for/in循环可以像枚举对象属性一样，枚举数组索引。</p>
 <p>例如可以在上面代码之后加上这段代码，可以枚举数组的索引0,1,2：</p>
-
-<pre><code>for(i in a) console.log(i);
-</code></pre>
-
-<p>其实，for/in循环并不会遍历对象的所有属性，只有可枚举的属性才会被遍历到。由js语言核心定义的内置方法就不是可枚举的.
+<pre tabindex="0"><code>for(i in a) console.log(i);
+</code></pre><p>其实，for/in循环并不会遍历对象的所有属性，只有可枚举的属性才会被遍历到。由js语言核心定义的内置方法就不是可枚举的.
 除了内置方法之外，还有很多内置对象的属性也是不可枚举的。</p>
-
 <p>代码中定义的所有属性和方法都是可枚举的。</p>
-
 <p>对象可以继承其他对象的属性，那些继承的自定义属性也可以使用for/in枚举出来</p>
-
-<p><strong>属性枚举的顺序：</strong><br />
+<p><strong>属性枚举的顺序：</strong> <br>
 规范没有指定for/in循环按照何种顺序来枚举对象属性，实际上主流浏览器厂商的js实现是按照属性定义的先后顺序来枚举简单对象的属性：
 <strong>先定义，先枚举</strong></p>
-
 <h2 id="跳转语句">跳转语句</h2>
-
 <p>js中有一类语句是跳转语句。从名字就能看出，这种语句就是使得js的执行可以从一个位置跳转到另一个位置。</p>
-
 <ul>
 <li>break语句是跳转到循环或者其它语句的结束</li>
 <li>continue语句是终止本次循环的执行并开始下一次循环的执行。</li>
@@ -397,58 +329,36 @@ for(a[i++] in o) ; /*empty*/
 <li>return语句让解释器跳出函数体执行，并提供本次调用的返回值</li>
 <li>throw语句触发或者抛出一个异常，配合try/catch/finally语句一同执行，跳转到最近的闭合异常处理程序</li>
 </ul>
-
 <h3 id="标签语句">标签语句</h3>
-
-<p>语句是可以加标签的，标签由语句前的标示符和冒号组成<code>identifier: statement</code></p>
-
+<p>语句是可以加标签的，标签由语句前的标示符和冒号组成<code> identifier: statement</code></p>
 <p>通过给语句定义标签，就可以在程序的任何地方通过标签名引用这条语句。break和continue是js唯一可以使用语句标签
 的语句.</p>
-
 <p>用作标签的identifier 必须是一个合法的js标识符，不能是保留字</p>
-
 <p>标签的命名空间和变量或函数的命名空间是不同的，因此可以使用同一个标示符作为语句标签和作为变量名或者函数名。</p>
-
 <p>一个语句标签不能和它内部的语句标签重名，但在两个代码段不互相嵌套时候，是可以出现同名语句标签。并且带有标签的语句
 还可以带有标签，任何语句都可以有多个标签</p>
-
 <p>比如下面这个栗子，while循环定义一个标签，continue使用这个标签:</p>
-
-<pre><code>mainloop: while(token != null ){
+<pre tabindex="0"><code>mainloop: while(token != null ){
   statement1;
   continue mainloop; // 跳转到下一次循环
   statement2;
 }
-</code></pre>
-
-<h3 id="break语句">break语句</h3>
-
+</code></pre><h3 id="break语句">break语句</h3>
 <p>单独使用break语句的作用是立即退出最内层的循环或者switch语句。<code>break;</code></p>
-
 <p>由于它能够使循环和switch语句退出，因此这种形式的break只有出现在这类语句中才是合法的。</p>
-
 <p>在switch中已经见过break的用法，在循环中，无论什么原因，只要不想执行整个循环，就可以使用break来退出</p>
-
 <p>例如下面这个栗子，找到了需要查找的数组元素，就使用break退出</p>
-
-<pre><code>for(var i=0; i&lt;a.length; i++){
+<pre tabindex="0"><code>for(var i=0; i&lt;a.length; i++){
   if(a[i] == target) break;
 }
-</code></pre>
-
-<p>js同样运行break后面跟一个语句标签：<code>break labelname;</code></p>
-
+</code></pre><p>js同样运行break后面跟一个语句标签：<code>break labelname;</code></p>
 <p>当break和标签一块使用时候，程序跳转到标签所标示的语句块的结束，或者直接终止这个闭合语句块的执行。
 当没有任何语句块指定了break所用的标签，将会产生一个语法错误</p>
-
 <p>当使用带标签形式的break语句，带标签的语句不该是循环或者switch语句，因为break会跳出任何闭合的语句块。</p>
-
 <p>在break和labelname之间不能换行。因为js可以给语句自动补全省略掉分号，如果break关键字和标签之间有换行，
 js会认为你使用break不带标签的形式，会在break后补充分号</p>
-
 <p>当你希望通过break跳出非就近的循环体或者switch语句，就会用到带标签的break语句。比如下面这个栗子：</p>
-
-<pre><code>var matrix = getData() // 得到一个二维数组
+<pre tabindex="0"><code>var matrix = getData() // 得到一个二维数组
 var sum=0, success = false;
 compute_sum: if(matrix) {
   for(var x=0; x&lt;matrix.length; x++){
@@ -461,108 +371,73 @@ compute_sum: if(matrix) {
     }
   }
 }
-</code></pre>
-
-<p>最后，不管break语句带不带标签，他的控制权都无法越过函数边界。比如，对于一条带标签的函数定义语句来说，不能
+</code></pre><p>最后，不管break语句带不带标签，他的控制权都无法越过函数边界。比如，对于一条带标签的函数定义语句来说，不能
 从函数内部通过这个标签跳转到函数外部</p>
-
 <h3 id="continue语句">continue语句</h3>
-
 <p>continue语句和break语句非常接近，但是不退出循环，而是执行下一次循环。</p>
-
 <p>continue语法非常简单:<code>continue</code></p>
-
 <p>continue语句同样可以带有标签:<code>continue labelname</code></p>
-
 <p>不管continue语句带不带标签，只能在循环体中使用，在其他地方使用，会报语法错误</p>
-
-<p>当执行到continue语句时候，当前循环逻辑就终止了，随即执行下一次循环，在不同类型循环中，continue行为也有些不同：
-- while循环，在循环开始处指定的expression会重复检测，如果检测结果为true，循环体从头开始执行
-- do/while循环，程序的执行直接跳到循环结尾处，这时会重新判断循环条件，之后再继续下一次循环
-- for循环中，首先计算自增表达式，然后再次检测test表达式，以判断是否继续执行循环
-- for/in语句中，循环开始访问下一个属性名，这个属性名赋给指定的变量</p>
-
+<p>当执行到continue语句时候，当前循环逻辑就终止了，随即执行下一次循环，在不同类型循环中，continue行为也有些不同：</p>
+<ul>
+<li>while循环，在循环开始处指定的expression会重复检测，如果检测结果为true，循环体从头开始执行</li>
+<li>do/while循环，程序的执行直接跳到循环结尾处，这时会重新判断循环条件，之后再继续下一次循环</li>
+<li>for循环中，首先计算自增表达式，然后再次检测test表达式，以判断是否继续执行循环</li>
+<li>for/in语句中，循环开始访问下一个属性名，这个属性名赋给指定的变量</li>
+</ul>
 <p>需要注意的是，continue语句在while和for循环中差别，while循环直接进入下一轮的循环条件判断，但for
 循环首先计算自增表达式，然后判断循环条件。</p>
-
 <p>下面这个栗子，展示产生一个错误时候跳过当前循环后续的逻辑：</p>
-
-<pre><code>for(var i=0; i&lt;data.length; i++){
+<pre tabindex="0"><code>for(var i=0; i&lt;data.length; i++){
   if(!data[!]) continue;
   total += data[i];
 }
-</code></pre>
-
-<p>和break语句类似，带标签的continue语句可以嵌套在循环中，用以跳出多层次嵌套循环体逻辑。同样的，在continue和labelname之间不能换行。</p>
-
+</code></pre><p>和break语句类似，带标签的continue语句可以嵌套在循环中，用以跳出多层次嵌套循环体逻辑。同样的，在continue和labelname之间不能换行。</p>
 <h3 id="return-语句">return 语句</h3>
-
 <p>函数调用是一种表达式，而所有的表达式都有值。函数中的return语句就是用来指定函数调用后的返回值</p>
-
 <p>return语句的语法:<code>return expression</code></p>
-
 <p>return语句只能在函数体内出现，如果不是将会报语法错误。当执行到return语句时，函数终止执行，返回expression的值</p>
-
 <p>举个栗子:</p>
-
-<pre><code>function square(x) { return x*x; }
+<pre tabindex="0"><code>function square(x) { return x*x; }
 square(2)
-</code></pre>
-
-<p>如果没有return语句，则函数调用仅依次执行函数体内的每一条语句直到函数结束，最后返回调用程序。
+</code></pre><p>如果没有return语句，则函数调用仅依次执行函数体内的每一条语句直到函数结束，最后返回调用程序。
 这种情况下，调用表达式的结果是undefined。</p>
-
 <p>return语句常作为最后一条语句出现，但不一定是放到函数最后，即使在执行return语句的时候后续还有很多代码
 没有执行，函数还是会返回调用程序</p>
-
 <p>return 语句可以单独使用而不必带有exoression，这样函数调用返回的也是undefined</p>
-
 <h3 id="throw语句">throw语句</h3>
-
-<p>异常，就是发生了某种异常情况或错误时产生的一种信号。<br />
-抛出异常，就是用信号通知发生了错误或异常情况。<br />
+<p>异常，就是发生了某种异常情况或错误时产生的一种信号。 <br>
+抛出异常，就是用信号通知发生了错误或异常情况。<br>
 捕获异常，就是处理这个信号，采取必要的措施从异常中恢复。</p>
-
 <p>js中，产生运行错误或者使用throw语句时就会显式的抛出异常。使用try/catch/finally语句可以捕获异常</p>
-
 <p>throw语句的语法:<code>throw expression;</code></p>
-
 <p>expression的值可以是任意类型的，可以抛出一个代表错误码的数字，或者可读的错误消息的字符串。</p>
-
 <p>js解释器抛出异常时，通常采用Error类型和其子类型。</p>
-
 <p>一个Error对象有一个name属性表示错误类型，一个message属性用来存放传递给构造函数的字符串。</p>
-
 <p>下面看个栗子，用非法参数调用函数时抛出一个Error对象</p>
-
-<pre><code>function factorial(x){
+<pre tabindex="0"><code>function factorial(x){
   // 如果输入参数是非法的，则抛出一个异常
-  if (x &lt; 0) throw new Error(&quot;X 不能是负数&quot;);
+  if (x &lt; 0) throw new Error(&#34;X 不能是负数&#34;);
   // 否则计算一个值，并返回
   for(var f = 1;x &gt; 1; f *= x, x--) /*empty*/
 }
-</code></pre>
-
-<p>当抛出异常时，js解释器会立即停止当前正在执行的逻辑，并跳转到就近的异常处理程序。异常处理程序就是
-try/catch/finally语句编写的。<br />
+</code></pre><p>当抛出异常时，js解释器会立即停止当前正在执行的逻辑，并跳转到就近的异常处理程序。异常处理程序就是
+try/catch/finally语句编写的。 <br>
 如果抛出异常的代码块没有一条相关联的catch语句块，js解释器会从更高层的闭合代码块，查看是否有关联的
-catch从句，直到找到一个异常处理程序为止。<br />
+catch从句，直到找到一个异常处理程序为止。<br>
 如果抛出的异常没有相关的异常处理函数，异常会向上传播到调用该处的
 函数的代码，异常就会沿着js方法的词法结构和调用栈向上传播，没有任何异常处理程序，js把异常当作程序错误来处理，
 并报告给用户。</p>
-
-<h3 id="try-catch-finally语句">try/catch/finally语句</h3>
-
-<p>try／catch/finally语句是js的异常处理机制。
-- try从句定义了需要处理的异常所在的代码块，
-- catch从句跟在try之后，当try语句块内发生异常，调用catch内的代码逻辑。
-- finally语句跟在catch之后，放置清理代码，不管是否发生异常，finally代码块的逻辑总是会执行。</p>
-
+<h3 id="trycatchfinally语句">try/catch/finally语句</h3>
+<p>try／catch/finally语句是js的异常处理机制。</p>
+<ul>
+<li>try从句定义了需要处理的异常所在的代码块，</li>
+<li>catch从句跟在try之后，当try语句块内发生异常，调用catch内的代码逻辑。</li>
+<li>finally语句跟在catch之后，放置清理代码，不管是否发生异常，finally代码块的逻辑总是会执行。</li>
+</ul>
 <p>try之后跟随atch、finally语句块可以二者只选一个，组成配合语句。</p>
-
 <p>下面代码说明了，try/catch/finally的语法和使用目的</p>
-
-<pre><code>try{
+<pre tabindex="0"><code>try{
   // 通常来讲，这里的代码从头到尾执行不会产生任何问题
   // 但有时抛出一个异常，要么是throw语句直接抛出异常，
   // 要么是通过一个方法间接抛出异常
@@ -579,88 +454,59 @@ finally{
   // 3. 抛出一个异常，异常被catch从句捕获
   // 4. 抛出一个异常，异常未被捕获，继续向上传播
 }
-</code></pre>
-
-<h2 id="其它语句类型">其它语句类型</h2>
-
+</code></pre><h2 id="其它语句类型">其它语句类型</h2>
 <p>js最后还有三种语句类型：with,debugger 和use strict</p>
-
 <h3 id="with语句">with语句</h3>
-
 <p>之前讲解全局变量时了解过一些作用域链的问题，with语句就是用来临时扩展作用域链。语法如下：</p>
-
-<pre><code>with(object)
+<pre tabindex="0"><code>with(object)
 statement
-</code></pre>
-
-<p>这条语句将object添加到作用域链头部，然后执行statement，最后把作用域链恢复到原始状态</p>
-
+</code></pre><p>这条语句将object添加到作用域链头部，然后执行statement，最后把作用域链恢复到原始状态</p>
 <p>在严格模式下禁止使用with语句，非严格模式，不推荐使用with语句。使用with语句js非常难以优化，尽可能避免使用with语句</p>
-
 <p>在对象嵌套层次很深的时候，通常使用with语句来简化代码编写。例如下面这个栗子：</p>
-
-<pre><code>document.forms[0].address.value
-</code></pre>
-
-<p>如果这样的代码多次出现，则可以使用with语句将form对象添加到作用域链顶层：</p>
-
-<pre><code>with(document.forms[0]){
+<pre tabindex="0"><code>document.forms[0].address.value
+</code></pre><p>如果这样的代码多次出现，则可以使用with语句将form对象添加到作用域链顶层：</p>
+<pre tabindex="0"><code>with(document.forms[0]){
   // 直接访问表单元素
-  name.value = &quot;&quot;;
-  address.value = &quot;&quot;;
-  email.value = &quot;&quot;;
+  name.value = &#34;&#34;;
+  address.value = &#34;&#34;;
+  email.value = &#34;&#34;;
 }
-</code></pre>
-
-<p>这样就减少大量的输入，不用再为每个属性名添加documents.forms[0]前缀。这个对象临时挂载在作用域链上，
+</code></pre><p>这样就减少大量的输入，不用再为每个属性名添加documents.forms[0]前缀。这个对象临时挂载在作用域链上，
 当js需要解析如address的标示符时，就会自动在这个对象中查找。当然不使用with的等价代码形式：</p>
-
-<pre><code>var f = document.forms[0];
-f.name.value = '';
-f.address.value = '';
-f.email.value = '';
-</code></pre>
-
-<p>需要注意的是，只有查找标示符时，才会用到作用域链，创建新的变量时候，不使用它.</p>
-
+<pre tabindex="0"><code>var f = document.forms[0];
+f.name.value = &#39;&#39;;
+f.address.value = &#39;&#39;;
+f.email.value = &#39;&#39;;
+</code></pre><p>需要注意的是，只有查找标示符时，才会用到作用域链，创建新的变量时候，不使用它.</p>
 <p>看看这段代码:</p>
-
-<pre><code>with(o) x=1;
-</code></pre>
-
-<p>如果对象o有一个属性x，那么这行代码给这个属性赋值为1。但是如果o中没有这个属性x，这段代码和不使用with的代码
+<pre tabindex="0"><code>with(o) x=1;
+</code></pre><p>如果对象o有一个属性x，那么这行代码给这个属性赋值为1。但是如果o中没有这个属性x，这段代码和不使用with的代码
 <code>x = 1;</code>是一样的。它给一个或全局变量x赋值，或者创建全局变量的新属性x。</p>
-
 <p><strong>简单来说，就是with提供来读取o属性的快捷方式，但是不能创建o的属性</strong></p>
-
 <h3 id="debugger语句">debugger语句</h3>
-
 <p>程序员经常需要打一些断点来查看程序是否在按照自己设计正确运行，debugger语句就是让js解释器以调试模式
 运行，来产生一个断点，js执行到断点位置，停止运行，这时可以使用调试器输出变量的值，检查程序调用栈等等。</p>
-
 <p>在ECMAScript5中，debugger语句正式加入语言，并且已经得到主流浏览器厂商的支持。</p>
-
 <p>debugger语句不会启动调试器，但如果调试器已经在运行，这条语句才会真正产生一个断点，例如在使用Chrome开发者工具
 中的命令行时，debugger语句才会正常工作</p>
-
 <h3 id="use-strict">&ldquo;use strict&rdquo;</h3>
-
 <p><code>&quot;use strict&quot;</code> 是ECMAScript5中引入的一条指令。</p>
-
-<p>指令并不是语句，指令和语句有2个重要的区别：
-- 语句不包含任何语言的关键字，指令仅仅包含一个特殊字符串直接量表达式，对于没有实现ECMAScript5的js解释器来说，只是一条没有副作用的表达式语句，什么都没执行
-- 只能出现在脚本代码的开始或者函数体的开始、任何实体语句之前。在脚本或者函数体内第一条常规语句之后的字符串直接量表达式语句只当作普通的表达式语句对待，不会被当作指令解析</p>
-
-<p>使用&rdquo;use strict&rdquo;指令的目的是说明，后续的代码将被解析成严格代码。</p>
-
+<p>指令并不是语句，指令和语句有2个重要的区别：</p>
+<ul>
+<li>语句不包含任何语言的关键字，指令仅仅包含一个特殊字符串直接量表达式，对于没有实现ECMAScript5的js解释器来说，只是一条没有副作用的表达式语句，什么都没执行</li>
+<li>只能出现在脚本代码的开始或者函数体的开始、任何实体语句之前。在脚本或者函数体内第一条常规语句之后的字符串直接量表达式语句只当作普通的表达式语句对待，不会被当作指令解析</li>
+</ul>
+<p>使用&quot;use strict&quot;指令的目的是说明，后续的代码将被解析成严格代码。</p>
 <p>严格代码以严格模式执行。ECMAScript5的严格表达式是该语言的受限的子集，修正语言的重要缺陷，并且提供健壮的查错功能和增强的安全机制</p>
-
-<p>严格模式和非严格模式区别如下:(前3条非常重要)
-- 在严格模式中禁止使用with语句
-- 所有的变量都需要先声明，如果给一个未声明的变量、函数、函数参数、catch从句参数或全局变量的对象赋值，将会抛出一个引用错误异常（非严格模式，这种隐式声明的全局变量的方法是给全局对象新添加一个新属性）
-- 调用的函数（不是方法）中一个this值是undefined。（在非严格模式中，调用的函数中的this值总是全局对象。可以利用这种特性来判断js实现是否支持严格模式
-&gt; <code>var hasStrictMode = (function(){ &quot;use strict&quot;; return this===undefined;});</code></p>
-
+<p>严格模式和非严格模式区别如下:(前3条非常重要)</p>
+<ul>
+<li>在严格模式中禁止使用with语句</li>
+<li>所有的变量都需要先声明，如果给一个未声明的变量、函数、函数参数、catch从句参数或全局变量的对象赋值，将会抛出一个引用错误异常（非严格模式，这种隐式声明的全局变量的方法是给全局对象新添加一个新属性）</li>
+<li>调用的函数（不是方法）中一个this值是undefined。（在非严格模式中，调用的函数中的this值总是全局对象。可以利用这种特性来判断js实现是否支持严格模式</li>
+</ul>
+<blockquote>
+<p><code>var hasStrictMode = (function(){ &quot;use strict&quot;; return this===undefined;});</code></p>
+</blockquote>
 <ul>
 <li>在严格模式中，通过call()或apply()来调用函数时，其中的this值就是通过call()或apply()传入的第一个参数（非严格模式中，null和undefined值被全局对象和转换为对象的非对象值所代替）</li>
 <li>在严格模式中，给只读属性赋值和给不可扩展的对象创建新成员都将抛出一个类型错误异常(非严格模式，这些操作只是简单的失败，不会报错)</li>
@@ -674,454 +520,190 @@ f.email.value = '';
 <li>在严格模式中，标示符eval和arguments当作关键字，他们的值是不能更改的。不能给这些标识符赋值，也不能把它们声明为变量、用作函数名、用作函数参数或者catch块的标识符</li>
 <li>在严格模式中，限制了对调用栈的监测能力，arguments.caller和arguments.callee都会抛出一个类型错误异常。在严格模式的函数同样有caller和arguments属性，当访问这两个属性值都将抛出类型错误异常</li>
 </ul>
-
 <h2 id="js语句总结表">js语句总结表</h2>
-
 <table>
 <thead>
 <tr>
-<th align="left">语句</th>
-<th align="left">语法</th>
-<th align="left">用途</th>
+<th style="text-align:left">语句</th>
+<th style="text-align:left">语法</th>
+<th style="text-align:left">用途</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">break</td>
-<td align="left">break [label];</td>
-<td align="left">退出最内层循环或者退出switch语句，又或者退出label所指定的语句／switch语句中标记的一条语句</td>
+<td style="text-align:left">break</td>
+<td style="text-align:left">break [label];</td>
+<td style="text-align:left">退出最内层循环或者退出switch语句，又或者退出label所指定的语句／switch语句中标记的一条语句</td>
 </tr>
-
 <tr>
-<td align="left">case</td>
-<td align="left">case expression:</td>
-<td align="left">在switch中标记一条语句</td>
+<td style="text-align:left">case</td>
+<td style="text-align:left">case expression:</td>
+<td style="text-align:left">在switch中标记一条语句</td>
 </tr>
-
 <tr>
-<td align="left">continue</td>
-<td align="left">continue [label];</td>
-<td align="left">重新开始最内层的循环或重新开始label指定的循环</td>
+<td style="text-align:left">continue</td>
+<td style="text-align:left">continue [label];</td>
+<td style="text-align:left">重新开始最内层的循环或重新开始label指定的循环</td>
 </tr>
-
 <tr>
-<td align="left">debugger</td>
-<td align="left">debugger;</td>
-<td align="left">断点起调试</td>
+<td style="text-align:left">debugger</td>
+<td style="text-align:left">debugger;</td>
+<td style="text-align:left">断点起调试</td>
 </tr>
-
 <tr>
-<td align="left">default</td>
-<td align="left">default;</td>
-<td align="left">在switch中标记默认的语句</td>
+<td style="text-align:left">default</td>
+<td style="text-align:left">default;</td>
+<td style="text-align:left">在switch中标记默认的语句</td>
 </tr>
-
 <tr>
-<td align="left">do/while</td>
-<td align="left">do statement while(expression);</td>
-<td align="left">while循环的一种替代形式</td>
+<td style="text-align:left">do/while</td>
+<td style="text-align:left">do statement while(expression);</td>
+<td style="text-align:left">while循环的一种替代形式</td>
 </tr>
-
 <tr>
-<td align="left">empty</td>
-<td align="left">;</td>
-<td align="left">什么都不做</td>
+<td style="text-align:left">empty</td>
+<td style="text-align:left">;</td>
+<td style="text-align:left">什么都不做</td>
 </tr>
-
 <tr>
-<td align="left">for</td>
-<td align="left">for(init;test;incr)statement</td>
-<td align="left">一种简写的循环</td>
+<td style="text-align:left">for</td>
+<td style="text-align:left">for(init;test;incr)statement</td>
+<td style="text-align:left">一种简写的循环</td>
 </tr>
-
 <tr>
-<td align="left">for/in</td>
-<td align="left">for(var in object) statement</td>
-<td align="left">遍历一个对象的属性</td>
+<td style="text-align:left">for/in</td>
+<td style="text-align:left">for(var in object) statement</td>
+<td style="text-align:left">遍历一个对象的属性</td>
 </tr>
-
 <tr>
-<td align="left">function</td>
-<td align="left">function name([para[],&hellip;]){body}</td>
-<td align="left">声明一个函数</td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">function name([para[],&hellip;]){body}</td>
+<td style="text-align:left">声明一个函数</td>
 </tr>
-
 <tr>
-<td align="left">if/else</td>
-<td align="left">if(expr)statement1 [else statement2]</td>
-<td align="left">执行statments1或者statements2</td>
+<td style="text-align:left">if/else</td>
+<td style="text-align:left">if(expr)statement1 [else statement2]</td>
+<td style="text-align:left">执行statments1或者statements2</td>
 </tr>
-
 <tr>
-<td align="left">label</td>
-<td align="left">label:statement</td>
-<td align="left">给statement指定一个名字</td>
+<td style="text-align:left">label</td>
+<td style="text-align:left">label:statement</td>
+<td style="text-align:left">给statement指定一个名字</td>
 </tr>
-
 <tr>
-<td align="left">return</td>
-<td align="left">return [expression];</td>
-<td align="left">从函数返回值</td>
+<td style="text-align:left">return</td>
+<td style="text-align:left">return [expression];</td>
+<td style="text-align:left">从函数返回值</td>
 </tr>
-
 <tr>
-<td align="left">switch</td>
-<td align="left">switch(expr){statements}</td>
-<td align="left">用case或者&rsquo;default:&lsquo;语句标记多分支语句</td>
+<td style="text-align:left">switch</td>
+<td style="text-align:left">switch(expr){statements}</td>
+<td style="text-align:left">用case或者&rsquo;default:&lsquo;语句标记多分支语句</td>
 </tr>
-
 <tr>
-<td align="left">throw</td>
-<td align="left">throw expression;</td>
-<td align="left">抛出异常</td>
+<td style="text-align:left">throw</td>
+<td style="text-align:left">throw expression;</td>
+<td style="text-align:left">抛出异常</td>
 </tr>
-
 <tr>
-<td align="left">try</td>
-<td align="left">try {statements} [catch {statements}] [finally {statements}]</td>
-<td align="left">捕获异常</td>
+<td style="text-align:left">try</td>
+<td style="text-align:left">try {statements} [catch {statements}] [finally {statements}]</td>
+<td style="text-align:left">捕获异常</td>
 </tr>
-
 <tr>
-<td align="left">use strict</td>
-<td align="left">&ldquo;use strict&rdquo;</td>
-<td align="left">对脚本和函数应用严格模式</td>
+<td style="text-align:left">use strict</td>
+<td style="text-align:left">&ldquo;use strict&rdquo;</td>
+<td style="text-align:left">对脚本和函数应用严格模式</td>
 </tr>
-
 <tr>
-<td align="left">var</td>
-<td align="left">var name = [expr][,&hellip;];</td>
-<td align="left">声明并初始化一个或多个变量</td>
+<td style="text-align:left">var</td>
+<td style="text-align:left">var name = [expr][,&hellip;];</td>
+<td style="text-align:left">声明并初始化一个或多个变量</td>
 </tr>
-
 <tr>
-<td align="left">while</td>
-<td align="left">while(expr) statements</td>
-<td align="left">基本的循环结构</td>
+<td style="text-align:left">while</td>
+<td style="text-align:left">while(expr) statements</td>
+<td style="text-align:left">基本的循环结构</td>
 </tr>
-
 <tr>
-<td align="left">with</td>
-<td align="left">with(object) statements</td>
-<td align="left">扩展作用域链</td>
+<td style="text-align:left">with</td>
+<td style="text-align:left">with(object) statements</td>
+<td style="text-align:left">扩展作用域链</td>
 </tr>
 </tbody>
 </table>
 
-                        </div>
+          </div>
 
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/js/intro-3/">js intro 表达式和运算符</a></li>
-        
-        <li><a href="/post/js/intro-2/">js intro 类型/值/变量</a></li>
-        
-        <li><a href="/post/js/intro-1/">js intro 基本介绍</a></li>
-        
-        <li><a href="/post/js/danger/">js 保留关键字以及危险变量名</a></li>
-        
-        <li><a href="/post/css/intro-box/">CSS入门笔记 － 认识盒子模型</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Javascript">Javascript</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/basic">basic</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/js/intro-5/">&laquo; js intro 对象</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/js/intro-3/">js intro 表达式和运算符 &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

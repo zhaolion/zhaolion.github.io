@@ -1,146 +1,156 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Around Alias | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="Around Alias - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2019-12-12T22:56:34&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2019-12-12T22:56:34&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="Around Alias">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/ruby/tips.around.alias/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>Around Alias - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="Ruby 中的环绕别名 (around Alias) 带来的一系列 Google 先来看一段代码，体验一下什么是环绕别名 (around Alias) :
+class String  alias :old_length :length   def length  &amp;#34;Length of&amp;#39;#{self}&amp;#39;is: #{old_length}&amp;#34;  end end  &amp;#34;abc&amp;#34;.length #=&amp;gt; &amp;#34;Length of&amp;#39;abc&amp;#39;is: 3&amp;#34; 后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 alias_method_chain 来辅助实现。
+归根结底: 通过环绕别名，既修改了自己的逻辑，又不需要调用者更改自己的代码
+什么是 alias_method_chain 很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: Ruby on Rails: alias_method_chain, what exactly does it do?"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/ruby/tips.around.alias/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Ruby 中的环绕别名 (around Alias) 带来的一系列 Google 先来看一段代码，体验一下什么是环绕别名 (around Alias) :
+class String  alias :old_length :length   def length  &amp;#34;Length of&amp;#39;#{self}&amp;#39;is: #{old_length}&amp;#34;  end end  &amp;#34;abc&amp;#34;.length #=&amp;gt; &amp;#34;Length of&amp;#39;abc&amp;#39;is: 3&amp;#34; 后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 alias_method_chain 来辅助实现。
+归根结底: 通过环绕别名，既修改了自己的逻辑，又不需要调用者更改自己的代码
+什么是 alias_method_chain 很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: Ruby on Rails: alias_method_chain, what exactly does it do?" />
+<meta name="twitter:title" content="Around Alias - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="Around Alias - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="Ruby 中的环绕别名 (around Alias) 带来的一系列 Google 先来看一段代码，体验一下什么是环绕别名 (around Alias) :
+class String  alias :old_length :length   def length  &amp;#34;Length of&amp;#39;#{self}&amp;#39;is: #{old_length}&amp;#34;  end end  &amp;#34;abc&amp;#34;.length #=&amp;gt; &amp;#34;Length of&amp;#39;abc&amp;#39;is: 3&amp;#34; 后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 alias_method_chain 来辅助实现。
+归根结底: 通过环绕别名，既修改了自己的逻辑，又不需要调用者更改自己的代码
+什么是 alias_method_chain 很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: Ruby on Rails: alias_method_chain, what exactly does it do?" property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/ruby/tips.around.alias/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Ruby" />
+<meta property="article:published_time" content="2019-12-12 22:56:34 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "Around Alias",
+    "genre": "Ruby",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/ruby\/tips.around.alias\/",
+    "datePublished": "2019-12-12 22:56:34 \u002b0800 CST",
+    "description": "Ruby 中的环绕别名 (around Alias) 带来的一系列 Google 先来看一段代码，体验一下什么是环绕别名 (around Alias) :\nclass String  alias :old_length :length   def length  \u0026#34;Length of\u0026#39;#{self}\u0026#39;is: #{old_length}\u0026#34;  end end  \u0026#34;abc\u0026#34;.length #=\u0026gt; \u0026#34;Length of\u0026#39;abc\u0026#39;is: 3\u0026#34; 后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 alias_method_chain 来辅助实现。\n归根结底: 通过环绕别名，既修改了自己的逻辑，又不需要调用者更改自己的代码\n什么是 alias_method_chain 很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: Ruby on Rails: alias_method_chain, what exactly does it do?",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">Around Alias</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2019年12月12日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Ruby">Ruby</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">Around Alias</h1>
+            <p class="post-meta"><time datetime='2019-12-12T22:56:34&#43;08:00' itemprop="datePublished">December 12, 2019</time></p>
+                 
+          </header>
 
-<h2 id="ruby-中的环绕别名-around-alias-带来的一系列-google">Ruby 中的环绕别名 (around Alias) 带来的一系列 Google</h2>
-
+          <div class="post-content" itemprop="articleBody">
+            <h2 id="ruby-中的环绕别名-around-alias-带来的一系列-google">Ruby 中的环绕别名 (around Alias) 带来的一系列 Google</h2>
 <p>先来看一段代码，体验一下什么是环绕别名 (around Alias) :</p>
-
-<pre><code class="language-ruby">class String
-  alias :old_length :length
-
-  def length
-    &quot;Length of'#{self}'is: #{old_length}&quot;
-  end
-end
-
-&quot;abc&quot;.length
-#=&gt; &quot;Length of'abc'is: 3&quot;
-</code></pre>
-
-<p>后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 <code>alias_method_chain</code> 来辅助实现。</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">String</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">alias</span> <span style="color:#e6db74">:old_length</span> <span style="color:#e6db74">:length</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">length</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Length of&#39;</span><span style="color:#e6db74">#{</span>self<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;is: </span><span style="color:#e6db74">#{</span>old_length<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;abc&#34;</span><span style="color:#f92672">.</span>length
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#=&gt; &#34;Length of&#39;abc&#39;is: 3&#34;</span>
+</span></span></code></pre></div><p>后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 <code>alias_method_chain</code> 来辅助实现。</p>
 <p>归根结底: 通过环绕别名，既修改了自己的逻辑，又不需要调用者更改自己的代码</p>
-
-<h2 id="什么是-alias-method-chain">什么是 alias_method_chain</h2>
-
+<h2 id="什么是-alias_method_chain">什么是 alias_method_chain</h2>
 <p>很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: <a href="https://stackoverflow.com/questions/3695839/ruby-on-rails-alias-method-chain-what-exactly-does-it-do">Ruby on Rails: alias_method_chain, what exactly does it do?</a></p>
-
 <p>when would you use alias_method_chain and why?</p>
-
 <blockquote>
 <p>the following is largely based on the discussion of <code>alias_method_chain()</code> in Metaprogramming Ruby by Paolo Perrotta, which is an excellent book that you should get your hands on.)</p>
 </blockquote>
-
 <p>这里指的是 《Ruby 元编程》这本书里面提及的 AR 相关部分代码解析，具体可以查书了。（我没看懂那部分&hellip; T.T）</p>
-
 <p>看段代码吧:</p>
-
-<pre><code>class Klass
+<pre tabindex="0"><code>class Klass
   def salute
-    puts &quot;Aloha!&quot;
+    puts &#34;Aloha!&#34;
   end
 end
 
 Klass.new.salute # =&gt; Aloha!
-</code></pre>
-
-<p>现在希望给代码加上一些日志扩展方法功能：</p>
-
-<pre><code>class Klass
+</code></pre><p>现在希望给代码加上一些日志扩展方法功能：</p>
+<pre tabindex="0"><code>class Klass
   def salute_with_log
-    puts &quot;Calling method...&quot;
+    puts &#34;Calling method...&#34;
     salute_without_log
-    puts &quot;...Method called&quot;
+    puts &#34;...Method called&#34;
   end
 
   alias_method :salute_without_log, :salute
@@ -152,32 +162,21 @@ Klass.new.salute
 # Calling method...
 # Aloha!
 # ...Method called
-</code></pre>
-
-<p>看完代码，其实就是你定义第一个版本 <code>foo()</code>，然后扩展一个 feature 得到 <code>foo()</code> 和  <code>foo_with_feature()</code> 然后再定义一个没有 feature 原始方法 <code>foo_without_feature()</code>，为了避免到处都是 <code>alias</code> 的定义，ActiveSupport 提供了一个 <code>alias_method_chain</code> 来处理。</p>
-
+</code></pre><p>看完代码，其实就是你定义第一个版本 <code>foo()</code>，然后扩展一个 feature 得到 <code>foo()</code> 和  <code>foo_with_feature()</code> 然后再定义一个没有 feature 原始方法 <code>foo_without_feature()</code>，为了避免到处都是 <code>alias</code> 的定义，ActiveSupport 提供了一个 <code>alias_method_chain</code> 来处理。</p>
 <p>这样你只需要写: <code>alias_method_chain :foo, :feature</code></p>
-
 <p>你就得到了 3 个方法: <code>foo</code>, <code>foo_with_feature</code>, <code>foo_without_feature</code></p>
-
 <p>但是在 Ruby 2.0 中出来新的 feature <code>prepend</code> 可以替代这种设计模式 or alias_method_chain</p>
-
 <h2 id="ruby-prepend-是干嘛的">Ruby Prepend 是干嘛的</h2>
-
 <p>这个部分可以参考 RubyChina 另外一个大神写的文章 <a href="https://ruby-china.org/topics/28712">理解 Ruby 中的 include 和 prepend</a></p>
-
 <p>从 Ruby 继承链来看就是:</p>
-
 <ul>
 <li>include 将 module 加入到 类 继承链的上方</li>
 <li>prepend 将 module 加入到 类 继承链的下方</li>
 </ul>
-
 <p>下方的位置，正好是方法查找时优先查找的位置，利用这一优势，可以覆写当前类的同名方法，同时通过 super 关键字还可以调用到该类中的原始方法，实现同样的目的而不需要 alias method，不会污染作用域方法</p>
-
-<pre><code>module LengthMixin
+<pre tabindex="0"><code>module LengthMixin
     def length
-        &quot;Length of'#{self}'is: #{super}&quot;
+        &#34;Length of&#39;#{self}&#39;is: #{super}&#34;
     end
 end
 
@@ -185,335 +184,85 @@ class String
   prepend LengthMixin
 end
 
-&quot;abc&quot;.length
-#=&gt; &quot;Length of'abc'is: 3&quot;
-</code></pre>
-
-<p>同时想知道怎么样理解和处理 <code>Prepend</code> 和 <code>Alias method chain</code>  可以参考 NewRelic 工程师团队的博客文章 <a href="https://blog.newrelic.com/engineering/ruby-agent-module-prepend-alias-method-chains/">ruby-agent-module-prepend-alias-method-chains</a></p>
-
+&#34;abc&#34;.length
+#=&gt; &#34;Length of&#39;abc&#39;is: 3&#34;
+</code></pre><p>同时想知道怎么样理解和处理 <code>Prepend</code> 和 <code>Alias method chain</code>  可以参考 NewRelic 工程师团队的博客文章 <a href="https://blog.newrelic.com/engineering/ruby-agent-module-prepend-alias-method-chains/">ruby-agent-module-prepend-alias-method-chains</a></p>
 <p>对于 Alias method chain 和 prepend 之间使用的坑，NewRelic 工程师团队也给出了建议:</p>
-
 <ul>
 <li>only Module#prepend</li>
 <li>only alias_method</li>
 <li>have Module#prepend happen after alias_method</li>
 </ul>
 
-                        </div>
+          </div>
 
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/ruby/best.practice.on.rails/">Best Practice about ROR</a></li>
-        
-        <li><a href="/post/golang/tips/go.make.vs.new/">new 与 make 的差别</a></li>
-        
-        <li><a href="/post/backend/dns/">DNS 域名系统</a></li>
-        
-        <li><a href="/post/linux/basic_usage/find/">Linux 常用命令 find</a></li>
-        
-        <li><a href="/post/linux/basic_usage/grep/">Linux 常用命令 grep</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Ruby">Ruby</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/Rails">Rails</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/tips">tips</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/ruby/best.practice.on.rails/">Best Practice about ROR &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

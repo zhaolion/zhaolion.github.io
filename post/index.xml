@@ -1,54 +1,49 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on zhaolion&#39;s dropbox</title>
-    <link>https://zhaolion.com/post/</link>
-    <description>Recent content in Posts on zhaolion&#39;s dropbox</description>
+    <title>Posts on zhaolion&#39;s knowledge dropbox</title>
+    <link>https://blog.zhaolion.dev/post/</link>
+    <description>Recent content in Posts on zhaolion&#39;s knowledge dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 12 Dec 2019 22:56:34 +0800</lastBuildDate>
-    
-	<atom:link href="https://zhaolion.com/post/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 12 Dec 2019 22:56:34 +0800</lastBuildDate><atom:link href="https://blog.zhaolion.dev/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Around Alias</title>
-      <link>https://zhaolion.com/post/ruby/tips.around.alias/</link>
+      <link>https://blog.zhaolion.dev/post/ruby/tips.around.alias/</link>
       <pubDate>Thu, 12 Dec 2019 22:56:34 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/ruby/tips.around.alias/</guid>
+      <guid>https://blog.zhaolion.dev/post/ruby/tips.around.alias/</guid>
       <description>Ruby 中的环绕别名 (around Alias) 带来的一系列 Google 先来看一段代码，体验一下什么是环绕别名 (around Alias) :
-class String alias :old_length :length def length &amp;quot;Length of&#39;#{self}&#39;is: #{old_length}&amp;quot; end end &amp;quot;abc&amp;quot;.length #=&amp;gt; &amp;quot;Length of&#39;abc&#39;is: 3&amp;quot;  后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 alias_method_chain 来辅助实现。
+class String  alias :old_length :length   def length  &amp;#34;Length of&amp;#39;#{self}&amp;#39;is: #{old_length}&amp;#34;  end end  &amp;#34;abc&amp;#34;.length #=&amp;gt; &amp;#34;Length of&amp;#39;abc&amp;#39;is: 3&amp;#34; 后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 alias_method_chain 来辅助实现。
 归根结底: 通过环绕别名，既修改了自己的逻辑，又不需要调用者更改自己的代码
-什么是 alias_method_chain 很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: Ruby on Rails: alias_method_chain, what exactly does it do?
-when would you use alias_method_chain and why?</description>
+什么是 alias_method_chain 很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: Ruby on Rails: alias_method_chain, what exactly does it do?</description>
     </item>
     
     <item>
       <title>Best Practice about ROR</title>
-      <link>https://zhaolion.com/post/ruby/best.practice.on.rails/</link>
+      <link>https://blog.zhaolion.dev/post/ruby/best.practice.on.rails/</link>
       <pubDate>Thu, 12 Dec 2019 22:17:42 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/ruby/best.practice.on.rails/</guid>
+      <guid>https://blog.zhaolion.dev/post/ruby/best.practice.on.rails/</guid>
       <description>[TOC]
 About ruby 带 block 遍历数组应该使用 each 而不是 for before:
 这里需要遍历数组并且打印
-for elem in [1, 2, 3, 4, 5] puts elem end  Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:
-[1, 2, 3, 4, 5].each do |elem| puts elem end  还可以变得更简单一点:
-[1, 2, 3, 4, 5].each { |elem| puts elem }  收集结果(遍历数组元素的处理结果)使用 map 而不是 each + &amp;lt;&amp;lt; 这里希望收集数组中特定元素的大写形式
+for elem in [1, 2, 3, 4, 5] puts elem end Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:
+[1, 2, 3, 4, 5].each do |elem| puts elem end 还可以变得更简单一点:
+[1, 2, 3, 4, 5].each { |elem| puts elem } 收集结果(遍历数组元素的处理结果)使用 map 而不是 each + &amp;laquo; 这里希望收集数组中特定元素的大写形式
 before:
-result = [] [&#39;biology&#39;, &#39;english&#39;, &#39;Math&#39;].each do |major| next if major.</description>
+result = [] [&amp;#39;biology&amp;#39;, &amp;#39;english&amp;#39;, &amp;#39;Math&amp;#39;].each do |major| next if major.size &amp;lt; 5 result &amp;lt;&amp;lt; major.</description>
     </item>
     
     <item>
       <title>初步了解使用 go AST 知识</title>
-      <link>https://zhaolion.com/post/golang/upgrade/go.ast.usage/</link>
+      <link>https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/</link>
       <pubDate>Wed, 24 Jul 2019 23:18:33 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/upgrade/go.ast.usage/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/</guid>
       <description>最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。
 第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(
-sed -n &#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&#39; &amp;quot;interfaces.go&amp;quot;  第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
+sed -n &amp;#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&amp;#39; &amp;#34;interfaces.go&amp;#34; 第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
 下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:
  go/ast - goc AST wiki  AST 是什么？ AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。
 当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。
@@ -58,31 +53,31 @@ Go 的 AST 是什么？ 一般来说，需要词法分析，然后进行语法�
     
     <item>
       <title>Kubectl wiki</title>
-      <link>https://zhaolion.com/post/k8s/kubectl/</link>
+      <link>https://blog.zhaolion.dev/post/k8s/kubectl/</link>
       <pubDate>Mon, 17 Jun 2019 23:45:12 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/k8s/kubectl/</guid>
+      <guid>https://blog.zhaolion.dev/post/k8s/kubectl/</guid>
       <description>基于 kubernetes v1.14.3 版本
 1. basic kubectl 命令行语法:
 $ kubectl [command] [TYPE] [NAME] [flags]
-1) command: 子命令，用于操作 K8s 集群资源对象的命令，例如 create/delete/describe/get/apply
-2) TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示
- 以下 3 种 TYPE 是等价的: - kubectl get pod pod1 - kubectl get pods pod1 - kubectl get po pod1
- 3) NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表
-4) flags: kubectl 子命令的可选参数
-获取 kubectl 可操作的资源对象列表: kubectl api-resources
+  command: 子命令，用于操作 K8s 集群资源对象的命令，例如 create/delete/describe/get/apply
+  TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示
+   以下 3 种 TYPE 是等价的:
+ kubectl get pod pod1 kubectl get pods pod1 kubectl get po pod1    NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表
+  flags: kubectl 子命令的可选参数
+  获取 kubectl 可操作的资源对象列表: kubectl api-resources
    NAME SHORTNAMES APIGROUP NAMESPACED KIND     bindings   true Binding   componentstatuses cs  false ComponentStatus   configmaps cm  true ConfigMap   endpoints ep  true Endpoints   events ev  true Event   limitranges limits  true LimitRange   namespaces ns  false Namespace   nodes no  false Node   persistentvolumeclaims pvc  true PersistentVolumeClaim   persistentvolumes pv  false PersistentVolume   pods po  true Pod   podtemplates   true PodTemplate   replicationcontrollers rc  true ReplicationController   resourcequotas quota  true ResourceQuota   secrets   true Secret   serviceaccounts sa  true ServiceAccount   services svc  true Service   mutatingwebhookconfigurations  admissionregistration.</description>
     </item>
     
     <item>
       <title>new 与 make 的差别</title>
-      <link>https://zhaolion.com/post/golang/tips/go.make.vs.new/</link>
+      <link>https://blog.zhaolion.dev/post/golang/tips/go.make.vs.new/</link>
       <pubDate>Sat, 30 Mar 2019 19:02:11 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/tips/go.make.vs.new/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/tips/go.make.vs.new/</guid>
       <description>Go语言中new和make是内建的两个函数，主要用来创建分配类型内存
 new(T) 返回的是 T 的指针 这是 new 函数的注释:
-// The new built-in function allocates memory. The first argument is a type, // not a value, and the value returned is a pointer to a newly // allocated zero value of that type. func new(Type) *Type  new(T) 为一个 T 类型新值分配空间并将此空间初始化为 T 的零值，返回的是新值的地址，也就是 T 类型的指针 *T，该指针指向 T 的新分配的零值
+// The new built-in function allocates memory. The first argument is a type, // not a value, and the value returned is a pointer to a newly // allocated zero value of that type. func new(Type) *Type new(T) 为一个 T 类型新值分配空间并将此空间初始化为 T 的零值，返回的是新值的地址，也就是 T 类型的指针 *T，该指针指向 T 的新分配的零值
  对于有哪些零值可以看看 之前的博客 里面有基础类型的零值
  make make 函数的注释:
 The make built-in function allocates and initializes an object of type slice, map, or chan (only).</description>
@@ -90,34 +85,34 @@ The make built-in function allocates and initializes an object of type slice, ma
     
     <item>
       <title>Go 内存排布</title>
-      <link>https://zhaolion.com/post/golang/upgrade/memory.layout/</link>
+      <link>https://blog.zhaolion.dev/post/golang/upgrade/memory.layout/</link>
       <pubDate>Fri, 29 Mar 2019 21:47:27 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/upgrade/memory.layout/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/upgrade/memory.layout/</guid>
       <description>Go 内存布局 了解对象内存布局，有助于深入理解 Go 语言本身，写出更漂亮的代码
-基本类型    类型 长度 默认值 说明     bool 1 false    byte 1 0 uint8   rune 4 0 Unicode point, int32   int/uint 4&amp;frasl;8 0 32位/64位   int8/uint8 1 0 -128~127, 0~255   Int16/uint16 2 0 -32768~32767, 0~65535   Int32/uint32 4 0 -21亿~21亿, 0~42亿   Int64/uint64 8 0    float32 4 0.</description>
+基本类型    类型 长度 默认值 说明     bool 1 false    byte 1 0 uint8   rune 4 0 Unicode point, int32   int/uint 4/8 0 32位/64位   int8/uint8 1 0 -128~127, 0~255   Int16/uint16 2 0 -32768~32767, 0~65535   Int32/uint32 4 0 -21亿~21亿, 0~42亿   Int64/uint64 8 0    float32 4 0.</description>
     </item>
     
     <item>
       <title>DNS 域名系统</title>
-      <link>https://zhaolion.com/post/backend/dns/</link>
+      <link>https://blog.zhaolion.dev/post/backend/dns/</link>
       <pubDate>Mon, 04 Mar 2019 23:55:47 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/backend/dns/</guid>
+      <guid>https://blog.zhaolion.dev/post/backend/dns/</guid>
       <description>DNS （Domain Name System）的作用，就是根据域名查出 IP 地址，是把 www.example.com 等域名转换成 IP 地址。
 域名系统是分层次的，一些 DNS 服务器位于顶层。当查询（域名） IP 时，路由或 ISP 提供连接 DNS 服务器的信息。较底层的 DNS 服务器缓存映射，它可能会因为 DNS 传播延时而失效。DNS 结果可以缓存在浏览器或操作系统中一段时间，时间长短取决于 存活时间 TTL。
 CloudFlare 等平台提供管理 DNS 的功能。某些 DNS 服务通过集中方式来路由流量:
- 加权轮询调度  防止流量进入维护中的服务器 在不同大小集群间负载均衡  A/B 测试 基于延迟路由 基于地理位置路由  一些缺陷:
+ 加权轮询调度  防止流量进入维护中的服务器 在不同大小集群间负载均衡   A/B 测试 基于延迟路由 基于地理位置路由  一些缺陷:
  虽说缓存可以减轻 DNS 延迟，但连接 DNS 服务器还是带来了轻微的延迟 虽然它们通常由政府，网络服务提供商和大公司管理，但 DNS 服务管理仍是复杂的 DNS 服务最近遭受 DDoS 攻击，阻止不知道 Twitter IP 地址的用户访问 Twitter  延伸阅读:
  DNS 架构 DNS wiki 关于 DNS 的文章  查询过程 虽然只需要返回一个 IP 地址，但是 DNS 的查询过程非常复杂，分成多个步骤。</description>
     </item>
     
     <item>
       <title>从入门到放弃 - Raft</title>
-      <link>https://zhaolion.com/post/backend/raft/</link>
+      <link>https://blog.zhaolion.dev/post/backend/raft/</link>
       <pubDate>Mon, 04 Mar 2019 23:55:47 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/backend/raft/</guid>
+      <guid>https://blog.zhaolion.dev/post/backend/raft/</guid>
       <description>根据 Raft 中文翻译和各种来源，按照自己更好理解的方式进行重新组织和增加一些说明
 [TOC]
 TL;DR 根据作者的话来说，Raft 算法是为了 寻找一种易于理解的一致性算法，作为管理复制日志的一致性算法，提供了和 Paxos 算法相同的功能和性能。(顺带吐槽 Paxos 难以理解)
@@ -138,98 +133,107 @@ Raft 通过选举一个领导者，然后给予他全部的管理复制日志的
     
     <item>
       <title>知名公司工程博客</title>
-      <link>https://zhaolion.com/post/knowledge/company_blog/</link>
+      <link>https://blog.zhaolion.dev/post/knowledge/company_blog/</link>
       <pubDate>Sun, 03 Mar 2019 22:27:01 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/knowledge/company_blog/</guid>
+      <guid>https://blog.zhaolion.dev/post/knowledge/company_blog/</guid>
       <description> Airbnb Engineering Atlassian Developers Autodesk Engineering AWS Blog Bitly Engineering Blog Box Blogs Cloudera Developer Blog Dropbox Tech Blog Engineering at Quora Ebay Tech Blog Evernote Tech Blog Etsy Code as Craft Facebook Engineering Flickr Code Foursquare Engineering Blog GitHub Engineering Blog Google Research Blog Groupon Engineering Blog Heroku Engineering Blog Hubspot Engineering Blog High Scalability Instagram Engineering Intel Software Blog Jane Street Tech Blog LinkedIn Engineering Microsoft Engineering Microsoft Python Engineering Netflix Tech Blog Paypal Developer Blog Pinterest Engineering Blog Quora Engineering Reddit Blog Salesforce Engineering Blog Slack Engineering Blog Spotify Labs Twilio Engineering Blog Twitter Engineering Uber Engineering Blog Yahoo Engineering Blog Yelp Engineering Blog Zynga Engineering Blog  </description>
     </item>
     
     <item>
       <title>Linux 常用命令 find</title>
-      <link>https://zhaolion.com/post/linux/basic_usage/find/</link>
+      <link>https://blog.zhaolion.dev/post/linux/basic_usage/find/</link>
       <pubDate>Mon, 21 Jan 2019 22:39:31 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/linux/basic_usage/find/</guid>
+      <guid>https://blog.zhaolion.dev/post/linux/basic_usage/find/</guid>
       <description>查找指定文件名的文件(不区分大小写)
-find -iname [filename]  对找到的文件执行某个命令
-find -iname [filename] -exec md5sum {} \;  查找目录下的所有空文件
-find [dir] -empty  按照文件权限来查找文件
-find [dir] -perm [mode] –print  按照文件的更改时间来查找文件， -n表示文件更改时间距现在n天以内，+n表示文件更改时间距现在n天以前
-find [dir] -mtime -5 –print  查找更改时间比文件file1新但比文件file2旧的文件
-find [dir] -newer file1 ! file2  根据类型查找 -type
-find [dir] -type d –print   b - 块设备文件 d - 目录 c - 字符设备文件 p - 管道文件 l - 符号链接文件 f - 普通文件
- 忽略某个目录</description>
+find -iname [filename] 对找到的文件执行某个命令
+find -iname [filename] -exec md5sum {} \; 查找目录下的所有空文件
+find [dir] -empty 按照文件权限来查找文件
+find [dir] -perm [mode] –print 按照文件的更改时间来查找文件， -n表示文件更改时间距现在n天以内，+n表示文件更改时间距现在n天以前
+find [dir] -mtime -5 –print 查找更改时间比文件file1新但比文件file2旧的文件
+find [dir] -newer file1 ! file2 根据类型查找 -type
+find [dir] -type d –print  b - 块设备文件 d - 目录 c - 字符设备文件 p - 管道文件 l - 符号链接文件 f - 普通文件
+ 忽略某个目录
+find [dir] -path [exclude_dir] -prune -o -print 在目录下查找文件长度大于1 M字节的文件</description>
     </item>
     
     <item>
       <title>Linux 常用命令 grep</title>
-      <link>https://zhaolion.com/post/linux/basic_usage/grep/</link>
+      <link>https://blog.zhaolion.dev/post/linux/basic_usage/grep/</link>
       <pubDate>Sun, 20 Jan 2019 22:28:19 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/linux/basic_usage/grep/</guid>
+      <guid>https://blog.zhaolion.dev/post/linux/basic_usage/grep/</guid>
       <description>在文件中查找字符串(不区分大小写)
-grep -i [word] [file]  在一个文件夹中递归查询包含指定字符串的文件
-grep -r [word] [file / path]  从文件中读取关键词进行搜索
-cat [file] | grep -f [word]  从文件中读取关键词进行搜索 且显示行号
-cat [file] | grep -nf [word]  从多个文件中查找关键词
-grep [word] [file1] [file2]  显示包含 a 或者 b 字符的内容行
-cat [file] |grep -E &amp;quot;a|b&amp;quot;  grep 不显示本身进程
-ps aux | grep [word] | grep -v &amp;quot;grep&amp;quot;  使用 ^ 符号输出所有以某指定模式开头的行
-grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行</description>
+grep -i [word] [file] 在一个文件夹中递归查询包含指定字符串的文件
+grep -r [word] [file / path] 从文件中读取关键词进行搜索
+cat [file] | grep -f [word] 从文件中读取关键词进行搜索 且显示行号
+cat [file] | grep -nf [word] 从多个文件中查找关键词
+grep [word] [file1] [file2] 显示包含 a 或者 b 字符的内容行
+cat [file] |grep -E &amp;#34;a|b&amp;#34; grep 不显示本身进程
+ps aux | grep [word] | grep -v &amp;#34;grep&amp;#34; 使用 ^ 符号输出所有以某指定模式开头的行
+grep ^docker [file] 使用 $ 符号输出所有以指定模式结尾的行
+grep git$ [file] 使用 grep 查找文件中所有的空行
+grep ^$ [file] 输出匹配指定模式行的前N行</description>
     </item>
     
     <item>
       <title>常见英文符号</title>
-      <link>https://zhaolion.com/post/tools/symbol/</link>
+      <link>https://blog.zhaolion.dev/post/tools/symbol/</link>
       <pubDate>Sat, 19 Jan 2019 23:06:55 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/tools/symbol/</guid>
-      <description>asterisk (*) plus sign (+) minus sign (-) forward slash (/) backslash (\) percent symbol (%) exclamation point symbol (!) underscore (_) equal sign (=) decimal points (.) semicolon (;) increment (++) operators decrement (--) operators ( ) Parenthesis { } Braces [ ] Brackets , Comma ; Semicolon &#39; Quote @ At +　plus　加号；正号 -　minus　减号；负号 ±　plus or minus　正负号 ×　is multiplied by　乘号 ÷　is divided by　除号 ＝　is equal to　等于号 ≠　is not equal to　不等于号 ≡　is equivalent to　全等于号 ≌　is equal to or approximately equal to　等于或约等于号 ≈　is approximately equal to　约等于号 ＜　is less than　小于号 ＞　is more than　大于号 ≮　is not less than　不小于号 ≯　is not more than　不大于号 ≤　is less than or equal to　小于或等于号 ≥　is more than or equal to　大于或等于号 %　per cent　百分之… ‰　per mill　千分之… ∞　infinity　无限大号 ∝　varies as　与…成比例 √　(square) root　平方根 ∵　since; because　因为 ∴　hence　所以 ∷　equals, as (proportion)　等于，成比例 ∠　angle　角 ⌒　semicircle　半圆 ⊙　circle　圆 ○　circumference　圆周 π　pi 圆周率 △　triangle　三角形 ⊥　perpendicular to　垂直于 ∪　union of　并，合集 ∩　intersection of 交，通集 ∫　the integral of …的积分 ∑　(sigma) summation of　总和 °　degree　度 ′　minute　分 〃　second　秒 ℃　Celsius system　摄氏度 {　open brace, open curly　左花括号 }　close brace, close curly　右花括号 (　open parenthesis, open paren　左圆括号 )　close parenthesis, close paren　右圆括号 () brakets/ parentheses　括号 [　open bracket 左方括号 ]　close bracket 右方括号 [] square brackets　方括号 .</description>
+      <guid>https://blog.zhaolion.dev/post/tools/symbol/</guid>
+      <description>asterisk (*) plus sign (+) minus sign (-) forward slash (/) backslash (\) percent symbol (%) exclamation point symbol (!) underscore (_) equal sign (=) decimal points (.) semicolon (;) increment (++) operators decrement (--) operators ( ) Parenthesis { } Braces [ ] Brackets , Comma ; Semicolon &amp;#39; Quote @ At +　plus　加号；正号 -　minus　减号；负号 ±　plus or minus　正负号 ×　is multiplied by　乘号 ÷　is divided by　除号 ＝　is equal to　等于号 ≠　is not equal to　不等于号 ≡　is equivalent to　全等于号 ≌　is equal to or approximately equal to　等于或约等于号 ≈　is approximately equal to　约等于号 ＜　is less than　小于号 ＞　is more than　大于号 ≮　is not less than　不小于号 ≯　is not more than　不大于号 ≤　is less than or equal to　小于或等于号 ≥　is more than or equal to　大于或等于号 %　per cent　百分之… ‰　per mill　千分之… ∞　infinity　无限大号 ∝　varies as　与…成比例 √　(square) root　平方根 ∵　since; because　因为 ∴　hence　所以 ∷　equals, as (proportion)　等于，成比例 ∠　angle　角 ⌒　semicircle　半圆 ⊙　circle　圆 ○　circumference　圆周 π　pi 圆周率 △　triangle　三角形 ⊥　perpendicular to　垂直于 ∪　union of　并，合集 ∩　intersection of 交，通集 ∫　the integral of …的积分 ∑　(sigma) summation of　总和 °　degree　度 ′　minute　分 〃　second　秒 ℃　Celsius system　摄氏度 {　open brace, open curly　左花括号 }　close brace, close curly　右花括号 (　open parenthesis, open paren　左圆括号 )　close parenthesis, close paren　右圆括号 () brakets/ parentheses　括号 [　open bracket 左方括号 ]　close bracket 右方括号 [] square brackets　方括号 .</description>
     </item>
     
     <item>
       <title>Git 常用命令</title>
-      <link>https://zhaolion.com/post/git/basic/</link>
+      <link>https://blog.zhaolion.dev/post/git/basic/</link>
       <pubDate>Wed, 16 Jan 2019 23:43:52 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/git/basic/</guid>
+      <guid>https://blog.zhaolion.dev/post/git/basic/</guid>
       <description>基本设置 设置你自己的昵称与 email
-git config --global user.name &amp;quot;zhaolion&amp;quot; git config --global user.email &amp;quot;zhaoliangsyn@gmail.com&amp;quot; git config --global push.default simple  配置你的编缉器
-git config --global core.editor emacs   Git 使用你的系统的缺省编辑器，这通常可能是 vi 或者 vim
+git config --global user.name &amp;#34;zhaolion&amp;#34; git config --global user.email &amp;#34;zhaoliangsyn@gmail.com&amp;#34; git config --global push.default simple 配置你的编缉器
+git config --global core.editor emacs  Git 使用你的系统的缺省编辑器，这通常可能是 vi 或者 vim
  配置你的比较工具
-git config --global merge.tool vimdiff   Git 可以使用 kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge, 和 opendiff 作为有效的合并工具。你也可以设置一个客户化的工具
+git config --global merge.tool vimdiff  Git 可以使用 kdiff3, tkdiff, meld, xxdiff, emerge, vimdiff, gvimdiff, ecmerge, 和 opendiff 作为有效的合并工具。你也可以设置一个客户化的工具
  检查你的配置
-git config --list  编辑 Git 配置文件
-git config -e [--global]  获取帮助</description>
+git config --list 编辑 Git 配置文件
+git config -e [--global] 获取帮助
+git help config 仓库相关命令 新建代码库
+git init 检出仓库</description>
     </item>
     
     <item>
       <title>Docker 常用命令</title>
-      <link>https://zhaolion.com/post/docker/basic.cmd/</link>
+      <link>https://blog.zhaolion.dev/post/docker/basic.cmd/</link>
       <pubDate>Tue, 15 Jan 2019 23:28:27 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/docker/basic.cmd/</guid>
+      <guid>https://blog.zhaolion.dev/post/docker/basic.cmd/</guid>
       <description>下面是一些比较常用的 Docker 命令
 镜像类基本命令 安装镜像
-docker pull ${IMAGE}  显示已经安装镜像的详细内容
-docker images --no-trunc  构建镜像
-docker build --rm=true .  删除指定镜像
-docker rmi ${IMAGE_ID}  删除未使用的镜像
-docker rmi $(docker images --quiet --filter &amp;amp;quot;dangling=true&amp;amp;quot;)  删除所有没有标签的镜像
-docker rmi $(docker images | grep “^” | awk “{print $3}”)  删除所有的镜像
-docker rmi $(docker images)  构建自己的镜像
-docker build -t &amp;lt;镜像名&amp;gt; &amp;lt;Dockerfile 路径&amp;gt;  导出镜像
-docker save docker.io/tomcat:7.0.77-jre7 &amp;gt;/root/mytomcat7.tar.gz  导入镜像
-docker load &amp;lt; /root/mytomcat7.</description>
+docker pull ${IMAGE}显示已经安装镜像的详细内容
+docker images --no-trunc构建镜像
+docker build --rm=true .删除指定镜像
+docker rmi ${IMAGE_ID}删除未使用的镜像
+docker rmi $(docker images --quiet --filter &amp;amp;quot;dangling=true&amp;amp;quot;) 删除所有没有标签的镜像
+docker rmi $(docker images | grep “^” | awk “{print $3}”)删除所有的镜像
+docker rmi $(docker images)构建自己的镜像
+docker build -t &amp;lt;镜像名&amp;gt; &amp;lt;Dockerfile 路径&amp;gt;导出镜像
+docker save docker.io/tomcat:7.0.77-jre7 &amp;gt;/root/mytomcat7.tar.gz导入镜像
+docker load &amp;lt; /root/mytomcat7.tar.gz为自定义的镜像打上 tag
+docker tag &amp;lt;image&amp;gt; &amp;lt;username&amp;gt;/&amp;lt;repository&amp;gt;:&amp;lt;tag&amp;gt;将自定义的镜像发布到仓库
+docker push &amp;lt;username&amp;gt;/&amp;lt;repository&amp;gt;:&amp;lt;tag&amp;gt;查看某个镜像详情
+docker inspect &amp;lt;镜像名称&amp;gt;容器类基本命令 查看容器
+docker ps # 正在运行的容器docker ps -a # 所有的容器停止、启动、杀死一个容器</description>
     </item>
     
     <item>
       <title>程序员 2018 年度总结</title>
-      <link>https://zhaolion.com/post/life/2018.summary/</link>
+      <link>https://blog.zhaolion.dev/post/life/2018.summary/</link>
       <pubDate>Mon, 14 Jan 2019 00:47:38 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/life/2018.summary/</guid>
+      <guid>https://blog.zhaolion.dev/post/life/2018.summary/</guid>
       <description>这一年里，你一共写了 34 万行代码
 你热衷于使用组合键 ⌘ + C 和 ⌘ + V
 你热爱学习，喜欢和同事一起分享你们两个都不懂的技术知识
@@ -251,50 +255,50 @@ May the Bug be with you.</description>
     
     <item>
       <title>database/sql: Stmt的使用以及坑</title>
-      <link>https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/</link>
+      <link>https://blog.zhaolion.dev/post/golang/upgrade/database.sql.driver.stmt/</link>
       <pubDate>Mon, 14 Jan 2019 00:37:49 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/upgrade/database.sql.driver.stmt/</guid>
       <description>基本知识 众所周知，Golang 操作数据库，是通过 database/sql 包，以及第三方的实现了 database/sql/driver 接口的数据库驱动包来共同完成的。
 其中 database/sql/driver 中的接口 Conn 和 Stmt，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 database/sql 包中的 DB 和 Stmt 是协程安全的，因为内部实现是连接池。
 如何使用 database/sql 的 MySQL 驱动的使用范例 基本类似于
-// Insert stmtIns, err := db.Prepare(&amp;quot;INSERT INTO squareNum VALUES( ?, ? )&amp;quot;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&amp;quot;SELECT squareNumber FROM squarenum WHERE number = ?</description>
+// Insert stmtIns, err := db.Prepare(&amp;#34;INSERT INTO squareNum VALUES( ?, ? )&amp;#34;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&amp;#34;SELECT squareNumber FROM squarenum WHERE number = ?</description>
     </item>
     
     <item>
       <title>Go Modules 简单介绍</title>
-      <link>https://zhaolion.com/post/golang/basic/go.mod/</link>
+      <link>https://blog.zhaolion.dev/post/golang/basic/go.mod/</link>
       <pubDate>Mon, 14 Jan 2019 00:24:08 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/basic/go.mod/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/basic/go.mod/</guid>
       <description>Go Modules Golang 在 1.11 版本推出了万众期待的依赖管理工具 go Modules
 我厌倦了 Glide 那无穷无尽的 update 状态之后，还是决定自己再一次尝试新的依赖管理工具 (~~ 毕竟是 google 爸爸推出的~~)
 还好尝试的比较晚，已经有许多 bug 得到解决，社区也有许多文章给出了最佳实践，建议先看看 intro-to-go-modules
 1. enable GO111MODULE go modules 默认是没有开启的，需要设置环境变量 GO111MODULE=on, 如果没有设置, 会有一些提示。
 2. help doc 接下来就是查看一下帮助手册 go mod help:
-Go mod provides access to operations on modules. Note that support for modules is built into all the go commands, not just &#39;go mod&#39;. For example, day-to-day adding, removing, upgrading, and downgrading of dependencies should be done using &#39;go get&#39;.</description>
+Go mod provides access to operations on modules.  Note that support for modules is built into all the go commands, not just &amp;#39;go mod&amp;#39;. For example, day-to-day adding, removing, upgrading, and downgrading of dependencies should be done using &amp;#39;go get&amp;#39;.</description>
     </item>
     
     <item>
       <title>初步了解 golang reflect pkg</title>
-      <link>https://zhaolion.com/post/golang/package/reflect/</link>
+      <link>https://blog.zhaolion.dev/post/golang/package/reflect/</link>
       <pubDate>Sat, 12 Jan 2019 11:43:35 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/package/reflect/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/package/reflect/</guid>
       <description>初步了解 golang reflect pkg [TOC]
 阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
 Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。
 什么时候应该用 reflect
- 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp;amp; Kind &amp;amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value: - Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &amp;hellip; - Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &amp;hellip; - Value: 也就是 Go value, 承载变量 / 常量的值
- type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈</description>
+ 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp;amp; Kind &amp;amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value:
+ Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &amp;hellip; Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &amp;hellip; Value: 也就是 Go value, 承载变量 / 常量的值   type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈</description>
     </item>
     
     <item>
       <title>sync.Pool 的实现原理和适用场景</title>
-      <link>https://zhaolion.com/post/golang/package/sync.pool/</link>
+      <link>https://blog.zhaolion.dev/post/golang/package/sync.pool/</link>
       <pubDate>Tue, 13 Nov 2018 22:52:14 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/package/sync.pool/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/package/sync.pool/</guid>
       <description>sync.Pool 的实现原理和适用场景 Golang GC 大大减少了程序编程负担，但 GC 是一把双刃剑，带来了编程的方便但同时也增加了运行时开销，使用不当甚至会严重影响程序的性能。因此性能要求高的场景不能任意产生太多的垃圾，如何解决呢？
 那就是 ** 重用对象 **
 我们可以简单的使用一个 chan 把这些可重用的对象缓存起来，但如果很多 goroutine 竞争一个 chan 性能肯定是问题，为了避免大家重造车轮，因此官方统一出了一个包 sync.Pool
@@ -304,24 +308,24 @@ Golang 语言实现了反射，反射机制就是在运行时动态的调用对�
     
     <item>
       <title>初步了解 golang bufio pkg</title>
-      <link>https://zhaolion.com/post/golang/package/bufio/</link>
+      <link>https://blog.zhaolion.dev/post/golang/package/bufio/</link>
       <pubDate>Sat, 13 Oct 2018 21:54:10 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/package/bufio/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/package/bufio/</guid>
       <description>bufio package in Golang golang 通过 package bufio 来支持 buffered I/O。
 熟悉一下: Reader, Writer and Scanner…
 bufio.Writer 对 I/O 的频繁操作会极大的影响性能，每次 写 I/O 都是一次 syscall，因此频繁操作会给 CPU 带来极大的负担。对于磁盘来说，批量写操作有着更好的性能。golang 通过 bufio.Writer 来合并写操作，避免频繁的写操作。因此在写密集场景下，应该使用 bufio.Writer，而不是 io.Writer
 bufio.Writer 通过将写内容缓存至 buffer，buffer 满了之后，再进行一次写操作，这样极大的优化性能:
-producer --&amp;gt; buffer --&amp;gt; io.Writer  举个例子，9 次写操作，buffer 是如何工作的:
-producer buffer destination (io.Writer) a -----&amp;gt; a b -----&amp;gt; ab c -----&amp;gt; abc d -----&amp;gt; abcd e -----&amp;gt; e ------&amp;gt; abcd f -----&amp;gt; ef abcd g -----&amp;gt; efg abcd h -----&amp;gt; efgh abcd i -----&amp;gt; i ------&amp;gt; abcdefgh  看份代码来感受一下，如何使用:</description>
+producer --&amp;gt; buffer --&amp;gt; io.Writer 举个例子，9 次写操作，buffer 是如何工作的:
+producer buffer destination (io.Writer) a -----&amp;gt; a b -----&amp;gt; ab c -----&amp;gt; abc d -----&amp;gt; abcd e -----&amp;gt; e ------&amp;gt; abcd f -----&amp;gt; ef abcd g -----&amp;gt; efg abcd h -----&amp;gt; efgh abcd i -----&amp;gt; i ------&amp;gt; abcdefgh 看份代码来感受一下，如何使用:</description>
     </item>
     
     <item>
       <title>Go Interface 从理解到深入</title>
-      <link>https://zhaolion.com/post/golang/upgrade/interface/</link>
+      <link>https://blog.zhaolion.dev/post/golang/upgrade/interface/</link>
       <pubDate>Thu, 13 Sep 2018 18:24:50 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/upgrade/interface/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/upgrade/interface/</guid>
       <description>Go Interface 从理解到深入 如果说 goroutine 和 channel 是 Go 并发的两大基石，那么接口是 Go 语言编程中数据类型的关键。在 Go 语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是 Go 语言中所有数据结构的核心
 Go 不是一种典型的 OO 语言，它在语法上不支持类和继承的概念
 没有继承是否就无法拥有多态行为了呢？答案是否定的，Go 语言引入了一种新类型—Interface，它在效果上实现了类似于 C++ 的 “多态” 概念，虽然与 C++ 的多态在语法上并非完全对等，但至少在最终实现的效果上，它有多态的影子
@@ -332,59 +336,59 @@ Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定
     
     <item>
       <title>如何写好 golang 代码的一些 tips</title>
-      <link>https://zhaolion.com/post/golang/tips/coding.in.go/</link>
+      <link>https://blog.zhaolion.dev/post/golang/tips/coding.in.go/</link>
       <pubDate>Mon, 02 Jul 2018 21:12:55 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/tips/coding.in.go/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/tips/coding.in.go/</guid>
       <description>如何写好 golang 代码的一些 tips 1. 首先需要知道的概念  不要像其他语言一样写 Go, Go 不是 Java/Python/Ruby/PHP，Go 的程序思维很古典也很超前 保持简洁，避免过度工程化 学会阅读源码 interface 很重要，很多问题都可以用 interface 解决 保持函数精炼，变量名长度合适 (在不丢失意义的情况下，尽量短小) 用更小的单元实现代码功能，然后 ** 组合 ** 慎重使用全局变量 (尤其是跨 package 使用，变量作用域上容易踩坑，可以参考 vs6IeAu5U5n)  2. 函数声明的 tips  函数声明首先是函数名字要具有自解释性，需要能够解释清楚大致提供的功能，而不是模糊的 common/util。 其次具体的功能解释，这个要说到代码注释了，这里就不赘述了。 除了函数声明外，还有函数的形参定义。这里以一个例子来说一下扩展性好的函数的参数应该如何定义 (见 2.1)。  2.1 普通函数 假设我们需要一个简单的 server，我们可以像下面这样定义，addr 表示 server 启动在哪个端口上。
-func NewServer(addr string)  第一期的需求很简单，就上面这些足够满足了。项目上线跑了一段时间发现，由于连接没有设置超时，很多连接一直得不到释放（异常情况），严重影响服务器性能。
+func NewServer(addr string) 第一期的需求很简单，就上面这些足够满足了。项目上线跑了一段时间发现，由于连接没有设置超时，很多连接一直得不到释放（异常情况），严重影响服务器性能。
 好，那第二期我们加个 timeout。
-func NewServer(addr string, timeout time.Duration)  这个时候尴尬的情况出现了，调用你代码的所有人都需要改动代码。而且这只是一个改动，之后如果要支持 tls，那么又得改动一次。
+func NewServer(addr string, timeout time.Duration) 这个时候尴尬的情况出现了，调用你代码的所有人都需要改动代码。而且这只是一个改动，之后如果要支持 tls，那么又得改动一次。
 2.2 不定参数 解决上面的窘境的一种方法是使用不定参数。
 比如我要实现一个整数加法。
-func Add(list .</description>
+func Add(list ...int) int { sum := 0 for _, x := range list { sum += x } return sum } func main() { fmt.</description>
     </item>
     
     <item>
       <title>正则表达式基本使用介绍</title>
-      <link>https://zhaolion.com/post/regexp/basic/</link>
+      <link>https://blog.zhaolion.dev/post/regexp/basic/</link>
       <pubDate>Fri, 13 Jan 2017 18:48:34 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/regexp/basic/</guid>
+      <guid>https://blog.zhaolion.dev/post/regexp/basic/</guid>
       <description>正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
-字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符 &amp;gt;.at，可以匹配&amp;rdquo;cat&amp;rdquo;,&amp;ldquo;sat&amp;rdquo;,&amp;ldquo;mat&amp;rdquo;等，一般这种通配符用于匹配操作系统中的文件名
- 限定范围 &amp;gt; 1. 如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 &amp;gt;2. 可以列出一个集合，[aeiou]，来匹配所有元音字母 &amp;gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 &amp;gt;4. 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符
-  重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和+，这两个符号放在表示式后面 - *表示这个模式可以重复0次或多次 - +表示这个模式可以重复1次或更多次
- c+at，表示可以匹配&amp;rdquo;cat&amp;rdquo;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，但是无法匹配&amp;rdquo;at&amp;rdquo; c*at，表示可以匹配&amp;rdquo;cat&amp;rdquo;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，也可以匹配&amp;rdquo;at&amp;rdquo;
+字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符   .at，可以匹配&amp;quot;cat&amp;quot;,&amp;ldquo;sat&amp;rdquo;,&amp;ldquo;mat&amp;quot;等，一般这种通配符用于匹配操作系统中的文件名
+ 限定范围    如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 可以列出一个集合，[aeiou]，来匹配所有元音字母 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符   重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和+，这两个符号放在表示式后面
+ *表示这个模式可以重复0次或多次 +表示这个模式可以重复1次或更多次   c+at，表示可以匹配&amp;quot;cat&amp;rdquo;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，但是无法匹配&amp;quot;at&amp;quot; c*at，表示可以匹配&amp;quot;cat&amp;quot;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，也可以匹配&amp;quot;at&amp;quot;
  子表达式 通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。
- (very )*large，可以匹配：&amp;rdquo;large&amp;rdquo;,&amp;ldquo;very large&amp;rdquo;,&amp;ldquo;very very large&amp;rdquo;
+ (very )*large，可以匹配：&amp;ldquo;large&amp;rdquo;,&amp;ldquo;very large&amp;rdquo;,&amp;ldquo;very very large&amp;rdquo;
  子表达式计数 可以在花括号{}中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围
- (very){1, 2}，可以匹配&amp;rdquo;very&amp;rdquo;,&amp;ldquo;veryvery&amp;rdquo; (very){3}，可以匹配&amp;rdquo;veryveryvery&amp;rdquo; (very)(1,)，可以匹配&amp;rdquo;very&amp;rdquo;,&amp;ldquo;veryvery&amp;rdquo;,&amp;ldquo;veryveryvery&amp;rdquo;&amp;hellip;
+ (very){1, 2}，可以匹配&amp;quot;very&amp;quot;,&amp;ldquo;veryvery&amp;rdquo; (very){3}，可以匹配&amp;quot;veryveryvery&amp;quot; (very)(1,)，可以匹配&amp;quot;very&amp;quot;,&amp;ldquo;veryvery&amp;rdquo;,&amp;ldquo;veryveryvery&amp;rdquo;&amp;hellip;
  定位到字符串的开始或末尾 脱字符号^用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处 字符$，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾
  ^bob，用于在字符串开始处匹配bob com$,用于在字符串末尾处匹配com ^[a-z]$，这个将只能匹配a-z之间的字符组成的字符串
- 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配&amp;rdquo;com&amp;rdquo;,&amp;ldquo;net&amp;rdquo;,&amp;ldquo;edu&amp;rdquo;中任意一个
+ 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配&amp;quot;com&amp;quot;,&amp;ldquo;net&amp;rdquo;,&amp;ldquo;edu&amp;quot;中任意一个
 匹配特殊字符 如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠\\
-特殊字符主要有： - \: 转义字符 - ^: 在字符串开始匹配 - $: 在字符串末尾匹配 - .</description>
+特殊字符主要有：
+ \: 转义字符 ^: 在字符串开始匹配 $: 在字符串末尾匹配 .: 匹配除换行符之外的字符（字符串末尾仅代表.） |: 选择分支的开始 (: 子模式开始 ): 子模式结束 *: 重复0次或多次 +: 重复1次或多次 {: 最小／最大量记号开始 }: 最小／最大量记号结束 ?</description>
     </item>
     
     <item>
       <title>MySQL的基础使用相关知识</title>
-      <link>https://zhaolion.com/post/mysql/basic/</link>
+      <link>https://blog.zhaolion.dev/post/mysql/basic/</link>
       <pubDate>Fri, 13 Jan 2017 18:45:26 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/mysql/basic/</guid>
+      <guid>https://blog.zhaolion.dev/post/mysql/basic/</guid>
       <description>登录到MySQL mysql -h hostname -P hostport -u username -p
  -h 指定希望连接的主机，可以用来连接远程主机上的MySQL，如果忽略默认登录本机数据库 -P 指定所连接主机开放的MySQL端口，如果忽略此项默认使用3306端口登录 -u 指定连接数据库时使用的用户名称，如果忽略此项默认使用你的本机用户名 -p 告诉服务器会使用密码来连接数据库，如果忽略此项使用无密码登录  使用密码登入时，会出现以下响应
-Enter password:  输入密码后成功登录会得到以下响应
-Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 4 Server version: 5.7.12 MySQL Community Server (GPL) Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved. Oracle is a registered trademark of Oracle Corporation and/or its affiliates.</description>
+Enter password: 输入密码后成功登录会得到以下响应
+Welcome to the MySQL monitor. Commands end with ; or \g. Your MySQL connection id is 4 Server version: 5.7.12 MySQL Community Server (GPL) Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved. Oracle is a registered trademark of Oracle Corporation and/or its affiliates. Other names may be trademarks of their respective owners.</description>
     </item>
     
     <item>
       <title>js intro 对象</title>
-      <link>https://zhaolion.com/post/js/intro-5/</link>
+      <link>https://blog.zhaolion.dev/post/js/intro-5/</link>
       <pubDate>Tue, 18 Oct 2016 22:33:39 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/js/intro-5/</guid>
+      <guid>https://blog.zhaolion.dev/post/js/intro-5/</guid>
       <description>对象 对象(object)是js的基本数据类型。是一种复合值：将很多值（原始值或者其它对象）聚合在一起，可以通过名字访问这些值。
 每个属性都是一个名/值对(key/value)，属性名是字符串，因此我们可以把对象看成从字符串到值的映射。
 然而对象不仅仅是字符串到值的映射，除了保持自有的属性，js对象还可以从一个称为原型的对象继承属性。
@@ -394,11 +398,11 @@ js对象是动态的，可以新增属性，也可以删除属性。
 对象是可变的，我们通过引用而非值来操作对象。如果变量x是指向一个对象的引用，那么执行代码
 var y = x;
 变量y也是指向同一个对象的引用，而非这个对象的副本。通过y来修改这个对象也会对变量x造成影响
-js的属性，除了名字和值之外，每个属性还有一些与之相关的值，称为 属性特性： - 可写，表明是否可以设置该属性的值 - 可枚举，表明是否可以通过for/in循环返回该属性 - 可配置，表明是否可以删除或修改该属性
-除了包含属性之外，每个对象还拥有三个相关的对象特性： - 对象的原型(prototype)指向另一个对象，本对象的属性继承自它的原型对象 - 对象的类是一个标识对象类型的字符串 - 对象的扩展标记(extensible flag)指明了在ECMAScript5中是否可以向该对象添加新的属性
-三类js对象和两类属性的区分： - 内置对象(native object)是由ECMAScript规范定义的对象或类。例如，数组、函数、日期和正则表达式 - 宿主对象(host object)是由js解释器所嵌入的宿主环境（比如WEB浏览器）定义的。客户端js中表示网页结构的HTMLElement对象均是宿主对象。既然宿主环境定义的方法可以当成普通的js函数对象，那么宿主对象也可以当成内置对象 - 自定义对象(user-defined Object)是由运行中的js代码创建的对象 - 自有属性(own property)是直接在对象中定义的属性 - 继承属性(inherited property)是在对象的原型对象中定义的属性
-创建对象 创建对象主要有三种方法: - 对象直接量 - 关键字new创建 - Object.create()函数
-对象直接量 对象直接量是由若干名值对组成的映射表，名值对中间用冒号分割，名值对之间用逗号分割，整个映射表用花括号括起来
+js的属性，除了名字和值之外，每个属性还有一些与之相关的值，称为 属性特性：
+ 可写，表明是否可以设置该属性的值 可枚举，表明是否可以通过for/in循环返回该属性 可配置，表明是否可以删除或修改该属性  除了包含属性之外，每个对象还拥有三个相关的对象特性：
+ 对象的原型(prototype)指向另一个对象，本对象的属性继承自它的原型对象 对象的类是一个标识对象类型的字符串 对象的扩展标记(extensible flag)指明了在ECMAScript5中是否可以向该对象添加新的属性  三类js对象和两类属性的区分：
+ 内置对象(native object)是由ECMAScript规范定义的对象或类。例如，数组、函数、日期和正则表达式 宿主对象(host object)是由js解释器所嵌入的宿主环境（比如WEB浏览器）定义的。客户端js中表示网页结构的HTMLElement对象均是宿主对象。既然宿主环境定义的方法可以当成普通的js函数对象，那么宿主对象也可以当成内置对象 自定义对象(user-defined Object)是由运行中的js代码创建的对象 自有属性(own property)是直接在对象中定义的属性 继承属性(inherited property)是在对象的原型对象中定义的属性  创建对象 创建对象主要有三种方法:
+ 对象直接量 关键字new创建 Object.create()函数  对象直接量 对象直接量是由若干名值对组成的映射表，名值对中间用冒号分割，名值对之间用逗号分割，整个映射表用花括号括起来
 属性名可以是js标识符也可以是字符串直接量
 属性的值可以是任意类型js表达式、表达式的值就是这个属性的值
 来个例子：
@@ -407,152 +411,155 @@ var empty = {}; // 没有任何属性的对象 var point = { x:0, y:1 }; // 两�
     
     <item>
       <title>js intro 语句</title>
-      <link>https://zhaolion.com/post/js/intro-4/</link>
+      <link>https://blog.zhaolion.dev/post/js/intro-4/</link>
       <pubDate>Mon, 17 Oct 2016 22:33:39 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/js/intro-4/</guid>
+      <guid>https://blog.zhaolion.dev/post/js/intro-4/</guid>
       <description>语句 js程序其实就是一系列可执行语句的集合。只要掌握了语句，就可以开始写js程序
-默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序: - 条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如if语句、switch语句 - 循环语句，可以重复执行语句，如while语句和for语句 - 跳转语句，可以让解释器跳转至程序的其他部分继续执行，如break语句、return语句、 throw语句
-表达式语句  赋值语句 递增、递减运算符 函数调用  greeting = &amp;quot;hello&amp;quot; + name; i *= 3; counter++; delete o.x; window.close(); cx = Math.cos(x);  复合语句和空语句 js可以讲多条语句联合在一起，形成一条复合语句，只需要用花括号将多条语句括起来即可。
+默认情况下，js依照语句编写顺序依次执行，其中有很多语句和控制语句，来改变默认执行顺序:
+ 条件语句，js解释器根据一个表达式的值来判断是执行还是跳过这些语句，比如if语句、switch语句 循环语句，可以重复执行语句，如while语句和for语句 跳转语句，可以让解释器跳转至程序的其他部分继续执行，如break语句、return语句、 throw语句  表达式语句  赋值语句 递增、递减运算符 函数调用  greeting = &amp;#34;hello&amp;#34; + name; i *= 3; counter++; delete o.x; window.close(); cx = Math.cos(x); 复合语句和空语句 js可以讲多条语句联合在一起，形成一条复合语句，只需要用花括号将多条语句括起来即可。
 下面代码可以当成一条单独的语句，使用在任何js希望使用一条语句的地方：
-{ x = Math.PI; cx = Math.cos(x); console.log(&amp;quot;cos(pi) = &amp;quot; + cx); }  关于语句块，需要注意: - 语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要 - 语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好 - js中没有快级作用域，语句块中声明的变量并不是语句块私有的
-在js中，希望多条语句被当作一条语句使用时，使用复合语句来替代，空语句正好相反，允许包含0条语句 空语句如下:
-;  js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用
-for(var i=0; i&amp;lt;a.length; a[i++]=0) ;  注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug
-if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; // 这一行总会执行  如果有特殊目的需要使用空语句，最好在代码中注释</description>
+{ x = Math.PI; cx = Math.cos(x); console.log(&amp;#34;cos(pi) = &amp;#34; + cx); } 关于语句块，需要注意:
+ 语句块结尾不需要分号，块中语句必须以分号结束，但语句块不需要 语句块中的缩进不是必须的，但是为了代码可读性，还是需要整齐的缩进更好 js中没有快级作用域，语句块中声明的变量并不是语句块私有的  在js中，希望多条语句被当作一条语句使用时，使用复合语句来替代，空语句正好相反，允许包含0条语句 空语句如下:
+; js执行空语句时，不会执行任何动作。但是创建一个具有空循环体时，空语句很有用
+for(var i=0; i&amp;lt;a.length; a[i++]=0) ; 注意，在for循环、while循环或if语句的右圆括号后的分号不起眼，很容易造成一些不容易定位的bug
+if((a == 0) || ( b == 0)); // 这一行代码没有执行任何东西 o = null; // 这一行总会执行 如果有特殊目的需要使用空语句，最好在代码中注释</description>
     </item>
     
     <item>
       <title>js intro 表达式和运算符</title>
-      <link>https://zhaolion.com/post/js/intro-3/</link>
+      <link>https://blog.zhaolion.dev/post/js/intro-3/</link>
       <pubDate>Sun, 16 Oct 2016 22:33:39 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/js/intro-3/</guid>
+      <guid>https://blog.zhaolion.dev/post/js/intro-3/</guid>
       <description>表达式和运算符  程序中最简单的表达式就是，程序中的常量 变量名也是一种简单的表达式 复杂的表达式是由简单的表达式组成的 函数调用表达式是由函数对象的表达式和0个或多个参数表达式构成 可以使用运算符来将简单的表达式来组合成复杂的表达式  原始表达式 “原始表达式”，说简单点就是最简单的表达式，并且不再包含其他表达式
-&amp;gt;js中原始表达式有以下： - 常量 - 直接量 - 关键字 - 变量
- 栗子：
-//直接量 1.23 // 数字直接量 &amp;quot;hello&amp;quot; // 字符串直接量 /pattern/ // 正则表达式直接 //保留字 true false null // 返回空 this // 返回“当前对象” //变量 i // 返回i的值 sum // 返回sum的值 undefined // undefined是全局变量，和null不同，不是一个关键字   对象和数组的初始化表达式 对象和数组的初始化表达式实际上是一个新创建的对象和数组，并不是原始表达式
-数组初始化表达式  栗子: - [] //空数组 - [1+2,3+4] // 2个元素数组 [3,7] - var matrix = [[1,2],[3,4]] // 数组可嵌套</description>
+ js中原始表达式有以下：
+  常量 直接量 关键字 变量   栗子：
+ //直接量 1.23 // 数字直接量 &amp;#34;hello&amp;#34; // 字符串直接量 /pattern/ // 正则表达式直接 //保留字 true false null // 返回空 this // 返回“当前对象” //变量 i // 返回i的值 sum // 返回sum的值 undefined // undefined是全局变量，和null不同，不是一个关键字 对象和数组的初始化表达式 对象和数组的初始化表达式实际上是一个新创建的对象和数组，并不是原始表达式
+数组初始化表达式  栗子:
+  [] //空数组 [1+2,3+4] // 2个元素数组 [3,7] var matrix = [[1,2],[3,4]] // 数组可嵌套  js对数组初始化表达式进行求值时候，数组表达式中的所有元素表达式也会各自计算一次</description>
     </item>
     
     <item>
       <title>js intro 类型/值/变量</title>
-      <link>https://zhaolion.com/post/js/intro-2/</link>
+      <link>https://blog.zhaolion.dev/post/js/intro-2/</link>
       <pubDate>Sat, 15 Oct 2016 22:33:39 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/js/intro-2/</guid>
-      <description>词法结构  字符集：unicode 区分大小写，关键字、变量、函数名、标示符必须采取大小写一致 注释
-``` // 单行注释 /* ~一段注释~ / // 另一段注释 /  多行注释 多行注释 */ ```  直接量  12 // 数字 1.2 // 小数 &amp;quot;hello world&amp;quot; // 一个字符串 &#39;hi&#39; // 另一种字符串 true // 布尔值 /^javascript$/gi //正则表达式直接量 null // 空 { x:1 ,y:2} // 对象 [ 1,2,3,4,5 ] //数组  标示符、保留字 TBD
- 可选的分号
- 在任何需要分割的地方使用 ; 进行分隔 在任何可以省略分号的地方都将其省略
-   如果不使用分号，由于语句的分隔规则，会导致一些意想不到的情况，建议无论什么时候都使用分号进行分割
-类型、值和变量 js中的数据类型： - 数字 - 字符串 - 布尔值 - null - undefine - 对象</description>
+      <guid>https://blog.zhaolion.dev/post/js/intro-2/</guid>
+      <description>词法结构   字符集：unicode
+  区分大小写，关键字、变量、函数名、标示符必须采取大小写一致
+  注释
+// 单行注释 /* ~一段注释~ */ // 另一段注释 /* * 多行注释 * 多行注释 */   直接量
+12 // 数字 1.2 // 小数 &amp;#34;hello world&amp;#34; // 一个字符串 &amp;#39;hi&amp;#39; // 另一种字符串 true // 布尔值 /^javascript$/gi //正则表达式直接量 null // 空 { x:1 ,y:2} // 对象 [ 1,2,3,4,5 ] //数组   标示符、保留字 TBD
+  可选的分号
+ 在任何需要分割的地方使用 ; 进行分隔 在任何可以省略分号的地方都将其省略  如果不使用分号，由于语句的分隔规则，会导致一些意想不到的情况，建议无论什么时候都使用分号进行分割</description>
     </item>
     
     <item>
       <title>js intro 基本介绍</title>
-      <link>https://zhaolion.com/post/js/intro-1/</link>
+      <link>https://blog.zhaolion.dev/post/js/intro-1/</link>
       <pubDate>Sat, 15 Oct 2016 22:32:36 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/js/intro-1/</guid>
+      <guid>https://blog.zhaolion.dev/post/js/intro-1/</guid>
       <description>什么是 JavaScript? JavaScript 是一门跨平台、面向对象的轻量级脚本语言。 在主机环境中， JavaScript能够通过连接环境对象而实现可控制编译。
-JavaScript内置了一个包含一系列对象的标准库，比如数组，日期，数学和一个语言元素核心集合包括操作符，流程控制符以及语句等。JavaScript的核心部分可以通过组合已有语言核心对象来扩展语言以适应不同用途；例如： - 客户端的JavaScript通过提供控制浏览器及其文档对象模型（DOM）的对象来扩展语言核心。例如：客户端版本直接支持应用将元素放在在HTML表单中并且支持响应用户事件比如鼠标点击、表单提交和页面导航 - 服务端的JavaScript则通过提供有关在服务器上运行JavaScript的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作
-JavaScript 和 ECMAScript 规范 JavaScript 的标准化组织是 ECMA ——这个欧洲信息与通信系统标准化协会提供基于 Javascript 的标准化方案（ECMA 原先是欧洲计算机制造商协会的首字母缩写）。这种标准化版本的JavaScript被称作ECMAScript，在所有支持该标准的应用中以相同的方式工作。公司可以使用开放标准语言来开发他们自己的JavaScript实现版本。ECMAScript标准被记录于ECMA－262规范说明中。 参照 JavaScript的新特性 以便学习更多关于不同版本的JavaScript和ECMAScript规范版本。
+JavaScript内置了一个包含一系列对象的标准库，比如数组，日期，数学和一个语言元素核心集合包括操作符，流程控制符以及语句等。JavaScript的核心部分可以通过组合已有语言核心对象来扩展语言以适应不同用途；例如：
+ 客户端的JavaScript通过提供控制浏览器及其文档对象模型（DOM）的对象来扩展语言核心。例如：客户端版本直接支持应用将元素放在在HTML表单中并且支持响应用户事件比如鼠标点击、表单提交和页面导航 服务端的JavaScript则通过提供有关在服务器上运行JavaScript的对象来可扩展语言核心。例如：服务端版本直接支持应用和数据库通信，提供应用不同调用间的信息连续性，或者在服务器上执行文件操作  JavaScript 和 ECMAScript 规范 JavaScript 的标准化组织是 ECMA ——这个欧洲信息与通信系统标准化协会提供基于 Javascript 的标准化方案（ECMA 原先是欧洲计算机制造商协会的首字母缩写）。这种标准化版本的JavaScript被称作ECMAScript，在所有支持该标准的应用中以相同的方式工作。公司可以使用开放标准语言来开发他们自己的JavaScript实现版本。ECMAScript标准被记录于ECMA－262规范说明中。 参照 JavaScript的新特性 以便学习更多关于不同版本的JavaScript和ECMAScript规范版本。
 ECMAScript 规范是一套用于实现ECMAScript的要求。如果你想在你的ECMAScript实现版本 或 引擎（例如火狐的SpiderMonkey和Chrome 的V8）中实现标准兼容语言（例如ES6）的特性，这将十分有用.
 ECMAScript 文档并不有助于脚本编程。编写脚本时请参考 JavaScript 文档。
 JavaScript上手 Javascript的上手是非常简单的，你仅仅只需要一个浏览器，比如Chrome浏览器
-在Chrome浏览器菜单栏“设置按键”=&amp;gt;”更多工具“=&amp;gt;&amp;ldquo;开发者工具&amp;rdquo;可以打开控制台，点击Element旁边的console便可以打开console
+在Chrome浏览器菜单栏“设置按键”=&amp;gt;”更多工具“=&amp;gt;&amp;ldquo;开发者工具&amp;quot;可以打开控制台，点击Element旁边的console便可以打开console
 Hello world 不写一段Hello World代码，怎么能叫在学习一门语言呢，SO～DO it in the console
 在console中输入
-console.log(&#39;Hello World!&#39;)  你便能看到</description>
+console.log(&amp;#39;Hello World!&amp;#39;) 你便能看到</description>
     </item>
     
     <item>
       <title>js 保留关键字以及危险变量名</title>
-      <link>https://zhaolion.com/post/js/danger/</link>
+      <link>https://blog.zhaolion.dev/post/js/danger/</link>
       <pubDate>Fri, 14 Oct 2016 22:30:56 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/js/danger/</guid>
+      <guid>https://blog.zhaolion.dev/post/js/danger/</guid>
       <description>Javascript 的保留关键字（标识符）不可以用作变量、标签或者函数名。
 有些保留关键字是作为 Javascript 以后扩展使用。
 关键字是严格不允许，而浏览器定义的变量名或者类名在使用的时候注意确保作用域
-EMCAScript 中的关键字    break case catch continue s     abstract arguments boolean break byte   case catch char class* const   continue debugger default delete do   double else enum* eval export*   extends* false final finally float   for function goto if implements   import* in instanceof int interface   let long native new null   package private protected public return   short static super* switch synchronized   this throw throws transient true   try typeof var void volatile   while with yield      &amp;lsquo;*&amp;rsquo; 标记的关键字是 ECMAScript5 中新添加的。</description>
+EMCAScript 中的关键字    break case catch continue s     abstract arguments boolean break byte   case catch char class* const   continue debugger default delete do   double else enum* eval export*   extends* false final finally float   for function goto if implements   import* in instanceof int interface   let long native new null   package private protected public return   short static super* switch synchronized   this throw throws transient true   try typeof var void volatile   while with yield      &amp;rsquo;*&amp;rsquo; 标记的关键字是 ECMAScript5 中新添加的。</description>
     </item>
     
     <item>
       <title>CSS入门笔记 － 认识盒子模型</title>
-      <link>https://zhaolion.com/post/css/intro-box/</link>
+      <link>https://blog.zhaolion.dev/post/css/intro-box/</link>
       <pubDate>Wed, 14 Sep 2016 22:28:03 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/css/intro-box/</guid>
+      <guid>https://blog.zhaolion.dev/post/css/intro-box/</guid>
       <description>引言 这次给大家带来了CSS－盒子模型部分的笔记，大家一同交流😊
 认识盒子模型之前，先来了解一下CSS元素的分类吧，后面再细细道来～
-CSS元素分类 在CSS中，html中的标签元素大体被分为三种不同的类型： * 块状元素 * 内联元素(又叫行内元素) * 内联块状元素
-常用的块状元素有： &amp;lt;div&amp;gt;、&amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt;...&amp;lt;h6&amp;gt;、&amp;lt;ol&amp;gt;、&amp;lt;ul&amp;gt;、&amp;lt;dl&amp;gt;、&amp;lt;table&amp;gt;、&amp;lt;address&amp;gt;、&amp;lt;blockquote&amp;gt; 、&amp;lt;form&amp;gt;
+CSS元素分类 在CSS中，html中的标签元素大体被分为三种不同的类型：
+ 块状元素 内联元素(又叫行内元素) 内联块状元素  常用的块状元素有： &amp;lt;div&amp;gt;、&amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt;...&amp;lt;h6&amp;gt;、&amp;lt;ol&amp;gt;、&amp;lt;ul&amp;gt;、&amp;lt;dl&amp;gt;、&amp;lt;table&amp;gt;、&amp;lt;address&amp;gt;、&amp;lt;blockquote&amp;gt; 、&amp;lt;form&amp;gt;
 常用的内联元素有： &amp;lt;a&amp;gt;、&amp;lt;span&amp;gt;、&amp;lt;br&amp;gt;、&amp;lt;i&amp;gt;、&amp;lt;em&amp;gt;、&amp;lt;strong&amp;gt;、&amp;lt;label&amp;gt;、&amp;lt;q&amp;gt;、&amp;lt;var&amp;gt;、&amp;lt;cite&amp;gt;、&amp;lt;code&amp;gt;
 常用的内联块状元素有:
 &amp;lt;img&amp;gt;、&amp;lt;input&amp;gt;
 元素分类&amp;ndash;块级元素 什么是块级元素？在html中&amp;lt;div&amp;gt;、 &amp;lt;p&amp;gt;、&amp;lt;h1&amp;gt;、&amp;lt;form&amp;gt;、&amp;lt;ul&amp;gt; 、 &amp;lt;li&amp;gt;就是块级元素。设置display:block就是将元素显示为块级元素。 如下代码就是将内联元素a转换为块状元素，从而使a元素具有块状元素特点。
 a{display:block;}
-块级元素特点： * 每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行） * 元素的高度、宽度、行高以及顶和底边距都可设置。 * 元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。
-元素分类&amp;ndash;内联元素 在html中，&amp;lt;span&amp;gt;、&amp;lt;a&amp;gt;、&amp;lt;label&amp;gt;、 &amp;lt;strong&amp;gt; 、&amp;lt;em&amp;gt;就是典型的内联元素（行内元素）（inline）元素。
+块级元素特点：
+ 每个块级元素都从新的一行开始，并且其后的元素也另起一行。（真霸道，一个块级元素独占一行） 元素的高度、宽度、行高以及顶和底边距都可设置。 元素宽度在不设置的情况下，是它本身父容器的100%（和父元素的宽度一致），除非设定一个宽度。  元素分类&amp;ndash;内联元素 在html中，&amp;lt;span&amp;gt;、&amp;lt;a&amp;gt;、&amp;lt;label&amp;gt;、 &amp;lt;strong&amp;gt; 、&amp;lt;em&amp;gt;就是典型的内联元素（行内元素）（inline）元素。
 当然块状元素也可以通过代码display:inline将元素设置为内联元素。如下代码就是将块状元素div转换为内联元素，从而使 div 元素具有内联元素特点。
-div{ display:inline; } ...... &amp;lt;div&amp;gt;我要变成内联元素&amp;lt;/div&amp;gt;  内联元素特点： * 和其他元素都在一行 * 元素的高度、宽度及顶部和底部边距不可设置 * 元素的宽度就是它包含的文字或图片的宽度，不可改变。
-友情提示：行内元素之间会产生间隙bug问题的场景：
+div{ display:inline; } ...... &amp;lt;div&amp;gt;我要变成内联元素&amp;lt;/div&amp;gt; 内联元素特点：
+ 和其他元素都在一行 元素的高度、宽度及顶部和底部边距不可设置 元素的宽度就是它包含的文字或图片的宽度，不可改变。  友情提示：行内元素之间会产生间隙bug问题的场景：
 当行内元素之间有“回车”、“tab”、“空格”时就会出现间隙。 如下代码：
-&amp;lt;div&amp;gt; &amp;lt;a&amp;gt;1&amp;lt;/a&amp;gt; &amp;lt;a&amp;gt;2&amp;lt;/a&amp;gt; &amp;lt;span&amp;gt;33333&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;44444&amp;lt;/span&amp;gt; &amp;lt;em&amp;gt;555555&amp;lt;/em&amp;gt; &amp;lt;/div&amp;gt;  解决方法： 1. 写在一行，之间不要有空格之类的符号。 2. 使用font-size:0
-div{font-size:0;} a,span,em{font-size:16px;}  元素分类&amp;ndash;内联块状元素 内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码display:inline-block就是将元素设置为内联块状元素。(css2.</description>
+&amp;lt;div&amp;gt; &amp;lt;a&amp;gt;1&amp;lt;/a&amp;gt; &amp;lt;a&amp;gt;2&amp;lt;/a&amp;gt; &amp;lt;span&amp;gt;33333&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt;44444&amp;lt;/span&amp;gt; &amp;lt;em&amp;gt;555555&amp;lt;/em&amp;gt; &amp;lt;/div&amp;gt; 解决方法：
+ 写在一行，之间不要有空格之类的符号。 使用font-size:0  div{font-size:0;} a,span,em{font-size:16px;} 元素分类&amp;ndash;内联块状元素 内联块状元素（inline-block）就是同时具备内联元素、块状元素的特点，代码display:inline-block就是将元素设置为内联块状元素。(css2.1新增)
+&amp;lt;img&amp;gt;、&amp;lt;input&amp;gt;标签就是这种内联块状标签。
+inline-block 元素特点：</description>
     </item>
     
     <item>
       <title>CSS入门笔记 － 初识CSS</title>
-      <link>https://zhaolion.com/post/css/intro-1/</link>
+      <link>https://blog.zhaolion.dev/post/css/intro-1/</link>
       <pubDate>Tue, 13 Sep 2016 22:23:52 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/css/intro-1/</guid>
+      <guid>https://blog.zhaolion.dev/post/css/intro-1/</guid>
       <description>引言 本人在慕课网学习HTML+CSS基础课程，记录一些文字，方便自己回忆，也希望对大家有所帮助
 上次给大家带来了html部分的笔记，大家的反馈让我非常开心😄。
 这次给大家带来css部分的第一篇笔记，由于本人比较蠢，学的很慢，而且css部分内容非常的细、广，需要不断code，才能体会其中细节，因此这次暂时只能带来本人已经整理好一部分，以供大家一同进步。
 另外有一个求助，Atom中Toc插件生成页面，无法在Github或者简书中使用，希望有知道解决方法的高手，能够给予帮助
-CSS入门笔记 － 初识CSS 1 - 认识CSS样式 CSS全称为“层叠样式表 (Cascading Style Sheets)”，它主要是用于定义HTML内容在浏览器内的显示样式，如文字大小、颜色、字体加粗等用于设置页面的表现。CSS3 并不是一个完整的独立版本而是将不同的功能拆分成独立模块（例如，选择器模块，盒模型模块），这有利于不同功能的及时更新与发布也利于浏览器厂商的实际使用。
-2 - 为何使用CSS？ CSS帮助您将文档信息的内容 和如何展现它的细节相分离。众所周知，如何展现文档的细节即为样式(style)。您可以将样式从它的内容分离出来，以便您能够： * 避免重复 * 更容易维护 * 为不同的目的，使用不同的样式而内容相同
-例如:
+ CSS入门笔记 － 初识CSS 1 - 认识CSS样式 CSS全称为“层叠样式表 (Cascading Style Sheets)”，它主要是用于定义HTML内容在浏览器内的显示样式，如文字大小、颜色、字体加粗等用于设置页面的表现。CSS3 并不是一个完整的独立版本而是将不同的功能拆分成独立模块（例如，选择器模块，盒模型模块），这有利于不同功能的及时更新与发布也利于浏览器厂商的实际使用。
+ 2 - 为何使用CSS？ CSS帮助您将文档信息的内容 和如何展现它的细节相分离。众所周知，如何展现文档的细节即为样式(style)。您可以将样式从它的内容分离出来，以便您能够：
+ 避免重复 更容易维护 为不同的目的，使用不同的样式而内容相同  例如:
 您的网站可能有成千上万的页面外观相似。使用CSS，您可以将样式信息存储在公共的文件中以供所有的页面共用。
 当用户显示页面时，用户的浏览器将样式信息和页面内容一同加载。
 当用户打印页面时，您可以提供不同的样式信息，以便于打印出来的页面更易于阅读。
 总之，在HTML中，您使用标记语言来描述文档的内容而不是它的样式。您可以使用CSS来指定它的样式而不是它的内容。
-3 - CSS语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:
+ 3 - CSS语法 CSS 规则由两个主要的部分构成：选择器，以及一条或多条声明:
 选择器：指明网页中要应用样式规则的元素，如本例中是网页中所有的段（p）的文字将变成红色，而其他的元素（如ol）不会受到影响。
 声明：在英文大括号“｛｝”中的的就是声明，属性和值之间用英文冒号“：”分隔。当有多条声明时，中间可以英文分号“;”分隔，如下所示：
-p { color:red; text-align:center; }  CSS 注释
+p { color:red; text-align:center; } CSS 注释
 注释是用来解释你的代码，并且可以随意编辑它，浏览器会忽略它。 CSS注释以 /* 开始, 以 */ 结束, 实例如下:
-/* p标签的样式 */ p { text-align:center; /* 文本居中 */ color:black; font-family:arial; }  4 - CSS样式引入 CSS样式可以写在哪些地方呢？从CSS 样式代码插入的形式来看基本可以分为以下3种： &amp;gt;* 内联式css样式 &amp;gt;* 嵌入式CSS样式 &amp;gt;* 外部式CSS样式</description>
+/* p标签的样式 */ p { text-align:center; /* 文本居中 */ color:black; font-family:arial; }  4 - CSS样式引入 CSS样式可以写在哪些地方呢？从CSS 样式代码插入的形式来看基本可以分为以下3种：</description>
     </item>
     
     <item>
       <title>HTML 入门笔记 － 初识HTML</title>
-      <link>https://zhaolion.com/post/html/intro/</link>
+      <link>https://blog.zhaolion.dev/post/html/intro/</link>
       <pubDate>Sat, 10 Sep 2016 22:20:36 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/html/intro/</guid>
+      <guid>https://blog.zhaolion.dev/post/html/intro/</guid>
       <description>本人在慕课网学习HTML+CSS基础课程，记录一些文字，方便自己回忆，也希望对大家有所帮助
-基础框架 &amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;标题标签&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;了不起的盖茨比&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;《了不起的盖茨比》为那个奢靡年代的缩影。盖茨比怀揣着对&amp;quot;美国梦&amp;quot;的期翼，投身到那个年代的灯红酒绿之中，却在名利场中看尽世态炎凉，以及浮华背后一切终将逝去的空虚怅惘。1925年《了不起的盖茨比》问世。 &amp;lt;/p&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  了解HTML的代码注释 什么是代码注释？代码注释的作用是帮助程序员标注代码的用途，过一段时间后再看你所编写的代码，就能很快想起这段代码的用途。代码注释不仅方便程序员自己回忆起以前代码的用途，还可以帮助其他程序员很快的读懂你的程序的功能，方便多人合作开发网页代码。
-语法：
-&amp;lt;!--注释文字 --&amp;gt; 认识标签&amp;lt;head&amp;gt; 文档的头部描述了文档的各种属性和信息，包括文档的标题等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。
-&amp;lt;head&amp;gt; &amp;lt;title&amp;gt;...&amp;lt;/title&amp;gt; &amp;lt;meta&amp;gt; &amp;lt;link&amp;gt; &amp;lt;style&amp;gt;...&amp;lt;/style&amp;gt; &amp;lt;script&amp;gt;...&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt;   &amp;lt;title&amp;gt;标签
+ 基础框架 &amp;lt;!DOCTYPE HTML&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=utf-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;标题标签&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;了不起的盖茨比&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;《了不起的盖茨比》为那个奢靡年代的缩影。盖茨比怀揣着对&amp;#34;美国梦&amp;#34;的期翼，投身到那个年代的灯红酒绿之中，却在名利场中看尽世态炎凉，以及浮华背后一切终将逝去的空虚怅惘。1925年《了不起的盖茨比》问世。 &amp;lt;/p&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;  了解HTML的代码注释 什么是代码注释？代码注释的作用是帮助程序员标注代码的用途，过一段时间后再看你所编写的代码，就能很快想起这段代码的用途。代码注释不仅方便程序员自己回忆起以前代码的用途，还可以帮助其他程序员很快的读懂你的程序的功能，方便多人合作开发网页代码。
+语法： &amp;lt;!--注释文字 --&amp;gt; 认识标签&amp;lt;head&amp;gt; 文档的头部描述了文档的各种属性和信息，包括文档的标题等。绝大多数文档头部包含的数据都不会真正作为内容显示给读者。
+&amp;lt;head&amp;gt; &amp;lt;title&amp;gt;...&amp;lt;/title&amp;gt; &amp;lt;meta&amp;gt; &amp;lt;link&amp;gt; &amp;lt;style&amp;gt;...&amp;lt;/style&amp;gt; &amp;lt;script&amp;gt;...&amp;lt;/script&amp;gt; &amp;lt;/head&amp;gt;  &amp;lt;title&amp;gt;标签
 在&amp;lt;title&amp;gt; 和&amp;lt;title&amp;gt; 标签之间的文字内容是网页的标题信息，它会出现在浏览器的标题栏中。网页的title标签用于告诉用户和搜索引擎这个网页的主要内容是什么，搜索引擎可以通过网页标题，迅速的判断出网页的主题。每个网页的内容都是不同的，每个网页都应该有一个独一无二的title。
-例如：  &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;hello world&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt;  &amp;lt;title&amp;gt;标签的内容“hello world”会在浏览器中的标题栏上显示出来，如下图所示
-  &amp;lt;body&amp;gt;标签，网页上显示的内容放在这里 在网页上要展示出来的页面内容一定要放在body标签中。如下图是一个新闻文章的网页。 开始学习&amp;lt;p&amp;gt;标签，添加段落 如果想在网页上显示文章，这时就需要&amp;lt;p&amp;gt;标签了，把文章的段落放到&amp;lt;p&amp;gt;标签中。
+例如：  &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;hello world&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;title&amp;gt;标签的内容“hello world”会在浏览器中的标题栏上显示出来，如下图所示
+ &amp;lt;body&amp;gt;标签，网页上显示的内容放在这里 在网页上要展示出来的页面内容一定要放在body标签中。如下图是一个新闻文章的网页。  开始学习&amp;lt;p&amp;gt;标签，添加段落 如果想在网页上显示文章，这时就需要&amp;lt;p&amp;gt;标签了，把文章的段落放到&amp;lt;p&amp;gt;标签中。
 语法： &amp;lt;p&amp;gt;段落文本&amp;lt;/p&amp;gt;
 注意一段文字一个&amp;lt;p&amp;gt;标签，如在一篇新闻文章中有3段文字，就要把这3个段落分别放到3个&amp;lt;p&amp;gt;标签中。如下图所示。
-了解&amp;lt;hx(1-6)&amp;gt;标签，为你的网页添加标题 文章的段落用&amp;lt;p&amp;gt;标签，那么文章的标题用什么标签呢？在本节我们将使用&amp;lt;hx&amp;gt;标签来制作文章的标题。
+ 了解&amp;lt;hx(1-6)&amp;gt;标签，为你的网页添加标题 文章的段落用&amp;lt;p&amp;gt;标签，那么文章的标题用什么标签呢？在本节我们将使用&amp;lt;hx&amp;gt;标签来制作文章的标题。
 标题标签一共有6个，h1、h2、h3、h4、h5、h6分别为一级标题、二级标题、三级标题、四级标题、五级标题、六级标题。并且依据重要性递减。&amp;lt;h1&amp;gt;是最高的等级。
 语法：&amp;lt;hx&amp;gt;标题文本&amp;lt;/hx&amp;gt; x:1-6
 注意：因为h1标签在网页中比较重要，所以一般h1标签被用在网站名称上。腾讯网站就是这样做的。如：&amp;lt;h1&amp;gt;腾讯网&amp;lt;/h1&amp;gt;
 h1-h6标签的默认样式：
 标签代码：
 在浏览器中显示的样式：
-加入强调语气，使用&amp;lt;strong&amp;gt;和&amp;lt;em&amp;gt;标签 有了段落又有了标题，现在如果想在一段话中特别强调某几个文字，这时候就可以用到&amp;lt;em&amp;gt;或&amp;lt;strong&amp;gt;标签
+ 加入强调语气，使用&amp;lt;strong&amp;gt;和&amp;lt;em&amp;gt;标签 有了段落又有了标题，现在如果想在一段话中特别强调某几个文字，这时候就可以用到&amp;lt;em&amp;gt;或&amp;lt;strong&amp;gt;标签
 但两者在强调的语气上有区别:</description>
     </item>
     

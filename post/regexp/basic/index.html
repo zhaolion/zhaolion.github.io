@@ -1,492 +1,296 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>正则表达式基本使用介绍 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="正则表达式基本使用介绍 - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2017-01-13T18:48:34&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2017-01-13T18:48:34&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="正则表达式基本使用介绍">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/regexp/basic/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>正则表达式基本使用介绍 - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
+字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符   .at，可以匹配&amp;quot;cat&amp;quot;,&amp;ldquo;sat&amp;rdquo;,&amp;ldquo;mat&amp;quot;等，一般这种通配符用于匹配操作系统中的文件名
+ 限定范围    如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 可以列出一个集合，[aeiou]，来匹配所有元音字母 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符   重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和&#43;，这两个符号放在表示式后面
+ *表示这个模式可以重复0次或多次 &#43;表示这个模式可以重复1次或更多次   c&#43;at，表示可以匹配&amp;quot;cat&amp;rdquo;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，但是无法匹配&amp;quot;at&amp;quot; c*at，表示可以匹配&amp;quot;cat&amp;quot;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，也可以匹配&amp;quot;at&amp;quot;
+ 子表达式 通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。
+ (very )*large，可以匹配：&amp;ldquo;large&amp;rdquo;,&amp;ldquo;very large&amp;rdquo;,&amp;ldquo;very very large&amp;rdquo;
+ 子表达式计数 可以在花括号{}中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围
+ (very){1, 2}，可以匹配&amp;quot;very&amp;quot;,&amp;ldquo;veryvery&amp;rdquo; (very){3}，可以匹配&amp;quot;veryveryvery&amp;quot; (very)(1,)，可以匹配&amp;quot;very&amp;quot;,&amp;ldquo;veryvery&amp;rdquo;,&amp;ldquo;veryveryvery&amp;rdquo;&amp;hellip;
+ 定位到字符串的开始或末尾 脱字符号^用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处 字符$，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾
+ ^bob，用于在字符串开始处匹配bob com$,用于在字符串末尾处匹配com ^[a-z]$，这个将只能匹配a-z之间的字符组成的字符串
+ 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配&amp;quot;com&amp;quot;,&amp;ldquo;net&amp;rdquo;,&amp;ldquo;edu&amp;quot;中任意一个
+匹配特殊字符 如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠\\
+特殊字符主要有：
+ \: 转义字符 ^: 在字符串开始匹配 $: 在字符串末尾匹配 .: 匹配除换行符之外的字符（字符串末尾仅代表.） |: 选择分支的开始 (: 子模式开始 ): 子模式结束 *: 重复0次或多次 &#43;: 重复1次或多次 {: 最小／最大量记号开始 }: 最小／最大量记号结束 ?"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/regexp/basic/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
+字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符   .at，可以匹配&amp;quot;cat&amp;quot;,&amp;ldquo;sat&amp;rdquo;,&amp;ldquo;mat&amp;quot;等，一般这种通配符用于匹配操作系统中的文件名
+ 限定范围    如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 可以列出一个集合，[aeiou]，来匹配所有元音字母 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符   重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和&#43;，这两个符号放在表示式后面
+ *表示这个模式可以重复0次或多次 &#43;表示这个模式可以重复1次或更多次   c&#43;at，表示可以匹配&amp;quot;cat&amp;rdquo;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，但是无法匹配&amp;quot;at&amp;quot; c*at，表示可以匹配&amp;quot;cat&amp;quot;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，也可以匹配&amp;quot;at&amp;quot;
+ 子表达式 通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。
+ (very )*large，可以匹配：&amp;ldquo;large&amp;rdquo;,&amp;ldquo;very large&amp;rdquo;,&amp;ldquo;very very large&amp;rdquo;
+ 子表达式计数 可以在花括号{}中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围
+ (very){1, 2}，可以匹配&amp;quot;very&amp;quot;,&amp;ldquo;veryvery&amp;rdquo; (very){3}，可以匹配&amp;quot;veryveryvery&amp;quot; (very)(1,)，可以匹配&amp;quot;very&amp;quot;,&amp;ldquo;veryvery&amp;rdquo;,&amp;ldquo;veryveryvery&amp;rdquo;&amp;hellip;
+ 定位到字符串的开始或末尾 脱字符号^用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处 字符$，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾
+ ^bob，用于在字符串开始处匹配bob com$,用于在字符串末尾处匹配com ^[a-z]$，这个将只能匹配a-z之间的字符组成的字符串
+ 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配&amp;quot;com&amp;quot;,&amp;ldquo;net&amp;rdquo;,&amp;ldquo;edu&amp;quot;中任意一个
+匹配特殊字符 如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠\\
+特殊字符主要有：
+ \: 转义字符 ^: 在字符串开始匹配 $: 在字符串末尾匹配 .: 匹配除换行符之外的字符（字符串末尾仅代表.） |: 选择分支的开始 (: 子模式开始 ): 子模式结束 *: 重复0次或多次 &#43;: 重复1次或多次 {: 最小／最大量记号开始 }: 最小／最大量记号结束 ?" />
+<meta name="twitter:title" content="正则表达式基本使用介绍 - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="正则表达式基本使用介绍 - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格
+字符集和类  通配符，可以匹配除换行符（\\n）之外的任意一个字符   .at，可以匹配&amp;quot;cat&amp;quot;,&amp;ldquo;sat&amp;rdquo;,&amp;ldquo;mat&amp;quot;等，一般这种通配符用于匹配操作系统中的文件名
+ 限定范围    如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 可以列出一个集合，[aeiou]，来匹配所有元音字母 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符   重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和&#43;，这两个符号放在表示式后面
+ *表示这个模式可以重复0次或多次 &#43;表示这个模式可以重复1次或更多次   c&#43;at，表示可以匹配&amp;quot;cat&amp;rdquo;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，但是无法匹配&amp;quot;at&amp;quot; c*at，表示可以匹配&amp;quot;cat&amp;quot;,&amp;ldquo;ccat&amp;rdquo;,&amp;ldquo;cccat&amp;rdquo;，也可以匹配&amp;quot;at&amp;quot;
+ 子表达式 通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。
+ (very )*large，可以匹配：&amp;ldquo;large&amp;rdquo;,&amp;ldquo;very large&amp;rdquo;,&amp;ldquo;very very large&amp;rdquo;
+ 子表达式计数 可以在花括号{}中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围
+ (very){1, 2}，可以匹配&amp;quot;very&amp;quot;,&amp;ldquo;veryvery&amp;rdquo; (very){3}，可以匹配&amp;quot;veryveryvery&amp;quot; (very)(1,)，可以匹配&amp;quot;very&amp;quot;,&amp;ldquo;veryvery&amp;rdquo;,&amp;ldquo;veryveryvery&amp;rdquo;&amp;hellip;
+ 定位到字符串的开始或末尾 脱字符号^用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处 字符$，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾
+ ^bob，用于在字符串开始处匹配bob com$,用于在字符串末尾处匹配com ^[a-z]$，这个将只能匹配a-z之间的字符组成的字符串
+ 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配&amp;quot;com&amp;quot;,&amp;ldquo;net&amp;rdquo;,&amp;ldquo;edu&amp;quot;中任意一个
+匹配特殊字符 如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠\\
+特殊字符主要有：
+ \: 转义字符 ^: 在字符串开始匹配 $: 在字符串末尾匹配 .: 匹配除换行符之外的字符（字符串末尾仅代表.） |: 选择分支的开始 (: 子模式开始 ): 子模式结束 *: 重复0次或多次 &#43;: 重复1次或多次 {: 最小／最大量记号开始 }: 最小／最大量记号结束 ?" property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/regexp/basic/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Regexp" />
+<meta property="article:published_time" content="2017-01-13 18:48:34 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "正则表达式基本使用介绍",
+    "genre": "Regexp",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/regexp\/basic\/",
+    "datePublished": "2017-01-13 18:48:34 \u002b0800 CST",
+    "description": "正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格\n字符集和类  通配符，可以匹配除换行符（\\\\n）之外的任意一个字符   .at，可以匹配\u0026quot;cat\u0026quot;,\u0026ldquo;sat\u0026rdquo;,\u0026ldquo;mat\u0026quot;等，一般这种通配符用于匹配操作系统中的文件名\n 限定范围    如果要限定匹配的范围，可以使用[a-z]at形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合 可以列出一个集合，[aeiou]，来匹配所有元音字母 也可以描述一个范围，正如前面的连字符，也是一个范围集:[a-zA-Z]，这个集合代表任何的大小字母 也可以指明不属于某个集合，[^a-z]，用来匹配不在小写字母中的字符   重复 如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:*和\u002b，这两个符号放在表示式后面\n *表示这个模式可以重复0次或多次 \u002b表示这个模式可以重复1次或更多次   c\u002bat，表示可以匹配\u0026quot;cat\u0026rdquo;,\u0026ldquo;ccat\u0026rdquo;,\u0026ldquo;cccat\u0026rdquo;，但是无法匹配\u0026quot;at\u0026quot; c*at，表示可以匹配\u0026quot;cat\u0026quot;,\u0026ldquo;ccat\u0026rdquo;,\u0026ldquo;cccat\u0026rdquo;，也可以匹配\u0026quot;at\u0026quot;\n 子表达式 通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。\n (very )*large，可以匹配：\u0026ldquo;large\u0026rdquo;,\u0026ldquo;very large\u0026rdquo;,\u0026ldquo;very very large\u0026rdquo;\n 子表达式计数 可以在花括号{}中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围\n (very){1, 2}，可以匹配\u0026quot;very\u0026quot;,\u0026ldquo;veryvery\u0026rdquo; (very){3}，可以匹配\u0026quot;veryveryvery\u0026quot; (very)(1,)，可以匹配\u0026quot;very\u0026quot;,\u0026ldquo;veryvery\u0026rdquo;,\u0026ldquo;veryveryvery\u0026rdquo;\u0026hellip;\n 定位到字符串的开始或末尾 脱字符号^用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处 字符$，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾\n ^bob，用于在字符串开始处匹配bob com$,用于在字符串末尾处匹配com ^[a-z]$，这个将只能匹配a-z之间的字符组成的字符串\n 分支 可以使用正则表达式中一条竖线，来表示一个选择 com|edu|net，来匹配\u0026quot;com\u0026quot;,\u0026ldquo;net\u0026rdquo;,\u0026ldquo;edu\u0026quot;中任意一个\n匹配特殊字符 如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠\\\\\n特殊字符主要有：\n \\: 转义字符 ^: 在字符串开始匹配 $: 在字符串末尾匹配 .: 匹配除换行符之外的字符（字符串末尾仅代表.） |: 选择分支的开始 (: 子模式开始 ): 子模式结束 *: 重复0次或多次 \u002b: 重复1次或多次 {: 最小／最大量记号开始 }: 最小／最大量记号结束 ?",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">正则表达式基本使用介绍</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2017年1月13日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Regexp">Regexp</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">正则表达式基本使用介绍</h1>
+            <p class="post-meta"><time datetime='2017-01-13T18:48:34&#43;08:00' itemprop="datePublished">January 13, 2017</time></p>
+                 
+          </header>
 
-<p>正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格</p>
-
+          <div class="post-content" itemprop="articleBody">
+            <p>正则表达式有两种风格：posix和perl风格，最常用是posix风格的。下面记录的均是posix风格</p>
 <h1 id="字符集和类">字符集和类</h1>
-
 <ol>
-<li><p>通配符，可以匹配除换行符（<code>\\n</code>）之外的任意一个字符
-&gt;<code>.at</code>，可以匹配&rdquo;cat&rdquo;,&ldquo;sat&rdquo;,&ldquo;mat&rdquo;等，一般这种通配符用于匹配操作系统中的文件名</p></li>
-
-<li><p>限定范围
-&gt; 1. 如果要限定匹配的范围，可以使用<code>[a-z]at</code>形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合
-&gt;2. 可以列出一个集合，<code>[aeiou]</code>，来匹配所有元音字母
-&gt;3. 也可以描述一个范围，正如前面的连字符，也是一个范围集:<code>[a-zA-Z]</code>，这个集合代表任何的大小字母
-&gt;4. 也可以指明不属于某个集合，<code>[^a-z]</code>，用来匹配不在小写字母中的字符</p></li>
+<li>通配符，可以匹配除换行符（<code>\\n</code>）之外的任意一个字符</li>
 </ol>
-
+<blockquote>
+<p><code>.at</code>，可以匹配&quot;cat&quot;,&ldquo;sat&rdquo;,&ldquo;mat&quot;等，一般这种通配符用于匹配操作系统中的文件名</p>
+</blockquote>
+<ol start="2">
+<li>限定范围</li>
+</ol>
+<blockquote>
+<ol>
+<li>如果要限定匹配的范围，可以使用<code>[a-z]at</code>形式，任何包括在方括号中的内容都是一个字符类－匹配字符所属的字符集合</li>
+<li>可以列出一个集合，<code>[aeiou]</code>，来匹配所有元音字母</li>
+<li>也可以描述一个范围，正如前面的连字符，也是一个范围集:<code>[a-zA-Z]</code>，这个集合代表任何的大小字母</li>
+<li>也可以指明不属于某个集合，<code>[^a-z]</code>，用来匹配不在小写字母中的字符</li>
+</ol>
+</blockquote>
 <h1 id="重复">重复</h1>
-
-<p>如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:<code>*</code>和<code>+</code>，这两个符号放在表示式后面
-- <code>*</code>表示这个模式可以重复0次或多次
-- <code>+</code>表示这个模式可以重复1次或更多次</p>
-
+<p>如果希望某个字符串或者字符类不止一次出现，可以使用2个特殊字符代替:<code>*</code>和<code>+</code>，这两个符号放在表示式后面</p>
+<ul>
+<li><code>*</code>表示这个模式可以重复0次或多次</li>
+<li><code>+</code>表示这个模式可以重复1次或更多次</li>
+</ul>
 <blockquote>
-<p><code>c+at</code>，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，但是无法匹配&rdquo;at&rdquo;
-<code>c*at</code>，表示可以匹配&rdquo;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，也可以匹配&rdquo;at&rdquo;</p>
+<p><code>c+at</code>，表示可以匹配&quot;cat&rdquo;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，但是无法匹配&quot;at&quot;
+<code>c*at</code>，表示可以匹配&quot;cat&quot;,&ldquo;ccat&rdquo;,&ldquo;cccat&rdquo;，也可以匹配&quot;at&quot;</p>
 </blockquote>
-
 <h1 id="子表达式">子表达式</h1>
-
 <p>通常，将一个表达式分为几个子表达式非常有用，使用圆括号来实现。</p>
-
 <blockquote>
-<p><code>(very )*large</code>，可以匹配：&rdquo;large&rdquo;,&ldquo;very large&rdquo;,&ldquo;very very large&rdquo;</p>
+<p><code>(very )*large</code>，可以匹配：&ldquo;large&rdquo;,&ldquo;very large&rdquo;,&ldquo;very very large&rdquo;</p>
 </blockquote>
-
 <h1 id="子表达式计数">子表达式计数</h1>
-
 <p>可以在花括号<code>{}</code>中的数字表达式来指定内容允许重复出现的次数。可以指定一个确切的数字，也可以是一个重复次数范围，或是一个开区间的重复范围</p>
-
 <blockquote>
-<p><code>(very){1, 2}</code>，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;
-<code>(very){3}</code>，可以匹配&rdquo;veryveryvery&rdquo;
-<code>(very)(1,)</code>，可以匹配&rdquo;very&rdquo;,&ldquo;veryvery&rdquo;,&ldquo;veryveryvery&rdquo;&hellip;</p>
+<p><code>(very){1, 2}</code>，可以匹配&quot;very&quot;,&ldquo;veryvery&rdquo;
+<code>(very){3}</code>，可以匹配&quot;veryveryvery&quot;
+<code>(very)(1,)</code>，可以匹配&quot;very&quot;,&ldquo;veryvery&rdquo;,&ldquo;veryveryvery&rdquo;&hellip;</p>
 </blockquote>
-
 <h1 id="定位到字符串的开始或末尾">定位到字符串的开始或末尾</h1>
-
 <p>脱字符号<code>^</code>用于正则表达式的开始，表示子字符串必须出现被搜索字符串的开始处
 字符<code>$</code>，用于正则表达式的末尾，表示子字符串必须出现在字符串的末尾</p>
-
 <blockquote>
 <p><code>^bob</code>，用于在字符串开始处匹配bob
 <code>com$</code>,用于在字符串末尾处匹配com
 <code>^[a-z]$</code>，这个将只能匹配a-z之间的字符组成的字符串</p>
 </blockquote>
-
 <h1 id="分支">分支</h1>
-
 <p>可以使用正则表达式中一条竖线，来表示一个选择
-<code>com|edu|net</code>，来匹配&rdquo;com&rdquo;,&ldquo;net&rdquo;,&ldquo;edu&rdquo;中任意一个</p>
-
+<code>com|edu|net</code>，来匹配&quot;com&quot;,&ldquo;net&rdquo;,&ldquo;edu&quot;中任意一个</p>
 <h1 id="匹配特殊字符">匹配特殊字符</h1>
-
 <p>如果要匹配那些特殊字符，需要使用转义形式，在要匹配的字符前面加一个反斜杠<code>\\</code></p>
-
-<p>特殊字符主要有：
-- \: 转义字符
-- <code>^</code>: 在字符串开始匹配
-- <code>$</code>: 在字符串末尾匹配
-- <code>.</code>: 匹配除换行符之外的字符（字符串末尾仅代表<code>.</code>）
-- <code>|</code>: 选择分支的开始
-- <code>(</code>: 子模式开始
-- <code>)</code>: 子模式结束
-- <code>*</code>: 重复0次或多次
-- <code>+</code>: 重复1次或多次
-- <code>{</code>: 最小／最大量记号开始
-- <code>}</code>: 最小／最大量记号结束
-- <code>?</code>: 标记一个子模式为可选</p>
-
+<p>特殊字符主要有：</p>
+<ul>
+<li>\: 转义字符</li>
+<li><code>^</code>: 在字符串开始匹配</li>
+<li><code>$</code>: 在字符串末尾匹配</li>
+<li><code>.</code>: 匹配除换行符之外的字符（字符串末尾仅代表<code>.</code>）</li>
+<li><code>|</code>: 选择分支的开始</li>
+<li><code>(</code>: 子模式开始</li>
+<li><code>)</code>: 子模式结束</li>
+<li><code>*</code>: 重复0次或多次</li>
+<li><code>+</code>: 重复1次或多次</li>
+<li><code>{</code>: 最小／最大量记号开始</li>
+<li><code>}</code>: 最小／最大量记号结束</li>
+<li><code>?</code>: 标记一个子模式为可选</li>
+</ul>
 <blockquote>
-<p>\\，表示匹配反斜杠<br />
+<p>\\，表示匹配反斜杠\
 <code>\\$</code>，表示匹配<code>$</code></p>
 </blockquote>
 
-                        </div>
+          </div>
 
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/mysql/basic/">MySQL的基础使用相关知识</a></li>
-        
-        <li><a href="/post/js/intro-5/">js intro 对象</a></li>
-        
-        <li><a href="/post/js/intro-4/">js intro 语句</a></li>
-        
-        <li><a href="/post/js/intro-3/">js intro 表达式和运算符</a></li>
-        
-        <li><a href="/post/js/intro-2/">js intro 类型/值/变量</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Regexp">Regexp</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/basic">basic</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/golang/tips/coding.in.go/">&laquo; 如何写好 golang 代码的一些 tips</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/mysql/basic/">MySQL的基础使用相关知识 &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

@@ -1,201 +1,204 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Best Practice about ROR | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="Best Practice about ROR - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2019-12-12T22:17:42&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2019-12-12T22:17:42&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="Best Practice about ROR">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/ruby/best.practice.on.rails/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>Best Practice about ROR - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="[TOC]
+About ruby 带 block 遍历数组应该使用 each 而不是 for before:
+这里需要遍历数组并且打印
+for elem in [1, 2, 3, 4, 5] puts elem end Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:
+[1, 2, 3, 4, 5].each do |elem| puts elem end 还可以变得更简单一点:
+[1, 2, 3, 4, 5].each { |elem| puts elem } 收集结果(遍历数组元素的处理结果)使用 map 而不是 each &#43; &amp;laquo; 这里希望收集数组中特定元素的大写形式
+before:
+result = [] [&amp;#39;biology&amp;#39;, &amp;#39;english&amp;#39;, &amp;#39;Math&amp;#39;].each do |major| next if major.size &amp;lt; 5 result &amp;lt;&amp;lt; major."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/ruby/best.practice.on.rails/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="[TOC]
+About ruby 带 block 遍历数组应该使用 each 而不是 for before:
+这里需要遍历数组并且打印
+for elem in [1, 2, 3, 4, 5] puts elem end Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:
+[1, 2, 3, 4, 5].each do |elem| puts elem end 还可以变得更简单一点:
+[1, 2, 3, 4, 5].each { |elem| puts elem } 收集结果(遍历数组元素的处理结果)使用 map 而不是 each &#43; &amp;laquo; 这里希望收集数组中特定元素的大写形式
+before:
+result = [] [&amp;#39;biology&amp;#39;, &amp;#39;english&amp;#39;, &amp;#39;Math&amp;#39;].each do |major| next if major.size &amp;lt; 5 result &amp;lt;&amp;lt; major." />
+<meta name="twitter:title" content="Best Practice about ROR - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="Best Practice about ROR - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="[TOC]
+About ruby 带 block 遍历数组应该使用 each 而不是 for before:
+这里需要遍历数组并且打印
+for elem in [1, 2, 3, 4, 5] puts elem end Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:
+[1, 2, 3, 4, 5].each do |elem| puts elem end 还可以变得更简单一点:
+[1, 2, 3, 4, 5].each { |elem| puts elem } 收集结果(遍历数组元素的处理结果)使用 map 而不是 each &#43; &amp;laquo; 这里希望收集数组中特定元素的大写形式
+before:
+result = [] [&amp;#39;biology&amp;#39;, &amp;#39;english&amp;#39;, &amp;#39;Math&amp;#39;].each do |major| next if major.size &amp;lt; 5 result &amp;lt;&amp;lt; major." property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/ruby/best.practice.on.rails/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Ruby" />
+<meta property="article:published_time" content="2019-12-12 22:17:42 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "Best Practice about ROR",
+    "genre": "Ruby",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/ruby\/best.practice.on.rails\/",
+    "datePublished": "2019-12-12 22:17:42 \u002b0800 CST",
+    "description": "[TOC]\nAbout ruby 带 block 遍历数组应该使用 each 而不是 for before:\n这里需要遍历数组并且打印\nfor elem in [1, 2, 3, 4, 5] puts elem end Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:\n[1, 2, 3, 4, 5].each do |elem| puts elem end 还可以变得更简单一点:\n[1, 2, 3, 4, 5].each { |elem| puts elem } 收集结果(遍历数组元素的处理结果)使用 map 而不是 each \u002b \u0026laquo; 这里希望收集数组中特定元素的大写形式\nbefore:\nresult = [] [\u0026#39;biology\u0026#39;, \u0026#39;english\u0026#39;, \u0026#39;Math\u0026#39;].each do |major| next if major.size \u0026lt; 5 result \u0026lt;\u0026lt; major.",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">Best Practice about ROR</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2019年12月12日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Ruby">Ruby</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">Best Practice about ROR</h1>
+            <p class="post-meta"><time datetime='2019-12-12T22:17:42&#43;08:00' itemprop="datePublished">December 12, 2019</time></p>
+                 
+          </header>
 
-<p>[TOC]</p>
-
+          <div class="post-content" itemprop="articleBody">
+            <p>[TOC]</p>
 <h2 id="about-ruby">About ruby</h2>
-
 <h3 id="带-block-遍历数组应该使用-each-而不是-for">带 block 遍历数组应该使用 each 而不是 for</h3>
-
 <p>before:</p>
-
 <p>这里需要遍历数组并且打印</p>
-
-<pre><code>for elem in [1, 2, 3, 4, 5]
+<pre tabindex="0"><code>for elem in [1, 2, 3, 4, 5]
     puts elem
 end
-</code></pre>
-
-<p>Ruby 里面使用 each 带一个 block是一个更有效率的做法
+</code></pre><p>Ruby 里面使用 each 带一个 block是一个更有效率的做法
 after:</p>
-
-<pre><code>[1, 2, 3, 4, 5].each do |elem|
+<pre tabindex="0"><code>[1, 2, 3, 4, 5].each do |elem|
 	puts elem
 end
-</code></pre>
-
-<p>还可以变得更简单一点:</p>
-
-<pre><code>[1, 2, 3, 4, 5].each { |elem| puts elem }
-</code></pre>
-
-<h3 id="收集结果-遍历数组元素的处理结果-使用-map-而不是-each">收集结果(遍历数组元素的处理结果)使用 map 而不是 each + &lt;&lt;</h3>
-
+</code></pre><p>还可以变得更简单一点:</p>
+<pre tabindex="0"><code>[1, 2, 3, 4, 5].each { |elem| puts elem }
+</code></pre><h3 id="收集结果遍历数组元素的处理结果使用-map-而不是-each--">收集结果(遍历数组元素的处理结果)使用 map 而不是 each + &laquo;</h3>
 <p>这里希望收集数组中特定元素的大写形式</p>
-
 <p>before:</p>
-
-<pre><code>result = []
-['biology', 'english', 'Math'].each do |major|
+<pre tabindex="0"><code>result = []
+[&#39;biology&#39;, &#39;english&#39;, &#39;Math&#39;].each do |major|
   next if major.size &lt; 5
   result &lt;&lt; major.capitalize
 end
 
 puts result
-</code></pre>
-
-<p>使用 <code>map</code> 会过滤和收集每次循环阶段 block 处理的结果，组织后返回</p>
-
+</code></pre><p>使用 <code>map</code> 会过滤和收集每次循环阶段 block 处理的结果，组织后返回</p>
 <p>after:</p>
-
-<pre><code>result = ['biology', 'english', 'Math'].map do |major|
+<pre tabindex="0"><code>result = [&#39;biology&#39;, &#39;english&#39;, &#39;Math&#39;].map do |major|
   next if major.size &lt; 5
   major.capitalize
 end
 
 puts result
-</code></pre>
-
-<p>对于数组每个元素希望过滤部分元素可以使用 <code>reject</code> 配合 block，这样可以写成一行</p>
-
-<pre><code>result = ['biology', 'english', 'Math'].reject{ |m| m.size &lt; 5 }
+</code></pre><p>对于数组每个元素希望过滤部分元素可以使用 <code>reject</code> 配合 block，这样可以写成一行</p>
+<pre tabindex="0"><code>result = [&#39;biology&#39;, &#39;english&#39;, &#39;Math&#39;].reject{ |m| m.size &lt; 5 }
                                        .map { |m| m.capitalize }
 
 puts result
-</code></pre>
-
-<h3 id="复杂条件判断使用-case-when-而不是-if-elsif-else">复杂条件判断使用 case/when 而不是 if/elsif/else</h3>
-
+</code></pre><h3 id="复杂条件判断使用-casewhen-而不是-ifelsifelse">复杂条件判断使用 case/when 而不是 if/elsif/else</h3>
 <p>before:</p>
+<pre tabindex="0"><code>major = gets.chomp
 
-<pre><code>major = gets.chomp
-
-if major == &quot;Biology&quot;
-	puts &quot;Mmm the study of life itself!&quot;
-elsif major == &quot;Computer Science&quot;
-	puts &quot;I'm a computer!&quot;
-elsif major == &quot;English&quot;
-	puts &quot;Sweet! I'm great with numbers!&quot;
-elsif major == &quot;Math&quot;
+if major == &#34;Biology&#34;
+	puts &#34;Mmm the study of life itself!&#34;
+elsif major == &#34;Computer Science&#34;
+	puts &#34;I&#39;m a computer!&#34;
+elsif major == &#34;English&#34;
+	puts &#34;Sweet! I&#39;m great with numbers!&#34;
+elsif major == &#34;Math&#34;
 else
-	puts &quot;That's a cool major!&quot;
+	puts &#34;That&#39;s a cool major!&#34;
 end
-</code></pre>
-
-<p>使用 <code>case/when</code> 之后，判断的条件更加清晰，更好阅读
+</code></pre><p>使用 <code>case/when</code> 之后，判断的条件更加清晰，更好阅读
 after:</p>
-
-<pre><code>major = gets.chomp
+<pre tabindex="0"><code>major = gets.chomp
 
 case major
-when &quot;Biology&quot;
-	puts &quot;Mmm the study of life itself!&quot;
-when &quot;Computer Science&quot;
-	puts &quot;I'm a computer!&quot;
-when &quot;English&quot;
-	puts &quot;No way! What's your favorite book?&quot;
-when &quot;Math&quot;
-	puts &quot;Sweet! I'm great with numbers!&quot;
+when &#34;Biology&#34;
+	puts &#34;Mmm the study of life itself!&#34;
+when &#34;Computer Science&#34;
+	puts &#34;I&#39;m a computer!&#34;
+when &#34;English&#34;
+	puts &#34;No way! What&#39;s your favorite book?&#34;
+when &#34;Math&#34;
+	puts &#34;Sweet! I&#39;m great with numbers!&#34;
 else
-	puts &quot;That's a cool major!&quot;
+	puts &#34;That&#39;s a cool major!&#34;
 end
-</code></pre>
-
-<h3 id="使用-判断值是否存在-不是-nil">使用 !! 判断值是否存在(不是 Nil)</h3>
-
+</code></pre><h3 id="使用--判断值是否存在不是-nil">使用 !! 判断值是否存在(不是 Nil)</h3>
 <p>这里有个类 (Person) 希望提供一个方法判断名字是否为 nil</p>
-
-<pre><code>class Person
+<pre tabindex="0"><code>class Person
   def initialize(name=nil)
     	@name = name
   end
@@ -206,59 +209,37 @@ end
 end
 
 Person.has_name?            #=&gt; false
-Person('lion').has_name?    #=&gt; true
-</code></pre>
-
-<p>虽然 <code>!!</code> 有点难以理解，这里解释一下。<code>!</code> 是对值求反，<code>nil</code> 在 <code>true/false</code> 中会被处理为 <code>false</code>，这样 <code>!nil</code> =&gt; <code>true</code>，再求反一次，就变成了 <code>false</code></p>
-
-<pre><code>@name       #=&gt; nil
+Person(&#39;lion&#39;).has_name?    #=&gt; true
+</code></pre><p>虽然 <code>!!</code> 有点难以理解，这里解释一下。<code>!</code> 是对值求反，<code>nil</code> 在 <code>true/false</code> 中会被处理为 <code>false</code>，这样 <code>!nil</code> =&gt; <code>true</code>，再求反一次，就变成了 <code>false</code></p>
+<pre tabindex="0"><code>@name       #=&gt; nil
 !@name      #=&gt; true
 !!@name     #=&gt; false
-</code></pre>
-
-<pre><code>@name       #=&gt; lion
+</code></pre><pre tabindex="0"><code>@name       #=&gt; lion
 !@name      #=&gt; false
 !!@name     #=&gt; true
-</code></pre>
-
-<h3 id="hash-中的-string-key-最好使用-symbol-而不是-string">Hash 中的 string key 最好使用 symbol 而不是 string</h3>
-
+</code></pre><h3 id="hash-中的-string-key-最好使用-symbol-而不是-string">Hash 中的 string key 最好使用 symbol 而不是 string</h3>
 <p><code>symbol</code> 是 ruby 的一种类型，类似于 <code>string</code>。当使用场景里面需要存储不需要变更的字符串时候，基本都推荐使用 <code>symbol</code>，因为从内存角度来看更省内存和高效</p>
-
 <p>可以看个例子:</p>
-
-<pre><code>str1 = 'a'
-str2 = 'b'
+<pre tabindex="0"><code>str1 = &#39;a&#39;
+str2 = &#39;b&#39;
 str1.object_id == str2.object_id    #=&gt; false
 
 sym1 = :a
 sym2 = :a
 sym1.object_id == sym2.object_id    #=&gt; true
-</code></pre>
-
-<p>在 hash 中使用的例子:</p>
-
+</code></pre><p>在 hash 中使用的例子:</p>
 <p>before:</p>
-
-<pre><code>our_garden = { &quot;roses&quot;: 9, &quot;rhododendrons&quot;: 2, 
-               &quot;poppies&quot;: 12, &quot;geraniums&quot;: 6 ,
-               &quot;sneezeworts&quot;: 5 }
-</code></pre>
-
-<p>after:</p>
-
-<pre><code>our_garden = { roses: 9, rhododendrons: 2, 
+<pre tabindex="0"><code>our_garden = { &#34;roses&#34;: 9, &#34;rhododendrons&#34;: 2, 
+               &#34;poppies&#34;: 12, &#34;geraniums&#34;: 6 ,
+               &#34;sneezeworts&#34;: 5 }
+</code></pre><p>after:</p>
+<pre tabindex="0"><code>our_garden = { roses: 9, rhododendrons: 2, 
                poppies: 12, geraniums: 6 ,
                sneezeworts: 5 }
-</code></pre>
-
-<h3 id="使用-unless-而不是-if">使用 unless 而不是 !if</h3>
-
+</code></pre><h3 id="使用-unless-而不是-if">使用 unless 而不是 !if</h3>
 <p>在一些函数的调用结果希望进行取反之后做处理，建议使用 <code>unless</code> 而不是 <code>!if</code></p>
-
 <p>下面例子希望在没有 name 情况下，不要打印任何信息，使用 <code>unless</code> 之后代码变得更好阅读</p>
-
-<pre><code>class Person
+<pre tabindex="0"><code>class Person
   def initialize(name=nil)
     	@name = name
   end
@@ -277,430 +258,137 @@ def echo_name(person = nil)
 
     puts person.name
 end
-</code></pre>
-
-<p>after:</p>
-
-<pre><code>def echo_name(person = nil)
+</code></pre><p>after:</p>
+<pre tabindex="0"><code>def echo_name(person = nil)
     return unless person.has_name?
 
     puts person.name
 end
-</code></pre>
-
-<h3 id="返回-bool-的函数名需要加上">返回 bool 的函数名需要加上 ?</h3>
-
+</code></pre><h3 id="返回-bool-的函数名需要加上-">返回 bool 的函数名需要加上 ?</h3>
 <p>before:</p>
-
-<pre><code>def exist
+<pre tabindex="0"><code>def exist
     false
 end
-</code></pre>
-
-<p>after:</p>
-
-<pre><code>def exist?
+</code></pre><p>after:</p>
+<pre tabindex="0"><code>def exist?
     false
 end
-</code></pre>
-
-<h2 id="about-rails">About Rails</h2>
-
+</code></pre><h2 id="about-rails">About Rails</h2>
 <h3 id="prevent-sql-injection">Prevent SQL Injection</h3>
-
 <p>很多场景里面需要对数据库查询条件进行拼接，这里有注入的风险</p>
-
 <p>before:</p>
-
-<pre><code>User.where(&quot;name = #{params[:name]}&quot;)
-</code></pre>
-
-<p>after:</p>
-
-<pre><code>User.where('name = ?', params[:name])
-</code></pre>
-
-<p>or</p>
-
-<pre><code>User.where(name: params[:name])
-</code></pre>
-
-<h3 id="default-scope-is-evil">default_scope is evil</h3>
-
+<pre tabindex="0"><code>User.where(&#34;name = #{params[:name]}&#34;)
+</code></pre><p>after:</p>
+<pre tabindex="0"><code>User.where(&#39;name = ?&#39;, params[:name])
+</code></pre><p>or</p>
+<pre tabindex="0"><code>User.where(name: params[:name])
+</code></pre><h3 id="default_scope-is-evil">default_scope is evil</h3>
 <p>建议不要在 model 里面加 <code>default_scope</code>, 先看代码吧</p>
-
-<pre><code>class Post
+<pre tabindex="0"><code>class Post
   default_scope where(published: true).order(created_at: :desc)
 end
-</code></pre>
-
-<p>然后你会发现很多情况下都不会按照你想要的实现:</p>
-
+</code></pre><p>然后你会发现很多情况下都不会按照你想要的实现:</p>
 <p>默认情况下按照 created_at 排序返回</p>
-
-<pre><code>&gt; Post.limit(10)
+<pre tabindex="0"><code>&gt; Post.limit(10)
   Post Load (3.3ms)  SELECT `posts`.* FROM `posts` WHERE `posts`.`published` = 1 ORDER BY created_at desc LIMIT 10
-</code></pre>
-
-<p>想要只用 updated_at 排序，然后就不对劲了:</p>
-
-<pre><code>&gt; Post.order(&quot;updated_at desc&quot;).limit(10)
+</code></pre><p>想要只用 updated_at 排序，然后就不对劲了:</p>
+<pre tabindex="0"><code>&gt; Post.order(&#34;updated_at desc&#34;).limit(10)
   Post Load (17.3ms)  SELECT `posts`.* FROM `posts` WHERE `posts`.`published` = 1 ORDER BY created_at desc, updated_at desc LIMIT 10
-</code></pre>
-
-<p>如果想要做到只用 updated_at 排序就得这么做:</p>
-
-<pre><code>&gt; Post.unscoped.order(&quot;updated_at desc&quot;).limit(10)
+</code></pre><p>如果想要做到只用 updated_at 排序就得这么做:</p>
+<pre tabindex="0"><code>&gt; Post.unscoped.order(&#34;updated_at desc&#34;).limit(10)
   Post Load (1.9ms)  SELECT `posts`.* FROM `posts` ORDER BY updated_at desc LIMIT 10
-</code></pre>
-
-<p>而且在 model 的 initialization 也会被影响, 这往往不是你想要的:</p>
-
-<pre><code>&gt; Post.new
+</code></pre><p>而且在 model 的 initialization 也会被影响, 这往往不是你想要的:</p>
+<pre tabindex="0"><code>&gt; Post.new
 =&gt; #&lt;Post id: nil, title: nil, created_at: nil, updated_at: nil, user_id: nil, published: true&gt;
-</code></pre>
-
-<p>所以，使用 <code>scope</code> 情况中，不要使用 <code>default_scope</code> (不是特别必要)，而是定义 <code>scope</code> 并且手动调用</p>
-
-<h3 id="model-save-或者-model-save-并且确认返回值">model.save! 或者 model.save 并且确认返回值</h3>
-
+</code></pre><p>所以，使用 <code>scope</code> 情况中，不要使用 <code>default_scope</code> (不是特别必要)，而是定义 <code>scope</code> 并且手动调用</p>
+<h3 id="modelsave-或者-modelsave-并且确认返回值">model.save! 或者 model.save 并且确认返回值</h3>
 <p>在调用 model.save 时，如果数据无效，并不会被保存，这时候需要手动确认 save 的返回值</p>
-
-<pre><code>post = Posts.new do |p|
-  p.title = 'example'
+<pre tabindex="0"><code>post = Posts.new do |p|
+  p.title = &#39;example&#39;
   p.body = nil
 end
 
-raise 'post is invalid' unless post.save
-</code></pre>
-
-<p><code>Post.body</code> 在数据库中是不能为 <code>NULL</code> 的，但是 <code>save</code> 可以正常执行但是没有保存，需要手动确认，然后确认结果又不是很直观。</p>
-
+raise &#39;post is invalid&#39; unless post.save
+</code></pre><p><code>Post.body</code> 在数据库中是不能为 <code>NULL</code> 的，但是 <code>save</code> 可以正常执行但是没有保存，需要手动确认，然后确认结果又不是很直观。</p>
 <p>这个时候使用 <code>save!</code>，就会直接知道问题，达到目的</p>
-
-<pre><code>post = Posts.new do |p|
-  p.title = 'example'
+<pre tabindex="0"><code>post = Posts.new do |p|
+  p.title = &#39;example&#39;
   p.body = nil
 end
 
 post.save!
 </code></pre>
+          </div>
 
-                        </div>
-
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/golang/upgrade/go.ast.usage/">初步了解使用 go AST 知识</a></li>
-        
-        <li><a href="/post/k8s/kubectl/">Kubectl wiki</a></li>
-        
-        <li><a href="/post/golang/tips/go.make.vs.new/">new 与 make 的差别</a></li>
-        
-        <li><a href="/post/golang/upgrade/memory.layout/">Go 内存排布</a></li>
-        
-        <li><a href="/post/backend/raft/">从入门到放弃 - Raft</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Ruby">Ruby</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/Rails">Rails</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/BestPractice">BestPractice</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/ruby/tips.around.alias/">&laquo; Around Alias</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/">初步了解使用 go AST 知识 &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

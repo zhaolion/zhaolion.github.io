@@ -1,25 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Golang on zhaolion&#39;s dropbox</title>
-    <link>https://zhaolion.com/categories/Golang/</link>
-    <description>Recent content in Golang on zhaolion&#39;s dropbox</description>
+    <title>Golang on zhaolion&#39;s knowledge dropbox</title>
+    <link>https://blog.zhaolion.dev/categories/Golang/</link>
+    <description>Recent content in Golang on zhaolion&#39;s knowledge dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 24 Jul 2019 23:18:33 +0800</lastBuildDate>
-    
-	<atom:link href="https://zhaolion.com/categories/Golang/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 24 Jul 2019 23:18:33 +0800</lastBuildDate><atom:link href="https://blog.zhaolion.dev/categories/Golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初步了解使用 go AST 知识</title>
-      <link>https://zhaolion.com/post/golang/upgrade/go.ast.usage/</link>
+      <link>https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/</link>
       <pubDate>Wed, 24 Jul 2019 23:18:33 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/upgrade/go.ast.usage/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/</guid>
       <description>最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。
 第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(
-sed -n &#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&#39; &amp;quot;interfaces.go&amp;quot;  第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
+sed -n &amp;#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&amp;#39; &amp;#34;interfaces.go&amp;#34; 第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
 下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:
  go/ast - goc AST wiki  AST 是什么？ AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。
 当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。
@@ -29,13 +25,13 @@ Go 的 AST 是什么？ 一般来说，需要词法分析，然后进行语法�
     
     <item>
       <title>new 与 make 的差别</title>
-      <link>https://zhaolion.com/post/golang/tips/go.make.vs.new/</link>
+      <link>https://blog.zhaolion.dev/post/golang/tips/go.make.vs.new/</link>
       <pubDate>Sat, 30 Mar 2019 19:02:11 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/tips/go.make.vs.new/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/tips/go.make.vs.new/</guid>
       <description>Go语言中new和make是内建的两个函数，主要用来创建分配类型内存
 new(T) 返回的是 T 的指针 这是 new 函数的注释:
-// The new built-in function allocates memory. The first argument is a type, // not a value, and the value returned is a pointer to a newly // allocated zero value of that type. func new(Type) *Type  new(T) 为一个 T 类型新值分配空间并将此空间初始化为 T 的零值，返回的是新值的地址，也就是 T 类型的指针 *T，该指针指向 T 的新分配的零值
+// The new built-in function allocates memory. The first argument is a type, // not a value, and the value returned is a pointer to a newly // allocated zero value of that type. func new(Type) *Type new(T) 为一个 T 类型新值分配空间并将此空间初始化为 T 的零值，返回的是新值的地址，也就是 T 类型的指针 *T，该指针指向 T 的新分配的零值
  对于有哪些零值可以看看 之前的博客 里面有基础类型的零值
  make make 函数的注释:
 The make built-in function allocates and initializes an object of type slice, map, or chan (only).</description>
@@ -43,60 +39,60 @@ The make built-in function allocates and initializes an object of type slice, ma
     
     <item>
       <title>Go 内存排布</title>
-      <link>https://zhaolion.com/post/golang/upgrade/memory.layout/</link>
+      <link>https://blog.zhaolion.dev/post/golang/upgrade/memory.layout/</link>
       <pubDate>Fri, 29 Mar 2019 21:47:27 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/upgrade/memory.layout/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/upgrade/memory.layout/</guid>
       <description>Go 内存布局 了解对象内存布局，有助于深入理解 Go 语言本身，写出更漂亮的代码
-基本类型    类型 长度 默认值 说明     bool 1 false    byte 1 0 uint8   rune 4 0 Unicode point, int32   int/uint 4&amp;frasl;8 0 32位/64位   int8/uint8 1 0 -128~127, 0~255   Int16/uint16 2 0 -32768~32767, 0~65535   Int32/uint32 4 0 -21亿~21亿, 0~42亿   Int64/uint64 8 0    float32 4 0.</description>
+基本类型    类型 长度 默认值 说明     bool 1 false    byte 1 0 uint8   rune 4 0 Unicode point, int32   int/uint 4/8 0 32位/64位   int8/uint8 1 0 -128~127, 0~255   Int16/uint16 2 0 -32768~32767, 0~65535   Int32/uint32 4 0 -21亿~21亿, 0~42亿   Int64/uint64 8 0    float32 4 0.</description>
     </item>
     
     <item>
       <title>database/sql: Stmt的使用以及坑</title>
-      <link>https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/</link>
+      <link>https://blog.zhaolion.dev/post/golang/upgrade/database.sql.driver.stmt/</link>
       <pubDate>Mon, 14 Jan 2019 00:37:49 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/upgrade/database.sql.driver.stmt/</guid>
       <description>基本知识 众所周知，Golang 操作数据库，是通过 database/sql 包，以及第三方的实现了 database/sql/driver 接口的数据库驱动包来共同完成的。
 其中 database/sql/driver 中的接口 Conn 和 Stmt，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 database/sql 包中的 DB 和 Stmt 是协程安全的，因为内部实现是连接池。
 如何使用 database/sql 的 MySQL 驱动的使用范例 基本类似于
-// Insert stmtIns, err := db.Prepare(&amp;quot;INSERT INTO squareNum VALUES( ?, ? )&amp;quot;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&amp;quot;SELECT squareNumber FROM squarenum WHERE number = ?</description>
+// Insert stmtIns, err := db.Prepare(&amp;#34;INSERT INTO squareNum VALUES( ?, ? )&amp;#34;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&amp;#34;SELECT squareNumber FROM squarenum WHERE number = ?</description>
     </item>
     
     <item>
       <title>Go Modules 简单介绍</title>
-      <link>https://zhaolion.com/post/golang/basic/go.mod/</link>
+      <link>https://blog.zhaolion.dev/post/golang/basic/go.mod/</link>
       <pubDate>Mon, 14 Jan 2019 00:24:08 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/basic/go.mod/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/basic/go.mod/</guid>
       <description>Go Modules Golang 在 1.11 版本推出了万众期待的依赖管理工具 go Modules
 我厌倦了 Glide 那无穷无尽的 update 状态之后，还是决定自己再一次尝试新的依赖管理工具 (~~ 毕竟是 google 爸爸推出的~~)
 还好尝试的比较晚，已经有许多 bug 得到解决，社区也有许多文章给出了最佳实践，建议先看看 intro-to-go-modules
 1. enable GO111MODULE go modules 默认是没有开启的，需要设置环境变量 GO111MODULE=on, 如果没有设置, 会有一些提示。
 2. help doc 接下来就是查看一下帮助手册 go mod help:
-Go mod provides access to operations on modules. Note that support for modules is built into all the go commands, not just &#39;go mod&#39;. For example, day-to-day adding, removing, upgrading, and downgrading of dependencies should be done using &#39;go get&#39;.</description>
+Go mod provides access to operations on modules.  Note that support for modules is built into all the go commands, not just &amp;#39;go mod&amp;#39;. For example, day-to-day adding, removing, upgrading, and downgrading of dependencies should be done using &amp;#39;go get&amp;#39;.</description>
     </item>
     
     <item>
       <title>初步了解 golang reflect pkg</title>
-      <link>https://zhaolion.com/post/golang/package/reflect/</link>
+      <link>https://blog.zhaolion.dev/post/golang/package/reflect/</link>
       <pubDate>Sat, 12 Jan 2019 11:43:35 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/package/reflect/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/package/reflect/</guid>
       <description>初步了解 golang reflect pkg [TOC]
 阅读这篇文章之前，建议先熟悉官方文档 pkg/reflect
 Golang 语言实现了反射，反射机制就是在运行时动态的调用对象的方法和属性，官方自带的 reflect 包就是反射相关的，只要包含这个包就可以使用。实际使用中可以先不考虑使用 reflect 对性能的影响，先实现功能，再利用 benchmark test 去优化。
 什么时候应该用 reflect
- 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp;amp; Kind &amp;amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value: - Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &amp;hellip; - Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &amp;hellip; - Value: 也就是 Go value, 承载变量 / 常量的值
- type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈</description>
+ 首先你得确认你会使用 reflect pkg，并且不是乱用 更好的抽象和约束，减少 bug 几率 提升代码的易读性 提高开发效率  1 理解 Type &amp;amp; Kind &amp;amp; Value reflect package 提供了 3 个重要的结构体 Type、Kind 和 Value:
+ Type: 就是 Go concrete type, 例如 int/string/bool/customStruct &amp;hellip; Kind: 就是 Go static type(固定的)，例如 Boot/Int/Struct &amp;hellip; Value: 也就是 Go value, 承载变量 / 常量的值   type Kind uint Kind 用途: 用于 runtime 和 compiler 为变量分配变量内存布局和函数分配堆栈</description>
     </item>
     
     <item>
       <title>sync.Pool 的实现原理和适用场景</title>
-      <link>https://zhaolion.com/post/golang/package/sync.pool/</link>
+      <link>https://blog.zhaolion.dev/post/golang/package/sync.pool/</link>
       <pubDate>Tue, 13 Nov 2018 22:52:14 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/package/sync.pool/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/package/sync.pool/</guid>
       <description>sync.Pool 的实现原理和适用场景 Golang GC 大大减少了程序编程负担，但 GC 是一把双刃剑，带来了编程的方便但同时也增加了运行时开销，使用不当甚至会严重影响程序的性能。因此性能要求高的场景不能任意产生太多的垃圾，如何解决呢？
 那就是 ** 重用对象 **
 我们可以简单的使用一个 chan 把这些可重用的对象缓存起来，但如果很多 goroutine 竞争一个 chan 性能肯定是问题，为了避免大家重造车轮，因此官方统一出了一个包 sync.Pool
@@ -106,24 +102,24 @@ Golang 语言实现了反射，反射机制就是在运行时动态的调用对�
     
     <item>
       <title>初步了解 golang bufio pkg</title>
-      <link>https://zhaolion.com/post/golang/package/bufio/</link>
+      <link>https://blog.zhaolion.dev/post/golang/package/bufio/</link>
       <pubDate>Sat, 13 Oct 2018 21:54:10 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/package/bufio/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/package/bufio/</guid>
       <description>bufio package in Golang golang 通过 package bufio 来支持 buffered I/O。
 熟悉一下: Reader, Writer and Scanner…
 bufio.Writer 对 I/O 的频繁操作会极大的影响性能，每次 写 I/O 都是一次 syscall，因此频繁操作会给 CPU 带来极大的负担。对于磁盘来说，批量写操作有着更好的性能。golang 通过 bufio.Writer 来合并写操作，避免频繁的写操作。因此在写密集场景下，应该使用 bufio.Writer，而不是 io.Writer
 bufio.Writer 通过将写内容缓存至 buffer，buffer 满了之后，再进行一次写操作，这样极大的优化性能:
-producer --&amp;gt; buffer --&amp;gt; io.Writer  举个例子，9 次写操作，buffer 是如何工作的:
-producer buffer destination (io.Writer) a -----&amp;gt; a b -----&amp;gt; ab c -----&amp;gt; abc d -----&amp;gt; abcd e -----&amp;gt; e ------&amp;gt; abcd f -----&amp;gt; ef abcd g -----&amp;gt; efg abcd h -----&amp;gt; efgh abcd i -----&amp;gt; i ------&amp;gt; abcdefgh  看份代码来感受一下，如何使用:</description>
+producer --&amp;gt; buffer --&amp;gt; io.Writer 举个例子，9 次写操作，buffer 是如何工作的:
+producer buffer destination (io.Writer) a -----&amp;gt; a b -----&amp;gt; ab c -----&amp;gt; abc d -----&amp;gt; abcd e -----&amp;gt; e ------&amp;gt; abcd f -----&amp;gt; ef abcd g -----&amp;gt; efg abcd h -----&amp;gt; efgh abcd i -----&amp;gt; i ------&amp;gt; abcdefgh 看份代码来感受一下，如何使用:</description>
     </item>
     
     <item>
       <title>Go Interface 从理解到深入</title>
-      <link>https://zhaolion.com/post/golang/upgrade/interface/</link>
+      <link>https://blog.zhaolion.dev/post/golang/upgrade/interface/</link>
       <pubDate>Thu, 13 Sep 2018 18:24:50 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/upgrade/interface/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/upgrade/interface/</guid>
       <description>Go Interface 从理解到深入 如果说 goroutine 和 channel 是 Go 并发的两大基石，那么接口是 Go 语言编程中数据类型的关键。在 Go 语言的实际编程中，几乎所有的数据结构都围绕接口展开，接口是 Go 语言中所有数据结构的核心
 Go 不是一种典型的 OO 语言，它在语法上不支持类和继承的概念
 没有继承是否就无法拥有多态行为了呢？答案是否定的，Go 语言引入了一种新类型—Interface，它在效果上实现了类似于 C++ 的 “多态” 概念，虽然与 C++ 的多态在语法上并非完全对等，但至少在最终实现的效果上，它有多态的影子
@@ -134,17 +130,17 @@ Go 语言支持的除 Interface 类型外的任何其它数据类型都可以定
     
     <item>
       <title>如何写好 golang 代码的一些 tips</title>
-      <link>https://zhaolion.com/post/golang/tips/coding.in.go/</link>
+      <link>https://blog.zhaolion.dev/post/golang/tips/coding.in.go/</link>
       <pubDate>Mon, 02 Jul 2018 21:12:55 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/tips/coding.in.go/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/tips/coding.in.go/</guid>
       <description>如何写好 golang 代码的一些 tips 1. 首先需要知道的概念  不要像其他语言一样写 Go, Go 不是 Java/Python/Ruby/PHP，Go 的程序思维很古典也很超前 保持简洁，避免过度工程化 学会阅读源码 interface 很重要，很多问题都可以用 interface 解决 保持函数精炼，变量名长度合适 (在不丢失意义的情况下，尽量短小) 用更小的单元实现代码功能，然后 ** 组合 ** 慎重使用全局变量 (尤其是跨 package 使用，变量作用域上容易踩坑，可以参考 vs6IeAu5U5n)  2. 函数声明的 tips  函数声明首先是函数名字要具有自解释性，需要能够解释清楚大致提供的功能，而不是模糊的 common/util。 其次具体的功能解释，这个要说到代码注释了，这里就不赘述了。 除了函数声明外，还有函数的形参定义。这里以一个例子来说一下扩展性好的函数的参数应该如何定义 (见 2.1)。  2.1 普通函数 假设我们需要一个简单的 server，我们可以像下面这样定义，addr 表示 server 启动在哪个端口上。
-func NewServer(addr string)  第一期的需求很简单，就上面这些足够满足了。项目上线跑了一段时间发现，由于连接没有设置超时，很多连接一直得不到释放（异常情况），严重影响服务器性能。
+func NewServer(addr string) 第一期的需求很简单，就上面这些足够满足了。项目上线跑了一段时间发现，由于连接没有设置超时，很多连接一直得不到释放（异常情况），严重影响服务器性能。
 好，那第二期我们加个 timeout。
-func NewServer(addr string, timeout time.Duration)  这个时候尴尬的情况出现了，调用你代码的所有人都需要改动代码。而且这只是一个改动，之后如果要支持 tls，那么又得改动一次。
+func NewServer(addr string, timeout time.Duration) 这个时候尴尬的情况出现了，调用你代码的所有人都需要改动代码。而且这只是一个改动，之后如果要支持 tls，那么又得改动一次。
 2.2 不定参数 解决上面的窘境的一种方法是使用不定参数。
 比如我要实现一个整数加法。
-func Add(list .</description>
+func Add(list ...int) int { sum := 0 for _, x := range list { sum += x } return sum } func main() { fmt.</description>
     </item>
     
   </channel>

@@ -1,121 +1,168 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Kubectl wiki | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="Kubectl wiki - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2019-06-17T23:45:12&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2019-06-17T23:45:12&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="Kubectl wiki">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/k8s/kubectl/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>Kubectl wiki - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="基于 kubernetes v1.14.3 版本
+1. basic kubectl 命令行语法:
+$ kubectl [command] [TYPE] [NAME] [flags]
+  command: 子命令，用于操作 K8s 集群资源对象的命令，例如 create/delete/describe/get/apply
+  TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示
+   以下 3 种 TYPE 是等价的:
+ kubectl get pod pod1 kubectl get pods pod1 kubectl get po pod1    NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表
+  flags: kubectl 子命令的可选参数
+  获取 kubectl 可操作的资源对象列表: kubectl api-resources
+   NAME SHORTNAMES APIGROUP NAMESPACED KIND     bindings   true Binding   componentstatuses cs  false ComponentStatus   configmaps cm  true ConfigMap   endpoints ep  true Endpoints   events ev  true Event   limitranges limits  true LimitRange   namespaces ns  false Namespace   nodes no  false Node   persistentvolumeclaims pvc  true PersistentVolumeClaim   persistentvolumes pv  false PersistentVolume   pods po  true Pod   podtemplates   true PodTemplate   replicationcontrollers rc  true ReplicationController   resourcequotas quota  true ResourceQuota   secrets   true Secret   serviceaccounts sa  true ServiceAccount   services svc  true Service   mutatingwebhookconfigurations  admissionregistration."/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/k8s/kubectl/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="基于 kubernetes v1.14.3 版本
+1. basic kubectl 命令行语法:
+$ kubectl [command] [TYPE] [NAME] [flags]
+  command: 子命令，用于操作 K8s 集群资源对象的命令，例如 create/delete/describe/get/apply
+  TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示
+   以下 3 种 TYPE 是等价的:
+ kubectl get pod pod1 kubectl get pods pod1 kubectl get po pod1    NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表
+  flags: kubectl 子命令的可选参数
+  获取 kubectl 可操作的资源对象列表: kubectl api-resources
+   NAME SHORTNAMES APIGROUP NAMESPACED KIND     bindings   true Binding   componentstatuses cs  false ComponentStatus   configmaps cm  true ConfigMap   endpoints ep  true Endpoints   events ev  true Event   limitranges limits  true LimitRange   namespaces ns  false Namespace   nodes no  false Node   persistentvolumeclaims pvc  true PersistentVolumeClaim   persistentvolumes pv  false PersistentVolume   pods po  true Pod   podtemplates   true PodTemplate   replicationcontrollers rc  true ReplicationController   resourcequotas quota  true ResourceQuota   secrets   true Secret   serviceaccounts sa  true ServiceAccount   services svc  true Service   mutatingwebhookconfigurations  admissionregistration." />
+<meta name="twitter:title" content="Kubectl wiki - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="Kubectl wiki - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="基于 kubernetes v1.14.3 版本
+1. basic kubectl 命令行语法:
+$ kubectl [command] [TYPE] [NAME] [flags]
+  command: 子命令，用于操作 K8s 集群资源对象的命令，例如 create/delete/describe/get/apply
+  TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示
+   以下 3 种 TYPE 是等价的:
+ kubectl get pod pod1 kubectl get pods pod1 kubectl get po pod1    NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表
+  flags: kubectl 子命令的可选参数
+  获取 kubectl 可操作的资源对象列表: kubectl api-resources
+   NAME SHORTNAMES APIGROUP NAMESPACED KIND     bindings   true Binding   componentstatuses cs  false ComponentStatus   configmaps cm  true ConfigMap   endpoints ep  true Endpoints   events ev  true Event   limitranges limits  true LimitRange   namespaces ns  false Namespace   nodes no  false Node   persistentvolumeclaims pvc  true PersistentVolumeClaim   persistentvolumes pv  false PersistentVolume   pods po  true Pod   podtemplates   true PodTemplate   replicationcontrollers rc  true ReplicationController   resourcequotas quota  true ResourceQuota   secrets   true Secret   serviceaccounts sa  true ServiceAccount   services svc  true Service   mutatingwebhookconfigurations  admissionregistration." property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/k8s/kubectl/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Knowledge" />
+<meta property="article:published_time" content="2019-06-17 23:45:12 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "Kubectl wiki",
+    "genre": "Knowledge",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/k8s\/kubectl\/",
+    "datePublished": "2019-06-17 23:45:12 \u002b0800 CST",
+    "description": "基于 kubernetes v1.14.3 版本\n1. basic kubectl 命令行语法:\n$ kubectl [command] [TYPE] [NAME] [flags]\n  command: 子命令，用于操作 K8s 集群资源对象的命令，例如 create\/delete\/describe\/get\/apply\n  TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示\n   以下 3 种 TYPE 是等价的:\n kubectl get pod pod1 kubectl get pods pod1 kubectl get po pod1    NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表\n  flags: kubectl 子命令的可选参数\n  获取 kubectl 可操作的资源对象列表: kubectl api-resources\n   NAME SHORTNAMES APIGROUP NAMESPACED KIND     bindings   true Binding   componentstatuses cs  false ComponentStatus   configmaps cm  true ConfigMap   endpoints ep  true Endpoints   events ev  true Event   limitranges limits  true LimitRange   namespaces ns  false Namespace   nodes no  false Node   persistentvolumeclaims pvc  true PersistentVolumeClaim   persistentvolumes pv  false PersistentVolume   pods po  true Pod   podtemplates   true PodTemplate   replicationcontrollers rc  true ReplicationController   resourcequotas quota  true ResourceQuota   secrets   true Secret   serviceaccounts sa  true ServiceAccount   services svc  true Service   mutatingwebhookconfigurations  admissionregistration.",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">Kubectl wiki</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2019年6月17日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Knowledge">Knowledge</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">Kubectl wiki</h1>
+            <p class="post-meta"><time datetime='2019-06-17T23:45:12&#43;08:00' itemprop="datePublished">June 17, 2019</time></p>
+                 
+          </header>
 
-<p>基于 kubernetes v1.14.3 版本</p>
-
+          <div class="post-content" itemprop="articleBody">
+            <p>基于 kubernetes v1.14.3 版本</p>
 <h2 id="1-basic">1. basic</h2>
-
 <p>kubectl 命令行语法:</p>
-
 <p><code>$ kubectl [command] [TYPE] [NAME] [flags]</code></p>
-
-<p>1) command: 子命令，用于操作 K8s 集群资源对象的命令，例如 <code>create</code>/<code>delete</code>/<code>describe</code>/<code>get</code>/<code>apply</code></p>
-
-<p>2) TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示</p>
-
+<ol>
+<li>
+<p>command: 子命令，用于操作 K8s 集群资源对象的命令，例如 <code>create</code>/<code>delete</code>/<code>describe</code>/<code>get</code>/<code>apply</code></p>
+</li>
+<li>
+<p>TYPE: 资源对象的名称，区分大小写，能以单数形式、复数形式或者简写形式表示</p>
+</li>
+</ol>
 <blockquote>
-<p>以下 3 种 TYPE 是等价的:
-- kubectl get pod pod1
-- kubectl get pods pod1
-- kubectl get po pod1</p>
+<p>以下 3 种 TYPE 是等价的:</p>
+<ul>
+<li>kubectl get pod pod1</li>
+<li>kubectl get pods pod1</li>
+<li>kubectl get po pod1</li>
+</ul>
 </blockquote>
-
-<p>3) NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表</p>
-
-<p>4) flags: kubectl 子命令的可选参数</p>
-
+<ol start="3">
+<li>
+<p>NAME: 资源对象的名称，区分大小写。如果不指定名称，则系统将返回属于 TYPE 的全部对象列表</p>
+</li>
+<li>
+<p>flags: kubectl 子命令的可选参数</p>
+</li>
+</ol>
 <p>获取 kubectl 可操作的资源对象列表: <code>kubectl api-resources</code></p>
-
 <table>
 <thead>
 <tr>
@@ -126,7 +173,6 @@
 <th>KIND</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>bindings</td>
@@ -135,7 +181,6 @@
 <td>true</td>
 <td>Binding</td>
 </tr>
-
 <tr>
 <td>componentstatuses</td>
 <td>cs</td>
@@ -143,7 +188,6 @@
 <td>false</td>
 <td>ComponentStatus</td>
 </tr>
-
 <tr>
 <td>configmaps</td>
 <td>cm</td>
@@ -151,7 +195,6 @@
 <td>true</td>
 <td>ConfigMap</td>
 </tr>
-
 <tr>
 <td>endpoints</td>
 <td>ep</td>
@@ -159,7 +202,6 @@
 <td>true</td>
 <td>Endpoints</td>
 </tr>
-
 <tr>
 <td>events</td>
 <td>ev</td>
@@ -167,7 +209,6 @@
 <td>true</td>
 <td>Event</td>
 </tr>
-
 <tr>
 <td>limitranges</td>
 <td>limits</td>
@@ -175,7 +216,6 @@
 <td>true</td>
 <td>LimitRange</td>
 </tr>
-
 <tr>
 <td>namespaces</td>
 <td>ns</td>
@@ -183,7 +223,6 @@
 <td>false</td>
 <td>Namespace</td>
 </tr>
-
 <tr>
 <td>nodes</td>
 <td>no</td>
@@ -191,7 +230,6 @@
 <td>false</td>
 <td>Node</td>
 </tr>
-
 <tr>
 <td>persistentvolumeclaims</td>
 <td>pvc</td>
@@ -199,7 +237,6 @@
 <td>true</td>
 <td>PersistentVolumeClaim</td>
 </tr>
-
 <tr>
 <td>persistentvolumes</td>
 <td>pv</td>
@@ -207,7 +244,6 @@
 <td>false</td>
 <td>PersistentVolume</td>
 </tr>
-
 <tr>
 <td>pods</td>
 <td>po</td>
@@ -215,7 +251,6 @@
 <td>true</td>
 <td>Pod</td>
 </tr>
-
 <tr>
 <td>podtemplates</td>
 <td></td>
@@ -223,7 +258,6 @@
 <td>true</td>
 <td>PodTemplate</td>
 </tr>
-
 <tr>
 <td>replicationcontrollers</td>
 <td>rc</td>
@@ -231,7 +265,6 @@
 <td>true</td>
 <td>ReplicationController</td>
 </tr>
-
 <tr>
 <td>resourcequotas</td>
 <td>quota</td>
@@ -239,7 +272,6 @@
 <td>true</td>
 <td>ResourceQuota</td>
 </tr>
-
 <tr>
 <td>secrets</td>
 <td></td>
@@ -247,7 +279,6 @@
 <td>true</td>
 <td>Secret</td>
 </tr>
-
 <tr>
 <td>serviceaccounts</td>
 <td>sa</td>
@@ -255,7 +286,6 @@
 <td>true</td>
 <td>ServiceAccount</td>
 </tr>
-
 <tr>
 <td>services</td>
 <td>svc</td>
@@ -263,7 +293,6 @@
 <td>true</td>
 <td>Service</td>
 </tr>
-
 <tr>
 <td>mutatingwebhookconfigurations</td>
 <td></td>
@@ -271,7 +300,6 @@
 <td>false</td>
 <td>MutatingWebhookConfiguration</td>
 </tr>
-
 <tr>
 <td>validatingwebhookconfigurations</td>
 <td></td>
@@ -279,7 +307,6 @@
 <td>false</td>
 <td>ValidatingWebhookConfiguration</td>
 </tr>
-
 <tr>
 <td>customresourcedefinitions</td>
 <td>crd,crds</td>
@@ -287,7 +314,6 @@
 <td>false</td>
 <td>CustomResourceDefinition</td>
 </tr>
-
 <tr>
 <td>apiservices</td>
 <td></td>
@@ -295,7 +321,6 @@
 <td>false</td>
 <td>APIService</td>
 </tr>
-
 <tr>
 <td>controllerrevisions</td>
 <td></td>
@@ -303,7 +328,6 @@
 <td>true</td>
 <td>ControllerRevision</td>
 </tr>
-
 <tr>
 <td>daemonsets</td>
 <td>ds</td>
@@ -311,7 +335,6 @@
 <td>true</td>
 <td>DaemonSet</td>
 </tr>
-
 <tr>
 <td>deployments</td>
 <td>deploy</td>
@@ -319,7 +342,6 @@
 <td>true</td>
 <td>Deployment</td>
 </tr>
-
 <tr>
 <td>replicasets</td>
 <td>rs</td>
@@ -327,7 +349,6 @@
 <td>true</td>
 <td>ReplicaSet</td>
 </tr>
-
 <tr>
 <td>statefulsets</td>
 <td>sts</td>
@@ -335,7 +356,6 @@
 <td>true</td>
 <td>StatefulSet</td>
 </tr>
-
 <tr>
 <td>tokenreviews</td>
 <td></td>
@@ -343,7 +363,6 @@
 <td>false</td>
 <td>TokenReview</td>
 </tr>
-
 <tr>
 <td>localsubjectaccessreviews</td>
 <td></td>
@@ -351,7 +370,6 @@
 <td>true</td>
 <td>LocalSubjectAccessReview</td>
 </tr>
-
 <tr>
 <td>selfsubjectaccessreviews</td>
 <td></td>
@@ -359,7 +377,6 @@
 <td>false</td>
 <td>SelfSubjectAccessReview</td>
 </tr>
-
 <tr>
 <td>selfsubjectrulesreviews</td>
 <td></td>
@@ -367,7 +384,6 @@
 <td>false</td>
 <td>SelfSubjectRulesReview</td>
 </tr>
-
 <tr>
 <td>subjectaccessreviews</td>
 <td></td>
@@ -375,7 +391,6 @@
 <td>false</td>
 <td>SubjectAccessReview</td>
 </tr>
-
 <tr>
 <td>horizontalpodautoscalers</td>
 <td>hpa</td>
@@ -383,7 +398,6 @@
 <td>true</td>
 <td>HorizontalPodAutoscaler</td>
 </tr>
-
 <tr>
 <td>cronjobs</td>
 <td>cj</td>
@@ -391,7 +405,6 @@
 <td>true</td>
 <td>CronJob</td>
 </tr>
-
 <tr>
 <td>jobs</td>
 <td></td>
@@ -399,7 +412,6 @@
 <td>true</td>
 <td>Job</td>
 </tr>
-
 <tr>
 <td>certificatesigningrequests</td>
 <td>csr</td>
@@ -407,7 +419,6 @@
 <td>false</td>
 <td>CertificateSigningRequest</td>
 </tr>
-
 <tr>
 <td>stacks</td>
 <td></td>
@@ -415,7 +426,6 @@
 <td>true</td>
 <td>Stack</td>
 </tr>
-
 <tr>
 <td>leases</td>
 <td></td>
@@ -423,7 +433,6 @@
 <td>true</td>
 <td>Lease</td>
 </tr>
-
 <tr>
 <td>events</td>
 <td>ev</td>
@@ -431,7 +440,6 @@
 <td>true</td>
 <td>Event</td>
 </tr>
-
 <tr>
 <td>daemonsets</td>
 <td>ds</td>
@@ -439,7 +447,6 @@
 <td>true</td>
 <td>DaemonSet</td>
 </tr>
-
 <tr>
 <td>deployments</td>
 <td>deploy</td>
@@ -447,7 +454,6 @@
 <td>true</td>
 <td>Deployment</td>
 </tr>
-
 <tr>
 <td>ingresses</td>
 <td>ing</td>
@@ -455,7 +461,6 @@
 <td>true</td>
 <td>Ingress</td>
 </tr>
-
 <tr>
 <td>networkpolicies</td>
 <td>netpol</td>
@@ -463,7 +468,6 @@
 <td>true</td>
 <td>NetworkPolicy</td>
 </tr>
-
 <tr>
 <td>podsecuritypolicies</td>
 <td>psp</td>
@@ -471,7 +475,6 @@
 <td>false</td>
 <td>PodSecurityPolicy</td>
 </tr>
-
 <tr>
 <td>replicasets</td>
 <td>rs</td>
@@ -479,7 +482,6 @@
 <td>true</td>
 <td>ReplicaSet</td>
 </tr>
-
 <tr>
 <td>ingresses</td>
 <td>ing</td>
@@ -487,7 +489,6 @@
 <td>true</td>
 <td>Ingress</td>
 </tr>
-
 <tr>
 <td>networkpolicies</td>
 <td>netpol</td>
@@ -495,7 +496,6 @@
 <td>true</td>
 <td>NetworkPolicy</td>
 </tr>
-
 <tr>
 <td>runtimeclasses</td>
 <td></td>
@@ -503,7 +503,6 @@
 <td>false</td>
 <td>RuntimeClass</td>
 </tr>
-
 <tr>
 <td>poddisruptionbudgets</td>
 <td>pdb</td>
@@ -511,7 +510,6 @@
 <td>true</td>
 <td>PodDisruptionBudget</td>
 </tr>
-
 <tr>
 <td>podsecuritypolicies</td>
 <td>psp</td>
@@ -519,7 +517,6 @@
 <td>false</td>
 <td>PodSecurityPolicy</td>
 </tr>
-
 <tr>
 <td>clusterrolebindings</td>
 <td></td>
@@ -527,7 +524,6 @@
 <td>false</td>
 <td>ClusterRoleBinding</td>
 </tr>
-
 <tr>
 <td>clusterroles</td>
 <td></td>
@@ -535,7 +531,6 @@
 <td>false</td>
 <td>ClusterRole</td>
 </tr>
-
 <tr>
 <td>rolebindings</td>
 <td></td>
@@ -543,7 +538,6 @@
 <td>true</td>
 <td>RoleBinding</td>
 </tr>
-
 <tr>
 <td>roles</td>
 <td></td>
@@ -551,7 +545,6 @@
 <td>true</td>
 <td>Role</td>
 </tr>
-
 <tr>
 <td>priorityclasses</td>
 <td>pc</td>
@@ -559,7 +552,6 @@
 <td>false</td>
 <td>PriorityClass</td>
 </tr>
-
 <tr>
 <td>csidrivers</td>
 <td></td>
@@ -567,7 +559,6 @@
 <td>false</td>
 <td>CSIDriver</td>
 </tr>
-
 <tr>
 <td>csinodes</td>
 <td></td>
@@ -575,7 +566,6 @@
 <td>false</td>
 <td>CSINode</td>
 </tr>
-
 <tr>
 <td>storageclasses</td>
 <td>sc</td>
@@ -583,7 +573,6 @@
 <td>false</td>
 <td>StorageClass</td>
 </tr>
-
 <tr>
 <td>volumeattachments</td>
 <td></td>
@@ -593,17 +582,13 @@
 </tr>
 </tbody>
 </table>
-
 <p>在一个命令行可以同时对多个资源对象进行操作，以多个 TYPE 和 NAME 的组合表示，示例:</p>
-
 <ul>
 <li>获取多个 Pod 的信息: <code>kubectl get pods pod1 pod2</code></li>
 <li>获取多个 Pod 的信息: <code>kubectl get pod/pod1 pod/pod2</code></li>
 <li>同时应用多个 yaml 文件，以多个 <code>-f file</code> 参数表示: <code>kubectl get pod -f pod1.yaml -f pod2.yaml</code></li>
 </ul>
-
 <p>kubectl 的子命令非常丰富，可以直接输入 <code>kubectl</code> 获取子命令的基本使用帮助:</p>
-
 <table>
 <thead>
 <tr>
@@ -611,311 +596,246 @@
 <th>help</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>Basic Commands (Beginner):</td>
 <td></td>
 </tr>
-
 <tr>
 <td>create</td>
 <td>Create a resource from a file or from stdin.</td>
 </tr>
-
 <tr>
 <td>expose</td>
 <td>使用 replication controller, service, deployment 或者 pod 并暴露它作为一个 新的</td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 </tr>
-
 <tr>
 <td>Kubernetes Service</td>
 <td></td>
 </tr>
-
 <tr>
 <td>run</td>
 <td>在集群中运行一个指定的镜像</td>
 </tr>
-
 <tr>
 <td>set</td>
 <td>为 objects 设置一个指定的特征</td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 </tr>
-
 <tr>
 <td>Basic Commands (Intermediate):</td>
 <td></td>
 </tr>
-
 <tr>
 <td>explain</td>
 <td>查看资源的文档</td>
 </tr>
-
 <tr>
 <td>get</td>
 <td>显示一个或更多 resources</td>
 </tr>
-
 <tr>
 <td>edit</td>
 <td>在服务器上编辑一个资源</td>
 </tr>
-
 <tr>
 <td>delete</td>
 <td>Delete resources by filenames, stdin, resources and names, or by resources and label selector</td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 </tr>
-
 <tr>
 <td>Deploy Commands:</td>
 <td></td>
 </tr>
-
 <tr>
 <td>rollout</td>
 <td>Manage the rollout of a resource</td>
 </tr>
-
 <tr>
 <td>scale</td>
 <td>为 Deployment, ReplicaSet, Replication Controller 或者 Job 设置一个新的副本数量</td>
 </tr>
-
 <tr>
 <td>autoscale</td>
 <td>自动调整一个 Deployment, ReplicaSet, 或者 ReplicationController 的副本数量</td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 </tr>
-
 <tr>
 <td>Cluster Management Commands:</td>
 <td></td>
 </tr>
-
 <tr>
 <td>certificate</td>
 <td>修改 certificate 资源.</td>
 </tr>
-
 <tr>
 <td>cluster-info</td>
 <td>显示集群信息</td>
 </tr>
-
 <tr>
 <td>top</td>
 <td>Display Resource (CPU/Memory/Storage) usage.</td>
 </tr>
-
 <tr>
 <td>cordon</td>
 <td>标记 node 为 unschedulable</td>
 </tr>
-
 <tr>
 <td>uncordon</td>
 <td>标记 node 为 schedulable</td>
 </tr>
-
 <tr>
 <td>drain</td>
 <td>Drain node in preparation for maintenance</td>
 </tr>
-
 <tr>
 <td>taint</td>
 <td>更新一个或者多个 node 上的 taints</td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 </tr>
-
 <tr>
 <td>Troubleshooting and Debugging Commands:</td>
 <td></td>
 </tr>
-
 <tr>
 <td>describe</td>
 <td>显示一个指定 resource 或者 group 的 resources 详情</td>
 </tr>
-
 <tr>
 <td>logs</td>
 <td>输出容器在 pod 中的日志</td>
 </tr>
-
 <tr>
 <td>attach</td>
 <td>Attach 到一个运行中的 container</td>
 </tr>
-
 <tr>
 <td>exec</td>
 <td>在一个 container 中执行一个命令</td>
 </tr>
-
 <tr>
 <td>port-forward</td>
 <td>Forward one or more local ports to a pod</td>
 </tr>
-
 <tr>
 <td>proxy</td>
 <td>运行一个 proxy 到 Kubernetes API server</td>
 </tr>
-
 <tr>
 <td>cp</td>
 <td>复制 files 和 directories 到 containers 和从容器中复制 files 和 directories.</td>
 </tr>
-
 <tr>
 <td>auth</td>
 <td>Inspect authorization</td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 </tr>
-
 <tr>
 <td>Advanced Commands:</td>
 <td></td>
 </tr>
-
 <tr>
 <td>diff</td>
 <td>Diff live version against would-be applied version</td>
 </tr>
-
 <tr>
 <td>apply</td>
 <td>通过文件名或标准输入流(stdin)对资源进行配置</td>
 </tr>
-
 <tr>
 <td>patch</td>
 <td>使用 strategic merge patch 更新一个资源的 field(s)</td>
 </tr>
-
 <tr>
 <td>replace</td>
 <td>通过 filename 或者 stdin替换一个资源</td>
 </tr>
-
 <tr>
 <td>wait</td>
 <td>Experimental: Wait for a specific condition on one or many resources.</td>
 </tr>
-
 <tr>
 <td>convert</td>
 <td>在不同的 API versions 转换配置文件</td>
 </tr>
-
 <tr>
 <td>kustomize</td>
 <td>Build a kustomization target from a directory or a remote url.</td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 </tr>
-
 <tr>
 <td>Settings Commands:</td>
 <td></td>
 </tr>
-
 <tr>
 <td>label</td>
 <td>更新在这个资源上的 labels</td>
 </tr>
-
 <tr>
 <td>annotate</td>
 <td>更新一个资源的注解</td>
 </tr>
-
 <tr>
 <td>completion</td>
 <td>Output shell completion code for the specified shell (bash or zsh)</td>
 </tr>
-
 <tr>
 <td></td>
 <td></td>
 </tr>
-
 <tr>
 <td>Other Commands:</td>
 <td></td>
 </tr>
-
 <tr>
 <td>api-resources</td>
 <td>Print the supported API resources on the server</td>
 </tr>
-
 <tr>
 <td>api-versions</td>
 <td>Print the supported API versions on the server, in the form of &ldquo;group/version&rdquo;</td>
 </tr>
-
 <tr>
 <td>config</td>
 <td>修改 kubeconfig 文件</td>
 </tr>
-
 <tr>
 <td>plugin</td>
 <td>Provides utilities for interacting with plugins.</td>
 </tr>
-
 <tr>
 <td>version</td>
 <td>输出 client 和 server 的版本信息</td>
 </tr>
 </tbody>
 </table>
-
 <p>kubectl 公共命令行参数列表帮助可以通过 <code>kubectl options</code> 进行查看</p>
-
 <p>kubectl 子命令的特定 flags 可以通过 <code>kubectl [command] --help</code> 进行查看</p>
-
 <p>kubectl 输出格式通过 <code>-o</code> 参数指定:</p>
-
-<pre><code>kubectl [command] [TYPE] [NAME] -o=&lt;output_format&gt;
-</code></pre>
-
-<p>根据不同子命令的输出结果，可选的输出格式如表:</p>
-
+<pre tabindex="0"><code>kubectl [command] [TYPE] [NAME] -o=&lt;output_format&gt;
+</code></pre><p>根据不同子命令的输出结果，可选的输出格式如表:</p>
 <table>
 <thead>
 <tr>
@@ -923,379 +843,134 @@
 <th>说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td>-o=custom-columns=(spec)</td>
 <td>根据自定义列名进行输出，以逗号分隔</td>
 </tr>
-
 <tr>
 <td>-o=custom-columns-file=(filename)</td>
 <td>从文件中获取自定义列名进行输出</td>
 </tr>
-
 <tr>
 <td>-o=json</td>
 <td>以 JSON 格式显示结果</td>
 </tr>
-
 <tr>
 <td>-o=jsonpath=(template)</td>
 <td>输出 jsonpath 表达式定义的字段信息</td>
 </tr>
-
 <tr>
 <td>-o=jsonpath-file=(filename)</td>
 <td>输出 jsonpath 表达式定义的字段信息，来源于文件</td>
 </tr>
-
 <tr>
 <td>-o=name</td>
 <td>仅输出资源对象的名称</td>
 </tr>
-
 <tr>
 <td>-o=wide</td>
 <td>输出额外信息。对于 Pod，输出 Pod 所在的 Node 名</td>
 </tr>
-
 <tr>
 <td>-o=yaml</td>
 <td>以 yaml 形式显示结果</td>
 </tr>
 </tbody>
 </table>
-
 <p>常用的输出格式示例如下:</p>
-
-<p>1) 显示 Pod 更多信息:
+<ol>
+<li>
+<p>显示 Pod 更多信息:
 <code>kubectl get pod &lt;pod-name&gt; -o wide</code></p>
-
-<p>2) 以 yaml 格式显示 Pod 详细信息:
+</li>
+<li>
+<p>以 yaml 格式显示 Pod 详细信息:
 <code>kubectl get pod &lt;pod-name&gt; -o yaml</code></p>
-
-<p>3) 以自定义列名显示 Pod 信息:
+</li>
+<li>
+<p>以自定义列名显示 Pod 信息:
 <code>kubectl get pod &lt;pod-name&gt; -o=custom-columns=NAME:.metadata.name,RSRC:.metadata.recoursceVersion</code></p>
+</li>
+<li>
+<p>将输出结果按某个字段排序，通过 <code>--sort-by</code> 参数以 jsonpath 表达式进行指定: <code>kubectl [command] [TYPE] [NAME] --sort-by=&lt;jsonpath_exp&gt;</code></p>
+</li>
+</ol>
+<blockquote>
+<p>例如按照名字进行排序: kubectl get pods &ndash;sort-by=.metadata.name</p>
+</blockquote>
 
-<p>4) 将输出结果按某个字段排序，通过 <code>--sort-by</code> 参数以 jsonpath 表达式进行指定: <code>kubectl [command] [TYPE] [NAME] --sort-by=&lt;jsonpath_exp&gt;</code>
-&gt; 例如按照名字进行排序: kubectl get pods &ndash;sort-by=.metadata.name</p>
+          </div>
 
-                        </div>
-
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/golang/tips/go.make.vs.new/">new 与 make 的差别</a></li>
-        
-        <li><a href="/post/golang/upgrade/memory.layout/">Go 内存排布</a></li>
-        
-        <li><a href="/post/backend/raft/">从入门到放弃 - Raft</a></li>
-        
-        <li><a href="/post/backend/dns/">DNS 域名系统</a></li>
-        
-        <li><a href="/post/knowledge/company_blog/">知名公司工程博客</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/kubernetes">kubernetes</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/k8s">k8s</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/kubectl">kubectl</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/">&laquo; 初步了解使用 go AST 知识</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/golang/tips/go.make.vs.new/">new 与 make 的差别 &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

@@ -1,48 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on zhaolion&#39;s dropbox</title>
-    <link>https://zhaolion.com/tags/Linux/</link>
-    <description>Recent content in Linux on zhaolion&#39;s dropbox</description>
+    <title>Linux on zhaolion&#39;s knowledge dropbox</title>
+    <link>https://blog.zhaolion.dev/tags/Linux/</link>
+    <description>Recent content in Linux on zhaolion&#39;s knowledge dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 21 Jan 2019 22:39:31 +0800</lastBuildDate>
-    
-	<atom:link href="https://zhaolion.com/tags/Linux/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 21 Jan 2019 22:39:31 +0800</lastBuildDate><atom:link href="https://blog.zhaolion.dev/tags/Linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux 常用命令 find</title>
-      <link>https://zhaolion.com/post/linux/basic_usage/find/</link>
+      <link>https://blog.zhaolion.dev/post/linux/basic_usage/find/</link>
       <pubDate>Mon, 21 Jan 2019 22:39:31 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/linux/basic_usage/find/</guid>
+      <guid>https://blog.zhaolion.dev/post/linux/basic_usage/find/</guid>
       <description>查找指定文件名的文件(不区分大小写)
-find -iname [filename]  对找到的文件执行某个命令
-find -iname [filename] -exec md5sum {} \;  查找目录下的所有空文件
-find [dir] -empty  按照文件权限来查找文件
-find [dir] -perm [mode] –print  按照文件的更改时间来查找文件， -n表示文件更改时间距现在n天以内，+n表示文件更改时间距现在n天以前
-find [dir] -mtime -5 –print  查找更改时间比文件file1新但比文件file2旧的文件
-find [dir] -newer file1 ! file2  根据类型查找 -type
-find [dir] -type d –print   b - 块设备文件 d - 目录 c - 字符设备文件 p - 管道文件 l - 符号链接文件 f - 普通文件
- 忽略某个目录</description>
+find -iname [filename] 对找到的文件执行某个命令
+find -iname [filename] -exec md5sum {} \; 查找目录下的所有空文件
+find [dir] -empty 按照文件权限来查找文件
+find [dir] -perm [mode] –print 按照文件的更改时间来查找文件， -n表示文件更改时间距现在n天以内，+n表示文件更改时间距现在n天以前
+find [dir] -mtime -5 –print 查找更改时间比文件file1新但比文件file2旧的文件
+find [dir] -newer file1 ! file2 根据类型查找 -type
+find [dir] -type d –print  b - 块设备文件 d - 目录 c - 字符设备文件 p - 管道文件 l - 符号链接文件 f - 普通文件
+ 忽略某个目录
+find [dir] -path [exclude_dir] -prune -o -print 在目录下查找文件长度大于1 M字节的文件</description>
     </item>
     
     <item>
       <title>Linux 常用命令 grep</title>
-      <link>https://zhaolion.com/post/linux/basic_usage/grep/</link>
+      <link>https://blog.zhaolion.dev/post/linux/basic_usage/grep/</link>
       <pubDate>Sun, 20 Jan 2019 22:28:19 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/linux/basic_usage/grep/</guid>
+      <guid>https://blog.zhaolion.dev/post/linux/basic_usage/grep/</guid>
       <description>在文件中查找字符串(不区分大小写)
-grep -i [word] [file]  在一个文件夹中递归查询包含指定字符串的文件
-grep -r [word] [file / path]  从文件中读取关键词进行搜索
-cat [file] | grep -f [word]  从文件中读取关键词进行搜索 且显示行号
-cat [file] | grep -nf [word]  从多个文件中查找关键词
-grep [word] [file1] [file2]  显示包含 a 或者 b 字符的内容行
-cat [file] |grep -E &amp;quot;a|b&amp;quot;  grep 不显示本身进程
-ps aux | grep [word] | grep -v &amp;quot;grep&amp;quot;  使用 ^ 符号输出所有以某指定模式开头的行
-grep ^docker [file]  使用 $ 符号输出所有以指定模式结尾的行</description>
+grep -i [word] [file] 在一个文件夹中递归查询包含指定字符串的文件
+grep -r [word] [file / path] 从文件中读取关键词进行搜索
+cat [file] | grep -f [word] 从文件中读取关键词进行搜索 且显示行号
+cat [file] | grep -nf [word] 从多个文件中查找关键词
+grep [word] [file1] [file2] 显示包含 a 或者 b 字符的内容行
+cat [file] |grep -E &amp;#34;a|b&amp;#34; grep 不显示本身进程
+ps aux | grep [word] | grep -v &amp;#34;grep&amp;#34; 使用 ^ 符号输出所有以某指定模式开头的行
+grep ^docker [file] 使用 $ 符号输出所有以指定模式结尾的行
+grep git$ [file] 使用 grep 查找文件中所有的空行
+grep ^$ [file] 输出匹配指定模式行的前N行</description>
     </item>
     
   </channel>

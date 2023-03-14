@@ -1,43 +1,38 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rails on zhaolion&#39;s dropbox</title>
-    <link>https://zhaolion.com/tags/Rails/</link>
-    <description>Recent content in Rails on zhaolion&#39;s dropbox</description>
+    <title>Rails on zhaolion&#39;s knowledge dropbox</title>
+    <link>https://blog.zhaolion.dev/tags/Rails/</link>
+    <description>Recent content in Rails on zhaolion&#39;s knowledge dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 12 Dec 2019 22:56:34 +0800</lastBuildDate>
-    
-	<atom:link href="https://zhaolion.com/tags/Rails/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 12 Dec 2019 22:56:34 +0800</lastBuildDate><atom:link href="https://blog.zhaolion.dev/tags/Rails/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Around Alias</title>
-      <link>https://zhaolion.com/post/ruby/tips.around.alias/</link>
+      <link>https://blog.zhaolion.dev/post/ruby/tips.around.alias/</link>
       <pubDate>Thu, 12 Dec 2019 22:56:34 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/ruby/tips.around.alias/</guid>
+      <guid>https://blog.zhaolion.dev/post/ruby/tips.around.alias/</guid>
       <description>Ruby 中的环绕别名 (around Alias) 带来的一系列 Google 先来看一段代码，体验一下什么是环绕别名 (around Alias) :
-class String alias :old_length :length def length &amp;quot;Length of&#39;#{self}&#39;is: #{old_length}&amp;quot; end end &amp;quot;abc&amp;quot;.length #=&amp;gt; &amp;quot;Length of&#39;abc&#39;is: 3&amp;quot;  后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 alias_method_chain 来辅助实现。
+class String  alias :old_length :length   def length  &amp;#34;Length of&amp;#39;#{self}&amp;#39;is: #{old_length}&amp;#34;  end end  &amp;#34;abc&amp;#34;.length #=&amp;gt; &amp;#34;Length of&amp;#39;abc&amp;#39;is: 3&amp;#34; 后面去 RubyChina 学习发现这是一种 Alias method chain pattern, 在 Rails3 中使用非常广泛，在 Rails5 上面被 prepend 替代了。在 Ruby 2.0 出来之前，Alias method chain pattern 这种做法在 Rails3 ActiveSupport 提供了 alias_method_chain 来辅助实现。
 归根结底: 通过环绕别名，既修改了自己的逻辑，又不需要调用者更改自己的代码
-什么是 alias_method_chain 很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: Ruby on Rails: alias_method_chain, what exactly does it do?
-when would you use alias_method_chain and why?</description>
+什么是 alias_method_chain 很多人都很迷茫，不知道这个方法怎么用，所以栈爆网有这么一个问题: Ruby on Rails: alias_method_chain, what exactly does it do?</description>
     </item>
     
     <item>
       <title>Best Practice about ROR</title>
-      <link>https://zhaolion.com/post/ruby/best.practice.on.rails/</link>
+      <link>https://blog.zhaolion.dev/post/ruby/best.practice.on.rails/</link>
       <pubDate>Thu, 12 Dec 2019 22:17:42 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/ruby/best.practice.on.rails/</guid>
+      <guid>https://blog.zhaolion.dev/post/ruby/best.practice.on.rails/</guid>
       <description>[TOC]
 About ruby 带 block 遍历数组应该使用 each 而不是 for before:
 这里需要遍历数组并且打印
-for elem in [1, 2, 3, 4, 5] puts elem end  Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:
-[1, 2, 3, 4, 5].each do |elem| puts elem end  还可以变得更简单一点:
-[1, 2, 3, 4, 5].each { |elem| puts elem }  收集结果(遍历数组元素的处理结果)使用 map 而不是 each + &amp;lt;&amp;lt; 这里希望收集数组中特定元素的大写形式
+for elem in [1, 2, 3, 4, 5] puts elem end Ruby 里面使用 each 带一个 block是一个更有效率的做法 after:
+[1, 2, 3, 4, 5].each do |elem| puts elem end 还可以变得更简单一点:
+[1, 2, 3, 4, 5].each { |elem| puts elem } 收集结果(遍历数组元素的处理结果)使用 map 而不是 each + &amp;laquo; 这里希望收集数组中特定元素的大写形式
 before:
-result = [] [&#39;biology&#39;, &#39;english&#39;, &#39;Math&#39;].each do |major| next if major.</description>
+result = [] [&amp;#39;biology&amp;#39;, &amp;#39;english&amp;#39;, &amp;#39;Math&amp;#39;].each do |major| next if major.size &amp;lt; 5 result &amp;lt;&amp;lt; major.</description>
     </item>
     
   </channel>

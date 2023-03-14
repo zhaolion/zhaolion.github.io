@@ -1,789 +1,518 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>js 保留关键字以及危险变量名 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="js 保留关键字以及危险变量名 - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2016-10-14T22:30:56&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2016-10-14T22:30:56&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="js 保留关键字以及危险变量名">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/js/danger/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>js 保留关键字以及危险变量名 - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="Javascript 的保留关键字（标识符）不可以用作变量、标签或者函数名。
+有些保留关键字是作为 Javascript 以后扩展使用。
+关键字是严格不允许，而浏览器定义的变量名或者类名在使用的时候注意确保作用域
+EMCAScript 中的关键字    break case catch continue s     abstract arguments boolean break byte   case catch char class* const   continue debugger default delete do   double else enum* eval export*   extends* false final finally float   for function goto if implements   import* in instanceof int interface   let long native new null   package private protected public return   short static super* switch synchronized   this throw throws transient true   try typeof var void volatile   while with yield      &amp;rsquo;*&amp;rsquo; 标记的关键字是 ECMAScript5 中新添加的。"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/js/danger/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Javascript 的保留关键字（标识符）不可以用作变量、标签或者函数名。
+有些保留关键字是作为 Javascript 以后扩展使用。
+关键字是严格不允许，而浏览器定义的变量名或者类名在使用的时候注意确保作用域
+EMCAScript 中的关键字    break case catch continue s     abstract arguments boolean break byte   case catch char class* const   continue debugger default delete do   double else enum* eval export*   extends* false final finally float   for function goto if implements   import* in instanceof int interface   let long native new null   package private protected public return   short static super* switch synchronized   this throw throws transient true   try typeof var void volatile   while with yield      &amp;rsquo;*&amp;rsquo; 标记的关键字是 ECMAScript5 中新添加的。" />
+<meta name="twitter:title" content="js 保留关键字以及危险变量名 - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="js 保留关键字以及危险变量名 - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="Javascript 的保留关键字（标识符）不可以用作变量、标签或者函数名。
+有些保留关键字是作为 Javascript 以后扩展使用。
+关键字是严格不允许，而浏览器定义的变量名或者类名在使用的时候注意确保作用域
+EMCAScript 中的关键字    break case catch continue s     abstract arguments boolean break byte   case catch char class* const   continue debugger default delete do   double else enum* eval export*   extends* false final finally float   for function goto if implements   import* in instanceof int interface   let long native new null   package private protected public return   short static super* switch synchronized   this throw throws transient true   try typeof var void volatile   while with yield      &amp;rsquo;*&amp;rsquo; 标记的关键字是 ECMAScript5 中新添加的。" property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/js/danger/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Javascript" /><meta property="article:section" content="Web" />
+<meta property="article:published_time" content="2016-10-14 22:30:56 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "js 保留关键字以及危险变量名",
+    "genre": "JavascriptWeb",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/js\/danger\/",
+    "datePublished": "2016-10-14 22:30:56 \u002b0800 CST",
+    "description": "Javascript 的保留关键字（标识符）不可以用作变量、标签或者函数名。\n有些保留关键字是作为 Javascript 以后扩展使用。\n关键字是严格不允许，而浏览器定义的变量名或者类名在使用的时候注意确保作用域\nEMCAScript 中的关键字    break case catch continue s     abstract arguments boolean break byte   case catch char class* const   continue debugger default delete do   double else enum* eval export*   extends* false final finally float   for function goto if implements   import* in instanceof int interface   let long native new null   package private protected public return   short static super* switch synchronized   this throw throws transient true   try typeof var void volatile   while with yield      \u0026rsquo;*\u0026rsquo; 标记的关键字是 ECMAScript5 中新添加的。",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">js 保留关键字以及危险变量名</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2016年10月14日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Javascript">Javascript</a></span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Web">Web</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">js 保留关键字以及危险变量名</h1>
+            <p class="post-meta"><time datetime='2016-10-14T22:30:56&#43;08:00' itemprop="datePublished">October 14, 2016</time></p>
+                 
+          </header>
 
-<p>Javascript 的保留关键字（标识符）不可以用作变量、标签或者函数名。</p>
-
+          <div class="post-content" itemprop="articleBody">
+            <p>Javascript 的保留关键字（标识符）不可以用作变量、标签或者函数名。</p>
 <p>有些保留关键字是作为 Javascript 以后扩展使用。</p>
-
 <p>关键字是严格不允许，而浏览器定义的变量名或者类名在使用的时候注意确保作用域</p>
-
 <h1 id="emcascript-中的关键字">EMCAScript 中的关键字</h1>
-
 <table>
 <thead>
 <tr>
-<th align="left">break</th>
-<th align="left">case</th>
-<th align="left">catch</th>
-<th align="left">continue</th>
-<th align="left">s</th>
+<th style="text-align:left">break</th>
+<th style="text-align:left">case</th>
+<th style="text-align:left">catch</th>
+<th style="text-align:left">continue</th>
+<th style="text-align:left">s</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">abstract</td>
-<td align="left">arguments</td>
-<td align="left">boolean</td>
-<td align="left">break</td>
-<td align="left">byte</td>
+<td style="text-align:left">abstract</td>
+<td style="text-align:left">arguments</td>
+<td style="text-align:left">boolean</td>
+<td style="text-align:left">break</td>
+<td style="text-align:left">byte</td>
 </tr>
-
 <tr>
-<td align="left">case</td>
-<td align="left">catch</td>
-<td align="left">char</td>
-<td align="left">class*</td>
-<td align="left">const</td>
+<td style="text-align:left">case</td>
+<td style="text-align:left">catch</td>
+<td style="text-align:left">char</td>
+<td style="text-align:left">class*</td>
+<td style="text-align:left">const</td>
 </tr>
-
 <tr>
-<td align="left">continue</td>
-<td align="left">debugger</td>
-<td align="left">default</td>
-<td align="left">delete</td>
-<td align="left">do</td>
+<td style="text-align:left">continue</td>
+<td style="text-align:left">debugger</td>
+<td style="text-align:left">default</td>
+<td style="text-align:left">delete</td>
+<td style="text-align:left">do</td>
 </tr>
-
 <tr>
-<td align="left">double</td>
-<td align="left">else</td>
-<td align="left">enum*</td>
-<td align="left">eval</td>
-<td align="left">export*</td>
+<td style="text-align:left">double</td>
+<td style="text-align:left">else</td>
+<td style="text-align:left">enum*</td>
+<td style="text-align:left">eval</td>
+<td style="text-align:left">export*</td>
 </tr>
-
 <tr>
-<td align="left">extends*</td>
-<td align="left">false</td>
-<td align="left">final</td>
-<td align="left">finally</td>
-<td align="left">float</td>
+<td style="text-align:left">extends*</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">final</td>
+<td style="text-align:left">finally</td>
+<td style="text-align:left">float</td>
 </tr>
-
 <tr>
-<td align="left">for</td>
-<td align="left">function</td>
-<td align="left">goto</td>
-<td align="left">if</td>
-<td align="left">implements</td>
+<td style="text-align:left">for</td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">goto</td>
+<td style="text-align:left">if</td>
+<td style="text-align:left">implements</td>
 </tr>
-
 <tr>
-<td align="left">import*</td>
-<td align="left">in</td>
-<td align="left">instanceof</td>
-<td align="left">int</td>
-<td align="left">interface</td>
+<td style="text-align:left">import*</td>
+<td style="text-align:left">in</td>
+<td style="text-align:left">instanceof</td>
+<td style="text-align:left">int</td>
+<td style="text-align:left">interface</td>
 </tr>
-
 <tr>
-<td align="left">let</td>
-<td align="left">long</td>
-<td align="left">native</td>
-<td align="left">new</td>
-<td align="left">null</td>
+<td style="text-align:left">let</td>
+<td style="text-align:left">long</td>
+<td style="text-align:left">native</td>
+<td style="text-align:left">new</td>
+<td style="text-align:left">null</td>
 </tr>
-
 <tr>
-<td align="left">package</td>
-<td align="left">private</td>
-<td align="left">protected</td>
-<td align="left">public</td>
-<td align="left">return</td>
+<td style="text-align:left">package</td>
+<td style="text-align:left">private</td>
+<td style="text-align:left">protected</td>
+<td style="text-align:left">public</td>
+<td style="text-align:left">return</td>
 </tr>
-
 <tr>
-<td align="left">short</td>
-<td align="left">static</td>
-<td align="left">super*</td>
-<td align="left">switch</td>
-<td align="left">synchronized</td>
+<td style="text-align:left">short</td>
+<td style="text-align:left">static</td>
+<td style="text-align:left">super*</td>
+<td style="text-align:left">switch</td>
+<td style="text-align:left">synchronized</td>
 </tr>
-
 <tr>
-<td align="left">this</td>
-<td align="left">throw</td>
-<td align="left">throws</td>
-<td align="left">transient</td>
-<td align="left">true</td>
+<td style="text-align:left">this</td>
+<td style="text-align:left">throw</td>
+<td style="text-align:left">throws</td>
+<td style="text-align:left">transient</td>
+<td style="text-align:left">true</td>
 </tr>
-
 <tr>
-<td align="left">try</td>
-<td align="left">typeof</td>
-<td align="left">var</td>
-<td align="left">void</td>
-<td align="left">volatile</td>
+<td style="text-align:left">try</td>
+<td style="text-align:left">typeof</td>
+<td style="text-align:left">var</td>
+<td style="text-align:left">void</td>
+<td style="text-align:left">volatile</td>
 </tr>
-
 <tr>
-<td align="left">while</td>
-<td align="left">with</td>
-<td align="left">yield</td>
-<td align="left"></td>
-<td align="left"></td>
+<td style="text-align:left">while</td>
+<td style="text-align:left">with</td>
+<td style="text-align:left">yield</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
 </tr>
 </tbody>
 </table>
-
-<p><strong>&lsquo;*&rsquo; 标记的关键字是 ECMAScript5 中新添加的。</strong></p>
-
-<h1 id="javascript-对象-属性和方法">JavaScript 对象、属性和方法</h1>
-
+<p><strong>&rsquo;*&rsquo; 标记的关键字是 ECMAScript5 中新添加的。</strong></p>
+<h1 id="javascript-对象属性和方法">JavaScript 对象、属性和方法</h1>
 <p>您也应该避免使用 JavaScript 内置的对象、属性和方法的名称作为 Javascript 的变量或函数名：</p>
-
 <table>
 <thead>
 <tr>
-<th align="left">abstract</th>
-<th align="left">arguments</th>
-<th align="left">boolean</th>
-<th align="left">break</th>
-<th align="left">byte</th>
+<th style="text-align:left">abstract</th>
+<th style="text-align:left">arguments</th>
+<th style="text-align:left">boolean</th>
+<th style="text-align:left">break</th>
+<th style="text-align:left">byte</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">Array</td>
-<td align="left">Date</td>
-<td align="left">eval</td>
-<td align="left">function</td>
-<td align="left">hasOwnProperty</td>
+<td style="text-align:left">Array</td>
+<td style="text-align:left">Date</td>
+<td style="text-align:left">eval</td>
+<td style="text-align:left">function</td>
+<td style="text-align:left">hasOwnProperty</td>
 </tr>
-
 <tr>
-<td align="left">Infinity</td>
-<td align="left">isFinite</td>
-<td align="left">isNaN</td>
-<td align="left">isPrototypeOf</td>
-<td align="left">length</td>
+<td style="text-align:left">Infinity</td>
+<td style="text-align:left">isFinite</td>
+<td style="text-align:left">isNaN</td>
+<td style="text-align:left">isPrototypeOf</td>
+<td style="text-align:left">length</td>
 </tr>
-
 <tr>
-<td align="left">Math</td>
-<td align="left">NaN</td>
-<td align="left">name</td>
-<td align="left">Number</td>
-<td align="left">Object</td>
+<td style="text-align:left">Math</td>
+<td style="text-align:left">NaN</td>
+<td style="text-align:left">name</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">Object</td>
 </tr>
-
 <tr>
-<td align="left">prototype</td>
-<td align="left">String</td>
-<td align="left">toString</td>
-<td align="left">undefined</td>
-<td align="left">valueOf</td>
+<td style="text-align:left">prototype</td>
+<td style="text-align:left">String</td>
+<td style="text-align:left">toString</td>
+<td style="text-align:left">undefined</td>
+<td style="text-align:left">valueOf</td>
 </tr>
 </tbody>
 </table>
-
 <h1 id="java-保留关键字">Java 保留关键字</h1>
-
 <p>JavaScript 经常与 Java 一起使用。您应该避免使用一些 Java 对象和属性作为 JavaScript 标识符：</p>
-
 <p>| 保留关键字 | －   | －        | －        | -| -                   |
 |:&mdash;&mdash;&mdash;&ndash;|:&mdash;&ndash;|:&mdash;&mdash;&mdash;-|:&mdash;&mdash;&mdash;-|:&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|
-| getClass   | java | JavaArray | javaClass | JavaObject    |JavaPackage |</p>
-
+| getClass   | java | JavaArray | javaClass | JavaObject	|JavaPackage |</p>
 <h1 id="windows-保留关键字">Windows 保留关键字</h1>
-
 <p>JavaScript 可以在 HTML 外部使用。它可在许多其他应用程序中作为编程语言使用。
 在 HTML 中，您必须（为了可移植性，您也应该这么做）避免使用 HTML 和 Windows 对象和属性的名称
 作为 Javascript 的变量及函数名：</p>
-
 <table>
 <thead>
 <tr>
-<th align="left">保留关键字</th>
-<th align="left">－</th>
-<th align="left">－</th>
-<th align="left">－</th>
-<th align="left">-</th>
+<th style="text-align:left">保留关键字</th>
+<th style="text-align:left">－</th>
+<th style="text-align:left">－</th>
+<th style="text-align:left">－</th>
+<th style="text-align:left">-</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">alert</td>
-<td align="left">all</td>
-<td align="left">anchor</td>
-<td align="left">anchors</td>
-<td align="left">area</td>
+<td style="text-align:left">alert</td>
+<td style="text-align:left">all</td>
+<td style="text-align:left">anchor</td>
+<td style="text-align:left">anchors</td>
+<td style="text-align:left">area</td>
 </tr>
-
 <tr>
-<td align="left">assign</td>
-<td align="left">blur</td>
-<td align="left">button</td>
-<td align="left">checkbox</td>
-<td align="left">clearInterval</td>
+<td style="text-align:left">assign</td>
+<td style="text-align:left">blur</td>
+<td style="text-align:left">button</td>
+<td style="text-align:left">checkbox</td>
+<td style="text-align:left">clearInterval</td>
 </tr>
-
 <tr>
-<td align="left">clearTimeout</td>
-<td align="left">clientInformation</td>
-<td align="left">close</td>
-<td align="left">closed</td>
-<td align="left">confirm</td>
+<td style="text-align:left">clearTimeout</td>
+<td style="text-align:left">clientInformation</td>
+<td style="text-align:left">close</td>
+<td style="text-align:left">closed</td>
+<td style="text-align:left">confirm</td>
 </tr>
-
 <tr>
-<td align="left">constructor</td>
-<td align="left">crypto   decodeURI</td>
-<td align="left">decodeURIComponent</td>
-<td align="left">defaultStatus</td>
-<td align="left"></td>
+<td style="text-align:left">constructor</td>
+<td style="text-align:left">crypto	decodeURI</td>
+<td style="text-align:left">decodeURIComponent</td>
+<td style="text-align:left">defaultStatus</td>
+<td style="text-align:left"></td>
 </tr>
-
 <tr>
-<td align="left">document</td>
-<td align="left">element</td>
-<td align="left">elements</td>
-<td align="left">embed</td>
-<td align="left">embeds</td>
+<td style="text-align:left">document</td>
+<td style="text-align:left">element</td>
+<td style="text-align:left">elements</td>
+<td style="text-align:left">embed</td>
+<td style="text-align:left">embeds</td>
 </tr>
-
 <tr>
-<td align="left">encodeURI</td>
-<td align="left">encodeURIComponent</td>
-<td align="left">escape</td>
-<td align="left">event</td>
-<td align="left">fileUpload</td>
+<td style="text-align:left">encodeURI</td>
+<td style="text-align:left">encodeURIComponent</td>
+<td style="text-align:left">escape</td>
+<td style="text-align:left">event</td>
+<td style="text-align:left">fileUpload</td>
 </tr>
-
 <tr>
-<td align="left">focus</td>
-<td align="left">form</td>
-<td align="left">forms</td>
-<td align="left">frame</td>
-<td align="left">innerHeight</td>
+<td style="text-align:left">focus</td>
+<td style="text-align:left">form</td>
+<td style="text-align:left">forms</td>
+<td style="text-align:left">frame</td>
+<td style="text-align:left">innerHeight</td>
 </tr>
-
 <tr>
-<td align="left">innerWidth</td>
-<td align="left">layer</td>
-<td align="left">layers</td>
-<td align="left">link</td>
-<td align="left">location</td>
+<td style="text-align:left">innerWidth</td>
+<td style="text-align:left">layer</td>
+<td style="text-align:left">layers</td>
+<td style="text-align:left">link</td>
+<td style="text-align:left">location</td>
 </tr>
-
 <tr>
-<td align="left">mimeTypes</td>
-<td align="left">navigate</td>
-<td align="left">navigator</td>
-<td align="left">frames</td>
-<td align="left">frameRate</td>
+<td style="text-align:left">mimeTypes</td>
+<td style="text-align:left">navigate</td>
+<td style="text-align:left">navigator</td>
+<td style="text-align:left">frames</td>
+<td style="text-align:left">frameRate</td>
 </tr>
-
 <tr>
-<td align="left">hidden</td>
-<td align="left">history</td>
-<td align="left">image</td>
-<td align="left">images</td>
-<td align="left">offscreenBuffering</td>
+<td style="text-align:left">hidden</td>
+<td style="text-align:left">history</td>
+<td style="text-align:left">image</td>
+<td style="text-align:left">images</td>
+<td style="text-align:left">offscreenBuffering</td>
 </tr>
-
 <tr>
-<td align="left">open</td>
-<td align="left">opener</td>
-<td align="left">option</td>
-<td align="left">outerHeight</td>
-<td align="left">outerWidth</td>
+<td style="text-align:left">open</td>
+<td style="text-align:left">opener</td>
+<td style="text-align:left">option</td>
+<td style="text-align:left">outerHeight</td>
+<td style="text-align:left">outerWidth</td>
 </tr>
-
 <tr>
-<td align="left">packages</td>
-<td align="left">pageXOffset</td>
-<td align="left">pageYOffset</td>
-<td align="left">parent</td>
-<td align="left">parseFloat</td>
+<td style="text-align:left">packages</td>
+<td style="text-align:left">pageXOffset</td>
+<td style="text-align:left">pageYOffset</td>
+<td style="text-align:left">parent</td>
+<td style="text-align:left">parseFloat</td>
 </tr>
-
 <tr>
-<td align="left">parseInt</td>
-<td align="left">password</td>
-<td align="left">pkcs11</td>
-<td align="left">plugin</td>
-<td align="left">prompt</td>
+<td style="text-align:left">parseInt</td>
+<td style="text-align:left">password</td>
+<td style="text-align:left">pkcs11</td>
+<td style="text-align:left">plugin</td>
+<td style="text-align:left">prompt</td>
 </tr>
-
 <tr>
-<td align="left">propertyIsEnum</td>
-<td align="left">radio</td>
-<td align="left">reset</td>
-<td align="left">screenX</td>
-<td align="left">screenY</td>
+<td style="text-align:left">propertyIsEnum</td>
+<td style="text-align:left">radio</td>
+<td style="text-align:left">reset</td>
+<td style="text-align:left">screenX</td>
+<td style="text-align:left">screenY</td>
 </tr>
-
 <tr>
-<td align="left">scroll</td>
-<td align="left">secure</td>
-<td align="left">select</td>
-<td align="left">self</td>
-<td align="left">setInterval</td>
+<td style="text-align:left">scroll</td>
+<td style="text-align:left">secure</td>
+<td style="text-align:left">select</td>
+<td style="text-align:left">self</td>
+<td style="text-align:left">setInterval</td>
 </tr>
-
 <tr>
-<td align="left">setTimeout</td>
-<td align="left">status</td>
-<td align="left">submit</td>
-<td align="left">taint</td>
-<td align="left">text</td>
+<td style="text-align:left">setTimeout</td>
+<td style="text-align:left">status</td>
+<td style="text-align:left">submit</td>
+<td style="text-align:left">taint</td>
+<td style="text-align:left">text</td>
 </tr>
-
 <tr>
-<td align="left">textarea</td>
-<td align="left">top</td>
-<td align="left">unescape</td>
-<td align="left">untaint</td>
-<td align="left">window</td>
+<td style="text-align:left">textarea</td>
+<td style="text-align:left">top</td>
+<td style="text-align:left">unescape</td>
+<td style="text-align:left">untaint</td>
+<td style="text-align:left">window</td>
 </tr>
 </tbody>
 </table>
-
 <h1 id="html-事件句柄">HTML 事件句柄</h1>
-
 <p>除此之外，您还应该避免使用 HTML 事件句柄的名称作为 Javascript 的变量及函数名。</p>
-
 <table>
 <thead>
 <tr>
-<th align="left">保留关键字</th>
-<th align="left">－</th>
-<th align="left">－</th>
-<th align="left">－</th>
+<th style="text-align:left">保留关键字</th>
+<th style="text-align:left">－</th>
+<th style="text-align:left">－</th>
+<th style="text-align:left">－</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">onblur</td>
-<td align="left">onclick</td>
-<td align="left">onerror</td>
-<td align="left">onfocus</td>
+<td style="text-align:left">onblur</td>
+<td style="text-align:left">onclick</td>
+<td style="text-align:left">onerror</td>
+<td style="text-align:left">onfocus</td>
 </tr>
-
 <tr>
-<td align="left">onkeydown</td>
-<td align="left">onkeypress</td>
-<td align="left">onkeyup</td>
-<td align="left">onmouseover</td>
+<td style="text-align:left">onkeydown</td>
+<td style="text-align:left">onkeypress</td>
+<td style="text-align:left">onkeyup</td>
+<td style="text-align:left">onmouseover</td>
 </tr>
-
 <tr>
-<td align="left">onload</td>
-<td align="left">onmouseup</td>
-<td align="left">onmousedown</td>
-<td align="left">onsubmit</td>
+<td style="text-align:left">onload</td>
+<td style="text-align:left">onmouseup</td>
+<td style="text-align:left">onmousedown</td>
+<td style="text-align:left">onsubmit</td>
 </tr>
 </tbody>
 </table>
 
-                        </div>
+          </div>
 
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/css/intro-box/">CSS入门笔记 － 认识盒子模型</a></li>
-        
-        <li><a href="/post/css/intro-1/">CSS入门笔记 － 初识CSS</a></li>
-        
-        <li><a href="/post/html/intro/">HTML 入门笔记 － 初识HTML</a></li>
-        
-        <li><a href="/archives/">归档</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Javascript">Javascript</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/basic">basic</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/js/intro-1/">&laquo; js intro 基本介绍</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/css/intro-box/">CSS入门笔记 － 认识盒子模型 &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

@@ -1,108 +1,128 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>database/sql: Stmt的使用以及坑 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="database/sql: Stmt的使用以及坑 - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2019-01-14T00:37:49&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2019-01-14T00:37:49&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="database/sql: Stmt的使用以及坑">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/golang/upgrade/database.sql.driver.stmt/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>database/sql: Stmt的使用以及坑 - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="基本知识 众所周知，Golang 操作数据库，是通过 database/sql 包，以及第三方的实现了 database/sql/driver 接口的数据库驱动包来共同完成的。
+其中 database/sql/driver 中的接口 Conn 和 Stmt，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 database/sql 包中的 DB 和 Stmt 是协程安全的，因为内部实现是连接池。
+如何使用 database/sql 的 MySQL 驱动的使用范例 基本类似于
+// Insert stmtIns, err := db.Prepare(&amp;#34;INSERT INTO squareNum VALUES( ?, ? )&amp;#34;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&amp;#34;SELECT squareNumber FROM squarenum WHERE number = ?"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/golang/upgrade/database.sql.driver.stmt/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="基本知识 众所周知，Golang 操作数据库，是通过 database/sql 包，以及第三方的实现了 database/sql/driver 接口的数据库驱动包来共同完成的。
+其中 database/sql/driver 中的接口 Conn 和 Stmt，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 database/sql 包中的 DB 和 Stmt 是协程安全的，因为内部实现是连接池。
+如何使用 database/sql 的 MySQL 驱动的使用范例 基本类似于
+// Insert stmtIns, err := db.Prepare(&amp;#34;INSERT INTO squareNum VALUES( ?, ? )&amp;#34;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&amp;#34;SELECT squareNumber FROM squarenum WHERE number = ?" />
+<meta name="twitter:title" content="database/sql: Stmt的使用以及坑 - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="database/sql: Stmt的使用以及坑 - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="基本知识 众所周知，Golang 操作数据库，是通过 database/sql 包，以及第三方的实现了 database/sql/driver 接口的数据库驱动包来共同完成的。
+其中 database/sql/driver 中的接口 Conn 和 Stmt，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 database/sql 包中的 DB 和 Stmt 是协程安全的，因为内部实现是连接池。
+如何使用 database/sql 的 MySQL 驱动的使用范例 基本类似于
+// Insert stmtIns, err := db.Prepare(&amp;#34;INSERT INTO squareNum VALUES( ?, ? )&amp;#34;) if err != nil { panic(err.Error()) // proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) // Query stmtOut, err := db.Prepare(&amp;#34;SELECT squareNumber FROM squarenum WHERE number = ?" property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/golang/upgrade/database.sql.driver.stmt/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Golang" />
+<meta property="article:published_time" content="2019-01-14 00:37:49 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "database\/sql: Stmt的使用以及坑",
+    "genre": "Golang",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/golang\/upgrade\/database.sql.driver.stmt\/",
+    "datePublished": "2019-01-14 00:37:49 \u002b0800 CST",
+    "description": "基本知识 众所周知，Golang 操作数据库，是通过 database\/sql 包，以及第三方的实现了 database\/sql\/driver 接口的数据库驱动包来共同完成的。\n其中 database\/sql\/driver 中的接口 Conn 和 Stmt，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 database\/sql 包中的 DB 和 Stmt 是协程安全的，因为内部实现是连接池。\n如何使用 database\/sql 的 MySQL 驱动的使用范例 基本类似于\n\/\/ Insert stmtIns, err := db.Prepare(\u0026#34;INSERT INTO squareNum VALUES( ?, ? )\u0026#34;) if err != nil { panic(err.Error()) \/\/ proper error handling instead of panic in your app } defer stmtIns.Close() stmtIns.Exec(i, j) \/\/ Query stmtOut, err := db.Prepare(\u0026#34;SELECT squareNumber FROM squarenum WHERE number = ?",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">database/sql: Stmt的使用以及坑</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2019年1月14日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">database/sql: Stmt的使用以及坑</h1>
+            <p class="post-meta"><time datetime='2019-01-14T00:37:49&#43;08:00' itemprop="datePublished">January 14, 2019</time></p>
+                 
+          </header>
 
-<h2 id="基本知识">基本知识</h2>
-
+          <div class="post-content" itemprop="articleBody">
+            <h2 id="基本知识">基本知识</h2>
 <p>众所周知，Golang 操作数据库，是通过 <code>database/sql</code> 包，以及第三方的实现了 <code>database/sql/driver</code> 接口的数据库驱动包来共同完成的。</p>
-
 <p>其中 <code>database/sql/driver</code> 中的接口 <code>Conn</code> 和 <code>Stmt</code>，官方交给第三方实现驱动，并且是协程不安全的。官方实现的 <code>database/sql</code> 包中的 <code>DB</code> 和 <code>Stmt</code> 是协程安全的，因为内部实现是连接池。</p>
-
 <h2 id="如何使用">如何使用</h2>
-
 <p><code>database/sql</code> 的 MySQL 驱动的<a href="https://github.com/go-sql-driver/mysql/wiki/Examples">使用范例</a> 基本类似于</p>
-
-<pre><code>// Insert
-stmtIns, err := db.Prepare(&quot;INSERT INTO squareNum VALUES( ?, ? )&quot;)
+<pre tabindex="0"><code>// Insert
+stmtIns, err := db.Prepare(&#34;INSERT INTO squareNum VALUES( ?, ? )&#34;)
 if err != nil {
     panic(err.Error()) // proper error handling instead of panic in your app
 }
@@ -111,37 +131,26 @@ defer stmtIns.Close()
 stmtIns.Exec(i, j)
 
 // Query
-stmtOut, err := db.Prepare(&quot;SELECT squareNumber FROM squarenum WHERE number = ?&quot;)
+stmtOut, err := db.Prepare(&#34;SELECT squareNumber FROM squarenum WHERE number = ?&#34;)
 if err != nil {
     panic(err.Error()) // proper error handling instead of panic in your app
 }
 defer stmtOut.Close()
 
 stmtOut.QueryRow(13).Scan(&amp;squareNum)
-</code></pre>
-
-<p>还有另外一种直接使用</p>
-
-<pre><code>// Insert
-db.Exec(&quot;INSERT INTO squareNum VALUES( ?, ? )&quot;, i, j)
+</code></pre><p>还有另外一种直接使用</p>
+<pre tabindex="0"><code>// Insert
+db.Exec(&#34;INSERT INTO squareNum VALUES( ?, ? )&#34;, i, j)
 
 // Query
-db.Query(&quot;SELECT squareNumber FROM squarenum WHERE number = ?&quot;, 13)
-</code></pre>
-
-<p>并且官方的 wiki 里面也推荐第一种 Prepare 过程，这样做的方式可以一定程度上防止SQL注入。</p>
-
+db.Query(&#34;SELECT squareNumber FROM squarenum WHERE number = ?&#34;, 13)
+</code></pre><p>并且官方的 wiki 里面也推荐第一种 Prepare 过程，这样做的方式可以一定程度上防止SQL注入。</p>
 <h2 id="内部处理流程介绍">内部处理流程介绍</h2>
-
-<h3 id="database-sql-处理逻辑">database/sql 处理逻辑</h3>
-
+<h3 id="databasesql-处理逻辑">database/sql 处理逻辑</h3>
 <p>都是程序员了，直接上代码，这里 <code>Query</code> 和 <code>Exec</code> 其实代码逻辑比较类似，可以类比，下面简单介绍一下 <code>Query</code> 是如何实现的。</p>
-
 <p><code>Go 1.10</code> 标准包的逻辑，默认的执行过程中，<code>Query</code> 语句会创建预处理语句，然后在 <code>Stmt</code> 上执行语句。</p>
-
 <p>不过如果使用的驱动实现特定的接口，会执行驱动自己的 <code>Query</code> 逻辑，而不是使用标准包的逻辑</p>
-
-<pre><code>func (db *DB) query(ctx context.Context, query string, args []interface{}, strategy connReuseStrategy) (*Rows, error) {
+<pre tabindex="0"><code>func (db *DB) query(ctx context.Context, query string, args []interface{}, strategy connReuseStrategy) (*Rows, error) {
 	dc, err := db.conn(ctx, strategy)
 	if err != nil {
 		return nil, err
@@ -149,9 +158,7 @@ db.Query(&quot;SELECT squareNumber FROM squarenum WHERE number = ?&quot;, 13)
 
 	return db.queryDC(ctx, nil, dc, dc.releaseConn, query, args)
 }
-</code></pre>
-
-<pre><code>func (db *DB) queryDC(ctx, txctx context.Context, dc *driverConn, releaseConn func(error), query string, args []interface{}) (*Rows, error) {
+</code></pre><pre tabindex="0"><code>func (db *DB) queryDC(ctx, txctx context.Context, dc *driverConn, releaseConn func(error), query string, args []interface{}) (*Rows, error) {
 	queryerCtx, ok := dc.ci.(driver.QueryerContext)
 	var queryer driver.Queryer
 	if !ok {
@@ -214,19 +221,12 @@ db.Query(&quot;SELECT squareNumber FROM squarenum WHERE number = ?&quot;, 13)
 	rows.initContextClose(ctx, txctx)
 	return rows, nil
 }
-</code></pre>
-
-<h3 id="driver-处理逻辑">driver 处理逻辑</h3>
-
+</code></pre><h3 id="driver-处理逻辑">driver 处理逻辑</h3>
 <p>我们使用的 <code>MySQL driver</code> 实现了 <code>Queryer</code> 接口。进入 <code>Mysql</code> 实现逻辑里面一探究竟，其实除了对一些字段特性的处理，也没啥逻辑，还是走到了标准接口 <code>Query</code>。逻辑还是比较简单，针对标准包的实现有一些优化，集中在查询语句的处理。</p>
-
 <p>官方提供的驱动，仍然在贯彻标准包的思想，创建预处理语句，然后在 <code>Stmt</code> 上执行语句。</p>
-
 <p>不过需要注意的是，<code>Go</code> 官方给出的 <code>Mysql Driver</code> 在 v1.3 和之前的版本，在对于 <code>Prepare</code> 过程的处理上有着一定差别。</p>
-
 <p>v1.0 ~ v1.2 版本上的处理逻辑基本相同，在不提供 args 时，会省去 <code>Prepare</code> 过程，否则必定去通过 Server 端来获得预处理语句。</p>
-
-<pre><code class="language-v1.0">func (mc *mysqlConn) Query(query string, args []driver.Value) (driver.Rows, error) {
+<pre tabindex="0"><code class="language-v1.0" data-lang="v1.0">func (mc *mysqlConn) Query(query string, args []driver.Value) (driver.Rows, error) {
 	if len(args) == 0 { // no args, fastpath
 		// Send command
 		err := mc.writeCommandPacketStr(comQuery, query)
@@ -251,407 +251,152 @@ db.Query(&quot;SELECT squareNumber FROM squarenum WHERE number = ?&quot;, 13)
 	// with args, must use prepared stmt
 	return nil, driver.ErrSkip
 }
-</code></pre>
-
-<p>v1.3 版本上修改了必须通过 DB Server 来获得预处理语句的逻辑，倾向于使用 Client 端来提前生成，来减少处理耗时</p>
-
-<pre><code class="language-v1.3">func (mc *mysqlConn) Query(query string, args []driver.Value) (driver.Rows, error) {
-	if mc.netConn == nil {
-		errLog.Print(ErrInvalidConn)
-		return nil, driver.ErrBadConn
-	}
-	if len(args) != 0 {
-		if !mc.cfg.InterpolateParams {
-			return nil, driver.ErrSkip
-		}
-		// try client-side prepare to reduce roundtrip
-		prepared, err := mc.interpolateParams(query, args)
-		if err != nil {
-			return nil, err
-		}
-		query = prepared
-		args = nil
-	}
-	// Send command
-	err := mc.writeCommandPacketStr(comQuery, query)
-	if err == nil {
-		// Read Result
-		var resLen int
-		resLen, err = mc.readResultSetHeaderPacket()
-		if err == nil {
-			rows := new(textRows)
-			rows.mc = mc
-
-			if resLen == 0 {
-				// no columns, no more data
-				return emptyRows{}, nil
-			}
-			// Columns
-			rows.columns, err = mc.readColumns(resLen)
-			return rows, err
-		}
-	}
-	return nil, err
-}
-</code></pre>
-
-<h3 id="prepare-与-stmt">Prepare 与 Stmt</h3>
-
+</code></pre><p>v1.3 版本上修改了必须通过 DB Server 来获得预处理语句的逻辑，倾向于使用 Client 端来提前生成，来减少处理耗时</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-v1.3" data-lang="v1.3"><span style="display:flex;"><span>func (mc *mysqlConn) Query(query string, args []driver.Value) (driver.Rows, error) {
+</span></span><span style="display:flex;"><span>	if mc.netConn == nil {
+</span></span><span style="display:flex;"><span>		errLog.Print(ErrInvalidConn)
+</span></span><span style="display:flex;"><span>		return nil, driver.ErrBadConn
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	if len(args) != 0 {
+</span></span><span style="display:flex;"><span>		if !mc.cfg.InterpolateParams {
+</span></span><span style="display:flex;"><span>			return nil, driver.ErrSkip
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		// try client-side prepare to reduce roundtrip
+</span></span><span style="display:flex;"><span>		prepared, err := mc.interpolateParams(query, args)
+</span></span><span style="display:flex;"><span>		if err != nil {
+</span></span><span style="display:flex;"><span>			return nil, err
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		query = prepared
+</span></span><span style="display:flex;"><span>		args = nil
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	// Send command
+</span></span><span style="display:flex;"><span>	err := mc.writeCommandPacketStr(comQuery, query)
+</span></span><span style="display:flex;"><span>	if err == nil {
+</span></span><span style="display:flex;"><span>		// Read Result
+</span></span><span style="display:flex;"><span>		var resLen int
+</span></span><span style="display:flex;"><span>		resLen, err = mc.readResultSetHeaderPacket()
+</span></span><span style="display:flex;"><span>		if err == nil {
+</span></span><span style="display:flex;"><span>			rows := new(textRows)
+</span></span><span style="display:flex;"><span>			rows.mc = mc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			if resLen == 0 {
+</span></span><span style="display:flex;"><span>				// no columns, no more data
+</span></span><span style="display:flex;"><span>				return emptyRows{}, nil
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>			// Columns
+</span></span><span style="display:flex;"><span>			rows.columns, err = mc.readColumns(resLen)
+</span></span><span style="display:flex;"><span>			return rows, err
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	return nil, err
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="prepare-与-stmt">Prepare 与 Stmt</h3>
 <p>创建 <code>stmt</code> 的 <code>Prepare</code> 方式是 <code>Golang</code> 的一个设计，其目的是 Prepare once, execute many times。为了批量执行 sql 语句。但是通常会造成所谓的三次网络请求（three network round-trips）。即 <code>preparing</code>、<code>executing</code> 和 <code>closing</code> 三次请求。</p>
-
 <p>对于大多数数据库，<code>Prepare</code> 的过程都是，先发送一个带占位符的 sql 语句到服务器，服务器返回一个statement id，然后再把这个id和参数发送给服务器执行，最后再发送关闭statement命令。</p>
-
 <p><code>Golang</code> 实现了连接池，处理 <code>Prepare</code> 方式也需要特别注意。调用 <code>Prepare</code> 方法返回 <code>stmt</code> 的时候，会在某个空闲的连接上进行 <code>Prepare</code> 语句，然后就把连接释放回到连接池，可是会记住这个连接，当需要执行参数的时候，就再次找到之前记住的连接进行执行，等到 <code>stmt.Close</code> 调用的时候，再释放该连接。</p>
-
 <p>在执行参数的时候，如果记住的连接正处于忙碌阶段，将会从新选一个新的空闲连接进行 <code>re-prepare</code>。当然，即使是重新 prepare，同样也会遇到刚才的问题。那么将会一而再再而三的进行 reprepare。直到找到空闲连接进行查询的时候。</p>
-
 <p>这种情况将会导致 leak 连接的情况，尤其是再高并发的情景。将会导致大量的 <code>Prepare</code> 过程。因此使用<code>Stmt</code> 的情况需要仔细考虑应用场景，通常在应用程序中。多次执行同一个sql语句的情况并不多，因此减少prepare 语句的使用。</p>
-
-<h3 id="如何选择-exec-query-还是使用-stmt">如何选择 Exec／Query 还是使用 Stmt</h3>
-
+<h3 id="如何选择-execquery-还是使用-stmt">如何选择 Exec／Query 还是使用 Stmt</h3>
 <p>那么大家也看出来了，如果不是批量的操作，是没必要使用 <code>db.Papare</code> 方法的，否则即多了 <code>Stmt</code> 创建和关闭的性能开销，又多写了两行代码，有点得不偿失。如果是批量的操作，那么毋庸置疑，肯定是 <code>db.Papare</code> 拿到 <code>Stmt</code>，再由 <code>Stmt</code> 去执行 sql，这样保证批量操作只进行一次预处理。</p>
-
 <p>而且对于不同版本的 <code>Driver</code> ，使用上也是有使用的选择余地，下面给个推荐</p>
-
-<p>批量操作：
-- v1.0 ~ v1.2 使用 <code>Stmt</code>
-- v1.3 使用 <code>Stmt</code></p>
-
-<p>单次操作:
-- v1.0 ~ v1.2 使用 <code>Exec(query)</code> &amp; <code>Query(query)</code>
-- v1.3 <code>Exec(query, args...)</code> &amp; <code>Exec(query)</code> &amp; <code>Query(query)</code> &amp; <code>Query(query, args...)</code></p>
-
-<h2 id="发现的问题">发现的问题</h2>
-
-<p>1.连接消耗问题</p>
-
-<p>默认 DB 默认的最大 open 连接数是0。在数据库操作很频繁的实际使用场景中，尤其是一波又一波访问高峰不间断来临的时候，数据库性能会不断的消耗在连接的创建和销毁上，这是很拖累数据和和机器的，所以我们根据提供 的 <code>SetMaxIdleConns</code> 和 <code>SetMaxOpenConns</code>，设置合理的值之后，可以保持机器的稳定</p>
-
-<p>2.避免 Stmt 的滥用</p>
-
-<p>如果直接使用 Stmt 来进行简单查询，会增加数据库 Stmt 开启和关闭，增加延时消耗，而且使用不当，高并发情况下会导致数据库 Stmt 数量暴增，直到达到限制报错。</p>
-
+<p>批量操作：</p>
 <ul>
-<li><p>如果 sql driver 版本过老的情况（如第三方依赖限制），建议查询还是直接使用 Sql 语句来避免 <code>Prepare</code> 过程。</p></li>
-
-<li><p>较新的 sql driver 版本倾向于 Client 端进行预处理，没有限制。</p></li>
-
-<li><p>需要大量执行相同 Sql 的情况下，可以提前生成 Stmt ，来避免重复的 Stmt 过程，记得必须关闭 Stmt。</p></li>
+<li>v1.0 ~ v1.2 使用 <code>Stmt</code></li>
+<li>v1.3 使用 <code>Stmt</code></li>
+</ul>
+<p>单次操作:</p>
+<ul>
+<li>v1.0 ~ v1.2 使用 <code>Exec(query)</code> &amp; <code>Query(query)</code></li>
+<li>v1.3 <code>Exec(query, args...)</code> &amp; <code>Exec(query)</code> &amp; <code>Query(query)</code> &amp; <code>Query(query, args...)</code></li>
+</ul>
+<h2 id="发现的问题">发现的问题</h2>
+<p>1.连接消耗问题</p>
+<p>默认 DB 默认的最大 open 连接数是0。在数据库操作很频繁的实际使用场景中，尤其是一波又一波访问高峰不间断来临的时候，数据库性能会不断的消耗在连接的创建和销毁上，这是很拖累数据和和机器的，所以我们根据提供 的 <code>SetMaxIdleConns</code> 和 <code>SetMaxOpenConns</code>，设置合理的值之后，可以保持机器的稳定</p>
+<p>2.避免 Stmt 的滥用</p>
+<p>如果直接使用 Stmt 来进行简单查询，会增加数据库 Stmt 开启和关闭，增加延时消耗，而且使用不当，高并发情况下会导致数据库 Stmt 数量暴增，直到达到限制报错。</p>
+<ul>
+<li>
+<p>如果 sql driver 版本过老的情况（如第三方依赖限制），建议查询还是直接使用 Sql 语句来避免 <code>Prepare</code> 过程。</p>
+</li>
+<li>
+<p>较新的 sql driver 版本倾向于 Client 端进行预处理，没有限制。</p>
+</li>
+<li>
+<p>需要大量执行相同 Sql 的情况下，可以提前生成 Stmt ，来避免重复的 Stmt 过程，记得必须关闭 Stmt。</p>
+</li>
 </ul>
 
-                        </div>
+          </div>
 
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/golang/basic/go.mod/">Go Modules 简单介绍</a></li>
-        
-        <li><a href="/post/golang/package/reflect/">初步了解 golang reflect pkg</a></li>
-        
-        <li><a href="/post/golang/package/sync.pool/">sync.Pool 的实现原理和适用场景</a></li>
-        
-        <li><a href="/post/golang/package/bufio/">初步了解 golang bufio pkg</a></li>
-        
-        <li><a href="/post/golang/upgrade/interface/">Go Interface 从理解到深入</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Golang">Golang</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/database/sql">database/sql</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/life/2018.summary/">&laquo; 程序员 2018 年度总结</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/golang/basic/go.mod/">Go Modules 简单介绍 &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>

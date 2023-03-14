@@ -1,25 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ast on zhaolion&#39;s dropbox</title>
-    <link>https://zhaolion.com/tags/ast/</link>
-    <description>Recent content in ast on zhaolion&#39;s dropbox</description>
+    <title>ast on zhaolion&#39;s knowledge dropbox</title>
+    <link>https://blog.zhaolion.dev/tags/ast/</link>
+    <description>Recent content in ast on zhaolion&#39;s knowledge dropbox</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 24 Jul 2019 23:18:33 +0800</lastBuildDate>
-    
-	<atom:link href="https://zhaolion.com/tags/ast/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 24 Jul 2019 23:18:33 +0800</lastBuildDate><atom:link href="https://blog.zhaolion.dev/tags/ast/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>初步了解使用 go AST 知识</title>
-      <link>https://zhaolion.com/post/golang/upgrade/go.ast.usage/</link>
+      <link>https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/</link>
       <pubDate>Wed, 24 Jul 2019 23:18:33 +0800</pubDate>
       
-      <guid>https://zhaolion.com/post/golang/upgrade/go.ast.usage/</guid>
+      <guid>https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/</guid>
       <description>最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。
 第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(
-sed -n &#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&#39; &amp;quot;interfaces.go&amp;quot;  第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
+sed -n &amp;#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&amp;#39; &amp;#34;interfaces.go&amp;#34; 第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
 下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:
  go/ast - goc AST wiki  AST 是什么？ AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。
 当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。

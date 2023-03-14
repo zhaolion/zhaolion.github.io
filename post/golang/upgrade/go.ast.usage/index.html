@@ -1,165 +1,183 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html>
+<html>
 
-    <meta charset="utf-8">
-    <meta name="generator" content="Hugo 0.53" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>初步了解使用 go AST 知识 | zhaolion&#39;s dropbox</title>
-    <meta property="og:title" content="初步了解使用 go AST 知识 - zhaolion&#39;s dropbox">
-    <meta property="og:type" content="article">
-        
-    <meta property="article:published_time" content="2019-07-24T23:18:33&#43;08:00">
-        
-        
-    <meta property="article:modified_time" content="2019-07-24T23:18:33&#43;08:00">
-        
-    <meta name="Keywords" content="萌新">
-    <meta name="description" content="初步了解使用 go AST 知识">
-        
-    <meta name="author" content="zhaolion">
-    <meta property="og:url" content="https://zhaolion.com/post/golang/upgrade/go.ast.usage/">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="/css/normalize.css">
-    
-        <link rel="stylesheet" href="/css/prism.css">
-    
-    <link rel="stylesheet" href="/css/style.css">
-    <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-
-    
+<title>初步了解使用 go AST 知识 - zhaolion&#39;s knowledge dropbox</title>
+<meta name="description" content="最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。
+第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(
+sed -n &amp;#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&amp;#39; &amp;#34;interfaces.go&amp;#34; 第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
+下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:
+ go/ast - goc AST wiki  AST 是什么？ AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。
+当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。
+了解 Go 对应的语法规则，就能对 Go 代码进行语法分析，当然完成最上面的需求就很简单了
+Go 的 AST 是什么？ 一般来说，需要词法分析，然后进行语法分析。Go 的 AST library 能够将 Go 文件 或者 包含 Go 文件目录 作为输入，使用 Scaner 分析生成 token，然后将 token 送进 Parser 变成语法树"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/" />
 
 
-    
-    
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。
+第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(
+sed -n &amp;#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&amp;#39; &amp;#34;interfaces.go&amp;#34; 第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
+下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:
+ go/ast - goc AST wiki  AST 是什么？ AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。
+当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。
+了解 Go 对应的语法规则，就能对 Go 代码进行语法分析，当然完成最上面的需求就很简单了
+Go 的 AST 是什么？ 一般来说，需要词法分析，然后进行语法分析。Go 的 AST library 能够将 Go 文件 或者 包含 Go 文件目录 作为输入，使用 Scaner 分析生成 token，然后将 token 送进 Parser 变成语法树" />
+<meta name="twitter:title" content="初步了解使用 go AST 知识 - zhaolion&#39;s knowledge dropbox" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+
+
+<meta property="og:type" content="article" />
+<meta content="初步了解使用 go AST 知识 - zhaolion&#39;s knowledge dropbox" property="og:title">
+<meta content="最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。
+第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(
+sed -n &amp;#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&amp;#39; &amp;#34;interfaces.go&amp;#34; 第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码
+下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:
+ go/ast - goc AST wiki  AST 是什么？ AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。
+当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。
+了解 Go 对应的语法规则，就能对 Go 代码进行语法分析，当然完成最上面的需求就很简单了
+Go 的 AST 是什么？ 一般来说，需要词法分析，然后进行语法分析。Go 的 AST library 能够将 Go 文件 或者 包含 Go 文件目录 作为输入，使用 Scaner 分析生成 token，然后将 token 送进 Parser 变成语法树" property="og:description">
+<meta property="og:url" content="https://blog.zhaolion.dev/post/golang/upgrade/go.ast.usage/" />
+<meta property="og:site_name" content="zhaolion&#39;s knowledge dropbox" />
+<meta property="article:section" content="Golang" />
+<meta property="article:published_time" content="2019-07-24 23:18:33 &#43;0800 CST" />
+
+
+
+
+
+<script type="application/ld+json">
+{ 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": "初步了解使用 go AST 知识",
+    "genre": "Golang",  
+    "url": "https:\/\/blog.zhaolion.dev\/post\/golang\/upgrade\/go.ast.usage\/",
+    "datePublished": "2019-07-24 23:18:33 \u002b0800 CST",
+    "description": "最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。\n第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(\nsed -n \u0026#39;s\/^type \\([A-Z][^[:space:]]*\\) interface .*\/\\1\/p\u0026#39; \u0026#34;interfaces.go\u0026#34; 第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 代码\n下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:\n go\/ast - goc AST wiki  AST 是什么？ AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。\n当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。\n了解 Go 对应的语法规则，就能对 Go 代码进行语法分析，当然完成最上面的需求就很简单了\nGo 的 AST 是什么？ 一般来说，需要词法分析，然后进行语法分析。Go 的 AST library 能够将 Go 文件 或者 包含 Go 文件目录 作为输入，使用 Scaner 分析生成 token，然后将 token 送进 Parser 变成语法树",
+    "author": {
+        "@type": "Person",
+        "name": "zhaolion"
+    }
+ }
+</script>
+
+
+
+
+<link rel="stylesheet" href="/sass/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<body>
-<header id="header" class="clearfix">
-    <div class="container">
-        <div class="col-group">
-            <div class="site-name ">
-                
-                    <a id="logo" href="https://zhaolion.com">
-                        zhaolion&#39;s dropbox
-                    </a>
-                
-                <p class="description">[翻墙食用]和大家一起分享我们都不知道的东西</p>
-            </div>
-            <div>
-                <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="https://zhaolion.com">首页</a>
-                    
-                    <a  href="https://zhaolion.com/archives/" title="归档">归档</a>
-                    
-                </nav>
-            </div>
-        </div>
+
+  <body>
+
+    <header class="site-header">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.zhaolion.dev">zhaolion&#39;s knowledge dropbox</a>
     </div>
+
+    
+    <div class="collapse navbar-collapse " id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://blog.zhaolion.devpages/about/">About</a></li>
+        <li><a href="https://blog.zhaolion.devpages/contact/">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Download <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a target="_blank" href="https://github.com/bul-ikana/hugo-cards">Project</a></li>
+            <li><a href="https://github.com/bul-ikana/hugo-cards.git">Download</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a target="_blank" href="https://themes.gohugo.io/">More Themes</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </header>
 
 
-<div id="body">
     <div class="container">
-        <div class="col-group">
+      <div class="wrapper">
+        
+<div class="row">
+<div class="col-md-8">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-            <div class="col-8" id="main">
-                <div class="res-cons">
-                    <article class="post">
-                        <header>
-                            <h1 class="post-title">初步了解使用 go AST 知识</h1>
-                        </header>
-                        <date class="post-meta meta-date">
-                            2019年7月24日
-                        </date>
-                        
-                        <div class="post-meta">
-                            <span>|</span>
-                            
-                                <span class="meta-category"><a href="https://zhaolion.com/categories/Golang">Golang</a></span>
-                            
-                        </div>
-                        
-                        
-                        <div class="post-meta">
-                            <span id="busuanzi_container_page_pv">|<span id="busuanzi_value_page_pv"></span><span> 阅读</span></span>
-                        </div>
-                        
-                        <div class="post-content">
-                            
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name headline">初步了解使用 go AST 知识</h1>
+            <p class="post-meta"><time datetime='2019-07-24T23:18:33&#43;08:00' itemprop="datePublished">July 24, 2019</time></p>
+                 
+          </header>
 
-<p>最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。</p>
-
+          <div class="post-content" itemprop="articleBody">
+            <p>最近遇到一个需求需要解析 Golang 项目中的 interface 并且自动生成 gomock 相关的文件。</p>
 <p>第一个版本简单粗暴，但是我这只菜鸡不会写 shell :(</p>
-
-<pre><code>sed -n 's/^type \([A-Z][^[:space:]]*\) interface .*/\1/p' &quot;interfaces.go&quot;
-</code></pre>
-
-<p>第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 <a href="https://github.com/zhaolion/gengo/tree/master/cmd/gomock">代码</a></p>
-
+<pre tabindex="0"><code>sed -n &#39;s/^type \([A-Z][^[:space:]]*\) interface .*/\1/p&#39; &#34;interfaces.go&#34;
+</code></pre><p>第二个版本: 使用 go AST 解析 go file 自动生成，轮子可以看 <a href="https://github.com/zhaolion/gengo/tree/master/cmd/gomock">代码</a></p>
 <p>下面进入正题，什么是 AST，这个包使用的背景和基本知识有哪些，请先看看以下文档:</p>
-
 <ul>
 <li><a href="https://godoc.org/go/ast">go/ast - goc</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST wiki</a></li>
 </ul>
-
 <h2 id="ast-是什么">AST 是什么？</h2>
-
 <p>AST 是 抽象语法树（Abstract Syntax Tree）缩写，在计算机科学中，是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之所以说语法是“抽象”的，是因为这里的语法并不会表示出真实语法中出现的每个细节。比如，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现；而类似于 if-condition-then 这样的条件跳转语句，可以使用带有两个分支的节点来表示。</p>
-
 <p>当我们对源代码语法分析时，其实我们是在程序设计语言的语法规则指导下才能进行的。我们使用语法规则描述该语言的各种语法成分的是如何组成的，通常用前后文无关文法或与之等价的Backus-Naur 范式(BNF) 将相应程序设计语言的语法规则准确的描述出来。</p>
-
 <p>了解 Go 对应的语法规则，就能对 Go 代码进行语法分析，当然完成最上面的需求就很简单了</p>
-
 <h2 id="go-的-ast-是什么">Go 的 AST 是什么？</h2>
-
 <p>一般来说，需要词法分析，然后进行语法分析。Go 的 AST library 能够将 <code>Go 文件</code> 或者 <code>包含 Go 文件目录</code> 作为输入，使用 Scaner 分析生成 token，然后将 token 送进 Parser 变成语法树</p>
-
 <p>在 Go 中，每个 token 都以它所处的位置，类型和原始字面量来表示</p>
-
 <p>看下官网的 demo:</p>
-
 <p>code:</p>
-
-<pre><code>// src is the input for which we want to print the AST.
+<pre tabindex="0"><code>// src is the input for which we want to print the AST.
 src := `
 package main
 func main() {
-	println(&quot;Hello, World!&quot;)
+	println(&#34;Hello, World!&#34;)
 }
 `
 
 // Create the AST by parsing src.
 fset := token.NewFileSet() // positions are relative to fset
-f, err := parser.ParseFile(fset, &quot;&quot;, src, 0)
+f, err := parser.ParseFile(fset, &#34;&#34;, src, 0)
 if err != nil {
     panic(err)
 }
 
 // Print the AST.
 ast.Print(fset, f)
-</code></pre>
-
-<p>Output:</p>
-
-<pre><code>     0  *ast.File {
+</code></pre><p>Output:</p>
+<pre tabindex="0"><code>     0  *ast.File {
      1  .  Package: 2:1
      2  .  Name: *ast.Ident {
      3  .  .  NamePos: 2:9
-     4  .  .  Name: &quot;main&quot;
+     4  .  .  Name: &#34;main&#34;
      5  .  }
      6  .  Decls: []ast.Decl (len = 1) {
      7  .  .  0: *ast.FuncDecl {
      8  .  .  .  Name: *ast.Ident {
      9  .  .  .  .  NamePos: 3:6
-    10  .  .  .  .  Name: &quot;main&quot;
+    10  .  .  .  .  Name: &#34;main&#34;
     11  .  .  .  .  Obj: *ast.Object {
     12  .  .  .  .  .  Kind: func
-    13  .  .  .  .  .  Name: &quot;main&quot;
+    13  .  .  .  .  .  Name: &#34;main&#34;
     14  .  .  .  .  .  Decl: *(obj @ 7)
     15  .  .  .  .  }
     16  .  .  .  }
@@ -177,14 +195,14 @@ ast.Print(fset, f)
     28  .  .  .  .  .  .  X: *ast.CallExpr {
     29  .  .  .  .  .  .  .  Fun: *ast.Ident {
     30  .  .  .  .  .  .  .  .  NamePos: 4:2
-    31  .  .  .  .  .  .  .  .  Name: &quot;println&quot;
+    31  .  .  .  .  .  .  .  .  Name: &#34;println&#34;
     32  .  .  .  .  .  .  .  }
     33  .  .  .  .  .  .  .  Lparen: 4:9
     34  .  .  .  .  .  .  .  Args: []ast.Expr (len = 1) {
     35  .  .  .  .  .  .  .  .  0: *ast.BasicLit {
     36  .  .  .  .  .  .  .  .  .  ValuePos: 4:10
     37  .  .  .  .  .  .  .  .  .  Kind: STRING
-    38  .  .  .  .  .  .  .  .  .  Value: &quot;\&quot;Hello, World!\&quot;&quot;
+    38  .  .  .  .  .  .  .  .  .  Value: &#34;\&#34;Hello, World!\&#34;&#34;
     39  .  .  .  .  .  .  .  .  }
     40  .  .  .  .  .  .  .  }
     41  .  .  .  .  .  .  .  Ellipsis: -
@@ -198,384 +216,130 @@ ast.Print(fset, f)
     49  .  }
     50  .  Scope: *ast.Scope {
     51  .  .  Objects: map[string]*ast.Object (len = 1) {
-    52  .  .  .  &quot;main&quot;: *(obj @ 11)
+    52  .  .  .  &#34;main&#34;: *(obj @ 11)
     53  .  .  }
     54  .  }
     55  .  Unresolved: []*ast.Ident (len = 1) {
     56  .  .  0: *(obj @ 29)
     57  .  }
     58  }
-</code></pre>
-
-<p>上面结果可以使用 <a href="https://yuroyoro.github.io/goast-viewer/index.html">goast-viewer</a> 自己查看</p>
-
+</code></pre><p>上面结果可以使用 <a href="https://yuroyoro.github.io/goast-viewer/index.html">goast-viewer</a> 自己查看</p>
 <p>最后用图来更好的理解:</p>
-
-<p><img src="https://i.imgur.com/C2wPSiL.png" alt="ast.tree.demo" /></p>
-
+<p><img src="https://i.imgur.com/C2wPSiL.png" alt="ast.tree.demo"></p>
 <p>总结一下，Go 将所有可以识别的 token 抽象成 Node，通过 interface 方式组织在一起，它们之间的关系如下图示意</p>
-
-<p><img src="https://i.imgur.com/i1a9ojJ.png" alt="golang_ast_relation" /></p>
-
+<p><img src="https://i.imgur.com/i1a9ojJ.png" alt="golang_ast_relation"></p>
 <h2 id="通过-ast-找出所有的-interface">通过 AST 找出所有的 interface</h2>
-
 <p>大概理解完 AST 组织结构，所以想要找出所有的 interface，可以顺着下面结构找</p>
-
 <p>FileSet -&gt; Package -&gt; Files -&gt; File.Scope.Objects -&gt; obj.Decl -&gt; ast.TypeSpec.Type -&gt; ast.InterfaceType</p>
-
 <p>核心代码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">ff</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">lookup</span>) <span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">base</span>, <span style="color:#a6e22e">dir</span> <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fs</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">NewFileSet</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">pkgs</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">parser</span>.<span style="color:#a6e22e">ParseDir</span>(<span style="color:#a6e22e">fs</span>, <span style="color:#a6e22e">dir</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">info</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">FileInfo</span>) <span style="color:#66d9ef">bool</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>	}, <span style="color:#a6e22e">parser</span>.<span style="color:#a6e22e">AllErrors</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">interfaces</span> <span style="color:#f92672">:=</span> make([]<span style="color:#f92672">*</span><span style="color:#a6e22e">ityp</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">16</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">p</span>, <span style="color:#a6e22e">pkg</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">pkgs</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">fileName</span>, <span style="color:#a6e22e">file</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">pkg</span>.<span style="color:#a6e22e">Files</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">obj</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">file</span>.<span style="color:#a6e22e">Scope</span>.<span style="color:#a6e22e">Objects</span> {
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">typ</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">Decl</span>.(<span style="color:#f92672">*</span><span style="color:#a6e22e">ast</span>.<span style="color:#a6e22e">TypeSpec</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">ok</span> {
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>				<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">ok</span> = <span style="color:#a6e22e">typ</span>.<span style="color:#a6e22e">Type</span>.(<span style="color:#f92672">*</span><span style="color:#a6e22e">ast</span>.<span style="color:#a6e22e">InterfaceType</span>)
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">ok</span> {
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">ToLower</span>(string(<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">Name</span>[<span style="color:#ae81ff">0</span>])) <span style="color:#f92672">!=</span> string(<span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">Name</span>[<span style="color:#ae81ff">0</span>]) {
+</span></span><span style="display:flex;"><span>					<span style="color:#a6e22e">interfaces</span> = append(<span style="color:#a6e22e">interfaces</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">ityp</span>{
+</span></span><span style="display:flex;"><span>						<span style="color:#a6e22e">packageName</span>: <span style="color:#a6e22e">p</span>,
+</span></span><span style="display:flex;"><span>						<span style="color:#a6e22e">importPath</span>:  <span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Join</span>(<span style="color:#a6e22e">base</span>, <span style="color:#a6e22e">filepath</span>.<span style="color:#a6e22e">Dir</span>(<span style="color:#a6e22e">fileName</span>)),
+</span></span><span style="display:flex;"><span>						<span style="color:#a6e22e">name</span>:        <span style="color:#a6e22e">obj</span>.<span style="color:#a6e22e">Name</span>,
+</span></span><span style="display:flex;"><span>					})
+</span></span><span style="display:flex;"><span>				}
+</span></span><span style="display:flex;"><span>			}
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ff</span>.append(<span style="color:#a6e22e">interfaces</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+          </div>
 
-<pre><code class="language-go">func (ff *lookup) find(base, dir string) {
-	fs := token.NewFileSet()
-	pkgs, err := parser.ParseDir(fs, dir, func(info os.FileInfo) bool {
-		return true
-	}, parser.AllErrors)
-	if err != nil {
-		panic(err)
-	}
-
-	interfaces := make([]*ityp, 0, 16)
-	for p, pkg := range pkgs {
-		for fileName, file := range pkg.Files {
-			for _, obj := range file.Scope.Objects {
-				typ, ok := obj.Decl.(*ast.TypeSpec)
-				if !ok {
-					continue
-				}
-
-				_, ok = typ.Type.(*ast.InterfaceType)
-				if !ok {
-					continue
-				}
-
-				if strings.ToLower(string(obj.Name[0])) != string(obj.Name[0]) {
-					interfaces = append(interfaces, &amp;ityp{
-						packageName: p,
-						importPath:  filepath.Join(base, filepath.Dir(fileName)),
-						name:        obj.Name,
-					})
-				}
-			}
-		}
-	}
-
-	ff.append(interfaces)
-}
-</code></pre>
-
-                        </div>
-
-                        
-
-<div class="post-archive">
-    <h2>See Also</h2>
-    <ul class="listing">
+    </article>
+    <div class="row">
         
-        <li><a href="/post/golang/tips/go.make.vs.new/">new 与 make 的差别</a></li>
-        
-        <li><a href="/post/golang/upgrade/memory.layout/">Go 内存排布</a></li>
-        
-        <li><a href="/post/golang/upgrade/database.sql.driver.stmt/">database/sql: Stmt的使用以及坑</a></li>
-        
-        <li><a href="/post/golang/basic/go.mod/">Go Modules 简单介绍</a></li>
-        
-        <li><a href="/post/golang/package/reflect/">初步了解 golang reflect pkg</a></li>
-        
-    </ul>
-</div>
-
-
-                        <div class="post-meta meta-tags">
-                            
-                            <ul class="clearfix">
-                                
-                                <li><a href="https://zhaolion.com/tags/Golang">Golang</a></li>
-                                
-                                <li><a href="https://zhaolion.com/tags/ast">ast</a></li>
-                                
-                            </ul>
-                            
-                        </div>
-                    </article>
-                    
-    
-
-    
-    
-    <div class="post bg-white">
-      <script src="https://utteranc.es/client.js"
-            repo= "zhaolion/chaldea-comments"
-            issue-term="pathname"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-      </script>
     </div>
     
-                </div>
-            </div>
-            <div id="secondary">
-    <section class="widget">
-        <form id="search" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" _lpchecked="1">
-      
-      <input type="text" name="q" maxlength="20" placeholder="Search">
-      <input type="hidden" name="sitesearch" value="https://zhaolion.com">
-      <button type="submit" class="submit icon-search"></button>
-</form>
-    </section>
-    
-    <section class="widget">
-        <h3 class="widget-title">最近文章</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/tips.around.alias/" title="Around Alias">Around Alias</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/ruby/best.practice.on.rails/" title="Best Practice about ROR">Best Practice about ROR</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/go.ast.usage/" title="初步了解使用 go AST 知识">初步了解使用 go AST 知识</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/k8s/kubectl/" title="Kubectl wiki">Kubectl wiki</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/tips/go.make.vs.new/" title="new 与 make 的差别">new 与 make 的差别</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/golang/upgrade/memory.layout/" title="Go 内存排布">Go 内存排布</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/dns/" title="DNS 域名系统">DNS 域名系统</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/backend/raft/" title="从入门到放弃 - Raft">从入门到放弃 - Raft</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/knowledge/company_blog/" title="知名公司工程博客">知名公司工程博客</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/post/linux/basic_usage/find/" title="Linux 常用命令 find">Linux 常用命令 find</a>
-    </li>
-    
-</ul>
-    </section>
-
-    
-
-    <section class="widget">
-        <h3 class="widget-title">分类</h3>
-<ul class="widget-list">
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Backend/">Backend(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/CSS/">CSS(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Docker/">Docker(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Git/">Git(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Golang/">Golang(10)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/HTML/">HTML(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Javascript/">Javascript(6)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Knowledge/">Knowledge(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Life/">Life(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Linux/">Linux(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/MySQL/">MySQL(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Regexp/">Regexp(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Ruby/">Ruby(2)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Tools/">Tools(1)</a>
-    </li>
-    
-    <li>
-        <a href="https://zhaolion.com/categories/Web/">Web(9)</a>
-    </li>
-    
-</ul>
-    </section>
-
-    <section class="widget">
-        <h3 class="widget-title">标签</h3>
-<div class="tagcloud">
-    
-    <a href="https://zhaolion.com/tags/Backend/">Backend</a>
-    
-    <a href="https://zhaolion.com/tags/BestPractice/">BestPractice</a>
-    
-    <a href="https://zhaolion.com/tags/CSS/">CSS</a>
-    
-    <a href="https://zhaolion.com/tags/Docker/">Docker</a>
-    
-    <a href="https://zhaolion.com/tags/Git/">Git</a>
-    
-    <a href="https://zhaolion.com/tags/Golang/">Golang</a>
-    
-    <a href="https://zhaolion.com/tags/HTML/">HTML</a>
-    
-    <a href="https://zhaolion.com/tags/Javascript/">Javascript</a>
-    
-    <a href="https://zhaolion.com/tags/Knowledge/">Knowledge</a>
-    
-    <a href="https://zhaolion.com/tags/Life/">Life</a>
-    
-    <a href="https://zhaolion.com/tags/Linux/">Linux</a>
-    
-    <a href="https://zhaolion.com/tags/MySQL/">MySQL</a>
-    
-    <a href="https://zhaolion.com/tags/Raft/">Raft</a>
-    
-    <a href="https://zhaolion.com/tags/Rails/">Rails</a>
-    
-    <a href="https://zhaolion.com/tags/Regexp/">Regexp</a>
-    
-    <a href="https://zhaolion.com/tags/Ruby/">Ruby</a>
-    
-    <a href="https://zhaolion.com/tags/Tools/">Tools</a>
-    
-    <a href="https://zhaolion.com/tags/ast/">ast</a>
-    
-    <a href="https://zhaolion.com/tags/basic/">basic</a>
-    
-    <a href="https://zhaolion.com/tags/blog/">blog</a>
-    
-    <a href="https://zhaolion.com/tags/bufio/">bufio</a>
-    
-    <a href="https://zhaolion.com/tags/database/sql/">database/sql</a>
-    
-    <a href="https://zhaolion.com/tags/interface/">interface</a>
-    
-    <a href="https://zhaolion.com/tags/k8s/">k8s</a>
-    
-    <a href="https://zhaolion.com/tags/kubectl/">kubectl</a>
-    
-    <a href="https://zhaolion.com/tags/kubernetes/">kubernetes</a>
-    
-    <a href="https://zhaolion.com/tags/module/">module</a>
-    
-    <a href="https://zhaolion.com/tags/reflect/">reflect</a>
-    
-    <a href="https://zhaolion.com/tags/sync/">sync</a>
-    
-    <a href="https://zhaolion.com/tags/tips/">tips</a>
-    
+    <div class="row">
+            <ul class="pager">
+             
+                    <li><a class="next" href="https://blog.zhaolion.dev/post/ruby/best.practice.on.rails/">&laquo; Best Practice about ROR</a></li>
+              
+              
+                <li><a class="previous" href="https://blog.zhaolion.dev/post/k8s/kubectl/">Kubectl wiki &raquo;</a></li>
+              
+            </ul>
+    </div>
 </div>
-    </section>
-
-    
-<section class="widget">
-    <h3 class="widget-title">友情链接</h3>
-    <ul class="widget-list">
-        
-        <li>
-            <a target="_blank" href="https://github.com/zhaolion" title="Github">欢迎来围观我的同性交友账号</a>
-        </li>
-        
-    </ul>
-</section>
 
 
-    <section class="widget">
-        <h3 class="widget-title">其它</h3>
-        <ul class="widget-list">
-            <li><a href="https://zhaolion.com/index.xml">文章 RSS</a></li>
-        </ul>
-    </section>
-</div>
+<div class="col-md-4 mt20">
+        <div class="post-img">
+            
+            <img width="600" src="https://blog.zhaolion.devimages/" alt="webjeda">
+            
         </div>
-    </div>
-</div>
-<footer id="footer">
-    <div class="container">
-        &copy; 2018 <a href="https://zhaolion.com">zhaolion&#39;s dropbox By zhaolion</a>.
-        Powered by <a rel="nofollow noreferer noopener" href="https://gohugo.io" target="_blank">Hugo</a>.
-        <a href="https://www.flysnow.org/" target="_blank">Theme</a> based on <a href="https://github.com/rujews/maupassant-hugo" target="_blank">maupassant</a>.
+            
         
+        <div class="mt10 recent">
+            <h2>Recent articles</h2>        
+             <ul>
+                
+              </ul>
+        </div>
+        
+        <br>
+
+</div>
+
+</div>
+
+
+
+
+      </div>
+    </div>
+
+    <footer>
+    <div class="container">
+        <div class="row p20">
+            
+
+            <div class="col-md-4 text-center mt25" >
+                
+            </div>
+            <div class="col-md-4 text-center mt25">
+               
+               
+               
+               
+               
+            </div>
+
+        </div> 
     </div>
 </footer>
-
-
-    <script type="text/javascript">
     
-    (function(){
-        $("pre code").parent().addClass("line-numbers")
-    }())
 
-    window.MathJax = {
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            processEscapes: true
-        }
-    };
-    </script>
-    <script type="text/javascript" src="/js/prism.js" async="true"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://blog.zhaolion.dev/js/bootstrap.min.js"></script>
+  
+  </body>
 
-<a id="rocket" href="#top"></a>
-<script type="text/javascript" src="/js/totop.js?v=0.0.0" async=""></script>
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-132382167-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
-
-
-<script type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
-
-
-
-
-</body>
 </html>
